@@ -21,6 +21,7 @@ var/
 *.egg-info/
 .installed.cfg
 *.egg
+output/
 
 # Installer logs
 pip-log.txt
@@ -48,6 +49,9 @@ coverage.xml
 # Django stuff:
 *.log
 *.pot
+
+# pid file
+*.pid
 
 # Sphinx documentation
 docs/_build/

@@ -4,9 +4,10 @@ from __future__ import unicode_literals
 
 AUTHOR = u'actberw'
 SITENAME = u'记录一些工作中的笔记'
-# SITEURL = 'http://actberw.github.io'
+SITEURL = 'http://actberw.github.io'
 SITE_SOURCE = u"https://github.com/actberw/actberw.github.io"
 THEME = 'zurb-F5-basic'
+DEFAULT_DATE = 'fs'
 
 TIMEZONE = 'Asia/Shanghai'
 
@@ -32,4 +33,4 @@ SOCIAL = (('You can add links in your config file', '#'),
 DEFAULT_PAGINATION = 15
 
 # Uncomment following line if you want document-relative URLs when developing
-#RELATIVE_URLS = True
+RELATIVE_URLS = True

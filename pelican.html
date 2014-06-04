@@ -4,7 +4,7 @@
     <!-- Set the viewport width to device width for mobile -->
     <meta name="viewport" content="width=device-width" />
 
-    <title>记录一些工作中的笔记</title>
+    <title>pelican</title>
 
     <link rel="stylesheet" href="./theme/css/normalize.css" />
     <link rel="stylesheet" href="./theme/css/foundation.min.css" />
@@ -42,16 +42,17 @@
 
     <!-- Main Blog Content -->
     <div class="large-9 columns">
-        
-        
+<article>
+    <header>
+        <h3 class="article-title"><a href="./pelican.html" rel="bookmark"
+        title="Permalink to pelican">pelican</a></h3>
+    </header>
 
-            <article>
-                <a href="./pelican.html"><h3 class="article-title">pelican</h3></a>
 <h6 class="subheader" title="2014-06-04T12:03:52">Wed 04 June 2014
 </h6>
 
 
-<ol>
+    <ol>
 <li>
 <p>安装</p>
 <ul>
@@ -169,7 +170,8 @@
 <p>以后所有操作都在source分支下进行，就可以执行make github 发布博客, <code>git add .</code>保存源码推到source分支.</p>
 <p>注: make github之后需要等一会才能生效.</p>
 </li>
-</ol><p class="subheader">Category: <a href="./category/misc.html">misc</a>
+</ol>
+<p class="subheader">Category: <a href="./category/misc.html">misc</a>
 
     Tagged: 
     <a href="./tag/pelican.html">pelican </a>
@@ -178,44 +180,8 @@
 
 
 
-            </article>
 
-
-                <hr  class="gradient"/>
-
-
-        
-
-
-            <article>
-                <a href="./umask-ming-ling.html"><h3 class="article-title">umask 命令</h3></a>
-<h6 class="subheader" title="2014-06-04T10:57:17">Wed 04 June 2014
-</h6>
-
-
-<p>该命令用来设置限制新文件权限的掩码, 默认是022, umask 命令允许你设定文件创建时的缺省模式，对应每一类用户(文件属主、同组用户、其他用户)存在一个相应的umask值中的数字。对于文件来说，这一数字的最 大值分别是6。系统不允许你在创建一个文本文件时就赋予它执行权限，必须在创建后用chmod命令增加这一权限。目录则允许设置执行权限，这样针对目录来 说，umask中各个数字最大可以到7。</p>
-<p>所以对于默认的(022) 文件的权限是:644(-rw-r--r--),  目录是:755(drwxr-xr-x)</p><p class="subheader">Category: <a href="./category/misc.html">misc</a>
-
-    Tagged: 
-    <a href="./tag/linux.html">linux </a>
-    <a href="./tag/umask.html">umask </a>
-</p>
-
-
-
-                <a class="button radius secondary small right" href="./umask-ming-ling.html">Read More</a>
-                <hr  class="gradient"/>
-            </article>
-
-            <!-- /#posts-list -->
-<div class="pagination-centered">
-<h6 class="subheader">Page 1 of 1</h6>
-
-<p>
-
-</p>
-</div>
-
+</article>
     </div>
     <!-- End Main Content -->
 

@@ -4,13 +4,13 @@
     <!-- Set the viewport width to device width for mobile -->
     <meta name="viewport" content="width=device-width" />
 
-    <title>记录一些工作中的笔记</title>
+    <title>记录一些工作中的笔记 - linux</title>
 
-    <link rel="stylesheet" href="./theme/css/normalize.css" />
-    <link rel="stylesheet" href="./theme/css/foundation.min.css" />
-    <link rel="stylesheet" href="./theme/css/style.css" />
-    <link rel="stylesheet" href="./theme/css/pygments.css" />	
-    <script src="./theme/js/vendor/custom.modernizr.js"></script>
+    <link rel="stylesheet" href="../theme/css/normalize.css" />
+    <link rel="stylesheet" href="../theme/css/foundation.min.css" />
+    <link rel="stylesheet" href="../theme/css/style.css" />
+    <link rel="stylesheet" href="../theme/css/pygments.css" />	
+    <script src="../theme/js/vendor/custom.modernizr.js"></script>
 </head>
 
 <body>
@@ -20,7 +20,7 @@
 <div class="top-bar">
 <div class="row">
     <div class="large-9 large-centered columns">
-	    <h1><a href=".">记录一些工作中的笔记</a></h1>
+	    <h1><a href="..">记录一些工作中的笔记</a></h1>
     </div>
 </div>
 </div>
@@ -42,9 +42,39 @@
 
     <!-- Main Blog Content -->
     <div class="large-9 columns">
-<ul class="circle">
-	<li><a href="category/misc.html">misc</a></li>
-</ul>
+        
+        
+
+            <article>
+                <a href="../umask-ming-ling.html"><h3 class="article-title">umask 命令</h3></a>
+<h6 class="subheader" title="2014-06-04T10:57:17">Wed 04 June 2014
+</h6>
+
+
+<p>该命令用来设置限制新文件权限的掩码, 默认是022, umask 命令允许你设定文件创建时的缺省模式，对应每一类用户(文件属主、同组用户、其他用户)存在一个相应的umask值中的数字。对于文件来说，这一数字的最 大值分别是6。系统不允许你在创建一个文本文件时就赋予它执行权限，必须在创建后用chmod命令增加这一权限。目录则允许设置执行权限，这样针对目录来 说，umask中各个数字最大可以到7。</p>
+<p>所以对于默认的(022) 文件的权限是:644(-rw-r--r--),  目录是:755(drwxr-xr-x)</p><p class="subheader">Category: <a href="../category/misc.html">misc</a>
+
+    Tagged: 
+    <a href="../tag/linux.html">linux </a>
+    <a href="../tag/umask.html">umask </a>
+</p>
+
+
+
+            </article>
+
+<div class="pagination-centered">
+<h6 class="subheader">Page 1 of 1</h6>
+
+<p>
+
+</p>
+</div>
+
+
+
+            <!-- /#posts-list -->
+
     </div>
     <!-- End Main Content -->
 
@@ -52,14 +82,14 @@
     <aside class="large-3 columns">
         <h5 class="sidebar-title">Site</h5>
         <ul class="side-nav">
-            <li><a href="./archives.html">Archives</a>
-            <li><a href="./tags.html">Tags</a>
+            <li><a href="../archives.html">Archives</a>
+            <li><a href="../tags.html">Tags</a>
         </ul>
 
 		
         <h5 class="sidebar-title">Categories</h5>
         <ul class="side-nav">
-            <li><a href="./category/misc.html">misc</a></li>
+            <li><a href="../category/misc.html">misc</a></li>
    
         </ul>
 

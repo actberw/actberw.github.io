@@ -4,7 +4,7 @@
     <!-- Set the viewport width to device width for mobile -->
     <meta name="viewport" content="width=device-width" />
 
-    <title>umask 命令</title>
+    <title>随机数及检验</title>
 
     <link rel="stylesheet" href="./theme/css/normalize.css" />
     <link rel="stylesheet" href="./theme/css/foundation.min.css" />
@@ -44,21 +44,48 @@
     <div class="large-9 columns">
 <article>
     <header>
-        <h3 class="article-title"><a href="./umask-ming-ling.html" rel="bookmark"
-        title="Permalink to umask 命令">umask 命令</a></h3>
+        <h3 class="article-title"><a href="./sui-ji-shu-ji-jian-yan.html" rel="bookmark"
+        title="Permalink to 随机数及检验">随机数及检验</a></h3>
     </header>
 
-<h6 class="subheader" title="2014-06-04T10:57:17">Wed 04 June 2014
+<h6 class="subheader" title="2014-06-04T12:46:03">Wed 04 June 2014
 </h6>
 
 
-    <p>该命令用来设置限制新文件权限的掩码, 默认是022, umask 命令允许你设定文件创建时的缺省模式，对应每一类用户(文件属主、同组用户、其他用户)存在一个相应的umask值中的数字。对于文件来说，这一数字的最 大值分别是6。系统不允许你在创建一个文本文件时就赋予它执行权限，必须在创建后用chmod命令增加这一权限。目录则允许设置执行权限，这样针对目录来 说，umask中各个数字最大可以到7。</p>
-<p>所以对于默认的(022) 文件的权限是:644(-rw-r--r--),  目录是:755(drwxr-xr-x)</p>
-<p class="subheader">Category: <a href="./category/misc.html">misc</a>
+    <ol>
+<li>
+<p>随机数算法</p>
+<ul>
+<li>取中法</li>
+<li>线性同余法</li>
+<li>移位法</li>
+<li>梅森旋转算法</li>
+</ul>
+</li>
+<li>
+<p>检验</p>
+<ul>
+<li>参数检验</li>
+<li>均匀性检验</li>
+<li>独立性检验</li>
+</ul>
+</li>
+</ol>
+<p>refer:</p>
+<ul>
+<li><a href="http://blog.csdn.net/zmazon/article/details/17383521">http://blog.csdn.net/zmazon/article/details/17383521</a></li>
+<li><a href="http://carlnerv.com/2014/c%E6%A0%87%E5%87%86%E5%BA%93%E9%87%8C%E7%9A%84rand.html">http://carlnerv.com/2014/c%E6%A0%87%E5%87%86%E5%BA%93%E9%87%8C%E7%9A%84rand.html</a></li>
+<li><a href="http://wenku.baidu.com/view/0295fdd7b14e852458fb574e.html">http://wenku.baidu.com/view/0295fdd7b14e852458fb574e.html</a></li>
+<li><a href="http://wenku.baidu.com/view/bec3a060ddccda38376bafe4.html?from=related">http://wenku.baidu.com/view/bec3a060ddccda38376bafe4.html?from=related</a></li>
+<li><a href="http://carlnerv.com/2014/c%E6%A0%87%E5%87%86%E5%BA%93%E9%87%8C%E7%9A%84rand.html">http://carlnerv.com/2014/c%E6%A0%87%E5%87%86%E5%BA%93%E9%87%8C%E7%9A%84rand.html</a></li>
+<li><a href="http://www.dewen.org/q/15492/%E7%AE%97%E6%B3%95%EF%BC%9Arand()%E4%BA%A7%E7%94%9F1~7%E4%B9%8B%E9%97%B4%E7%9A%84%E9%9A%8F%E6%9C%BA%E6%95%B0%EF%BC%8C%E5%A6%82%E4%BD%95%E7%94%A8rand()%E5%87%BD%E6%95%B0%E4%BA%A7%E7%94%9F1~10%E4%B9%8B%E9%97%B4%E7%9A%84%E9%9A%8F%E6%9C%BA%E6%95%B0">http://www.dewen.org/q/15492/%E7%AE%97%E6%B3%95%EF%BC%9Arand()%E4%BA%A7%E7%94%9F1~7%E4%B9%8B%E9%97%B4%E7%9A%84%E9%9A%8F%E6%9C%BA%E6%95%B0%EF%BC%8C%E5%A6%82%E4%BD%95%E7%94%A8rand()%E5%87%BD%E6%95%B0%E4%BA%A7%E7%94%9F1~10%E4%B9%8B%E9%97%B4%E7%9A%84%E9%9A%8F%E6%9C%BA%E6%95%B0</a></li>
+<li><a href="http://club.alibabatech.org/article_detail.htm?articleId=2">http://club.alibabatech.org/article_detail.htm?articleId=2</a></li>
+</ul>
+<p class="subheader">Category: <a href="./category/algorithm.html">algorithm</a>
 
     Tagged: 
-    <a href="./tag/linux.html">linux </a>
-    <a href="./tag/umask.html">umask </a>
+    <a href="./tag/algorithm.html">algorithm </a>
+    <a href="./tag/random.html">random </a>
 </p>
 
 

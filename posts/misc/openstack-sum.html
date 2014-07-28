@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8" />
+    <!-- Set the viewport width to device width for mobile -->
+    <meta name="viewport" content="width=device-width" />
+
+    <title>openstack</title>
+
+    <link rel="stylesheet" href="../../theme/css/normalize.css" />
+    <link rel="stylesheet" href="../../theme/css/foundation.min.css" />
+    <link rel="stylesheet" href="../../theme/css/style.css" />
+    <link rel="stylesheet" href="../../theme/css/pygments.css" />	
+    <script src="../../theme/js/vendor/custom.modernizr.js"></script>
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        "HTML-CSS": {
+      styles: {
+        ".MathJax .mo, .MathJax .mi": {color: "black ! important"}}
+          },
+            tex2jax: {inlineMath: [['$','$'], ['\\\\(','\\\\)']],processEscapes: true}
+      });
+    </script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script></script>
+</head>
+
+<body>
+
+<!-- Nav Bar -->
+<nav>
+<div class="top-bar">
+<div class="row">
+    <div class="large-9 large-centered columns">
+	    <h1><a href="../..">记录一些工作中的笔记</a></h1>
+    </div>
+</div>
+</div>
+
+<!-- Show menu items and pages -->
+<div class="row">
+<div class="large-9 columns">
+    <ul class="button-group navigation">
+
+    </ul>
+</div>
+</div>
+</nav>
+<!-- End Nav -->
+
+
+<!-- Main Page Content and Sidebar -->
+<div class="row">
+
+    <!-- Main Blog Content -->
+    <div class="large-9 columns">
+<article>
+    <header>
+        <h3 class="article-title"><a href="../../posts/misc/openstack-sum.html" rel="bookmark"
+        title="Permalink to openstack">openstack</a></h3>
+    </header>
+
+<h6 class="subheader" title="2014-07-08T20:08:08">Tue 08 July 2014
+</h6>
+
+
+    <ol>
+<li>
+<p>openstack简介<br />
+  OpenStack是一个由rackspace和NSNA于2010年发布的云计算平台, 旨在为公有云和私有云提供一个易于扩展的、功能丰富的解决方案，也可以说OpenStack是一个云计算操作系统，它整合各种底层硬件硬件资源，为系统管理员提供Web界面的控制面板以方便资源管理，为开发者的应用程序提供统一管理接口，为终端用户提供无缝的透明的云计算服务。最近的icehouse版本主要包含了10个核心组件：  </p>
+<ul>
+<li>计算(Nova)</li>
+<li>对象存储(Swift)</li>
+<li>块存储(Cinder)</li>
+<li>镜像(Glance)</li>
+<li>网络(Neutron)</li>
+<li>身份认证(Keystone)</li>
+<li>控制面板(Horizon)</li>
+<li>计量/监控服务(Ceilometer)</li>
+<li>编排组织服务(Heat)</li>
+<li>数据库服务(Trove)。</li>
+</ul>
+</li>
+<li>
+<p>openstack部署  </p>
+<ul>
+<li>
+<p>部署模型一般是Three-node architecture, 分别是:  </p>
+<ul>
+<li>控制节点</li>
+<li>网络节点</li>
+<li>计算机点</li>
+</ul>
+</li>
+<li>
+<p>潜在的技术难点   </p>
+<ul>
+<li>网络<br />
+虚拟机比较多的情况下，虚拟网络会更加复杂, CPU需要消耗大量的资源匹配网络流表，灵活的网络管理会境地网络的性能。</li>
+<li>镜像风暴<br />
+当镜像较多且每个镜像都很大时会消耗更多的网络宽带和 IO。</li>
+<li>openstack api<br />
+每个openstack组件的api都监听单一端口，导致无法充分利用服务器资源，原生的dashboard使用同步方式调用api会导致用户端界面变慢</li>
+<li>资源调度<br />
+内置的默认资源调度可能无法满足复杂的业务需求</li>
+<li>异构存储<br />
+企业内部异构存储新旧不一, 架构不一需要整合</li>
+</ul>
+</li>
+<li>
+<p>网络设计<br />
+Neutron 实质是一个定义良好的框架用来驱动 L2-L7 层不同的底层网络技术来为第三方应用独立地提供租户隔离的虚拟网络服务。目前支持的有flat, flatdhcp, vlan, vxlan, nvgre, mpls, openflow等。</p>
+</li>
+</ul>
+</li>
+</ol>
+<p class="subheader">Category: <a href="../../category/misc.html">misc</a>
+
+</p>
+
+
+
+
+</article>
+    </div>
+    <!-- End Main Content -->
+
+    <!-- Sidebar -->
+    <aside class="large-3 columns">
+        <h5 class="sidebar-title">Site</h5>
+        <ul class="side-nav">
+            <li><a href="../../archives.html">Archives</a>
+            <li><a href="../../tags.html">Tags</a>
+        </ul>
+
+		
+        <h5 class="sidebar-title">Categories</h5>
+        <ul class="side-nav">
+            <li><a href="../../category/adt.html">adt</a></li>
+            <li><a href="../../category/algorithm.html">algorithm</a></li>
+            <li><a href="../../category/c.html">c</a></li>
+            <li><a href="../../category/complexity.html">complexity</a></li>
+            <li><a href="../../category/coroutine.html">coroutine</a></li>
+            <li><a href="../../category/interview.html">interview</a></li>
+            <li><a href="../../category/misc.html">misc</a></li>
+            <li><a href="../../category/mysql.html">mysql</a></li>
+            <li><a href="../../category/python.html">python</a></li>
+            <li><a href="../../category/security.html">security</a></li>
+            <li><a href="../../category/sort.html">sort</a></li>
+            <li><a href="../../category/tree.html">tree</a></li>
+            <li><a href="../../category/vim.html">vim</a></li>
+   
+        </ul>
+
+        <h5 class="sidebar-title">Links</h5>
+        <ul class="side-nav">
+            <li><a href="https://github.com/actberw">github</a></li>
+        </ul>
+		
+        <h5 class="sidebar-title">Social</h5>
+        <ul class="side-nav">
+            <li><a href="http://weibo.com/u/1950796544">weibo</a></li>
+        </ul>
+
+    </aside> <!-- End Sidebar -->
+
+</div> <!-- End Main Content and Sidebar -->
+
+
+<!-- Footer -->
+<footer class="row">
+    <div class="large-12 columns">
+        <hr />
+        <div class="row">
+            <div class="large-6 columns">
+              <!--                  <p>记录一些工作中的笔记 by actberw</p> -->
+            </div>
+            </div>
+    </div>
+</footer>

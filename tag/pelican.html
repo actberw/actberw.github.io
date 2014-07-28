@@ -11,6 +11,16 @@
     <link rel="stylesheet" href="../theme/css/style.css" />
     <link rel="stylesheet" href="../theme/css/pygments.css" />	
     <script src="../theme/js/vendor/custom.modernizr.js"></script>
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        "HTML-CSS": {
+      styles: {
+        ".MathJax .mo, .MathJax .mi": {color: "black ! important"}}
+          },
+            tex2jax: {inlineMath: [['$','$'], ['\\\\(','\\\\)']],processEscapes: true}
+      });
+    </script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script></script>
 </head>
 
 <body>
@@ -46,8 +56,8 @@
         
 
             <article>
-                <a href="../pelican.html"><h3 class="article-title">pelican</h3></a>
-<h6 class="subheader" title="2014-06-04T12:03:52">Wed 04 June 2014
+                <a href="../posts/misc/pelican.html"><h3 class="article-title">pelican</h3></a>
+<h6 class="subheader" title="2014-06-05T00:00:00">Thu 05 June 2014
 </h6>
 
 
@@ -88,8 +98,23 @@
 
 </li>
 <li>
-<p>DEFAULT_DATE默认为系统但前时间</p>
+<p>文章发布时间</p>
 <div class="highlight"><pre><span class="n">DEFAULT_DATE</span> <span class="o">=</span> <span class="err">&#39;</span><span class="n">fs</span><span class="err">&#39;</span>
+</pre></div>
+
+
+</li>
+<li>
+<p>文章url</p>
+<div class="highlight"><pre><span class="n">ARTICLE_URL</span> <span class="o">=</span> <span class="err">&#39;</span><span class="n">posts</span><span class="o">/</span><span class="p">{</span><span class="n">category</span><span class="p">}</span><span class="o">/</span><span class="p">{</span><span class="n">slug</span><span class="p">}.</span><span class="n">html</span><span class="err">&#39;</span>
+<span class="n">ARTICLE_SAVE_AS</span> <span class="o">=</span> <span class="err">&#39;</span><span class="n">posts</span><span class="o">/</span><span class="p">{</span><span class="n">category</span><span class="p">}</span><span class="o">/</span><span class="p">{</span><span class="n">slug</span><span class="p">}.</span><span class="n">html</span><span class="err">&#39;</span>
+</pre></div>
+
+
+</li>
+<li>
+<p>文章名字</p>
+<div class="highlight"><pre><span class="n">FILENAME_METADATA</span> <span class="o">=</span> <span class="s1">&#39;(?P&lt;slug&gt;.*)&#39;</span>
 </pre></div>
 
 
@@ -206,8 +231,19 @@
 		
         <h5 class="sidebar-title">Categories</h5>
         <ul class="side-nav">
+            <li><a href="../category/adt.html">adt</a></li>
             <li><a href="../category/algorithm.html">algorithm</a></li>
+            <li><a href="../category/c.html">c</a></li>
+            <li><a href="../category/complexity.html">complexity</a></li>
+            <li><a href="../category/coroutine.html">coroutine</a></li>
+            <li><a href="../category/interview.html">interview</a></li>
             <li><a href="../category/misc.html">misc</a></li>
+            <li><a href="../category/mysql.html">mysql</a></li>
+            <li><a href="../category/python.html">python</a></li>
+            <li><a href="../category/security.html">security</a></li>
+            <li><a href="../category/sort.html">sort</a></li>
+            <li><a href="../category/tree.html">tree</a></li>
+            <li><a href="../category/vim.html">vim</a></li>
    
         </ul>
 

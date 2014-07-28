@@ -6,11 +6,21 @@
 
     <title>随机数及检验</title>
 
-    <link rel="stylesheet" href="./theme/css/normalize.css" />
-    <link rel="stylesheet" href="./theme/css/foundation.min.css" />
-    <link rel="stylesheet" href="./theme/css/style.css" />
-    <link rel="stylesheet" href="./theme/css/pygments.css" />	
-    <script src="./theme/js/vendor/custom.modernizr.js"></script>
+    <link rel="stylesheet" href="../../theme/css/normalize.css" />
+    <link rel="stylesheet" href="../../theme/css/foundation.min.css" />
+    <link rel="stylesheet" href="../../theme/css/style.css" />
+    <link rel="stylesheet" href="../../theme/css/pygments.css" />	
+    <script src="../../theme/js/vendor/custom.modernizr.js"></script>
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        "HTML-CSS": {
+      styles: {
+        ".MathJax .mo, .MathJax .mi": {color: "black ! important"}}
+          },
+            tex2jax: {inlineMath: [['$','$'], ['\\\\(','\\\\)']],processEscapes: true}
+      });
+    </script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script></script>
 </head>
 
 <body>
@@ -20,7 +30,7 @@
 <div class="top-bar">
 <div class="row">
     <div class="large-9 large-centered columns">
-	    <h1><a href=".">记录一些工作中的笔记</a></h1>
+	    <h1><a href="../..">记录一些工作中的笔记</a></h1>
     </div>
 </div>
 </div>
@@ -44,11 +54,11 @@
     <div class="large-9 columns">
 <article>
     <header>
-        <h3 class="article-title"><a href="./sui-ji-shu-ji-jian-yan.html" rel="bookmark"
+        <h3 class="article-title"><a href="../../posts/algorithm/random.html" rel="bookmark"
         title="Permalink to 随机数及检验">随机数及检验</a></h3>
     </header>
 
-<h6 class="subheader" title="2014-06-04T12:46:03">Wed 04 June 2014
+<h6 class="subheader" title="2014-06-15T23:35:24">Sun 15 June 2014
 </h6>
 
 
@@ -74,18 +84,17 @@
 <p>refer:</p>
 <ul>
 <li><a href="http://blog.csdn.net/zmazon/article/details/17383521">http://blog.csdn.net/zmazon/article/details/17383521</a></li>
-<li><a href="http://carlnerv.com/2014/c%E6%A0%87%E5%87%86%E5%BA%93%E9%87%8C%E7%9A%84rand.html">http://carlnerv.com/2014/c%E6%A0%87%E5%87%86%E5%BA%93%E9%87%8C%E7%9A%84rand.html</a></li>
 <li><a href="http://wenku.baidu.com/view/0295fdd7b14e852458fb574e.html">http://wenku.baidu.com/view/0295fdd7b14e852458fb574e.html</a></li>
 <li><a href="http://wenku.baidu.com/view/bec3a060ddccda38376bafe4.html?from=related">http://wenku.baidu.com/view/bec3a060ddccda38376bafe4.html?from=related</a></li>
 <li><a href="http://carlnerv.com/2014/c%E6%A0%87%E5%87%86%E5%BA%93%E9%87%8C%E7%9A%84rand.html">http://carlnerv.com/2014/c%E6%A0%87%E5%87%86%E5%BA%93%E9%87%8C%E7%9A%84rand.html</a></li>
-<li><a href="http://www.dewen.org/q/15492/%E7%AE%97%E6%B3%95%EF%BC%9Arand()%E4%BA%A7%E7%94%9F1~7%E4%B9%8B%E9%97%B4%E7%9A%84%E9%9A%8F%E6%9C%BA%E6%95%B0%EF%BC%8C%E5%A6%82%E4%BD%95%E7%94%A8rand()%E5%87%BD%E6%95%B0%E4%BA%A7%E7%94%9F1~10%E4%B9%8B%E9%97%B4%E7%9A%84%E9%9A%8F%E6%9C%BA%E6%95%B0">http://www.dewen.org/q/15492/%E7%AE%97%E6%B3%95%EF%BC%9Arand()%E4%BA%A7%E7%94%9F1~7%E4%B9%8B%E9%97%B4%E7%9A%84%E9%9A%8F%E6%9C%BA%E6%95%B0%EF%BC%8C%E5%A6%82%E4%BD%95%E7%94%A8rand()%E5%87%BD%E6%95%B0%E4%BA%A7%E7%94%9F1~10%E4%B9%8B%E9%97%B4%E7%9A%84%E9%9A%8F%E6%9C%BA%E6%95%B0</a></li>
+<li><a href="http://www.dewen.org/q/15492">http://www.dewen.org/q/15492</a></li>
 <li><a href="http://club.alibabatech.org/article_detail.htm?articleId=2">http://club.alibabatech.org/article_detail.htm?articleId=2</a></li>
 </ul>
-<p class="subheader">Category: <a href="./category/algorithm.html">algorithm</a>
+<p class="subheader">Category: <a href="../../category/algorithm.html">algorithm</a>
 
     Tagged: 
-    <a href="./tag/algorithm.html">algorithm </a>
-    <a href="./tag/random.html">random </a>
+    <a href="../../tag/algorithm.html">algorithm </a>
+    <a href="../../tag/random.html">random </a>
 </p>
 
 
@@ -99,15 +108,26 @@
     <aside class="large-3 columns">
         <h5 class="sidebar-title">Site</h5>
         <ul class="side-nav">
-            <li><a href="./archives.html">Archives</a>
-            <li><a href="./tags.html">Tags</a>
+            <li><a href="../../archives.html">Archives</a>
+            <li><a href="../../tags.html">Tags</a>
         </ul>
 
 		
         <h5 class="sidebar-title">Categories</h5>
         <ul class="side-nav">
-            <li><a href="./category/algorithm.html">algorithm</a></li>
-            <li><a href="./category/misc.html">misc</a></li>
+            <li><a href="../../category/adt.html">adt</a></li>
+            <li><a href="../../category/algorithm.html">algorithm</a></li>
+            <li><a href="../../category/c.html">c</a></li>
+            <li><a href="../../category/complexity.html">complexity</a></li>
+            <li><a href="../../category/coroutine.html">coroutine</a></li>
+            <li><a href="../../category/interview.html">interview</a></li>
+            <li><a href="../../category/misc.html">misc</a></li>
+            <li><a href="../../category/mysql.html">mysql</a></li>
+            <li><a href="../../category/python.html">python</a></li>
+            <li><a href="../../category/security.html">security</a></li>
+            <li><a href="../../category/sort.html">sort</a></li>
+            <li><a href="../../category/tree.html">tree</a></li>
+            <li><a href="../../category/vim.html">vim</a></li>
    
         </ul>
 

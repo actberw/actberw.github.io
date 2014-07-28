@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8" />
+    <!-- Set the viewport width to device width for mobile -->
+    <meta name="viewport" content="width=device-width" />
+
+    <title>记录一些工作中的笔记 - data structure</title>
+
+    <link rel="stylesheet" href="../theme/css/normalize.css" />
+    <link rel="stylesheet" href="../theme/css/foundation.min.css" />
+    <link rel="stylesheet" href="../theme/css/style.css" />
+    <link rel="stylesheet" href="../theme/css/pygments.css" />	
+    <script src="../theme/js/vendor/custom.modernizr.js"></script>
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        "HTML-CSS": {
+      styles: {
+        ".MathJax .mo, .MathJax .mi": {color: "black ! important"}}
+          },
+            tex2jax: {inlineMath: [['$','$'], ['\\\\(','\\\\)']],processEscapes: true}
+      });
+    </script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script></script>
+</head>
+
+<body>
+
+<!-- Nav Bar -->
+<nav>
+<div class="top-bar">
+<div class="row">
+    <div class="large-9 large-centered columns">
+	    <h1><a href="..">记录一些工作中的笔记</a></h1>
+    </div>
+</div>
+</div>
+
+<!-- Show menu items and pages -->
+<div class="row">
+<div class="large-9 columns">
+    <ul class="button-group navigation">
+
+    </ul>
+</div>
+</div>
+</nav>
+<!-- End Nav -->
+
+
+<!-- Main Page Content and Sidebar -->
+<div class="row">
+
+    <!-- Main Blog Content -->
+    <div class="large-9 columns">
+        
+        
+
+            <article>
+                <a href="../posts/adt/stack.html"><h3 class="article-title">栈</h3></a>
+<h6 class="subheader" title="2014-06-13T19:00:00">Fri 13 June 2014
+</h6>
+
+
+<p>应用:
+- 中缀表达式转后缀表达式
+- 表达式(后缀)求值
+- http://blog.jobbole.com/52367/
+- http://www.douban.com/note/46700342/
+- <a href="http://blog.csdn.net/amd_why/article/details/7883027">http://blog.csdn.net/amd_why/article/details/7883027</a></p><p class="subheader">Category: <a href="../category/adt.html">adt</a>
+
+    Tagged: 
+    <a href="../tag/stack.html">stack </a>
+    <a href="../tag/algorithm.html">algorithm </a>
+    <a href="../tag/data-structure.html">data structure </a>
+</p>
+
+
+
+            </article>
+
+
+                <hr  class="gradient"/>
+
+
+        
+
+
+            <article>
+                <a href="../posts/adt/link-list.html"><h3 class="article-title">链表</h3></a>
+<h6 class="subheader" title="2014-06-12T19:00:00">Thu 12 June 2014
+</h6>
+
+
+<ol>
+<li>
+<p>定义
+链表是一组数据项的集合, 其中每个数据项是节点的一部分，每个节点包含指向下一个节点的链接. 对比数组链表的优缺点如下:可以高效的重排数据项例如插入节点的复杂度为O(1)，但是不能快速的访问任意的数据项，只能沿着链表一个一个节点的访问.</p>
+<ul>
+<li>
+<p>优点</p>
+<ul>
+<li>链表是动态数据结构，可以按需分配内存</li>
+<li>删除和增加节点复杂度为O(1)</li>
+</ul>
+</li>
+<li>
+<p>缺点</p>
+<ul>
+<li>因为额外的指针域需要更多的内存 </li>
+<li>只能从头节点顺序的访问</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>分类</p>
+<ul>
+<li>单链表(Singly linked list)<br />
+它包含两个域，一个信息域和一个指针域。这个链接指向列表中的下一个节点，而最后一个节点则指向一个空值。</li>
+<li>双向链表(Doubly linked list)<br />
+每个节点有两个连接：一个指向前一个节点，（当此“连接”为第一个“连接”时，指向空值或者空列表）；而另一个指向下一个节点，（当此“连接”为最后一个“连接”时，指向空值或者空列表）</li>
+<li>循环链表(Circular list)<br />
+在一个 循环链表中 ...</li></ul></li></ol><p class="subheader">Category: <a href="../category/adt.html">adt</a>
+
+    Tagged: 
+    <a href="../tag/data-structure.html">data structure </a>
+</p>
+
+
+
+                <a class="button radius secondary small right" href="../posts/adt/link-list.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="../posts/adt/common-data-structure.html"><h3 class="article-title">常见的数据结构</h3></a>
+<h6 class="subheader" title="2014-06-11T00:00:00">Wed 11 June 2014
+</h6>
+
+
+<ol>
+<li>数组(array)</li>
+<li>链表(linked list)</li>
+<li>栈(stack)和队列(queue)</li>
+<li>树(tree)</li>
+<li>图(graph)</li>
+<li>堆(heap)</li>
+<li>散列表(hash table)</li>
+<li>字符串(string)</li>
+</ol>
+<p>refer:</p>
+<ul>
+<li><a href="http://www.cnblogs.com/yjiyjige/archive/2013/05/20/3088644.html">http://www.cnblogs.com/yjiyjige/archive/2013/05/20/3088644.html</a></li>
+<li><a href="http://www.luocong.com/dsaanotes/index-Z-H-3.htm">http://www.luocong.com/dsaanotes/index-Z-H-3.htm</a></li>
+</ul><p class="subheader">Category: <a href="../category/adt.html">adt</a>
+
+    Tagged: 
+    <a href="../tag/data-structure.html">data structure </a>
+</p>
+
+
+
+                <a class="button radius secondary small right" href="../posts/adt/common-data-structure.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+            <!-- /#posts-list -->
+<div class="pagination-centered">
+<h6 class="subheader">Page 1 of 1</h6>
+
+<p>
+
+</p>
+</div>
+
+    </div>
+    <!-- End Main Content -->
+
+    <!-- Sidebar -->
+    <aside class="large-3 columns">
+        <h5 class="sidebar-title">Site</h5>
+        <ul class="side-nav">
+            <li><a href="../archives.html">Archives</a>
+            <li><a href="../tags.html">Tags</a>
+        </ul>
+
+		
+        <h5 class="sidebar-title">Categories</h5>
+        <ul class="side-nav">
+            <li><a href="../category/adt.html">adt</a></li>
+            <li><a href="../category/algorithm.html">algorithm</a></li>
+            <li><a href="../category/c.html">c</a></li>
+            <li><a href="../category/complexity.html">complexity</a></li>
+            <li><a href="../category/coroutine.html">coroutine</a></li>
+            <li><a href="../category/interview.html">interview</a></li>
+            <li><a href="../category/misc.html">misc</a></li>
+            <li><a href="../category/mysql.html">mysql</a></li>
+            <li><a href="../category/python.html">python</a></li>
+            <li><a href="../category/security.html">security</a></li>
+            <li><a href="../category/sort.html">sort</a></li>
+            <li><a href="../category/tree.html">tree</a></li>
+            <li><a href="../category/vim.html">vim</a></li>
+   
+        </ul>
+
+        <h5 class="sidebar-title">Links</h5>
+        <ul class="side-nav">
+            <li><a href="https://github.com/actberw">github</a></li>
+        </ul>
+		
+        <h5 class="sidebar-title">Social</h5>
+        <ul class="side-nav">
+            <li><a href="http://weibo.com/u/1950796544">weibo</a></li>
+        </ul>
+
+    </aside> <!-- End Sidebar -->
+
+</div> <!-- End Main Content and Sidebar -->
+
+
+<!-- Footer -->
+<footer class="row">
+    <div class="large-12 columns">
+        <hr />
+        <div class="row">
+            <div class="large-6 columns">
+              <!--                  <p>记录一些工作中的笔记 by actberw</p> -->
+            </div>
+            </div>
+    </div>
+</footer>

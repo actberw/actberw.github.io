@@ -11,6 +11,16 @@
     <link rel="stylesheet" href="./theme/css/style.css" />
     <link rel="stylesheet" href="./theme/css/pygments.css" />	
     <script src="./theme/js/vendor/custom.modernizr.js"></script>
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        "HTML-CSS": {
+      styles: {
+        ".MathJax .mo, .MathJax .mi": {color: "black ! important"}}
+          },
+            tex2jax: {inlineMath: [['$','$'], ['\\\\(','\\\\)']],processEscapes: true}
+      });
+    </script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script></script>
 </head>
 
 <body>
@@ -48,20 +58,164 @@
 <table class="table-archive">
     <tbody>
         <tr>
-        <td>Wed 04 June 2014</td>
-        <td><a href='sui-ji-shu-ji-jian-yan.html'>随机数及检验</a></td>
+        <td>Mon 28 July 2014</td>
+        <td><a href='posts/misc/regex.html'>linux shell 正则表达式(BREs,EREs,PREs)差异比较</a></td>
+        </tr>
+        <tr>
+        <td>Mon 28 July 2014</td>
+        <td><a href='posts/misc/closure.html'>必包(closure)</a></td>
+        </tr>
+        <tr>
+        <td>Mon 28 July 2014</td>
+        <td><a href='posts/coroutine/asymmetric-vs-symmetric.html'>asymmetric coroutine和symmetric coroutine</a></td>
+        </tr>
+        <tr>
+        <td>Mon 28 July 2014</td>
+        <td><a href='posts/misc/scope.html'>Lexical and Dynamic Scoping</a></td>
+        </tr>
+        <tr>
+        <td>Mon 28 July 2014</td>
+        <td><a href='posts/coroutine/generator-vs-iterator.html'>Iterator 和 Generator</a></td>
+        </tr>
+        <tr>
+        <td>Mon 28 July 2014</td>
+        <td><a href='posts/coroutine/continuation.html'>continuation</a></td>
+        </tr>
+        <tr>
+        <td>Thu 17 July 2014</td>
+        <td><a href='posts/mysql/transation.html'>mysql innodb 事务</a></td>
+        </tr>
+        <tr>
+        <td>Thu 10 July 2014</td>
+        <td><a href='posts/mysql/index.html'>索引信息</a></td>
+        </tr>
+        <tr>
+        <td>Wed 09 July 2014</td>
+        <td><a href='posts/mysql/quote.html'>mysql中的引号</a></td>
+        </tr>
+        <tr>
+        <td>Tue 08 July 2014</td>
+        <td><a href='posts/misc/openstack-sum.html'>openstack</a></td>
+        </tr>
+        <tr>
+        <td>Fri 04 July 2014</td>
+        <td><a href='posts/security/exploit.html'>Exploit和shellcode简介</a></td>
+        </tr>
+        <tr>
+        <td>Fri 04 July 2014</td>
+        <td><a href='posts/security/cve.html'>漏洞库</a></td>
+        </tr>
+        <tr>
+        <td>Mon 16 June 2014</td>
+        <td><a href='posts/algorithm/random-range.html'>随机数范围</a></td>
+        </tr>
+        <tr>
+        <td>Sun 15 June 2014</td>
+        <td><a href='posts/algorithm/random.html'>随机数及检验</a></td>
+        </tr>
+        <tr>
+        <td>Sun 15 June 2014</td>
+        <td><a href='posts/c/operator-precedence.html'>c运算符优先级</a></td>
+        </tr>
+        <tr>
+        <td>Sun 15 June 2014</td>
+        <td><a href='posts/algorithm/prime-number.html'>素数算法</a></td>
+        </tr>
+        <tr>
+        <td>Sun 15 June 2014</td>
+        <td><a href='posts/adt/array.html'>数组</a></td>
+        </tr>
+        <tr>
+        <td>Fri 13 June 2014</td>
+        <td><a href='posts/adt/stack.html'>栈</a></td>
+        </tr>
+        <tr>
+        <td>Fri 13 June 2014</td>
+        <td><a href='posts/algorithm/parity.html'>奇偶检验</a></td>
+        </tr>
+        <tr>
+        <td>Fri 13 June 2014</td>
+        <td><a href='posts/sort/counting-sort.html'>计数排序</a></td>
+        </tr>
+        <tr>
+        <td>Thu 12 June 2014</td>
+        <td><a href='posts/adt/link-list.html'>链表</a></td>
+        </tr>
+        <tr>
+        <td>Thu 12 June 2014</td>
+        <td><a href='posts/algorithm/matrix.html'>矩阵乘法优化</a></td>
+        </tr>
+        <tr>
+        <td>Wed 11 June 2014</td>
+        <td><a href='posts/misc/umask.html'>umask 命令</a></td>
+        </tr>
+        <tr>
+        <td>Wed 11 June 2014</td>
+        <td><a href='posts/algorithm/fibonacci.html'>斐波纳契数列</a></td>
+        </tr>
+        <tr>
+        <td>Wed 11 June 2014</td>
+        <td><a href='posts/adt/common-data-structure.html'>常见的数据结构</a></td>
+        </tr>
+        <tr>
+        <td>Tue 10 June 2014</td>
+        <td><a href='posts/sort/index.html'>基本排序算法</a></td>
+        </tr>
+        <tr>
+        <td>Tue 10 June 2014</td>
+        <td><a href='posts/vim/trick.html'>vim 快捷技巧</a></td>
+        </tr>
+        <tr>
+        <td>Tue 10 June 2014</td>
+        <td><a href='posts/tree/traverse.html'>树的遍历</a></td>
+        </tr>
+        <tr>
+        <td>Mon 09 June 2014</td>
+        <td><a href='posts/algorithm/eight-queens.html'>八皇后问题</a></td>
+        </tr>
+        <tr>
+        <td>Sat 07 June 2014</td>
+        <td><a href='posts/interview/complexity.html'>算法的复杂度面试题目</a></td>
+        </tr>
+        <tr>
+        <td>Sat 07 June 2014</td>
+        <td><a href='posts/complexity/generating-function.html'>母函数(generating function)</a></td>
+        </tr>
+        <tr>
+        <td>Sat 07 June 2014</td>
+        <td><a href='posts/complexity/recursion-complexity.html'>递归算法的复杂度分析</a></td>
+        </tr>
+        <tr>
+        <td>Sat 07 June 2014</td>
+        <td><a href='posts/complexity/loop-complexity.html'>循环的时间复杂度</a></td>
+        </tr>
+        <tr>
+        <td>Sat 07 June 2014</td>
+        <td><a href='posts/complexity/complexity.html'>算法复杂度分析</a></td>
+        </tr>
+        <tr>
+        <td>Fri 06 June 2014</td>
+        <td><a href='posts/interview/horse-race.html'>赛马问题</a></td>
+        </tr>
+        <tr>
+        <td>Thu 05 June 2014</td>
+        <td><a href='posts/algorithm/design.html'>算法设计范式(paradigm)</a></td>
+        </tr>
+        <tr>
+        <td>Thu 05 June 2014</td>
+        <td><a href='posts/python/encoding.html'>python encoding</a></td>
+        </tr>
+        <tr>
+        <td>Thu 05 June 2014</td>
+        <td><a href='posts/misc/pelican.html'>pelican</a></td>
         </tr>
         <tr>
         <td>Wed 04 June 2014</td>
-        <td><a href='suan-fa-she-ji-fan-shi-paradigm.html'>算法设计范式(paradigm)</a></td>
+        <td><a href='posts/tree/tree.html'>树</a></td>
         </tr>
         <tr>
         <td>Wed 04 June 2014</td>
-        <td><a href='pelican.html'>pelican</a></td>
-        </tr>
-        <tr>
-        <td>Wed 04 June 2014</td>
-        <td><a href='umask-ming-ling.html'>umask 命令</a></td>
+        <td><a href='posts/misc/hdd.html'>硬盘(hard disk drive)构造</a></td>
         </tr>
     </tbody>
 </table>
@@ -80,8 +234,19 @@
 		
         <h5 class="sidebar-title">Categories</h5>
         <ul class="side-nav">
+            <li><a href="./category/adt.html">adt</a></li>
             <li><a href="./category/algorithm.html">algorithm</a></li>
+            <li><a href="./category/c.html">c</a></li>
+            <li><a href="./category/complexity.html">complexity</a></li>
+            <li><a href="./category/coroutine.html">coroutine</a></li>
+            <li><a href="./category/interview.html">interview</a></li>
             <li><a href="./category/misc.html">misc</a></li>
+            <li><a href="./category/mysql.html">mysql</a></li>
+            <li><a href="./category/python.html">python</a></li>
+            <li><a href="./category/security.html">security</a></li>
+            <li><a href="./category/sort.html">sort</a></li>
+            <li><a href="./category/tree.html">tree</a></li>
+            <li><a href="./category/vim.html">vim</a></li>
    
         </ul>
 

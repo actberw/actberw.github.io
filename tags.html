@@ -11,6 +11,16 @@
     <link rel="stylesheet" href="./theme/css/style.css" />
     <link rel="stylesheet" href="./theme/css/pygments.css" />	
     <script src="./theme/js/vendor/custom.modernizr.js"></script>
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        "HTML-CSS": {
+      styles: {
+        ".MathJax .mo, .MathJax .mi": {color: "black ! important"}}
+          },
+            tex2jax: {inlineMath: [['$','$'], ['\\\\(','\\\\)']],processEscapes: true}
+      });
+    </script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script></script>
 </head>
 
 <body>
@@ -46,28 +56,93 @@
 <ul class="circle">
 	<li><a href="./tag/algorithm.html">algorithm</a></li>
 	<ul class="square">
-	<li><a href="./suan-fa-she-ji-fan-shi-paradigm.html"><small>算法设计范式(paradigm)</small></li>
-	<li><a href="./sui-ji-shu-ji-jian-yan.html"><small>随机数及检验</small></li>
+	<li><a href="./posts/algorithm/random.html"><small>随机数及检验</small></li>
+	<li><a href="./posts/algorithm/fibonacci.html"><small>斐波纳契数列</small></li>
+	<li><a href="./posts/adt/stack.html"><small>栈</small></li>
+	<li><a href="./posts/algorithm/eight-queens.html"><small>八皇后问题</small></li>
+	<li><a href="./posts/algorithm/design.html"><small>算法设计范式(paradigm)</small></li>
+	<li><a href="./posts/algorithm/random-range.html"><small>随机数范围</small></li>
+	<li><a href="./posts/algorithm/prime-number.html"><small>素数算法</small></li>
+	<li><a href="./posts/sort/index.html"><small>基本排序算法</small></li>
+	<li><a href="./posts/algorithm/parity.html"><small>奇偶检验</small></li>
+	<li><a href="./posts/adt/array.html"><small>数组</small></li>
+	<li><a href="./posts/algorithm/matrix.html"><small>矩阵乘法优化</small></li>
+	</ul>
+	<li><a href="./tag/algorithm-analysis.html">algorithm analysis</a></li>
+	<ul class="square">
+	<li><a href="./posts/complexity/complexity.html"><small>算法复杂度分析</small></li>
+	<li><a href="./posts/complexity/loop-complexity.html"><small>循环的时间复杂度</small></li>
+	<li><a href="./posts/complexity/recursion-complexity.html"><small>递归算法的复杂度分析</small></li>
+	<li><a href="./posts/interview/complexity.html"><small>算法的复杂度面试题目</small></li>
+	</ul>
+	<li><a href="./tag/array.html">array</a></li>
+	<ul class="square">
+	<li><a href="./posts/adt/array.html"><small>数组</small></li>
+	</ul>
+	<li><a href="./tag/cc.html">c/c++</a></li>
+	<ul class="square">
+	<li><a href="./posts/algorithm/eight-queens.html"><small>八皇后问题</small></li>
+	</ul>
+	<li><a href="./tag/data-structure.html">data structure</a></li>
+	<ul class="square">
+	<li><a href="./posts/adt/stack.html"><small>栈</small></li>
+	<li><a href="./posts/adt/link-list.html"><small>链表</small></li>
+	<li><a href="./posts/adt/common-data-structure.html"><small>常见的数据结构</small></li>
+	</ul>
+	<li><a href="./tag/encoding.html">encoding</a></li>
+	<ul class="square">
+	<li><a href="./posts/python/encoding.html"><small>python encoding</small></li>
+	</ul>
+	<li><a href="./tag/hdd.html">hdd</a></li>
+	<ul class="square">
+	<li><a href="./posts/misc/hdd.html"><small>硬盘(hard disk drive)构造</small></li>
 	</ul>
 	<li><a href="./tag/linux.html">linux</a></li>
 	<ul class="square">
-	<li><a href="./umask-ming-ling.html"><small>umask 命令</small></li>
+	<li><a href="./posts/misc/hdd.html"><small>硬盘(hard disk drive)构造</small></li>
+	<li><a href="./posts/misc/umask.html"><small>umask 命令</small></li>
+	</ul>
+	<li><a href="./tag/matrix.html">matrix</a></li>
+	<ul class="square">
+	<li><a href="./posts/algorithm/matrix.html"><small>矩阵乘法优化</small></li>
 	</ul>
 	<li><a href="./tag/pelican.html">pelican</a></li>
 	<ul class="square">
-	<li><a href="./pelican.html"><small>pelican</small></li>
+	<li><a href="./posts/misc/pelican.html"><small>pelican</small></li>
+	</ul>
+	<li><a href="./tag/prime-number.html">prime number</a></li>
+	<ul class="square">
+	<li><a href="./posts/algorithm/prime-number.html"><small>素数算法</small></li>
 	</ul>
 	<li><a href="./tag/python.html">python</a></li>
 	<ul class="square">
-	<li><a href="./pelican.html"><small>pelican</small></li>
+	<li><a href="./posts/misc/pelican.html"><small>pelican</small></li>
+	<li><a href="./posts/python/encoding.html"><small>python encoding</small></li>
 	</ul>
 	<li><a href="./tag/random.html">random</a></li>
 	<ul class="square">
-	<li><a href="./sui-ji-shu-ji-jian-yan.html"><small>随机数及检验</small></li>
+	<li><a href="./posts/algorithm/random.html"><small>随机数及检验</small></li>
+	<li><a href="./posts/algorithm/random-range.html"><small>随机数范围</small></li>
+	</ul>
+	<li><a href="./tag/sort.html">sort</a></li>
+	<ul class="square">
+	<li><a href="./posts/sort/index.html"><small>基本排序算法</small></li>
+	</ul>
+	<li><a href="./tag/stack.html">stack</a></li>
+	<ul class="square">
+	<li><a href="./posts/adt/stack.html"><small>栈</small></li>
 	</ul>
 	<li><a href="./tag/umask.html">umask</a></li>
 	<ul class="square">
-	<li><a href="./umask-ming-ling.html"><small>umask 命令</small></li>
+	<li><a href="./posts/misc/umask.html"><small>umask 命令</small></li>
+	</ul>
+	<li><a href="./tag/utf-8.html">utf-8</a></li>
+	<ul class="square">
+	<li><a href="./posts/python/encoding.html"><small>python encoding</small></li>
+	</ul>
+	<li><a href="./tag/zbr.html">zbr</a></li>
+	<ul class="square">
+	<li><a href="./posts/misc/hdd.html"><small>硬盘(hard disk drive)构造</small></li>
 	</ul>
 </ul>
 
@@ -85,8 +160,19 @@
 		
         <h5 class="sidebar-title">Categories</h5>
         <ul class="side-nav">
+            <li><a href="./category/adt.html">adt</a></li>
             <li><a href="./category/algorithm.html">algorithm</a></li>
+            <li><a href="./category/c.html">c</a></li>
+            <li><a href="./category/complexity.html">complexity</a></li>
+            <li><a href="./category/coroutine.html">coroutine</a></li>
+            <li><a href="./category/interview.html">interview</a></li>
             <li><a href="./category/misc.html">misc</a></li>
+            <li><a href="./category/mysql.html">mysql</a></li>
+            <li><a href="./category/python.html">python</a></li>
+            <li><a href="./category/security.html">security</a></li>
+            <li><a href="./category/sort.html">sort</a></li>
+            <li><a href="./category/tree.html">tree</a></li>
+            <li><a href="./category/vim.html">vim</a></li>
    
         </ul>
 

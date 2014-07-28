@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8" />
+    <!-- Set the viewport width to device width for mobile -->
+    <meta name="viewport" content="width=device-width" />
+
+    <title>斐波纳契数列</title>
+
+    <link rel="stylesheet" href="../../theme/css/normalize.css" />
+    <link rel="stylesheet" href="../../theme/css/foundation.min.css" />
+    <link rel="stylesheet" href="../../theme/css/style.css" />
+    <link rel="stylesheet" href="../../theme/css/pygments.css" />	
+    <script src="../../theme/js/vendor/custom.modernizr.js"></script>
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        "HTML-CSS": {
+      styles: {
+        ".MathJax .mo, .MathJax .mi": {color: "black ! important"}}
+          },
+            tex2jax: {inlineMath: [['$','$'], ['\\\\(','\\\\)']],processEscapes: true}
+      });
+    </script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script></script>
+</head>
+
+<body>
+
+<!-- Nav Bar -->
+<nav>
+<div class="top-bar">
+<div class="row">
+    <div class="large-9 large-centered columns">
+	    <h1><a href="../..">记录一些工作中的笔记</a></h1>
+    </div>
+</div>
+</div>
+
+<!-- Show menu items and pages -->
+<div class="row">
+<div class="large-9 columns">
+    <ul class="button-group navigation">
+
+    </ul>
+</div>
+</div>
+</nav>
+<!-- End Nav -->
+
+
+<!-- Main Page Content and Sidebar -->
+<div class="row">
+
+    <!-- Main Blog Content -->
+    <div class="large-9 columns">
+<article>
+    <header>
+        <h3 class="article-title"><a href="../../posts/algorithm/fibonacci.html" rel="bookmark"
+        title="Permalink to 斐波纳契数列">斐波纳契数列</a></h3>
+    </header>
+
+<h6 class="subheader" title="2014-06-11T19:00:00">Wed 11 June 2014
+</h6>
+
+
+    <blockquote>
+<p>问题描述：Fibonacci数（Fibonacci Number）的定义是：$F_n = F_{n - 1} + F_{n - 2}$，并且$F_0$ = 0，$F_1$ = 1。对于任意指定的整数n（n ≥ 0），计算$F_n$的精确值，并分析算法的时间、空间复杂度。</p>
+</blockquote>
+<p>有下面几种解法:</p>
+<ol>
+<li>
+<p>递归法 <br />
+  根据Fibonacci的递推公式，对于输入的n，直接递归地调用相同的函数分别求出$F_{n - 1}$和$F_{n - 2}$，二者相加就是结果。递归的终止点就是递推方程的初值，即n取0或1的时候。</p>
+<div class="highlight"><pre><span class="kt">int</span> <span class="nf">fibonacii</span><span class="p">(</span><span class="kt">int</span> <span class="n">n</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">n</span> <span class="o">&lt;=</span> <span class="mi">1</span><span class="p">)</span> <span class="k">return</span> <span class="n">n</span><span class="p">;</span>
+    <span class="k">return</span> <span class="n">fibonacii</span><span class="p">(</span><span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="n">fibonacii</span><span class="p">(</span><span class="n">n</span> <span class="o">-</span> <span class="mi">2</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<p>时间复杂度是O($n^2$)，空间复杂度是O(n)。<br />
+  这个算法的时间复杂度有着跟Fibonacci类似的递推方程：$T_n = T_{n - 1} + T_{n - 2} + O(1)$, 具体解法见下图:</p>
+<ul>
+<li>先用特征方程求出Fibonacci通项
+<img alt="Fibonacci-recursion-complexity" src="/img/fibonacci-complexity.png" /></li>
+<li>设 $K_n$为计算Fn所需要的加法次数, $K_n$ = $K_{n-1}$ + $K_{n-2}$ + 1, $K_0$ = 0, $K_1$ = 0, $K_2$ = 1, 则有$K_n$ + 1 = $K_{n-1}$ + 1 + $K_{n-2}$ + 1, $K_n$ + 1 是斐波那契数列, $K_n$ = fibonacci(n+1) - 1, 所以O(fibonacci(n+1) - 1) = O(fibonacci(n+1))</li>
+</ul>
+</li>
+<li>
+<p>递推法<br />
+  虽然只是一字之差，但递推法的复杂度要小的多。这个方法就是按照递推方程，从n = 0和n = 1开始，逐个求出所有小于n的Fibonacci数，最后就可以算出F(n)。由于每次计算值需要用到前两个Fibonacci数，更小的数就可以丢弃了，可以将空间复杂度降到最低。算法如下：</p>
+<div class="highlight"><pre><span class="kt">int</span> <span class="nf">fibonacii2</span><span class="p">(</span><span class="kt">int</span> <span class="n">n</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kt">int</span> <span class="n">x</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">t</span><span class="p">;</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">n</span> <span class="o">&lt;=</span> <span class="mi">1</span><span class="p">)</span> <span class="k">return</span> <span class="n">n</span><span class="p">;</span>
+    <span class="k">for</span><span class="p">(;</span> <span class="n">n</span> <span class="o">&gt;=</span> <span class="mi">2</span><span class="p">;</span> <span class="n">n</span><span class="o">--</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">t</span> <span class="o">=</span> <span class="n">y</span><span class="p">;</span>
+        <span class="n">y</span> <span class="o">=</span> <span class="n">y</span> <span class="o">+</span> <span class="n">x</span><span class="p">;</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">t</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="n">y</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<p>显然时间复杂度是O(n)，空间复杂度是O(1)。<br />
+  比较一下递归法和递推法，二者都用了分治的思想——把目标问题拆为若干个小问题，利用小问题的解得到目标问题的解。二者的区别实际上就是普通分治算法和动态规划的区别。</p>
+</li>
+<li>
+<p>矩阵法<br />
+  我们把Fibonacci数列中相邻的两项：$F_n$和$F_{n - 1}$写成一个2 * 1的矩阵，然后对其进行变形</p>
+</li>
+</ol>
+<p>有关Fibonacci问题:</p>
+<ol>
+<li>在递归计算$F_n$的时候，需要对较小的$F_{n-1}$，$F_{n-2}$，…, $F_l$, $F_0$精确计算多少次?<br />
+\begin{eqnarray*} 
+F_n = F_{n-1} + F_{n-2}<br />
+   = (F_{n-2} + F_{n-3}) + (F_{n-3} + F_{n-4})
+\end{eqnarray*}</li>
+</ol>
+<p>设$K_{n.m}$ 表示计算$F_n$时用到$F_m$的次数, 则有$K_{n.n-3} = K_{n.n-2} + K_{n.n-1}$ 是Fibonacci数列, 其中$K_{n.n-1}$ = 1 = fibonacci(2), $K_{n.n-2}$ = 2 = fibonacci(3),  $K_{n.0}$ = fibonacci(n+1)</p>
+<p>refer:</p>
+<ul>
+<li><a href="http://www.gocalf.com/blog/calc-fibonacci.html">http://www.gocalf.com/blog/calc-fibonacci.html</a></li>
+<li><a href="http://061251008.blog.163.com/blog/static/240841720123157186395/">http://061251008.blog.163.com/blog/static/240841720123157186395/</a></li>
+</ul>
+<p class="subheader">Category: <a href="../../category/algorithm.html">algorithm</a>
+
+    Tagged: 
+    <a href="../../tag/algorithm.html">algorithm </a>
+</p>
+
+
+
+
+</article>
+    </div>
+    <!-- End Main Content -->
+
+    <!-- Sidebar -->
+    <aside class="large-3 columns">
+        <h5 class="sidebar-title">Site</h5>
+        <ul class="side-nav">
+            <li><a href="../../archives.html">Archives</a>
+            <li><a href="../../tags.html">Tags</a>
+        </ul>
+
+		
+        <h5 class="sidebar-title">Categories</h5>
+        <ul class="side-nav">
+            <li><a href="../../category/adt.html">adt</a></li>
+            <li><a href="../../category/algorithm.html">algorithm</a></li>
+            <li><a href="../../category/c.html">c</a></li>
+            <li><a href="../../category/complexity.html">complexity</a></li>
+            <li><a href="../../category/coroutine.html">coroutine</a></li>
+            <li><a href="../../category/interview.html">interview</a></li>
+            <li><a href="../../category/misc.html">misc</a></li>
+            <li><a href="../../category/mysql.html">mysql</a></li>
+            <li><a href="../../category/python.html">python</a></li>
+            <li><a href="../../category/security.html">security</a></li>
+            <li><a href="../../category/sort.html">sort</a></li>
+            <li><a href="../../category/tree.html">tree</a></li>
+            <li><a href="../../category/vim.html">vim</a></li>
+   
+        </ul>
+
+        <h5 class="sidebar-title">Links</h5>
+        <ul class="side-nav">
+            <li><a href="https://github.com/actberw">github</a></li>
+        </ul>
+		
+        <h5 class="sidebar-title">Social</h5>
+        <ul class="side-nav">
+            <li><a href="http://weibo.com/u/1950796544">weibo</a></li>
+        </ul>
+
+    </aside> <!-- End Sidebar -->
+
+</div> <!-- End Main Content and Sidebar -->
+
+
+<!-- Footer -->
+<footer class="row">
+    <div class="large-12 columns">
+        <hr />
+        <div class="row">
+            <div class="large-6 columns">
+              <!--                  <p>记录一些工作中的笔记 by actberw</p> -->
+            </div>
+            </div>
+    </div>
+</footer>

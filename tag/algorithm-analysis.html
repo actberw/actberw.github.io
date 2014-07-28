@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8" />
+    <!-- Set the viewport width to device width for mobile -->
+    <meta name="viewport" content="width=device-width" />
+
+    <title>记录一些工作中的笔记 - algorithm analysis</title>
+
+    <link rel="stylesheet" href="../theme/css/normalize.css" />
+    <link rel="stylesheet" href="../theme/css/foundation.min.css" />
+    <link rel="stylesheet" href="../theme/css/style.css" />
+    <link rel="stylesheet" href="../theme/css/pygments.css" />	
+    <script src="../theme/js/vendor/custom.modernizr.js"></script>
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        "HTML-CSS": {
+      styles: {
+        ".MathJax .mo, .MathJax .mi": {color: "black ! important"}}
+          },
+            tex2jax: {inlineMath: [['$','$'], ['\\\\(','\\\\)']],processEscapes: true}
+      });
+    </script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script></script>
+</head>
+
+<body>
+
+<!-- Nav Bar -->
+<nav>
+<div class="top-bar">
+<div class="row">
+    <div class="large-9 large-centered columns">
+	    <h1><a href="..">记录一些工作中的笔记</a></h1>
+    </div>
+</div>
+</div>
+
+<!-- Show menu items and pages -->
+<div class="row">
+<div class="large-9 columns">
+    <ul class="button-group navigation">
+
+    </ul>
+</div>
+</div>
+</nav>
+<!-- End Nav -->
+
+
+<!-- Main Page Content and Sidebar -->
+<div class="row">
+
+    <!-- Main Blog Content -->
+    <div class="large-9 columns">
+        
+        
+
+            <article>
+                <a href="../posts/interview/complexity.html"><h3 class="article-title">算法的复杂度面试题目</h3></a>
+<h6 class="subheader" title="2014-06-07T19:00:00">Sat 07 June 2014
+</h6>
+
+Translations: 
+        <a href="../posts/complexity/complexity.html">cn</a>
+
+<ol>
+<li>
+<blockquote>
+<p>简述：实现一个函数，对一个正整数n，算得到1需要的最少操作次数：
+如果n为偶数，将其处以2；如果n为奇数，可以加1或减1；一直处理下去。
+要求：实现函数（实现尽可能高效）int func(unsigned int n)；n为输入，返回最小的运算次数。</p>
+</blockquote>
+</li>
+</ol>
+<p>refer:</p>
+<ul>
+<li><a href="http://zhiqiang.org/blog/science/computer-science/complexity-of-recursive-algorithm.html">http://zhiqiang.org/blog/science/computer-science/complexity-of-recursive-algorithm.html</a></li>
+</ul><p class="subheader">Category: <a href="../category/interview.html">interview</a>
+
+    Tagged: 
+    <a href="../tag/algorithm-analysis.html">algorithm analysis </a>
+</p>
+
+
+Translations: 
+        <a href="../posts/complexity/complexity.html">cn</a>
+
+            </article>
+
+
+                <hr  class="gradient"/>
+
+
+        
+
+
+            <article>
+                <a href="../posts/complexity/recursion-complexity.html"><h3 class="article-title">递归算法的复杂度分析</h3></a>
+<h6 class="subheader" title="2014-06-07T17:00:00">Sat 07 June 2014
+</h6>
+
+
+<p>在算法分析中，当一个算法中包含递归调用时，其时间复杂度的分析会转化为一个递归方程求解。实际上，这个问题是数学上求解渐近阶的问题，而递归方程的形式多种多样，其求解方法也是不一而足，比较常用的有以下四种方法:</p>
+<ol>
+<li>
+<p>代入法(Substitution Method)<br />
+  代入法的基本步骤是先推测递归方程的显式解，然后用数学归纳法来验证该解是否合理。</p>
+</li>
+<li>
+<p>公式法(Master Method)<br />
+  设常数a &gt;= 1，b &gt; 1，f(n)为函数，T(n)为非负整数，T(n) = a T(n / b) + f(n)，则有:<br />
+    若f(n)=O($n^{log_{b}a−ε}$),ε&gt;0 ，那么T(n)=Θ($nlog_{b ...</p></li></ol><p class="subheader">Category: <a href="../category/complexity.html">complexity</a>
+
+    Tagged: 
+    <a href="../tag/algorithm-analysis.html">algorithm analysis </a>
+</p>
+
+
+
+                <a class="button radius secondary small right" href="../posts/complexity/recursion-complexity.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="../posts/complexity/loop-complexity.html"><h3 class="article-title">循环的时间复杂度</h3></a>
+<h6 class="subheader" title="2014-06-07T16:00:00">Sat 07 June 2014
+</h6>
+
+
+<ol>
+<li>O(1)<br />
+  一个函数调用或是一组语句都认为是O(1)的复杂度  (如果没有调用不包含循环，递归或其他非常量复杂度的函数), 如果循环的次数是一个常量，则也认为是 O(1).</li>
+<li>
+<p>O(n)<br />
+  如果在一个大小为n循环中，循环变量按照一个常量C递增或递减，这个循环的复杂度就为O(n).</p>
+<div class="highlight"><pre><span class="c1">// c是常量  </span>
+<span class="k">for</span> <span class="p">(</span><span class="k">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mh">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="p">;</span> <span class="n">i</span> <span class="o">+=</span> <span class="n">c</span><span class="p">)</span> <span class="p">{</span> 
+     <span class="c1">// some O(1) expressions</span>
+<span class="p">}</span>
+
+<span class="k">for</span> <span class="p">(</span><span class="k">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">n</span><span class="p">;</span> <span class="n">i</span> <span class="o">&gt;</span> <span class="mh">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">-=</span> <span class="n">c</span><span class="p">)</span> <span class="p">{</span>
+     <span class="c1">// some O(1) expressions</span>
+<span class="p">}</span>
+</pre></div>
+
+
+</li>
+<li>
+<p>O(n^c)<br />
+  嵌套循环的时间复杂度等于行最内层语句执行的次数。例如，下面的示例循环具有为O(n^2 ...</p></li></ol><p class="subheader">Category: <a href="../category/complexity.html">complexity</a>
+
+    Tagged: 
+    <a href="../tag/algorithm-analysis.html">algorithm analysis </a>
+</p>
+
+
+
+                <a class="button radius secondary small right" href="../posts/complexity/loop-complexity.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="../posts/complexity/complexity.html"><h3 class="article-title">算法复杂度分析</h3></a>
+<h6 class="subheader" title="2014-06-07T15:00:00">Sat 07 June 2014
+</h6>
+
+Translations: 
+        <a href="../posts/interview/complexity.html">cn</a>
+
+<p>算法的复杂度是用来衡量算法运行所需要的计算机资源（时间、空间）的量, 分为时间复杂度和空间复杂度. 时间复杂度是指衡量算法执行时间的长短；空间复杂度是指衡量算法所需存储空间的大小。</p>
+<ol>
+<li>
+<p>Landau符号<br />
+    Landau符号其实是由德国数论学家保罗·巴赫曼（Paul Bachmann）在其1892年的著作《解析数论》首先引入，由另一位德国数论学家艾德蒙·朗道（Edmund Landau）推广。Landau符号的作用在于用简单的函数来描述复杂函数行为，给出一个上或下（确）界。在计算算法复杂度时一般只用到大O符号，Landau符号体系中的小o符号、Θ符号等等比较不常用。这里的O，最初是用大写希腊字母，但现在都用大写英语字母O；小o符号也是用小写英语字母o，Θ符号则维持大写希腊字母Θ.</p>
+<table>
+<thead>
+<tr>
+<th>Asymptotic comparison</th>
+<th>operatorNumeric comparison operator</th>
+<th>------</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>f(n) = o(g(n))</td>
+<td>∀ε&gt;0,∃$n_0$∈ℕ,∀n≥$n_0$,f(n ...</td></tr></tbody></table></li></ol><p class="subheader">Category: <a href="../category/complexity.html">complexity</a>
+
+    Tagged: 
+    <a href="../tag/algorithm-analysis.html">algorithm analysis </a>
+</p>
+
+
+Translations: 
+        <a href="../posts/interview/complexity.html">cn</a>
+
+                <a class="button radius secondary small right" href="../posts/complexity/complexity.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+            <!-- /#posts-list -->
+<div class="pagination-centered">
+<h6 class="subheader">Page 1 of 1</h6>
+
+<p>
+
+</p>
+</div>
+
+    </div>
+    <!-- End Main Content -->
+
+    <!-- Sidebar -->
+    <aside class="large-3 columns">
+        <h5 class="sidebar-title">Site</h5>
+        <ul class="side-nav">
+            <li><a href="../archives.html">Archives</a>
+            <li><a href="../tags.html">Tags</a>
+        </ul>
+
+		
+        <h5 class="sidebar-title">Categories</h5>
+        <ul class="side-nav">
+            <li><a href="../category/adt.html">adt</a></li>
+            <li><a href="../category/algorithm.html">algorithm</a></li>
+            <li><a href="../category/c.html">c</a></li>
+            <li><a href="../category/complexity.html">complexity</a></li>
+            <li><a href="../category/coroutine.html">coroutine</a></li>
+            <li><a href="../category/interview.html">interview</a></li>
+            <li><a href="../category/misc.html">misc</a></li>
+            <li><a href="../category/mysql.html">mysql</a></li>
+            <li><a href="../category/python.html">python</a></li>
+            <li><a href="../category/security.html">security</a></li>
+            <li><a href="../category/sort.html">sort</a></li>
+            <li><a href="../category/tree.html">tree</a></li>
+            <li><a href="../category/vim.html">vim</a></li>
+   
+        </ul>
+
+        <h5 class="sidebar-title">Links</h5>
+        <ul class="side-nav">
+            <li><a href="https://github.com/actberw">github</a></li>
+        </ul>
+		
+        <h5 class="sidebar-title">Social</h5>
+        <ul class="side-nav">
+            <li><a href="http://weibo.com/u/1950796544">weibo</a></li>
+        </ul>
+
+    </aside> <!-- End Sidebar -->
+
+</div> <!-- End Main Content and Sidebar -->
+
+
+<!-- Footer -->
+<footer class="row">
+    <div class="large-12 columns">
+        <hr />
+        <div class="row">
+            <div class="large-6 columns">
+              <!--                  <p>记录一些工作中的笔记 by actberw</p> -->
+            </div>
+            </div>
+    </div>
+</footer>

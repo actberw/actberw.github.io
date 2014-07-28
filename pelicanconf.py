@@ -11,9 +11,13 @@ DEFAULT_DATE = 'fs'
 
 TIMEZONE = 'Asia/Shanghai'
 
+ARTICLE_URL = 'posts/{category}/{slug}.html'
+ARTICLE_SAVE_AS = 'posts/{category}/{slug}.html'
+FILENAME_METADATA = '(?P<slug>.*)'
+
 DEFAULT_LANG = u'cn'
 DISPLAY_PAGES_ON_MENU = False
-STATIC_PATHS = []
+STATIC_PATHS = ['img']
 
 # Feed generation is usually not desired when developing
 FEED_ALL_ATOM = None

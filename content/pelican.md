@@ -1,5 +1,6 @@
 Title: pelican
 Tags: pelican, python
+Date: 2014-06-05
 1. 安装
     - 依赖  
         At this time, Pelican is dependent on the following Python packages:
@@ -24,9 +25,18 @@ Tags: pelican, python
 
             TIMEZONE = 'Asia/Shanghai'
 
-    - DEFAULT_DATE默认为系统但前时间
+    - 文章发布时间
 
             DEFAULT_DATE = 'fs'
+
+    - 文章url
+
+            ARTICLE_URL = 'posts/{category}/{slug}.html'
+            ARTICLE_SAVE_AS = 'posts/{category}/{slug}.html'
+
+    - 文章名字
+
+            FILENAME_METADATA = '(?P<slug>.*)'
 
     其他配置参见[http://docs.getpelican.com/en/3.1.1/settings.html](http://docs.getpelican.com/en/3.1.1/settings.html)
 

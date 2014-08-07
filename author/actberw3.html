@@ -57,6 +57,159 @@
 
 
             <article>
+                <a href="../posts/algorithm/matrix.html"><h3 class="article-title">矩阵乘法优化</h3></a>
+<h6 class="subheader" title="2014-06-12T12:00:00">Thu 12 June 2014
+</h6>
+
+
+<ul>
+<li><a href="http://zh.wikipedia.org/wiki/%E7%9F%A9%E9%98%B5%E6%8C%87%E6%95%B0">http://zh.wikipedia.org/wiki/%E7%9F%A9%E9%98%B5%E6%8C%87%E6%95%B0</a></li>
+<li><a href="http://www.zhihu.com/question/19706331">http://www.zhihu.com/question/19706331</a></li>
+<li><a href="http://www.ituring.com.cn/article/17978">http://www.ituring.com.cn/article/17978</a></li>
+<li><a href="http://www.zhihu.com/question/22854639">http://www.zhihu.com/question/22854639</a></li>
+</ul><p class="subheader">Category: <a href="../category/algorithm.html">algorithm</a>
+
+    Tagged: 
+    <a href="../tag/algorithm.html">algorithm </a>
+    <a href="../tag/matrix.html">matrix </a>
+</p>
+
+
+
+                <a class="button radius secondary small right" href="../posts/algorithm/matrix.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="../posts/misc/umask.html"><h3 class="article-title">umask 命令</h3></a>
+<h6 class="subheader" title="2014-06-11T23:00:00">Wed 11 June 2014
+</h6>
+
+
+<p>该命令用来设置限制新文件权限的掩码, 默认是022, umask 命令允许你设定文件创建时的缺省模式，对应每一类用户(文件属主、同组用户、其他用户)存在一个相应的umask值中的数字。对于文件来说，这一数字的最 大值分别是6。系统不允许你在创建一个文本文件时就赋予它执行权限，必须在创建后用chmod命令增加这一权限。目录则允许设置执行权限，这样针对目录来 说，umask中各个数字最大可以到7。</p>
+<p>所以对于默认的(022) 文件的权限是:644(-rw-r--r--),  目录是:755(drwxr-xr-x)</p><p class="subheader">Category: <a href="../category/misc.html">misc</a>
+
+    Tagged: 
+    <a href="../tag/linux.html">linux </a>
+    <a href="../tag/umask.html">umask </a>
+</p>
+
+
+
+                <a class="button radius secondary small right" href="../posts/misc/umask.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="../posts/algorithm/fibonacci.html"><h3 class="article-title">斐波纳契数列</h3></a>
+<h6 class="subheader" title="2014-06-11T19:00:00">Wed 11 June 2014
+</h6>
+
+
+<blockquote>
+<p>问题描述：Fibonacci数（Fibonacci Number）的定义是：$F_n = F_{n - 1} + F_{n - 2}$，并且$F_0$ = 0，$F_1$ = 1。对于任意指定的整数n（n ≥ 0），计算$F_n$的精确值，并分析算法的时间、空间复杂度。</p>
+</blockquote>
+<p>有下面几种解法:</p>
+<ol>
+<li>
+<p>递归法 <br />
+  根据Fibonacci的递推公式，对于输入的n，直接递归地调用相同的函数分别求出$F_{n - 1}$和$F_{n - 2}$，二者相加就是结果。递归的终止点就是递推方程的初值，即n取0或1的时候。</p>
+<div class="highlight"><pre><span class="kt">int</span> <span class="nf">fibonacii</span><span class="p">(</span><span class="kt">int</span> <span class="n">n</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">n</span> <span class="o">&lt;=</span> <span class="mi">1</span><span class="p">)</span> <span class="k">return</span> <span class="n">n</span><span class="p">;</span>
+    <span class="k">return ...</span></pre></div></li></ol><p class="subheader">Category: <a href="../category/algorithm.html">algorithm</a>
+
+    Tagged: 
+    <a href="../tag/algorithm.html">algorithm </a>
+</p>
+
+
+
+                <a class="button radius secondary small right" href="../posts/algorithm/fibonacci.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="../posts/adt/common-data-structure.html"><h3 class="article-title">常见的数据结构</h3></a>
+<h6 class="subheader" title="2014-06-11T00:00:00">Wed 11 June 2014
+</h6>
+
+
+<ol>
+<li>数组(array)</li>
+<li>链表(linked list)</li>
+<li>栈(stack)和队列(queue)</li>
+<li>树(tree)</li>
+<li>图(graph)</li>
+<li>堆(heap)</li>
+<li>散列表(hash table)</li>
+<li>字符串(string)</li>
+</ol>
+<p>refer:</p>
+<ul>
+<li><a href="http://www.cnblogs.com/yjiyjige/archive/2013/05/20/3088644.html">http://www.cnblogs.com/yjiyjige/archive/2013/05/20/3088644.html</a></li>
+<li><a href="http://www.luocong.com/dsaanotes/index-Z-H-3.htm">http://www.luocong.com/dsaanotes/index-Z-H-3.htm</a></li>
+</ul><p class="subheader">Category: <a href="../category/adt.html">adt</a>
+
+    Tagged: 
+    <a href="../tag/data-structure.html">data structure </a>
+</p>
+
+
+
+                <a class="button radius secondary small right" href="../posts/adt/common-data-structure.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="../posts/interview/complexity.html"><h3 class="article-title">算法的复杂度面试题目</h3></a>
+<h6 class="subheader" title="2014-06-07T19:00:00">Sat 07 June 2014
+</h6>
+
+Translations: 
+        <a href="../posts/complexity/complexity.html">cn</a>
+
+<ol>
+<li>
+<blockquote>
+<p>简述：实现一个函数，对一个正整数n，算得到1需要的最少操作次数：
+如果n为偶数，将其处以2；如果n为奇数，可以加1或减1；一直处理下去。
+要求：实现函数（实现尽可能高效）int func(unsigned int n)；n为输入，返回最小的运算次数。</p>
+</blockquote>
+</li>
+</ol>
+<p>refer:</p>
+<ul>
+<li><a href="http://zhiqiang.org/blog/science/computer-science/complexity-of-recursive-algorithm.html">http://zhiqiang.org/blog/science/computer-science/complexity-of-recursive-algorithm.html</a></li>
+</ul><p class="subheader">Category: <a href="../category/interview.html">interview</a>
+
+    Tagged: 
+    <a href="../tag/algorithm-analysis.html">algorithm analysis </a>
+</p>
+
+
+Translations: 
+        <a href="../posts/complexity/complexity.html">cn</a>
+
+                <a class="button radius secondary small right" href="../posts/interview/complexity.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
                 <a href="../posts/complexity/generating-function.html"><h3 class="article-title">母函数(generating function)</h3></a>
 <h6 class="subheader" title="2014-06-07T18:00:00">Sat 07 June 2014
 </h6>
@@ -194,70 +347,6 @@ Translations:
 
 
             <article>
-                <a href="../posts/interview/horse-race.html"><h3 class="article-title">赛马问题</h3></a>
-<h6 class="subheader" title="2014-06-06T21:34:12">Fri 06 June 2014
-</h6>
-
-
-<p>refer:</p>
-<ul>
-<li><a href="http://hsiq.blogspot.jp/2008/08/blog-post_28.html">http://hsiq.blogspot.jp/2008/08/blog-post_28.html</a></li>
-</ul><p class="subheader">Category: <a href="../category/interview.html">interview</a>
-
-</p>
-
-
-
-                <a class="button radius secondary small right" href="../posts/interview/horse-race.html">Read More</a>
-                <hr  class="gradient"/>
-            </article>
-
-        
-
-
-            <article>
-                <a href="../posts/algorithm/design.html"><h3 class="article-title">算法设计范式(paradigm)</h3></a>
-<h6 class="subheader" title="2014-06-05T17:50:19">Thu 05 June 2014
-</h6>
-
-
-<ol>
-<li>
-<p>分治法(divide and conquer)
-  字面上的解释是“分而治之”, 就是把一个复杂的问题分成K个的相同或相似的子问题, 直到最后子问题可以简单的直接求解, 原问题的解即子问题的解的合并. 特征:</p>
-<ul>
-<li>该问题的规模缩小到一定的程度就可以容易地解决.</li>
-<li>该问题可以分解为若干个规模较小的相同问题, 即该问题具有最优子结构性质.</li>
-<li>利用该问题分解出的子问题的解可以合并为该问题的解</li>
-<li>该问题所分解出的各个子问题是相互独立的, 即子问题之间不包含公共的子子问题.</li>
-</ul>
-<p>第一条特征是绝大多数问题都可以满足的, 因为问题的计算复杂性一般是随着问题规模的增加而增加, 第二条特征是应用分治法的前提它也是大多数问题可以满足的, 此特征反映了递归思想的应用,
-第三条特征是关键, 能否利用分治法完全取决于问题是否具有第三条特征, 如果具备了第一条和第二条特征, 而不具备第三条特征, 则可以考虑用贪心法或动态规划法, 第四条特征涉及到分治法的效率, 如果各子问题是不独立的则分治法要做许多不必要的工作, 重复地解公共的子问题, 此时虽然可用分治法, 但一般用动态规划法较好.</p>
-</li>
-<li>
-<p>动态规划(dynamic programming)
-    动态规划常常适用于有重叠子问题[2]和最优子结构性质的问题, 动态规划法试图仅仅解决每个子问题一次, 从而减少计算量： 一旦某个给定子问题的解已经算出, 则将其记忆化存储, 以便下次需要同一个子问题解之时直接查表. </p>
-</li>
-<li>
-<p>贪心算法(greedy algorithms)</p>
-</li>
-<li>回溯法(backtrack)
-    回溯算法实际上一个类似枚举的搜索尝试过程, 主要是在搜索尝试过程中寻找问题的解, 当发现已不满足求解条件时, 就 ...</li></ol><p class="subheader">Category: <a href="../category/algorithm.html">algorithm</a>
-
-    Tagged: 
-    <a href="../tag/algorithm.html">algorithm </a>
-</p>
-
-
-
-                <a class="button radius secondary small right" href="../posts/algorithm/design.html">Read More</a>
-                <hr  class="gradient"/>
-            </article>
-
-        
-
-
-            <article>
                 <a href="../posts/python/encoding.html"><h3 class="article-title">python encoding</h3></a>
 <h6 class="subheader" title="2014-06-05T00:00:00">Thu 05 June 2014
 </h6>
@@ -311,71 +400,6 @@ Translations:
 
 
                 <a class="button radius secondary small right" href="../posts/misc/pelican.html">Read More</a>
-                <hr  class="gradient"/>
-            </article>
-
-        
-
-
-            <article>
-                <a href="../posts/tree/tree.html"><h3 class="article-title">树</h3></a>
-<h6 class="subheader" title="2014-06-04T23:14:35">Wed 04 June 2014
-</h6>
-
-
-<ol>
-<li>树的种类:<ul>
-<li>无序树</li>
-<li>有序树<ul>
-<li>二叉树<ul>
-<li>完全二叉树</li>
-<li>满二叉树</li>
-<li>自平衡二叉查找树(avl, red-black)</li>
-</ul>
-</li>
-<li>霍夫曼树</li>
-<li>B树(B+, B*)</li>
-<li>trie树(后缀树)</li>
-<li>lsm树</li>
-<li>COLA</li>
-</ul>
-</li>
-</ul>
-</li>
-</ol><p class="subheader">Category: <a href="../category/tree.html">tree</a>
-
-</p>
-
-
-
-                <a class="button radius secondary small right" href="../posts/tree/tree.html">Read More</a>
-                <hr  class="gradient"/>
-            </article>
-
-        
-
-
-            <article>
-                <a href="../posts/misc/hdd.html"><h3 class="article-title">硬盘(hard disk drive)构造</h3></a>
-<h6 class="subheader" title="2014-06-04T21:04:56">Wed 04 June 2014
-</h6>
-
-
-<p>Zone bit recording 技术</p>
-<p>refer:</p>
-<ul>
-<li><a href="http://www.programlife.net/disk-struct.html">http://www.programlife.net/disk-struct.html</a></li>
-</ul><p class="subheader">Category: <a href="../category/misc.html">misc</a>
-
-    Tagged: 
-    <a href="../tag/hdd.html">hdd </a>
-    <a href="../tag/linux.html">linux </a>
-    <a href="../tag/zbr.html">zbr </a>
-</p>
-
-
-
-                <a class="button radius secondary small right" href="../posts/misc/hdd.html">Read More</a>
                 <hr  class="gradient"/>
             </article>
 

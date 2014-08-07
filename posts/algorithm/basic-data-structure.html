@@ -4,7 +4,7 @@
     <!-- Set the viewport width to device width for mobile -->
     <meta name="viewport" content="width=device-width" />
 
-    <title>算法设计范式(paradigm)</title>
+    <title>算法: c语言实现读书笔记</title>
 
     <link rel="stylesheet" href="../../theme/css/normalize.css" />
     <link rel="stylesheet" href="../../theme/css/foundation.min.css" />
@@ -54,48 +54,41 @@
     <div class="large-9 columns">
 <article>
     <header>
-        <h3 class="article-title"><a href="../../posts/algorithm/design.html" rel="bookmark"
-        title="Permalink to 算法设计范式(paradigm)">算法设计范式(paradigm)</a></h3>
+        <h3 class="article-title"><a href="../../posts/algorithm/basic-data-structure.html" rel="bookmark"
+        title="Permalink to 算法: c语言实现读书笔记">算法: c语言实现读书笔记</a></h3>
     </header>
 
-<h6 class="subheader" title="2014-08-06T21:44:18">Wed 06 August 2014
+<h6 class="subheader" title="2014-08-07T23:17:56">Thu 07 August 2014
 </h6>
 
 
-    <ol>
-<li>
-<p>分治法(divide and conquer)
-  字面上的解释是“分而治之”, 就是把一个复杂的问题分成K个的相同或相似的子问题, 直到最后子问题可以简单的直接求解, 原问题的解即子问题的解的合并. 特征:</p>
-<ul>
-<li>该问题的规模缩小到一定的程度就可以容易地解决.</li>
-<li>该问题可以分解为若干个规模较小的相同问题, 即该问题具有最优子结构性质.</li>
-<li>利用该问题分解出的子问题的解可以合并为该问题的解</li>
-<li>该问题所分解出的各个子问题是相互独立的, 即子问题之间不包含公共的子子问题.</li>
-</ul>
-<p>第一条特征是绝大多数问题都可以满足的, 因为问题的计算复杂性一般是随着问题规模的增加而增加, 第二条特征是应用分治法的前提它也是大多数问题可以满足的, 此特征反映了递归思想的应用,
-第三条特征是关键, 能否利用分治法完全取决于问题是否具有第三条特征, 如果具备了第一条和第二条特征, 而不具备第三条特征, 则可以考虑用贪心法或动态规划法, 第四条特征涉及到分治法的效率, 如果各子问题是不独立的则分治法要做许多不必要的工作, 重复地解公共的子问题, 此时虽然可用分治法, 但一般用动态规划法较好.</p>
-</li>
-<li>
-<p>动态规划(dynamic programming)
-    动态规划常常适用于有重叠子问题[2]和最优子结构性质的问题, 动态规划法试图仅仅解决每个子问题一次, 从而减少计算量： 一旦某个给定子问题的解已经算出, 则将其记忆化存储, 以便下次需要同一个子问题解之时直接查表. </p>
-</li>
-<li>
-<p>贪心算法(greedy algorithms)</p>
-</li>
-<li>回溯法(backtrack)
-    回溯算法实际上一个类似枚举的搜索尝试过程, 主要是在搜索尝试过程中寻找问题的解, 当发现已不满足求解条件时, 就“回溯”返回, 尝试别的路径. 回溯法就是对隐式图的深度优先搜索算法.</li>
-<li>分支界定法(branch and bound)
-    类似于回溯法, 也是一种在问题的解空间树T上搜索问题解的算法.但在一般情况下, 分支限界法与回溯法的求解目标不同.回溯法的求解目标是找出T中满足约束条件的所有解, 而分支限界法的求解目标则是找出满足约束条件的一个解, 或是在满足约束条件的解中找出使某一目标函数值达到极大或极小的解, 即在某种意义下的最优解.</li>
-<li>线性规划(linear programming)</li>
-</ol>
-<p>refer:</p>
-<ul>
-<li><a href="http://www.cnblogs.com/steven_oyj/category/246990.html">http://www.cnblogs.com/steven_oyj/category/246990.html</a></li>
-</ul>
+    <p>3.1  基本组件<br />
+基本数据类型(char, int, float, double), arrry, struct, point
+3.2 数组(array)<br />
+埃拉托斯特尼筛法(参见[1])</p>
+<blockquote>
+<p>对于1到n全部整数，逐个判断它们是否是素数，找出一个非素数，就把它挖掉，最后剩下的就是素数。具体方法是： &lt;1&gt; 定义is_primer[i] = true; &lt;2&gt; 从2开始，依次遍历整个is_primer(直到sqrt(N))，如果is_primer[i]=true,则is_primer[i]=false i ∈ {n², n²+n, n²+2n, ..., limit}</p>
+</blockquote>
+<div class="highlight"><pre>    <span class="err">#</span><span class="n">define</span> <span class="n">N</span> <span class="mi">1000</span>
+    <span class="kt">int</span> <span class="n">main</span><span class="p">()</span> <span class="p">{</span>
+        <span class="kt">int</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">a</span><span class="p">[</span><span class="n">N</span><span class="p">];</span>
+        <span class="c1">//init</span>
+        <span class="k">for</span> <span class="p">(</span><span class="n">i</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">N</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+
+        <span class="k">for</span> <span class="p">(</span><span class="n">i</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">sqrt</span><span class="p">(</span><span class="n">N</span><span class="p">);</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">if</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="p">{</span>
+                <span class="k">for</span> <span class="p">(</span> <span class="n">j</span> <span class="o">=</span> <span class="n">i</span><span class="p">;</span> <span class="n">i</span> <span class="o">*</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">N</span><span class="p">;</span> <span class="n">j</span><span class="o">++</span><span class="p">)</span>
+                    <span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="o">*</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+</pre></div>
+
+
+<p>refer:
+- [1]<a href="http://zh.wikipedia.org/wiki/%E5%9F%83%E6%8B%89%E6%89%98%E6%96%AF%E7%89%B9%E5%B0%BC%E7%AD%9B%E6%B3%95">http://zh.wikipedia.org/wiki/%E5%9F%83%E6%8B%89%E6%89%98%E6%96%AF%E7%89%B9%E5%B0%BC%E7%AD%9B%E6%B3%95</a></p>
 <p class="subheader">Category: <a href="../../category/algorithm.html">algorithm</a>
 
-    Tagged: 
-    <a href="../../tag/algorithm.html">algorithm </a>
 </p>
 
 

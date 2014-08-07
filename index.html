@@ -56,12 +56,36 @@
         
 
             <article>
-                <a href="./posts/misc/regex.html"><h3 class="article-title">linux shell 正则表达式(BREs,EREs,PREs)差异比较</h3></a>
-<h6 class="subheader" title="2014-07-28T16:52:56">Mon 28 July 2014
+                <a href="./posts/algorithm/basic-data-structure.html"><h3 class="article-title">算法: c语言实现读书笔记</h3></a>
+<h6 class="subheader" title="2014-08-07T23:17:56">Thu 07 August 2014
 </h6>
 
 
-<p class="subheader">Category: <a href="./category/misc.html">misc</a>
+<p>3.1  基本组件<br />
+基本数据类型(char, int, float, double), arrry, struct, point
+3.2 数组(array)<br />
+埃拉托斯特尼筛法(参见[1])</p>
+<blockquote>
+<p>对于1到n全部整数，逐个判断它们是否是素数，找出一个非素数，就把它挖掉，最后剩下的就是素数。具体方法是： &lt;1&gt; 定义is_primer[i] = true; &lt;2&gt; 从2开始，依次遍历整个is_primer(直到sqrt(N))，如果is_primer[i]=true,则is_primer[i]=false i ∈ {n², n²+n, n²+2n, ..., limit}</p>
+</blockquote>
+<div class="highlight"><pre>    <span class="err">#</span><span class="n">define</span> <span class="n">N</span> <span class="mi">1000</span>
+    <span class="kt">int</span> <span class="n">main</span><span class="p">()</span> <span class="p">{</span>
+        <span class="kt">int</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">a</span><span class="p">[</span><span class="n">N</span><span class="p">];</span>
+        <span class="c1">//init</span>
+        <span class="k">for</span> <span class="p">(</span><span class="n">i</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">N</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+
+        <span class="k">for</span> <span class="p">(</span><span class="n">i</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">sqrt</span><span class="p">(</span><span class="n">N</span><span class="p">);</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">if</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="p">{</span>
+                <span class="k">for</span> <span class="p">(</span> <span class="n">j</span> <span class="o">=</span> <span class="n">i</span><span class="p">;</span> <span class="n">i</span> <span class="o">*</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">N</span><span class="p">;</span> <span class="n">j</span><span class="o">++</span><span class="p">)</span>
+                    <span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="o">*</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+</pre></div>
+
+
+<p>refer:
+- [1]<a href="http://zh.wikipedia.org/wiki/%E5%9F%83%E6%8B%89%E6%89%98%E6%96%AF%E7%89%B9%E5%B0%BC%E7%AD%9B%E6%B3%95">http://zh.wikipedia.org/wiki/%E5%9F%83%E6%8B%89%E6%89%98%E6%96%AF%E7%89%B9%E5%B0%BC%E7%AD%9B%E6%B3%95</a></p><p class="subheader">Category: <a href="./category/algorithm.html">algorithm</a>
 
 </p>
 
@@ -72,32 +96,13 @@
 
                 <hr  class="gradient"/>
 
-
-        
-
-
-            <article>
-                <a href="./posts/misc/closure.html"><h3 class="article-title">必包(closure)</h3></a>
-<h6 class="subheader" title="2014-07-28T12:13:29">Mon 28 July 2014
-</h6>
-
-
-<p class="subheader">Category: <a href="./category/misc.html">misc</a>
-
-</p>
-
-
-
-                <a class="button radius secondary small right" href="./posts/misc/closure.html">Read More</a>
-                <hr  class="gradient"/>
-            </article>
 
         
 
 
             <article>
                 <a href="./posts/coroutine/asymmetric-vs-symmetric.html"><h3 class="article-title">asymmetric coroutine和symmetric coroutine</h3></a>
-<h6 class="subheader" title="2014-07-28T12:10:21">Mon 28 July 2014
+<h6 class="subheader" title="2014-08-06T21:44:18">Wed 06 August 2014
 </h6>
 
 
@@ -115,8 +120,8 @@
 
 
             <article>
-                <a href="./posts/misc/scope.html"><h3 class="article-title">Lexical and Dynamic Scoping</h3></a>
-<h6 class="subheader" title="2014-07-28T11:58:01">Mon 28 July 2014
+                <a href="./posts/misc/closure.html"><h3 class="article-title">必包(closure)</h3></a>
+<h6 class="subheader" title="2014-08-06T21:44:18">Wed 06 August 2014
 </h6>
 
 
@@ -126,26 +131,7 @@
 
 
 
-                <a class="button radius secondary small right" href="./posts/misc/scope.html">Read More</a>
-                <hr  class="gradient"/>
-            </article>
-
-        
-
-
-            <article>
-                <a href="./posts/coroutine/generator-vs-iterator.html"><h3 class="article-title">Iterator 和 Generator</h3></a>
-<h6 class="subheader" title="2014-07-28T11:45:55">Mon 28 July 2014
-</h6>
-
-
-<p class="subheader">Category: <a href="./category/coroutine.html">coroutine</a>
-
-</p>
-
-
-
-                <a class="button radius secondary small right" href="./posts/coroutine/generator-vs-iterator.html">Read More</a>
+                <a class="button radius secondary small right" href="./posts/misc/closure.html">Read More</a>
                 <hr  class="gradient"/>
             </article>
 
@@ -154,7 +140,7 @@
 
             <article>
                 <a href="./posts/coroutine/continuation.html"><h3 class="article-title">continuation</h3></a>
-<h6 class="subheader" title="2014-07-28T11:44:32">Mon 28 July 2014
+<h6 class="subheader" title="2014-08-06T21:44:18">Wed 06 August 2014
 </h6>
 
 
@@ -172,18 +158,251 @@
 
 
             <article>
-                <a href="./posts/mysql/transation.html"><h3 class="article-title">mysql innodb 事务</h3></a>
-<h6 class="subheader" title="2014-07-17T11:59:12">Thu 17 July 2014
+                <a href="./posts/sort/counting-sort.html"><h3 class="article-title">计数排序</h3></a>
+<h6 class="subheader" title="2014-08-06T21:44:18">Wed 06 August 2014
 </h6>
 
 
-<p class="subheader">Category: <a href="./category/mysql.html">mysql</a>
+<p>http://www.cnblogs.com/kkun/archive/2011/11/23/2260299.html</p><p class="subheader">Category: <a href="./category/sort.html">sort</a>
 
 </p>
 
 
 
-                <a class="button radius secondary small right" href="./posts/mysql/transation.html">Read More</a>
+                <a class="button radius secondary small right" href="./posts/sort/counting-sort.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="./posts/security/cve.html"><h3 class="article-title">漏洞库</h3></a>
+<h6 class="subheader" title="2014-08-06T21:44:18">Wed 06 August 2014
+</h6>
+
+
+<p class="subheader">Category: <a href="./category/security.html">security</a>
+
+</p>
+
+
+
+                <a class="button radius secondary small right" href="./posts/security/cve.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="./posts/algorithm/design.html"><h3 class="article-title">算法设计范式(paradigm)</h3></a>
+<h6 class="subheader" title="2014-08-06T21:44:18">Wed 06 August 2014
+</h6>
+
+
+<ol>
+<li>
+<p>分治法(divide and conquer)
+  字面上的解释是“分而治之”, 就是把一个复杂的问题分成K个的相同或相似的子问题, 直到最后子问题可以简单的直接求解, 原问题的解即子问题的解的合并. 特征:</p>
+<ul>
+<li>该问题的规模缩小到一定的程度就可以容易地解决.</li>
+<li>该问题可以分解为若干个规模较小的相同问题, 即该问题具有最优子结构性质.</li>
+<li>利用该问题分解出的子问题的解可以合并为该问题的解</li>
+<li>该问题所分解出的各个子问题是相互独立的, 即子问题之间不包含公共的子子问题.</li>
+</ul>
+<p>第一条特征是绝大多数问题都可以满足的, 因为问题的计算复杂性一般是随着问题规模的增加而增加, 第二条特征是应用分治法的前提它也是大多数问题可以满足的, 此特征反映了递归思想的应用,
+第三条特征是关键, 能否利用分治法完全取决于问题是否具有第三条特征, 如果具备了第一条和第二条特征, 而不具备第三条特征, 则可以考虑用贪心法或动态规划法, 第四条特征涉及到分治法的效率, 如果各子问题是不独立的则分治法要做许多不必要的工作, 重复地解公共的子问题, 此时虽然可用分治法, 但一般用动态规划法较好.</p>
+</li>
+<li>
+<p>动态规划(dynamic programming)
+    动态规划常常适用于有重叠子问题[2]和最优子结构性质的问题, 动态规划法试图仅仅解决每个子问题一次, 从而减少计算量： 一旦某个给定子问题的解已经算出, 则将其记忆化存储, 以便下次需要同一个子问题解之时直接查表. </p>
+</li>
+<li>
+<p>贪心算法(greedy algorithms)</p>
+</li>
+<li>回溯法(backtrack)
+    回溯算法实际上一个类似枚举的搜索尝试过程, 主要是在搜索尝试过程中寻找问题的解, 当发现已不满足求解条件时, 就 ...</li></ol><p class="subheader">Category: <a href="./category/algorithm.html">algorithm</a>
+
+    Tagged: 
+    <a href="./tag/algorithm.html">algorithm </a>
+</p>
+
+
+
+                <a class="button radius secondary small right" href="./posts/algorithm/design.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="./posts/algorithm/eight-queens.html"><h3 class="article-title">八皇后问题</h3></a>
+<h6 class="subheader" title="2014-08-06T21:44:18">Wed 06 August 2014
+</h6>
+
+
+<ol>
+<li>
+<p>问题描述</p>
+<blockquote>
+<p>八皇后问题是一个古老而著名的问题，是回溯算法的典型例题。该问题是十九世纪著名的数学家高斯1850年提出：在8X8格的国际象棋上摆放八个皇后，使其不能互相攻击，即任意两个皇后都不能处于同一行、同一列或同一斜线上，问有多少种摆法。</p>
+</blockquote>
+</li>
+<li>
+<p>代码(递归)</p>
+<div class="highlight"><pre><span class="cp">#include&lt;stdlib.h&gt;</span>
+<span class="cp">#include&lt;stdio.h&gt;</span>
+
+<span class="cp">#define N 8</span>
+
+<span class="kt">int</span> <span class="n">queen</span><span class="p">[</span><span class="n">N</span><span class="p">],</span> <span class="n">sum</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+
+<span class="kt">int</span> <span class="nf">check</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="p">{</span><span class="c1">//n: row number</span>
+    <span class="kt">int</span> <span class="n">i</span><span class="p">;</span>
+    <span class="k">for</span> <span class="p">(</span><span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">((</span><span class="n">queen</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="n">queen</span><span class="p">[</span><span class="n">n</span><span class="p">])</span> <span class="o">||</span> <span class="p">(</span><span class="n">abs</span><span class="p">(</span><span class="n">queen</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">-</span> <span class="n">queen</span><span class="p">[</span><span class="n">n</span><span class="p">])</span> <span class="o">==</span> <span class="p">(</span><span class="n">n ...</span></pre></div></li></ol><p class="subheader">Category: <a href="./category/algorithm.html">algorithm</a>
+
+    Tagged: 
+    <a href="./tag/algorithm.html">algorithm </a>
+    <a href="./tag/cc.html">c/c++ </a>
+</p>
+
+
+
+                <a class="button radius secondary small right" href="./posts/algorithm/eight-queens.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="./posts/security/exploit.html"><h3 class="article-title">Exploit和shellcode简介</h3></a>
+<h6 class="subheader" title="2014-08-06T21:44:18">Wed 06 August 2014
+</h6>
+
+
+<p>refer:<br />
+- <a href="http://badishi.com/on-vulnerabilities-exploits-and-shellcodes/">http://badishi.com/on-vulnerabilities-exploits-and-shellcodes/</a>
+- <a href="http://www.exploit-db.com/">http://www.exploit-db.com/</a>
+- <a href="http://www.clevcode.org/cve-2014-3153-exploit/">http://www.clevcode.org/cve-2014-3153-exploit/</a>
+- <a href="http://www.seckungfu.com/">http://www.seckungfu.com/</a></p><p class="subheader">Category: <a href="./category/security.html">security</a>
+
+</p>
+
+
+
+                <a class="button radius secondary small right" href="./posts/security/exploit.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="./posts/coroutine/generator-vs-iterator.html"><h3 class="article-title">Iterator 和 Generator</h3></a>
+<h6 class="subheader" title="2014-08-06T21:44:18">Wed 06 August 2014
+</h6>
+
+
+<p class="subheader">Category: <a href="./category/coroutine.html">coroutine</a>
+
+</p>
+
+
+
+                <a class="button radius secondary small right" href="./posts/coroutine/generator-vs-iterator.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="./posts/misc/hdd.html"><h3 class="article-title">硬盘(hard disk drive)构造</h3></a>
+<h6 class="subheader" title="2014-08-06T21:44:18">Wed 06 August 2014
+</h6>
+
+
+<p>Zone bit recording 技术</p>
+<p>refer:</p>
+<ul>
+<li><a href="http://www.programlife.net/disk-struct.html">http://www.programlife.net/disk-struct.html</a></li>
+</ul><p class="subheader">Category: <a href="./category/misc.html">misc</a>
+
+    Tagged: 
+    <a href="./tag/hdd.html">hdd </a>
+    <a href="./tag/linux.html">linux </a>
+    <a href="./tag/zbr.html">zbr </a>
+</p>
+
+
+
+                <a class="button radius secondary small right" href="./posts/misc/hdd.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="./posts/interview/horse-race.html"><h3 class="article-title">赛马问题</h3></a>
+<h6 class="subheader" title="2014-08-06T21:44:18">Wed 06 August 2014
+</h6>
+
+
+<p>refer:</p>
+<ul>
+<li><a href="http://hsiq.blogspot.jp/2008/08/blog-post_28.html">http://hsiq.blogspot.jp/2008/08/blog-post_28.html</a></li>
+</ul><p class="subheader">Category: <a href="./category/interview.html">interview</a>
+
+</p>
+
+
+
+                <a class="button radius secondary small right" href="./posts/interview/horse-race.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="./posts/sort/index.html"><h3 class="article-title">基本排序算法</h3></a>
+<h6 class="subheader" title="2014-08-06T21:44:18">Wed 06 August 2014
+</h6>
+
+Translations: 
+        <a href="./posts/mysql/index.html">cn</a>
+
+<ol>
+<li>分类<ul>
+<li>插入排序: 直接插入排序，Shell排序</li>
+<li>选择排序: 直接选择排序，堆排序</li>
+<li>冒泡排序: 冒泡排序，快速排序</li>
+<li>归并排序，基数排序，桶排序</li>
+</ul>
+</li>
+</ol>
+<p>refer:</p>
+<ul>
+<li><a href="http://www.acmerblog.com/article-sort-3969.html">http://www.acmerblog.com/article-sort-3969.html</a></li>
+<li><a href="http://www.acmerblog.com/sort-algorithm1-3374.html">http://www.acmerblog.com/sort-algorithm1-3374.html</a></li>
+<li><a href="http://www.acmerblog.com/quick-sort-5789.html">http://www.acmerblog.com/quick-sort-5789.html</a></li>
+</ul><p class="subheader">Category: <a href="./category/sort.html">sort</a>
+
+    Tagged: 
+    <a href="./tag/algorithm.html">algorithm </a>
+    <a href="./tag/sort.html">sort </a>
+</p>
+
+
+Translations: 
+        <a href="./posts/mysql/index.html">cn</a>
+
+                <a class="button radius secondary small right" href="./posts/sort/index.html">Read More</a>
                 <hr  class="gradient"/>
             </article>
 
@@ -192,7 +411,7 @@
 
             <article>
                 <a href="./posts/mysql/index.html"><h3 class="article-title">索引信息</h3></a>
-<h6 class="subheader" title="2014-07-10T12:34:34">Thu 10 July 2014
+<h6 class="subheader" title="2014-08-06T21:44:18">Wed 06 August 2014
 </h6>
 
 Translations: 
@@ -214,27 +433,8 @@ Translations:
 
 
             <article>
-                <a href="./posts/mysql/quote.html"><h3 class="article-title">mysql中的引号</h3></a>
-<h6 class="subheader" title="2014-07-09T19:06:38">Wed 09 July 2014
-</h6>
-
-
-<p class="subheader">Category: <a href="./category/mysql.html">mysql</a>
-
-</p>
-
-
-
-                <a class="button radius secondary small right" href="./posts/mysql/quote.html">Read More</a>
-                <hr  class="gradient"/>
-            </article>
-
-        
-
-
-            <article>
                 <a href="./posts/misc/openstack-sum.html"><h3 class="article-title">openstack</h3></a>
-<h6 class="subheader" title="2014-07-08T20:08:08">Tue 08 July 2014
+<h6 class="subheader" title="2014-08-06T21:44:18">Wed 06 August 2014
 </h6>
 
 
@@ -281,144 +481,6 @@ Translations:
 
 
                 <a class="button radius secondary small right" href="./posts/misc/openstack-sum.html">Read More</a>
-                <hr  class="gradient"/>
-            </article>
-
-        
-
-
-            <article>
-                <a href="./posts/security/exploit.html"><h3 class="article-title">Exploit和shellcode简介</h3></a>
-<h6 class="subheader" title="2014-07-04T12:28:24">Fri 04 July 2014
-</h6>
-
-
-<p>refer:<br />
-- <a href="http://badishi.com/on-vulnerabilities-exploits-and-shellcodes/">http://badishi.com/on-vulnerabilities-exploits-and-shellcodes/</a>
-- <a href="http://www.exploit-db.com/">http://www.exploit-db.com/</a>
-- <a href="http://www.clevcode.org/cve-2014-3153-exploit/">http://www.clevcode.org/cve-2014-3153-exploit/</a>
-- <a href="http://www.seckungfu.com/">http://www.seckungfu.com/</a></p><p class="subheader">Category: <a href="./category/security.html">security</a>
-
-</p>
-
-
-
-                <a class="button radius secondary small right" href="./posts/security/exploit.html">Read More</a>
-                <hr  class="gradient"/>
-            </article>
-
-        
-
-
-            <article>
-                <a href="./posts/security/cve.html"><h3 class="article-title">漏洞库</h3></a>
-<h6 class="subheader" title="2014-07-04T12:25:40">Fri 04 July 2014
-</h6>
-
-
-<p class="subheader">Category: <a href="./category/security.html">security</a>
-
-</p>
-
-
-
-                <a class="button radius secondary small right" href="./posts/security/cve.html">Read More</a>
-                <hr  class="gradient"/>
-            </article>
-
-        
-
-
-            <article>
-                <a href="./posts/algorithm/random-range.html"><h3 class="article-title">随机数范围</h3></a>
-<h6 class="subheader" title="2014-06-16T00:22:03">Mon 16 June 2014
-</h6>
-
-
-<p>refer:</p>
-<ul>
-<li><a href="http://blog.csdn.net/hackbuteer1/article/details/7486704">http://blog.csdn.net/hackbuteer1/article/details/7486704</a></li>
-<li><a href="http://yaronspace.cn/blog/archives/1326">http://yaronspace.cn/blog/archives/1326</a></li>
-<li><a href="http://stackoverflow.com/questions/2999075/generate-a-random-number-within-range/2999130#2999130">http://stackoverflow.com/questions/2999075/generate-a-random-number-within-range/2999130#2999130</a></li>
-<li><a href="http://stackoverflow.com/questions/3746814/create-a-random-number-less-than-a-max-given-value">http://stackoverflow.com/questions/3746814/create-a-random-number-less-than-a-max-given-value</a></li>
-</ul><p class="subheader">Category: <a href="./category/algorithm.html">algorithm</a>
-
-    Tagged: 
-    <a href="./tag/algorithm.html">algorithm </a>
-    <a href="./tag/random.html">random </a>
-</p>
-
-
-
-                <a class="button radius secondary small right" href="./posts/algorithm/random-range.html">Read More</a>
-                <hr  class="gradient"/>
-            </article>
-
-        
-
-
-            <article>
-                <a href="./posts/algorithm/random.html"><h3 class="article-title">随机数及检验</h3></a>
-<h6 class="subheader" title="2014-06-15T23:35:24">Sun 15 June 2014
-</h6>
-
-
-<ol>
-<li>
-<p>随机数算法</p>
-<ul>
-<li>取中法</li>
-<li>线性同余法</li>
-<li>移位法</li>
-<li>梅森旋转算法</li>
-</ul>
-</li>
-<li>
-<p>检验</p>
-<ul>
-<li>参数检验</li>
-<li>均匀性检验</li>
-<li>独立性检验</li>
-</ul>
-</li>
-</ol>
-<p>refer:</p>
-<ul>
-<li><a href="http://blog.csdn.net/zmazon/article/details/17383521">http://blog.csdn.net/zmazon/article/details/17383521</a></li>
-<li><a href="http://wenku.baidu.com/view/0295fdd7b14e852458fb574e.html">http://wenku.baidu.com/view/0295fdd7b14e852458fb574e.html</a></li>
-<li><a href="http://wenku.baidu.com/view/bec3a060ddccda38376bafe4.html?from=related">http://wenku.baidu.com/view/bec3a060ddccda38376bafe4.html?from=related</a></li>
-<li><a href="http://carlnerv.com/2014/c%E6%A0%87%E5%87%86%E5%BA%93%E9%87%8C%E7%9A%84rand.html">http://carlnerv.com/2014/c%E6%A0%87%E5%87%86%E5%BA%93%E9%87 ...</a></li></ul><p class="subheader">Category: <a href="./category/algorithm.html">algorithm</a>
-
-    Tagged: 
-    <a href="./tag/algorithm.html">algorithm </a>
-    <a href="./tag/random.html">random </a>
-</p>
-
-
-
-                <a class="button radius secondary small right" href="./posts/algorithm/random.html">Read More</a>
-                <hr  class="gradient"/>
-            </article>
-
-        
-
-
-            <article>
-                <a href="./posts/c/operator-precedence.html"><h3 class="article-title">c运算符优先级</h3></a>
-<h6 class="subheader" title="2014-06-15T21:54:36">Sun 15 June 2014
-</h6>
-
-
-<p>refer:</p>
-<ul>
-<li><a href="http://www.difranco.net/compsci/C_Operator_Precedence_Table.htm">http://www.difranco.net/compsci/C_Operator_Precedence_Table.htm</a></li>
-</ul><p class="subheader">Category: <a href="./category/c.html">c</a>
-
-</p>
-
-
-
-                <a class="button radius secondary small right" href="./posts/c/operator-precedence.html">Read More</a>
                 <hr  class="gradient"/>
             </article>
 

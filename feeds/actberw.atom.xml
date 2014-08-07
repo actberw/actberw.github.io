@@ -357,6 +357,7 @@ refer:&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;[2]&lt;a href="http://coolshell.cn/articles/3738.html"&gt;http://www.zhihu.com/question/19668324&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;[3]&lt;a href="http://www.zhihu.com/question/19668324"&gt;http://www.zhihu.com/question/19668324&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;[4]&lt;a href="http://program-think.blogspot.com/2011/12/prime-algorithm-1.html"&gt;http://program-think.blogspot.com/2011/12/prime-algorithm-1.html&lt;/a&gt;&lt;/li&gt;
 &lt;/ol&gt;</summary><category term="algorithm"></category><category term="prime number"></category></entry><entry><title>数组</title><link href="http://actberw.github.io/posts/adt/array.html" rel="alternate"></link><updated>2014-06-15T15:00:00+08:00</updated><author><name>actberw</name></author><id>tag:actberw.github.io,2014-06-15:posts/adt/array.html</id><summary type="html">&lt;p&gt;数组是一组相同类型得数据得固定集合，他们得存储空空间相邻，可以通过 &lt;em&gt;索引访问&lt;/em&gt;.&lt;/p&gt;
 &lt;p&gt;refer:&lt;/p&gt;
 &lt;ul&gt;

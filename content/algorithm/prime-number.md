@@ -39,3 +39,4 @@ refer:
 - [1][http://dongxicheng.org/structure/prime/](http://dongxicheng.org/structure/prime/)
 - [2][http://www.zhihu.com/question/19668324](http://coolshell.cn/articles/3738.html)
 - [3][http://www.zhihu.com/question/19668324](http://www.zhihu.com/question/19668324)
+- [4][http://program-think.blogspot.com/2011/12/prime-algorithm-1.html](http://program-think.blogspot.com/2011/12/prime-algorithm-1.html)

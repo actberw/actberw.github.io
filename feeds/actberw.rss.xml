@@ -1,5 +1,68 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>记录一些工作中的笔记</title><link>http://actberw.github.io/</link><description></description><atom:link href="http://actberw.github.io/feeds/actberw.rss.xml" rel="self"></atom:link><lastBuildDate>Thu, 07 Aug 2014 19:00:00 +0800</lastBuildDate><item><title>算法: c语言实现读书笔记</title><link>http://actberw.github.io/posts/algorithm/basic-data-structure.html</link><description>&lt;p&gt;3.1  基本组件&lt;br /&gt;
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>记录一些工作中的笔记</title><link>http://actberw.github.io/</link><description></description><atom:link href="http://actberw.github.io/feeds/actberw.rss.xml" rel="self"></atom:link><lastBuildDate>Sun, 10 Aug 2014 21:00:00 +0800</lastBuildDate><item><title>xtrbackup备份原理</title><link>http://actberw.github.io/posts/mysql/xtrabackup.html</link><description>&lt;p&gt;xtrabackup备份主要做两件事情:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;后台启动一个日志复制线程监控innodb日志文件，发现变动时复制到xtrabackup_logfile&lt;/li&gt;
+&lt;li&gt;复制innodb数据文件, 并不是简单的复制，跟innodb同样的方式打开文件，打开数据字典( data dictionary)复制innodb page.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;当数据文件复制完成时，停止日志复制线程同时创建文件xtrabackup_checkpoints记录 LSN(log sequence number)信息.&lt;/p&gt;
+&lt;p&gt;复制数据文件时每次读取1M大小(这个没法配置), 并检查每个page是否损坏.日志文件时每次512KB.&lt;/p&gt;
+&lt;p&gt;innodb page(通常是16kb)包含一个日志序列号LSN, LSN是整个数据库的版本号, LSN的大小表示最近多久被修改过. 增量备份的原理就是复制LSN大于xtrabackup_checkpoints记录的最后LSN.有两种算法找到变动的page:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;读取所有的page比较LSN，mysql及Percona Server都支持 (数据库的大小影响备份的快慢)&lt;/li&gt;
+&lt;li&gt;Percona Server 用bitmap实现了跟踪变化的innodb page 特性, 会快很多.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;xtrabackup调用innodb库来读数据文件，而innodb以read-write打开数据文件, 所以用xtrabackup备份的时候需要有对数据文件写的权限，但是并不会写文件.
+refer:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="http://www.percona.com/doc/percona-xtrabackup/2.2/xtrabackup_bin/creating_a_backup.html"&gt;http://www.percona.com/doc/percona-xtrabackup/2.2/xtrabackup_bin/creating_a_backup.html&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://www.percona.com/doc/percona-xtrabackup/2.2/xtrabackup_bin/implementation_details.html"&gt;http://www.percona.com/doc/percona-xtrabackup/2.2/xtrabackup_bin/implementation_details.html&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">actberw</dc:creator><pubDate>Sun, 10 Aug 2014 21:00:00 +0800</pubDate><guid>tag:actberw.github.io,2014-08-10:posts/mysql/xtrabackup.html</guid><category>mysql</category><category>xtrabackup</category></item><item><title>mysql中的引号</title><link>http://actberw.github.io/posts/mysql/quote.html</link><description>&lt;p&gt;mysql字符串指用单引号(‘'’)或双引号(‘"’)引起来的字符序列。例如：&lt;/p&gt;
+&lt;p&gt;'a string'&lt;/p&gt;
+&lt;p&gt;"another string"&lt;/p&gt;
+&lt;p&gt;如果SQL服务器模式启用了ANSI_QUOTES，可以只用单引号引用字符串。用双引号引用的字符串被解释为一个识别符。&lt;/p&gt;
+&lt;p&gt;refer:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="http://dev.mysql.com/doc/refman/5.6/en/string-literals.html"&gt;http://dev.mysql.com/doc/refman/5.6/en/string-literals.html&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://dev.mysql.com/doc/refman/5.6/en/sql-mode.html#sqlmode_ansi_quotes"&gt;http://dev.mysql.com/doc/refman/5.6/en/sql-mode.html#sqlmode_ansi_quotes&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://segmentfault.com/q/1010000000236690"&gt;http://segmentfault.com/q/1010000000236690&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">actberw</dc:creator><pubDate>Sun, 10 Aug 2014 20:44:00 +0800</pubDate><guid>tag:actberw.github.io,2014-08-10:posts/mysql/quote.html</guid><category>mysql</category><category>quote</category></item><item><title>三角形的面积</title><link>http://actberw.github.io/posts/algorithm/triangle.html</link><description>&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;已知三边(a, b, c)求三角形面积.&lt;br /&gt;
+海伦公式:
+假设三角形三边分别为(a, b, c), 则三角形的面积&lt;br /&gt;
+$S = \sqrt{p(p-a)(p-b)(p-c)}$, 其中$p=\frac{a + b+ c}{2}$&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="kt"&gt;float&lt;/span&gt; &lt;span class="nf"&gt;space&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;float&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kt"&gt;float&lt;/span&gt; &lt;span class="n"&gt;b&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kt"&gt;float&lt;/span&gt; &lt;span class="n"&gt;c&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;p&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="n"&gt;p&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;b&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;c&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;sqrt&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;p&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;p&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;p&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="n"&gt;b&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;p&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="n"&gt;c&lt;/span&gt;&lt;span class="p"&gt;));&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;已知平面三点的坐标求三角形的面积&lt;br /&gt;
+利用向量叉乘
+$S = \frac{1}{2}|\overrightarrow{AB}||\overrightarrow{AC}| * sign\angle{A} = \frac{1}{2}|\overrightarrow{AB} * \overrightarrow{AC}|$&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="k"&gt;typedef&lt;/span&gt; &lt;span class="k"&gt;struct&lt;/span&gt; &lt;span class="n"&gt;point&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="kt"&gt;float&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="kt"&gt;float&lt;/span&gt; &lt;span class="n"&gt;y&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt; &lt;span class="kt"&gt;point_t&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+
+&lt;span class="kt"&gt;float&lt;/span&gt; &lt;span class="nf"&gt;space&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;point_t&lt;/span&gt; &lt;span class="n"&gt;A&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kt"&gt;point_t&lt;/span&gt; &lt;span class="n"&gt;B&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kt"&gt;point_t&lt;/span&gt; &lt;span class="n"&gt;C&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="kt"&gt;point_t&lt;/span&gt; &lt;span class="n"&gt;AB&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="n"&gt;B&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="n"&gt;A&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;B&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;y&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="n"&gt;A&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;y&lt;/span&gt;&lt;span class="p"&gt;},&lt;/span&gt; &lt;span class="n"&gt;AC&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="n"&gt;C&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="n"&gt;A&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;C&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;y&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="n"&gt;A&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;y&lt;/span&gt;&lt;span class="p"&gt;};&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;fabs&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;AB&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;AC&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;y&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="n"&gt;AB&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;y&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;AC&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;refer&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="http://sxyd.sdut.edu.cn/gaoshu1/lesson/7.4%20%20shuliangji.htm"&gt;http://sxyd.sdut.edu.cn/gaoshu1/lesson/7.4%20%20shuliangji.htm&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://blog.csdn.net/fox64194167/article/details/8147460"&gt;http://blog.csdn.net/fox64194167/article/details/8147460&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">actberw</dc:creator><pubDate>Sun, 10 Aug 2014 20:00:00 +0800</pubDate><guid>tag:actberw.github.io,2014-08-10:posts/algorithm/triangle.html</guid><category>algorithm</category><category>triangle</category></item><item><title>算法: c语言实现读书笔记</title><link>http://actberw.github.io/posts/algorithm/basic-data-structure.html</link><description>&lt;p&gt;3.1  基本组件&lt;br /&gt;
 基本数据类型(char, int, float, double), arrry, struct, point&lt;/p&gt;
 &lt;p&gt;3.2 数组(array)&lt;br /&gt;
 埃拉托斯特尼筛法(参见[1])&lt;/p&gt;
@@ -241,7 +304,7 @@ Neutron 实质是一个定义良好的框架用来驱动 L2-L7 层不同的底�
 &lt;/ol&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">actberw</dc:creator><pubDate>Wed, 06 Aug 2014 21:44:18 +0800</pubDate><guid>tag:actberw.github.io,2014-08-06:posts/misc/openstack-sum.html</guid></item><item><title>c运算符优先级</title><link>http://actberw.github.io/posts/c/operator-precedence.html</link><description>&lt;p&gt;refer:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href="http://www.difranco.net/compsci/C_Operator_Precedence_Table.htm"&gt;http://www.difranco.net/compsci/C_Operator_Precedence_Table.htm&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">actberw</dc:creator><pubDate>Wed, 06 Aug 2014 21:44:18 +0800</pubDate><guid>tag:actberw.github.io,2014-08-06:posts/c/operator-precedence.html</guid></item><item><title>mysql中的引号</title><link>http://actberw.github.io/posts/mysql/quote.html</link><description></description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">actberw</dc:creator><pubDate>Wed, 06 Aug 2014 21:44:18 +0800</pubDate><guid>tag:actberw.github.io,2014-08-06:posts/mysql/quote.html</guid></item><item><title>随机数及检验</title><link>http://actberw.github.io/posts/algorithm/random.html</link><description>&lt;ol&gt;
+&lt;/ul&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">actberw</dc:creator><pubDate>Wed, 06 Aug 2014 21:44:18 +0800</pubDate><guid>tag:actberw.github.io,2014-08-06:posts/c/operator-precedence.html</guid></item><item><title>随机数及检验</title><link>http://actberw.github.io/posts/algorithm/random.html</link><description>&lt;ol&gt;
 &lt;li&gt;
 &lt;p&gt;随机数算法&lt;/p&gt;
 &lt;ul&gt;
@@ -305,7 +368,50 @@ Neutron 实质是一个定义良好的框架用来驱动 L2-L7 层不同的底�
 &lt;/ul&gt;
 &lt;p&gt;另外如果把上面的i改成a可以连配对标点一起操作。&lt;/p&gt;
 &lt;/li&gt;
-&lt;/ol&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">actberw</dc:creator><pubDate>Wed, 06 Aug 2014 21:44:18 +0800</pubDate><guid>tag:actberw.github.io,2014-08-06:posts/vim/trick.html</guid></item><item><title>素数算法</title><link>http://actberw.github.io/posts/algorithm/prime-number.html</link><description>&lt;ol&gt;
+&lt;/ol&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">actberw</dc:creator><pubDate>Wed, 06 Aug 2014 21:44:18 +0800</pubDate><guid>tag:actberw.github.io,2014-08-06:posts/vim/trick.html</guid></item><item><title>xtrabackup安装及使用</title><link>http://actberw.github.io/posts/mysql/xtrabackup-install.html</link><description>&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;安装&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;wget&lt;/span&gt; &lt;span class="n"&gt;http&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="c1"&gt;//www.percona.com/redir/downloads/XtraBackup/LATEST/deb/precise/x86_64/percona-xtrabackup_2.1.6-702-1.precise_amd64.deb&lt;/span&gt;
+&lt;span class="cp"&gt;# 可能需要安装依赖:libdbd-mysql-perl &lt;/span&gt;
+&lt;span class="n"&gt;dpkg&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;percona&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;xtrabackup_2&lt;/span&gt;&lt;span class="mf"&gt;.1.6&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;702&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mf"&gt;1.&lt;/span&gt;&lt;span class="n"&gt;precise_amd64&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;deb&lt;/span&gt;
+&lt;span class="cp"&gt;# 安装完成后会产生四个命令行工具:innobackupex, xtrabackup, xbcrypt, xbstream&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;使用innobackupex增量备份&lt;br /&gt;
+innobackupex 是个perl脚本,封装xtrabackup,会根据mysql服务器得版本选择xtrabackup得版本, innobackupex可以备份myisam和innodb表, 同时也会备份表定义文件(.frm).&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="cp"&gt;# first setp full backup&lt;/span&gt;
+&lt;span class="n"&gt;BASE_DIR&lt;/span&gt;&lt;span class="o"&gt;=/&lt;/span&gt;&lt;span class="n"&gt;data&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;mysql_backup&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="err"&gt;`&lt;/span&gt;&lt;span class="n"&gt;date&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;%Y-%m-%d&amp;quot;&lt;/span&gt;&lt;span class="err"&gt;`&lt;/span&gt;
+&lt;span class="n"&gt;innobackupex&lt;/span&gt; &lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="n"&gt;defaults&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;file&lt;/span&gt;&lt;span class="o"&gt;=/&lt;/span&gt;&lt;span class="n"&gt;etc&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;mysql&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;my&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;cnf&lt;/span&gt;  &lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="n"&gt;user&lt;/span&gt; &lt;span class="n"&gt;root&lt;/span&gt; &lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="n"&gt;no&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;timestamp&lt;/span&gt; &lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="n"&gt;parallel&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt; &lt;span class="err"&gt;$&lt;/span&gt;&lt;span class="n"&gt;BASE_DIR&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;base&lt;/span&gt;  &lt;span class="err"&gt;#&lt;/span&gt; &lt;span class="n"&gt;base&lt;/span&gt; &lt;span class="n"&gt;dir&lt;/span&gt; &lt;span class="n"&gt;shouldn&lt;/span&gt;&lt;span class="err"&gt;&amp;#39;&lt;/span&gt;&lt;span class="n"&gt;t&lt;/span&gt; &lt;span class="n"&gt;exists&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;
+
+&lt;span class="cp"&gt;# second setp incremental backup&lt;/span&gt;
+&lt;span class="n"&gt;innobackupex&lt;/span&gt; &lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="n"&gt;defaults&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;file&lt;/span&gt;&lt;span class="o"&gt;=/&lt;/span&gt;&lt;span class="n"&gt;etc&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;mysql&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;my&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;cnf&lt;/span&gt;  &lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="n"&gt;incremental&lt;/span&gt; &lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="n"&gt;user&lt;/span&gt; &lt;span class="n"&gt;root&lt;/span&gt; &lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="n"&gt;no&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;timestamp&lt;/span&gt; &lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="n"&gt;parallel&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt; &lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="n"&gt;incremental&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;basedir&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="err"&gt;$&lt;/span&gt;&lt;span class="n"&gt;BASE_DIR&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;base&lt;/span&gt; &lt;span class="err"&gt;$&lt;/span&gt;&lt;span class="n"&gt;BASE_DIR&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;inc&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="err"&gt;`&lt;/span&gt;&lt;span class="n"&gt;date&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;%H&amp;quot;&lt;/span&gt;&lt;span class="err"&gt;`&lt;/span&gt;
+
+&lt;span class="cp"&gt;# third setp another incremental backup&lt;/span&gt;
+&lt;span class="n"&gt;innobackupex&lt;/span&gt; &lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="n"&gt;defaults&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;file&lt;/span&gt;&lt;span class="o"&gt;=/&lt;/span&gt;&lt;span class="n"&gt;etc&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;mysql&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;my&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;cnf&lt;/span&gt;  &lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="n"&gt;incremental&lt;/span&gt; &lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="n"&gt;user&lt;/span&gt; &lt;span class="n"&gt;root&lt;/span&gt; &lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="n"&gt;no&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;timestamp&lt;/span&gt; &lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="n"&gt;parallel&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt; &lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="n"&gt;incremental&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;basedir&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;inc&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt; &lt;span class="err"&gt;$&lt;/span&gt;&lt;span class="n"&gt;BASE_DIR&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;inc&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="err"&gt;`&lt;/span&gt;&lt;span class="n"&gt;date&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;%H&amp;quot;&lt;/span&gt;&lt;span class="err"&gt;`&lt;/span&gt;
+
+&lt;span class="cp"&gt;# fourth setp prepare backup, -redo-only should be used when merging all incrementals except the last one&lt;/span&gt;
+&lt;span class="n"&gt;innobackupex&lt;/span&gt; &lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="n"&gt;apply&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;log&lt;/span&gt; &lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="n"&gt;redo&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;only&lt;/span&gt; &lt;span class="n"&gt;BASE&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="kt"&gt;DIR&lt;/span&gt;
+&lt;span class="n"&gt;innobackupex&lt;/span&gt; &lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="n"&gt;apply&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;log&lt;/span&gt;  &lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="n"&gt;incremental&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;dir&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;INCREMENTAL&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="kt"&gt;DIR&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt; &lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="n"&gt;redo&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;only&lt;/span&gt; &lt;span class="n"&gt;BASE&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="kt"&gt;DIR&lt;/span&gt;
+&lt;span class="n"&gt;innobackupex&lt;/span&gt; &lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="n"&gt;apply&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;log&lt;/span&gt; &lt;span class="n"&gt;BASE&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="kt"&gt;DIR&lt;/span&gt; &lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="n"&gt;incremental&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;dir&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;INCREMENTAL&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="kt"&gt;DIR&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;
+
+&lt;span class="cp"&gt;# fifth step&lt;/span&gt;
+&lt;span class="n"&gt;innobackupex&lt;/span&gt; &lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="n"&gt;apply&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;log&lt;/span&gt; &lt;span class="n"&gt;BASE&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="kt"&gt;DIR&lt;/span&gt;  &lt;span class="err"&gt;#&lt;/span&gt; &lt;span class="n"&gt;create&lt;/span&gt;  &lt;span class="n"&gt;iblog&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;files&lt;/span&gt;
+
+&lt;span class="cp"&gt;# six step&lt;/span&gt;
+&lt;span class="n"&gt;innobackupex&lt;/span&gt; &lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="n"&gt;copy&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;back&lt;/span&gt; &lt;span class="n"&gt;BASE&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="kt"&gt;DIR&lt;/span&gt; &lt;span class="err"&gt;#&lt;/span&gt; &lt;span class="n"&gt;copy&lt;/span&gt; &lt;span class="n"&gt;data&lt;/span&gt; &lt;span class="n"&gt;to&lt;/span&gt; &lt;span class="n"&gt;mysql&lt;/span&gt; &lt;span class="n"&gt;datadir&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;refer:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="http://www.percona.com/doc/percona-xtrabackup/2.2/xtrabackup_bin/incremental_backups.html"&gt;http://www.percona.com/doc/percona-xtrabackup/2.2/xtrabackup_bin/incremental_backups.html&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://www.percona.com/doc/percona-xtrabackup/2.2/innobackupex/incremental_backups_innobackupex.html"&gt;http://www.percona.com/doc/percona-xtrabackup/2.2/innobackupex/incremental_backups_innobackupex.html&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">actberw</dc:creator><pubDate>Mon, 23 Jun 2014 00:00:00 +0800</pubDate><guid>tag:actberw.github.io,2014-06-23:posts/mysql/xtrabackup-install.html</guid><category>mysql</category><category>xtrabackup</category></item><item><title>素数算法</title><link>http://actberw.github.io/posts/algorithm/prime-number.html</link><description>&lt;ol&gt;
 &lt;li&gt;
 &lt;p&gt;原始算法&lt;br /&gt;
 素数的定义: 除了能被1和它本身整除而不能被其他任何数整除的数。根据素数定义 只需要用2到n-1去除n，如果都除不尽，则n是素数，否则，只要其中有一个数能整除则n不是素数。&lt;/p&gt;

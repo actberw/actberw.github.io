@@ -56,6 +56,67 @@
         
 
             <article>
+                <a href="../posts/algorithm/triangle.html"><h3 class="article-title">三角形的面积</h3></a>
+<h6 class="subheader" title="2014-08-10T20:00:00">Sun 10 August 2014
+</h6>
+
+
+<ol>
+<li>
+<p>已知三边(a, b, c)求三角形面积.<br />
+海伦公式:
+假设三角形三边分别为(a, b, c), 则三角形的面积<br />
+$S = \sqrt{p(p-a)(p-b)(p-c)}$, 其中$p=\frac{a + b+ c}{2}$</p>
+<div class="highlight"><pre><span class="kt">float</span> <span class="nf">space</span><span class="p">(</span><span class="kt">float</span> <span class="n">a</span><span class="p">,</span> <span class="kt">float</span> <span class="n">b</span><span class="p">,</span> <span class="kt">float</span> <span class="n">c</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kt">int</span> <span class="n">p</span><span class="p">;</span>
+    <span class="n">p</span> <span class="o">=</span> <span class="p">(</span><span class="n">a</span> <span class="o">+</span> <span class="n">b</span> <span class="o">+</span> <span class="n">c</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span><span class="p">;</span>
+    <span class="k">return</span> <span class="n">sqrt</span><span class="p">(</span><span class="n">p</span> <span class="o">*</span> <span class="p">(</span><span class="n">p</span> <span class="o">-</span> <span class="n">a</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">p</span> <span class="o">-</span> <span class="n">b</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">p</span> <span class="o">-</span> <span class="n">c</span><span class="p">));</span>
+<span class="p">}</span>
+</pre></div>
+
+
+</li>
+<li>
+<p>已知平面三点的坐标求三角形的面积<br />
+利用向量叉乘
+$S = \frac{1}{2}|\overrightarrow{AB}||\overrightarrow{AC}| * sign\angle{A} = \frac{1}{2}|\overrightarrow{AB} * \overrightarrow{AC}|$</p>
+<div class="highlight"><pre><span class="k">typedef</span> <span class="k">struct</span> <span class="n">point</span> <span class="p">{</span>
+    <span class="kt">float</span> <span class="n">x</span><span class="p">;</span>
+    <span class="kt">float</span> <span class="n">y</span><span class="p">;</span>
+<span class="p">}</span> <span class="kt">point_t</span><span class="p">;</span>
+
+<span class="kt">float</span> <span class="nf">space</span><span class="p">(</span><span class="kt">point_t</span> <span class="n">A</span><span class="p">,</span> <span class="kt">point_t</span> <span class="n">B</span><span class="p">,</span> <span class="kt">point_t</span> <span class="n">C</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kt">point_t</span> <span class="n">AB</span> <span class="o">=</span> <span class="p">{</span><span class="n">B</span><span class="p">.</span><span class="n">x</span> <span class="o">-</span> <span class="n">A</span><span class="p">.</span><span class="n">x</span><span class="p">,</span> <span class="n">B</span><span class="p">.</span><span class="n">y</span> <span class="o">-</span> <span class="n">A</span><span class="p">.</span><span class="n">y</span><span class="p">},</span> <span class="n">AC</span> <span class="o">=</span> <span class="p">{</span><span class="n">C</span><span class="p">.</span><span class="n">x</span> <span class="o">-</span> <span class="n">A</span><span class="p">.</span><span class="n">x</span><span class="p">,</span> <span class="n">C</span><span class="p">.</span><span class="n">y</span> <span class="o">-</span> <span class="n">A</span><span class="p">.</span><span class="n">y</span><span class="p">};</span>
+    <span class="k">return</span> <span class="n">fabs</span><span class="p">(</span><span class="n">AB</span><span class="p">.</span><span class="n">x</span> <span class="o">*</span> <span class="n">AC</span><span class="p">.</span><span class="n">y</span> <span class="o">-</span> <span class="n">AB</span><span class="p">.</span><span class="n">y</span> <span class="o">*</span> <span class="n">AC</span><span class="p">.</span><span class="n">x</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+
+
+</li>
+</ol>
+<p>refer</p>
+<ul>
+<li><a href="http://sxyd.sdut.edu.cn/gaoshu1/lesson/7.4%20%20shuliangji.htm">http://sxyd.sdut.edu.cn/gaoshu1/lesson/7.4%20%20shuliangji.htm</a></li>
+<li><a href="http://blog.csdn.net/fox64194167/article/details/8147460">http://blog.csdn.net/fox64194167/article/details/8147460</a></li>
+</ul><p class="subheader">Category: <a href="../category/algorithm.html">algorithm</a>
+
+    Tagged: 
+    <a href="../tag/algorithm.html">algorithm </a>
+    <a href="../tag/triangle.html">triangle </a>
+</p>
+
+
+
+            </article>
+
+
+                <hr  class="gradient"/>
+
+
+        
+
+
+            <article>
                 <a href="../posts/algorithm/basic-data-structure.html"><h3 class="article-title">算法: c语言实现读书笔记</h3></a>
 <h6 class="subheader" title="2014-08-07T19:00:00">Thu 07 August 2014
 </h6>
@@ -69,23 +130,7 @@
 <p>对于1到n全部整数，逐个判断它们是否是素数，找出一个非素数，就把它挖掉，最后剩下的就是素数。具体方法是： &lt;1&gt; 定义is_primer[i] = true; &lt;2&gt; 从2开始，依次遍历整个is_primer(直到sqrt(N))，如果is_primer[i]=true,则is_primer[i]=false i ∈ {n², n²+n, n²+2n, ..., limit}</p>
 </blockquote>
 <div class="highlight"><pre><span class="cp">#define N 1000</span>
-<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
-    <span class="kt">int</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">a</span><span class="p">[</span><span class="n">N</span><span class="p">];</span>
-    <span class="c1">//init</span>
-    <span class="k">for</span> <span class="p">(</span><span class="n">i</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">N</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
-
-    <span class="k">for</span> <span class="p">(</span><span class="n">i</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">sqrt</span><span class="p">(</span><span class="n">N</span><span class="p">);</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
-        <span class="k">if</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="p">{</span>
-            <span class="k">for</span> <span class="p">(</span> <span class="n">j</span> <span class="o">=</span> <span class="n">i</span><span class="p">;</span> <span class="n">i</span> <span class="o">*</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">N</span><span class="p">;</span> <span class="n">j</span><span class="o">++</span><span class="p">)</span>
-                <span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="o">*</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-        <span class="p">}</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-</pre></div>
-
-
-<p>refer:
-- [1]<a href="http://zh.wikipedia.org/wiki/%E5%9F%83%E6%8B%89%E6%89%98%E6%96%AF%E7%89%B9%E5%B0%BC%E7%AD%9B%E6%B3%95">http://zh.wikipedia.org/wiki/%E5%9F%83%E6%8B%89%E6%89%98%E6%96%AF%E7%89%B9%E5%B0%BC%E7%AD%9B%E6%B3%95</a></p><p class="subheader">Category: <a href="../category/algorithm.html">algorithm</a>
+<span class="kt">int ...</span></pre></div><p class="subheader">Category: <a href="../category/algorithm.html">algorithm</a>
 
     Tagged: 
     <a href="../tag/note.html">note </a>
@@ -93,11 +138,9 @@
 
 
 
-            </article>
-
-
+                <a class="button radius secondary small right" href="../posts/algorithm/basic-data-structure.html">Read More</a>
                 <hr  class="gradient"/>
-
+            </article>
 
         
 

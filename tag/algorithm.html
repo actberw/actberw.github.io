@@ -56,6 +56,67 @@
         
 
             <article>
+                <a href="../posts/algorithm/triangle.html"><h3 class="article-title">三角形的面积</h3></a>
+<h6 class="subheader" title="2014-08-10T20:00:00">Sun 10 August 2014
+</h6>
+
+
+<ol>
+<li>
+<p>已知三边(a, b, c)求三角形面积.<br />
+海伦公式:
+假设三角形三边分别为(a, b, c), 则三角形的面积<br />
+$S = \sqrt{p(p-a)(p-b)(p-c)}$, 其中$p=\frac{a + b+ c}{2}$</p>
+<div class="highlight"><pre><span class="kt">float</span> <span class="nf">space</span><span class="p">(</span><span class="kt">float</span> <span class="n">a</span><span class="p">,</span> <span class="kt">float</span> <span class="n">b</span><span class="p">,</span> <span class="kt">float</span> <span class="n">c</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kt">int</span> <span class="n">p</span><span class="p">;</span>
+    <span class="n">p</span> <span class="o">=</span> <span class="p">(</span><span class="n">a</span> <span class="o">+</span> <span class="n">b</span> <span class="o">+</span> <span class="n">c</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span><span class="p">;</span>
+    <span class="k">return</span> <span class="n">sqrt</span><span class="p">(</span><span class="n">p</span> <span class="o">*</span> <span class="p">(</span><span class="n">p</span> <span class="o">-</span> <span class="n">a</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">p</span> <span class="o">-</span> <span class="n">b</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">p</span> <span class="o">-</span> <span class="n">c</span><span class="p">));</span>
+<span class="p">}</span>
+</pre></div>
+
+
+</li>
+<li>
+<p>已知平面三点的坐标求三角形的面积<br />
+利用向量叉乘
+$S = \frac{1}{2}|\overrightarrow{AB}||\overrightarrow{AC}| * sign\angle{A} = \frac{1}{2}|\overrightarrow{AB} * \overrightarrow{AC}|$</p>
+<div class="highlight"><pre><span class="k">typedef</span> <span class="k">struct</span> <span class="n">point</span> <span class="p">{</span>
+    <span class="kt">float</span> <span class="n">x</span><span class="p">;</span>
+    <span class="kt">float</span> <span class="n">y</span><span class="p">;</span>
+<span class="p">}</span> <span class="kt">point_t</span><span class="p">;</span>
+
+<span class="kt">float</span> <span class="nf">space</span><span class="p">(</span><span class="kt">point_t</span> <span class="n">A</span><span class="p">,</span> <span class="kt">point_t</span> <span class="n">B</span><span class="p">,</span> <span class="kt">point_t</span> <span class="n">C</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kt">point_t</span> <span class="n">AB</span> <span class="o">=</span> <span class="p">{</span><span class="n">B</span><span class="p">.</span><span class="n">x</span> <span class="o">-</span> <span class="n">A</span><span class="p">.</span><span class="n">x</span><span class="p">,</span> <span class="n">B</span><span class="p">.</span><span class="n">y</span> <span class="o">-</span> <span class="n">A</span><span class="p">.</span><span class="n">y</span><span class="p">},</span> <span class="n">AC</span> <span class="o">=</span> <span class="p">{</span><span class="n">C</span><span class="p">.</span><span class="n">x</span> <span class="o">-</span> <span class="n">A</span><span class="p">.</span><span class="n">x</span><span class="p">,</span> <span class="n">C</span><span class="p">.</span><span class="n">y</span> <span class="o">-</span> <span class="n">A</span><span class="p">.</span><span class="n">y</span><span class="p">};</span>
+    <span class="k">return</span> <span class="n">fabs</span><span class="p">(</span><span class="n">AB</span><span class="p">.</span><span class="n">x</span> <span class="o">*</span> <span class="n">AC</span><span class="p">.</span><span class="n">y</span> <span class="o">-</span> <span class="n">AB</span><span class="p">.</span><span class="n">y</span> <span class="o">*</span> <span class="n">AC</span><span class="p">.</span><span class="n">x</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+
+
+</li>
+</ol>
+<p>refer</p>
+<ul>
+<li><a href="http://sxyd.sdut.edu.cn/gaoshu1/lesson/7.4%20%20shuliangji.htm">http://sxyd.sdut.edu.cn/gaoshu1/lesson/7.4%20%20shuliangji.htm</a></li>
+<li><a href="http://blog.csdn.net/fox64194167/article/details/8147460">http://blog.csdn.net/fox64194167/article/details/8147460</a></li>
+</ul><p class="subheader">Category: <a href="../category/algorithm.html">algorithm</a>
+
+    Tagged: 
+    <a href="../tag/algorithm.html">algorithm </a>
+    <a href="../tag/triangle.html">triangle </a>
+</p>
+
+
+
+            </article>
+
+
+                <hr  class="gradient"/>
+
+
+        
+
+
+            <article>
                 <a href="../posts/algorithm/design.html"><h3 class="article-title">算法设计范式(paradigm)</h3></a>
 <h6 class="subheader" title="2014-08-06T21:44:18">Wed 06 August 2014
 </h6>
@@ -82,15 +143,7 @@
 <p>贪心算法(greedy algorithms)</p>
 </li>
 <li>回溯法(backtrack)
-    回溯算法实际上一个类似枚举的搜索尝试过程, 主要是在搜索尝试过程中寻找问题的解, 当发现已不满足求解条件时, 就“回溯”返回, 尝试别的路径. 回溯法就是对隐式图的深度优先搜索算法.</li>
-<li>分支界定法(branch and bound)
-    类似于回溯法, 也是一种在问题的解空间树T上搜索问题解的算法.但在一般情况下, 分支限界法与回溯法的求解目标不同.回溯法的求解目标是找出T中满足约束条件的所有解, 而分支限界法的求解目标则是找出满足约束条件的一个解, 或是在满足约束条件的解中找出使某一目标函数值达到极大或极小的解, 即在某种意义下的最优解.</li>
-<li>线性规划(linear programming)</li>
-</ol>
-<p>refer:</p>
-<ul>
-<li><a href="http://www.cnblogs.com/steven_oyj/category/246990.html">http://www.cnblogs.com/steven_oyj/category/246990.html</a></li>
-</ul><p class="subheader">Category: <a href="../category/algorithm.html">algorithm</a>
+    回溯算法实际上一个类似枚举的搜索尝试过程, 主要是在搜索尝试过程中寻找问题的解, 当发现已不满足求解条件时, 就 ...</li></ol><p class="subheader">Category: <a href="../category/algorithm.html">algorithm</a>
 
     Tagged: 
     <a href="../tag/algorithm.html">algorithm </a>
@@ -98,11 +151,9 @@
 
 
 
-            </article>
-
-
+                <a class="button radius secondary small right" href="../posts/algorithm/design.html">Read More</a>
                 <hr  class="gradient"/>
-
+            </article>
 
         
 

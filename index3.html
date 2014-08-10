@@ -57,6 +57,123 @@
 
 
             <article>
+                <a href="./posts/adt/stack.html"><h3 class="article-title">栈</h3></a>
+<h6 class="subheader" title="2014-06-13T19:00:00">Fri 13 June 2014
+</h6>
+
+
+<p>应用:
+- 中缀表达式转后缀表达式
+- 表达式(后缀)求值
+- http://blog.jobbole.com/52367/
+- http://www.douban.com/note/46700342/
+- <a href="http://blog.csdn.net/amd_why/article/details/7883027">http://blog.csdn.net/amd_why/article/details/7883027</a></p><p class="subheader">Category: <a href="./category/adt.html">adt</a>
+
+    Tagged: 
+    <a href="./tag/stack.html">stack </a>
+    <a href="./tag/algorithm.html">algorithm </a>
+    <a href="./tag/data-structure.html">data structure </a>
+</p>
+
+
+
+                <a class="button radius secondary small right" href="./posts/adt/stack.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="./posts/algorithm/parity.html"><h3 class="article-title">奇偶检验</h3></a>
+<h6 class="subheader" title="2014-06-13T18:30:00">Fri 13 June 2014
+</h6>
+
+
+<p>如何判断给定位数的二进制数中1的个数是奇数还是偶数的二进制数, 算法得复杂度为O(lgn), n为待检查得数字。</p>
+<div class="highlight"><pre><span class="cm">/* Function to get parity of number n. It returns 1</span>
+<span class="cm"> * if n has odd parity, and returns 0 if n has even</span>
+<span class="cm"> * parity</span>
+<span class="cm"> */</span>
+
+<span class="c1">//解法1</span>
+<span class="n">bool</span> <span class="n">get_parity</span><span class="p">(</span><span class="k">unsigned</span> <span class="k">int</span> <span class="n">n</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">bool</span> <span class="n">parity</span> <span class="o">=</span> <span class="mh">0</span><span class="p">;</span>
+    <span class="k">while</span> <span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">parity</span> <span class="o">=</span> <span class="o">!</span><span class="n">parity</span><span class="p">;</span>
+        <span class="n">n</span>      <span class="o">=</span> <span class="n">n</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">n</span> <span class="o">-</span> <span class="mh">1</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="n">parity</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c1">//解法2</span>
+<span class="k">unsigned</span> <span class="k">int</span> <span class="n">get_parity2 ...</span></pre></div><p class="subheader">Category: <a href="./category/algorithm.html">algorithm</a>
+
+    Tagged: 
+    <a href="./tag/algorithm.html">algorithm </a>
+</p>
+
+
+
+                <a class="button radius secondary small right" href="./posts/algorithm/parity.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="./posts/adt/link-list.html"><h3 class="article-title">链表</h3></a>
+<h6 class="subheader" title="2014-06-12T19:00:00">Thu 12 June 2014
+</h6>
+
+
+<ol>
+<li>
+<p>定义
+链表是一组数据项的集合, 其中每个数据项是节点的一部分，每个节点包含指向下一个节点的链接. 对比数组链表的优缺点如下:可以高效的重排数据项例如插入节点的复杂度为O(1)，但是不能快速的访问任意的数据项，只能沿着链表一个一个节点的访问.</p>
+<ul>
+<li>
+<p>优点</p>
+<ul>
+<li>链表是动态数据结构，可以按需分配内存</li>
+<li>删除和增加节点复杂度为O(1)</li>
+</ul>
+</li>
+<li>
+<p>缺点</p>
+<ul>
+<li>因为额外的指针域需要更多的内存 </li>
+<li>只能从头节点顺序的访问</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>分类</p>
+<ul>
+<li>单链表(Singly linked list)<br />
+它包含两个域，一个信息域和一个指针域。这个链接指向列表中的下一个节点，而最后一个节点则指向一个空值。</li>
+<li>双向链表(Doubly linked list)<br />
+每个节点有两个连接：一个指向前一个节点，（当此“连接”为第一个“连接”时，指向空值或者空列表）；而另一个指向下一个节点，（当此“连接”为最后一个“连接”时，指向空值或者空列表）</li>
+<li>循环链表(Circular list)<br />
+在一个 循环链表中 ...</li></ul></li></ol><p class="subheader">Category: <a href="./category/adt.html">adt</a>
+
+    Tagged: 
+    <a href="./tag/data-structure.html">data structure </a>
+</p>
+
+
+
+                <a class="button radius secondary small right" href="./posts/adt/link-list.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
                 <a href="./posts/algorithm/matrix.html"><h3 class="article-title">矩阵乘法优化</h3></a>
 <h6 class="subheader" title="2014-06-12T12:00:00">Thu 12 June 2014
 </h6>

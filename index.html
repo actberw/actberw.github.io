@@ -56,6 +56,117 @@
         
 
             <article>
+                <a href="./posts/mysql/xtrabackup.html"><h3 class="article-title">xtrbackup备份原理</h3></a>
+<h6 class="subheader" title="2014-08-10T21:00:00">Sun 10 August 2014
+</h6>
+
+
+<p>xtrabackup备份主要做两件事情:</p>
+<ul>
+<li>后台启动一个日志复制线程监控innodb日志文件，发现变动时复制到xtrabackup_logfile</li>
+<li>复制innodb数据文件, 并不是简单的复制，跟innodb同样的方式打开文件，打开数据字典( data dictionary)复制innodb page.</li>
+</ul>
+<p>当数据文件复制完成时，停止日志复制线程同时创建文件xtrabackup_checkpoints记录 LSN(log sequence number)信息.</p>
+<p>复制数据文件时每次读取1M大小(这个没法配置), 并检查每个page是否损坏.日志文件时每次512KB.</p>
+<p>innodb page(通常是16kb)包含一个日志序列号LSN, LSN是整个数据库的版本号, LSN的大小表示最近多久被修改过. 增量备份的原理就是复制LSN大于xtrabackup_checkpoints记录的最后LSN.有两种算法找到变动的page:</p>
+<ul>
+<li>读取所有的page比较LSN，mysql及Percona Server都支持 (数据库的大小影响备份的快慢)</li>
+<li>Percona Server 用bitmap实现了跟踪变化的innodb page 特性, 会快很多.</li>
+</ul>
+<p>xtrabackup调用innodb库来读数据文件，而innodb以read-write打开数据文件, 所以用xtrabackup备份的时候需要有对数据文件写的权限，但是并不会写文件.
+refer:</p>
+<ul>
+<li><a href="http://www.percona.com/doc/percona-xtrabackup/2.2/xtrabackup_bin/creating_a_backup.html">http://www.percona.com/doc/percona-xtrabackup/2.2/xtrabackup_bin/creating_a_backup.html</a></li>
+<li><a href="http://www.percona.com/doc/percona-xtrabackup/2.2/xtrabackup_bin/implementation_details.html">http://www.percona.com/doc/percona-xtrabackup/2.2/xtrabackup_bin/implementation_details.html</a></li>
+</ul><p class="subheader">Category: <a href="./category/mysql.html">mysql</a>
+
+    Tagged: 
+    <a href="./tag/mysql.html">mysql </a>
+    <a href="./tag/xtrabackup.html">xtrabackup </a>
+</p>
+
+
+
+            </article>
+
+
+                <hr  class="gradient"/>
+
+
+        
+
+
+            <article>
+                <a href="./posts/mysql/quote.html"><h3 class="article-title">mysql中的引号</h3></a>
+<h6 class="subheader" title="2014-08-10T20:44:00">Sun 10 August 2014
+</h6>
+
+
+<p>mysql字符串指用单引号(‘'’)或双引号(‘"’)引起来的字符序列。例如：</p>
+<p>'a string'</p>
+<p>"another string"</p>
+<p>如果SQL服务器模式启用了ANSI_QUOTES，可以只用单引号引用字符串。用双引号引用的字符串被解释为一个识别符。</p>
+<p>refer:</p>
+<ul>
+<li><a href="http://dev.mysql.com/doc/refman/5.6/en/string-literals.html">http://dev.mysql.com/doc/refman/5.6/en/string-literals.html</a></li>
+<li><a href="http://dev.mysql.com/doc/refman/5.6/en/sql-mode.html#sqlmode_ansi_quotes">http://dev.mysql.com/doc/refman/5.6/en/sql-mode.html#sqlmode_ansi_quotes</a></li>
+<li><a href="http://segmentfault.com/q/1010000000236690">http://segmentfault.com/q/1010000000236690</a></li>
+</ul><p class="subheader">Category: <a href="./category/mysql.html">mysql</a>
+
+    Tagged: 
+    <a href="./tag/mysql.html">mysql </a>
+    <a href="./tag/quote.html">quote </a>
+</p>
+
+
+
+                <a class="button radius secondary small right" href="./posts/mysql/quote.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="./posts/algorithm/triangle.html"><h3 class="article-title">三角形的面积</h3></a>
+<h6 class="subheader" title="2014-08-10T20:00:00">Sun 10 August 2014
+</h6>
+
+
+<ol>
+<li>
+<p>已知三边(a, b, c)求三角形面积.<br />
+海伦公式:
+假设三角形三边分别为(a, b, c), 则三角形的面积<br />
+$S = \sqrt{p(p-a)(p-b)(p-c)}$, 其中$p=\frac{a + b+ c}{2}$</p>
+<div class="highlight"><pre><span class="kt">float</span> <span class="nf">space</span><span class="p">(</span><span class="kt">float</span> <span class="n">a</span><span class="p">,</span> <span class="kt">float</span> <span class="n">b</span><span class="p">,</span> <span class="kt">float</span> <span class="n">c</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kt">int</span> <span class="n">p</span><span class="p">;</span>
+    <span class="n">p</span> <span class="o">=</span> <span class="p">(</span><span class="n">a</span> <span class="o">+</span> <span class="n">b</span> <span class="o">+</span> <span class="n">c</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span><span class="p">;</span>
+    <span class="k">return</span> <span class="n">sqrt</span><span class="p">(</span><span class="n">p</span> <span class="o">*</span> <span class="p">(</span><span class="n">p</span> <span class="o">-</span> <span class="n">a</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">p</span> <span class="o">-</span> <span class="n">b</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">p</span> <span class="o">-</span> <span class="n">c</span><span class="p">));</span>
+<span class="p">}</span>
+</pre></div>
+
+
+</li>
+<li>
+<p>已知平面三点的坐标求三角形的面积<br />
+利用向量叉乘 ...</p></li></ol><p class="subheader">Category: <a href="./category/algorithm.html">algorithm</a>
+
+    Tagged: 
+    <a href="./tag/algorithm.html">algorithm </a>
+    <a href="./tag/triangle.html">triangle </a>
+</p>
+
+
+
+                <a class="button radius secondary small right" href="./posts/algorithm/triangle.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
                 <a href="./posts/algorithm/basic-data-structure.html"><h3 class="article-title">算法: c语言实现读书笔记</h3></a>
 <h6 class="subheader" title="2014-08-07T19:00:00">Thu 07 August 2014
 </h6>
@@ -69,23 +180,7 @@
 <p>对于1到n全部整数，逐个判断它们是否是素数，找出一个非素数，就把它挖掉，最后剩下的就是素数。具体方法是： &lt;1&gt; 定义is_primer[i] = true; &lt;2&gt; 从2开始，依次遍历整个is_primer(直到sqrt(N))，如果is_primer[i]=true,则is_primer[i]=false i ∈ {n², n²+n, n²+2n, ..., limit}</p>
 </blockquote>
 <div class="highlight"><pre><span class="cp">#define N 1000</span>
-<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
-    <span class="kt">int</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">a</span><span class="p">[</span><span class="n">N</span><span class="p">];</span>
-    <span class="c1">//init</span>
-    <span class="k">for</span> <span class="p">(</span><span class="n">i</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">N</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
-
-    <span class="k">for</span> <span class="p">(</span><span class="n">i</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">sqrt</span><span class="p">(</span><span class="n">N</span><span class="p">);</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
-        <span class="k">if</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="p">{</span>
-            <span class="k">for</span> <span class="p">(</span> <span class="n">j</span> <span class="o">=</span> <span class="n">i</span><span class="p">;</span> <span class="n">i</span> <span class="o">*</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">N</span><span class="p">;</span> <span class="n">j</span><span class="o">++</span><span class="p">)</span>
-                <span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="o">*</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-        <span class="p">}</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-</pre></div>
-
-
-<p>refer:
-- [1]<a href="http://zh.wikipedia.org/wiki/%E5%9F%83%E6%8B%89%E6%89%98%E6%96%AF%E7%89%B9%E5%B0%BC%E7%AD%9B%E6%B3%95">http://zh.wikipedia.org/wiki/%E5%9F%83%E6%8B%89%E6%89%98%E6%96%AF%E7%89%B9%E5%B0%BC%E7%AD%9B%E6%B3%95</a></p><p class="subheader">Category: <a href="./category/algorithm.html">algorithm</a>
+<span class="kt">int ...</span></pre></div><p class="subheader">Category: <a href="./category/algorithm.html">algorithm</a>
 
     Tagged: 
     <a href="./tag/note.html">note </a>
@@ -93,11 +188,9 @@
 
 
 
-            </article>
-
-
+                <a class="button radius secondary small right" href="./posts/algorithm/basic-data-structure.html">Read More</a>
                 <hr  class="gradient"/>
-
+            </article>
 
         
 
@@ -365,124 +458,6 @@
 
 
                 <a class="button radius secondary small right" href="./posts/interview/horse-race.html">Read More</a>
-                <hr  class="gradient"/>
-            </article>
-
-        
-
-
-            <article>
-                <a href="./posts/sort/index.html"><h3 class="article-title">基本排序算法</h3></a>
-<h6 class="subheader" title="2014-08-06T21:44:18">Wed 06 August 2014
-</h6>
-
-Translations: 
-        <a href="./posts/mysql/index.html">cn</a>
-
-<ol>
-<li>分类<ul>
-<li>插入排序: 直接插入排序，Shell排序</li>
-<li>选择排序: 直接选择排序，堆排序</li>
-<li>冒泡排序: 冒泡排序，快速排序</li>
-<li>归并排序，基数排序，桶排序</li>
-</ul>
-</li>
-</ol>
-<p>refer:</p>
-<ul>
-<li><a href="http://www.acmerblog.com/article-sort-3969.html">http://www.acmerblog.com/article-sort-3969.html</a></li>
-<li><a href="http://www.acmerblog.com/sort-algorithm1-3374.html">http://www.acmerblog.com/sort-algorithm1-3374.html</a></li>
-<li><a href="http://www.acmerblog.com/quick-sort-5789.html">http://www.acmerblog.com/quick-sort-5789.html</a></li>
-</ul><p class="subheader">Category: <a href="./category/sort.html">sort</a>
-
-    Tagged: 
-    <a href="./tag/algorithm.html">algorithm </a>
-    <a href="./tag/sort.html">sort </a>
-</p>
-
-
-Translations: 
-        <a href="./posts/mysql/index.html">cn</a>
-
-                <a class="button radius secondary small right" href="./posts/sort/index.html">Read More</a>
-                <hr  class="gradient"/>
-            </article>
-
-        
-
-
-            <article>
-                <a href="./posts/mysql/index.html"><h3 class="article-title">索引信息</h3></a>
-<h6 class="subheader" title="2014-08-06T21:44:18">Wed 06 August 2014
-</h6>
-
-Translations: 
-        <a href="./posts/sort/index.html">cn</a>
-
-<p>http://www.mysqlperformanceblog.com/2011/10/06/when-does-innodb-update-table-statistics-and-when-it-can-bite/</p><p class="subheader">Category: <a href="./category/mysql.html">mysql</a>
-
-</p>
-
-
-Translations: 
-        <a href="./posts/sort/index.html">cn</a>
-
-                <a class="button radius secondary small right" href="./posts/mysql/index.html">Read More</a>
-                <hr  class="gradient"/>
-            </article>
-
-        
-
-
-            <article>
-                <a href="./posts/misc/openstack-sum.html"><h3 class="article-title">openstack</h3></a>
-<h6 class="subheader" title="2014-08-06T21:44:18">Wed 06 August 2014
-</h6>
-
-
-<ol>
-<li>
-<p>openstack简介<br />
-  OpenStack是一个由rackspace和NSNA于2010年发布的云计算平台, 旨在为公有云和私有云提供一个易于扩展的、功能丰富的解决方案，也可以说OpenStack是一个云计算操作系统，它整合各种底层硬件硬件资源，为系统管理员提供Web界面的控制面板以方便资源管理，为开发者的应用程序提供统一管理接口，为终端用户提供无缝的透明的云计算服务。最近的icehouse版本主要包含了10个核心组件：  </p>
-<ul>
-<li>计算(Nova)</li>
-<li>对象存储(Swift)</li>
-<li>块存储(Cinder)</li>
-<li>镜像(Glance)</li>
-<li>网络(Neutron)</li>
-<li>身份认证(Keystone)</li>
-<li>控制面板(Horizon)</li>
-<li>计量/监控服务(Ceilometer)</li>
-<li>编排组织服务(Heat)</li>
-<li>数据库服务(Trove)。</li>
-</ul>
-</li>
-<li>
-<p>openstack部署  </p>
-<ul>
-<li>
-<p>部署模型一般是Three-node architecture, 分别是:  </p>
-<ul>
-<li>控制节点</li>
-<li>网络节点</li>
-<li>计算机点</li>
-</ul>
-</li>
-<li>
-<p>潜在的技术难点   </p>
-<ul>
-<li>网络<br />
-虚拟机比较多的情况下，虚拟网络会更加复杂, CPU需要消耗大量的资源匹配网络流表，灵活的网络管理会境地网络的性能。</li>
-<li>镜像风暴<br />
-当镜像较多且每个镜像都很大时会消耗更多的网络宽带和 IO。</li>
-<li>openstack api<br />
-每个openstack组件的api都监听单一端口 ...</li></ul></li></ul></li></ol><p class="subheader">Category: <a href="./category/misc.html">misc</a>
-
-</p>
-
-
-
-                <a class="button radius secondary small right" href="./posts/misc/openstack-sum.html">Read More</a>
                 <hr  class="gradient"/>
             </article>
 

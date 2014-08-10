@@ -4,7 +4,7 @@
     <!-- Set the viewport width to device width for mobile -->
     <meta name="viewport" content="width=device-width" />
 
-    <title>mysql中的引号</title>
+    <title>xtrbackup备份原理</title>
 
     <link rel="stylesheet" href="../../theme/css/normalize.css" />
     <link rel="stylesheet" href="../../theme/css/foundation.min.css" />
@@ -54,29 +54,37 @@
     <div class="large-9 columns">
 <article>
     <header>
-        <h3 class="article-title"><a href="../../posts/mysql/quote.html" rel="bookmark"
-        title="Permalink to mysql中的引号">mysql中的引号</a></h3>
+        <h3 class="article-title"><a href="../../posts/mysql/xtrabackup.html" rel="bookmark"
+        title="Permalink to xtrbackup备份原理">xtrbackup备份原理</a></h3>
     </header>
 
-<h6 class="subheader" title="2014-08-10T20:44:00">Sun 10 August 2014
+<h6 class="subheader" title="2014-08-10T21:00:00">Sun 10 August 2014
 </h6>
 
 
-    <p>mysql字符串指用单引号(‘'’)或双引号(‘"’)引起来的字符序列。例如：</p>
-<p>'a string'</p>
-<p>"another string"</p>
-<p>如果SQL服务器模式启用了ANSI_QUOTES，可以只用单引号引用字符串。用双引号引用的字符串被解释为一个识别符。</p>
-<p>refer:</p>
+    <p>xtrabackup备份主要做两件事情:</p>
 <ul>
-<li><a href="http://dev.mysql.com/doc/refman/5.6/en/string-literals.html">http://dev.mysql.com/doc/refman/5.6/en/string-literals.html</a></li>
-<li><a href="http://dev.mysql.com/doc/refman/5.6/en/sql-mode.html#sqlmode_ansi_quotes">http://dev.mysql.com/doc/refman/5.6/en/sql-mode.html#sqlmode_ansi_quotes</a></li>
-<li><a href="http://segmentfault.com/q/1010000000236690">http://segmentfault.com/q/1010000000236690</a></li>
+<li>后台启动一个日志复制线程监控innodb日志文件，发现变动时复制到xtrabackup_logfile</li>
+<li>复制innodb数据文件, 并不是简单的复制，跟innodb同样的方式打开文件，打开数据字典( data dictionary)复制innodb page.</li>
+</ul>
+<p>当数据文件复制完成时，停止日志复制线程同时创建文件xtrabackup_checkpoints记录 LSN(log sequence number)信息.</p>
+<p>复制数据文件时每次读取1M大小(这个没法配置), 并检查每个page是否损坏.日志文件时每次512KB.</p>
+<p>innodb page(通常是16kb)包含一个日志序列号LSN, LSN是整个数据库的版本号, LSN的大小表示最近多久被修改过. 增量备份的原理就是复制LSN大于xtrabackup_checkpoints记录的最后LSN.有两种算法找到变动的page:</p>
+<ul>
+<li>读取所有的page比较LSN，mysql及Percona Server都支持 (数据库的大小影响备份的快慢)</li>
+<li>Percona Server 用bitmap实现了跟踪变化的innodb page 特性, 会快很多.</li>
+</ul>
+<p>xtrabackup调用innodb库来读数据文件，而innodb以read-write打开数据文件, 所以用xtrabackup备份的时候需要有对数据文件写的权限，但是并不会写文件.
+refer:</p>
+<ul>
+<li><a href="http://www.percona.com/doc/percona-xtrabackup/2.2/xtrabackup_bin/creating_a_backup.html">http://www.percona.com/doc/percona-xtrabackup/2.2/xtrabackup_bin/creating_a_backup.html</a></li>
+<li><a href="http://www.percona.com/doc/percona-xtrabackup/2.2/xtrabackup_bin/implementation_details.html">http://www.percona.com/doc/percona-xtrabackup/2.2/xtrabackup_bin/implementation_details.html</a></li>
 </ul>
 <p class="subheader">Category: <a href="../../category/mysql.html">mysql</a>
 
     Tagged: 
     <a href="../../tag/mysql.html">mysql </a>
-    <a href="../../tag/quote.html">quote </a>
+    <a href="../../tag/xtrabackup.html">xtrabackup </a>
 </p>
 
 

@@ -73,8 +73,8 @@
 <li>读取所有的page比较LSN，mysql及Percona Server都支持 (数据库的大小影响备份的快慢)</li>
 <li>Percona Server 用bitmap实现了跟踪变化的innodb page 特性, 会快很多.</li>
 </ul>
-<p>xtrabackup调用innodb库来读数据文件，而innodb以read-write打开数据文件, 所以用xtrabackup备份的时候需要有对数据文件写的权限，但是并不会写文件.
-refer:</p>
+<p>xtrabackup调用innodb库来读数据文件，而innodb以read-write打开数据文件, 所以用xtrabackup备份的时候需要有对数据文件写的权限，但是并不会写文件.</p>
+<p>refer:</p>
 <ul>
 <li><a href="http://www.percona.com/doc/percona-xtrabackup/2.2/xtrabackup_bin/creating_a_backup.html">http://www.percona.com/doc/percona-xtrabackup/2.2/xtrabackup_bin/creating_a_backup.html</a></li>
 <li><a href="http://www.percona.com/doc/percona-xtrabackup/2.2/xtrabackup_bin/implementation_details.html">http://www.percona.com/doc/percona-xtrabackup/2.2/xtrabackup_bin/implementation_details.html</a></li>

@@ -463,13 +463,12 @@ innobackupex 是个perl脚本,封装xtrabackup,会根据mysql服务器得版本�
 <p>原始算法<br />
 素数的定义: 除了能被1和它本身整除而不能被其他任何数整除的数。根据素数定义 只需要用2到n-1去除n，如果都除不尽，则n是素数，否则，只要其中有一个数能整除则n不是素数。</p>
 <div class="highlight"><pre><span class="kt">bool</span> <span class="nf">is_primer</span><span class="p">(</span><span class="kt">int</span> <span class="n">num</span><span class="p">)</span> <span class="p">{</span>
-  <span class="kt">int</span> <span class="n">i</span><span class="p">;</span>
-  <span class="k">for</span><span class="p">(</span><span class="n">i</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">num</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">if</span><span class="p">(</span><span class="n">num</span> <span class="o">%</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span> <span class="cm">/*若整除则为假，否则为真*/</span>
-      <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
+    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">num</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">num</span> <span class="o">%</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span> <span class="cm">/*若整除则为假，否则为真*/</span>
+            <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
+        <span class="p">}</span>
     <span class="p">}</span>
-  <span class="p">}</span>
-  <span class="k">return</span> <span class="nb">true</span><span class="p">;</span>
+    <span class="k">return</span> <span class="nb">true</span><span class="p">;</span>
 <span class="p">}</span>
 </pre></div>
 
@@ -478,9 +477,8 @@ innobackupex 是个perl脚本,封装xtrabackup,会根据mysql服务器得版本�
 <li>
 <p>从2到sqrt(N)的整数是否整除N</p>
 <div class="highlight"><pre><span class="kt">bool</span> <span class="nf">is_primer</span><span class="p">(</span><span class="kt">int</span> <span class="n">num</span><span class="p">)</span> <span class="p">{</span>
-  <span class="kt">int</span> <span class="n">i</span><span class="p">;</span>
-  <span class="k">for</span><span class="p">(</span><span class="n">i</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span> <span class="n">i</span> <span class="o">*</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">num</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">if</span><span class="p">(</span><span class="n">num</span> <span class="o">%</span> <span class="n">i ...</span></pre></div></li></ol><p class="subheader">Category: <a href="./category/algorithm.html">algorithm</a>
+    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span> <span class="n">i</span> <span class="o">*</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">num</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">num</span> <span class="o">%</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span> <span class="cm">/*若整除则为假 ...</span></pre></div></li></ol><p class="subheader">Category: <a href="./category/algorithm.html">algorithm</a>
 
     Tagged: 
     <a href="./tag/algorithm.html">algorithm </a>

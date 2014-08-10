@@ -67,13 +67,12 @@
 <p>原始算法<br />
 素数的定义: 除了能被1和它本身整除而不能被其他任何数整除的数。根据素数定义 只需要用2到n-1去除n，如果都除不尽，则n是素数，否则，只要其中有一个数能整除则n不是素数。</p>
 <div class="highlight"><pre><span class="kt">bool</span> <span class="nf">is_primer</span><span class="p">(</span><span class="kt">int</span> <span class="n">num</span><span class="p">)</span> <span class="p">{</span>
-  <span class="kt">int</span> <span class="n">i</span><span class="p">;</span>
-  <span class="k">for</span><span class="p">(</span><span class="n">i</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">num</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">if</span><span class="p">(</span><span class="n">num</span> <span class="o">%</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span> <span class="cm">/*若整除则为假，否则为真*/</span>
-      <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
+    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">num</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">num</span> <span class="o">%</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span> <span class="cm">/*若整除则为假，否则为真*/</span>
+            <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
+        <span class="p">}</span>
     <span class="p">}</span>
-  <span class="p">}</span>
-  <span class="k">return</span> <span class="nb">true</span><span class="p">;</span>
+    <span class="k">return</span> <span class="nb">true</span><span class="p">;</span>
 <span class="p">}</span>
 </pre></div>
 
@@ -82,40 +81,53 @@
 <li>
 <p>从2到sqrt(N)的整数是否整除N</p>
 <div class="highlight"><pre><span class="kt">bool</span> <span class="nf">is_primer</span><span class="p">(</span><span class="kt">int</span> <span class="n">num</span><span class="p">)</span> <span class="p">{</span>
-  <span class="kt">int</span> <span class="n">i</span><span class="p">;</span>
-  <span class="k">for</span><span class="p">(</span><span class="n">i</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span> <span class="n">i</span> <span class="o">*</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">num</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">if</span><span class="p">(</span><span class="n">num</span> <span class="o">%</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span> <span class="cm">/*若整除则为假，否则为真*/</span>
-      <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
+    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span> <span class="n">i</span> <span class="o">*</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">num</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">num</span> <span class="o">%</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span> <span class="cm">/*若整除则为假，否则为真*/</span>
+           <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
+        <span class="p">}</span>
     <span class="p">}</span>
-  <span class="p">}</span>
-  <span class="k">return</span> <span class="nb">true</span><span class="p">;</span>
+    <span class="k">return</span> <span class="nb">true</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+
+
+</li>
+<li>
+<p>改进去掉偶数得判断(i+=2)</p>
+<div class="highlight"><pre><span class="kt">bool</span> <span class="nf">is_primer</span><span class="p">(</span><span class="kt">int</span> <span class="n">num</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">num</span> <span class="o">==</span> <span class="mi">2</span><span class="p">)</span> 
+        <span class="k">return</span> <span class="nb">true</span><span class="p">;</span>
+    <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">num</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
+    <span class="k">else</span> <span class="p">{</span>
+        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span> <span class="n">i</span> <span class="o">*</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">num</span><span class="p">;</span> <span class="n">i</span><span class="o">+=</span><span class="mi">2</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">if</span><span class="p">(</span><span class="n">num</span> <span class="o">%</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="cm">/*若整除则为假，否则为真*/</span>
+               <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="k">return</span> <span class="nb">true</span><span class="p">;</span>
+    <span class="p">}</span>
 <span class="p">}</span>
 </pre></div>
 
 
 <ol>
-<li>改进去掉偶数得判断(i+=2)</li>
+<li>筛选算法
+更高效地素数判断方法应该是将素数预先保存到一个素数表中，当判断一个数是否为素数时，直接查表即可。这种方法需要解决两个问题：</li>
+<li>怎样快速得到素数表 (埃拉托斯特尼筛法)</li>
+<li>怎样减少素数表的大小 (采用位图数据结构或者 2 – max_int 的所有素数顺序存在内存里面用二分查找或者用hashtable)</li>
 </ol>
 </li>
 <li>
-<p>筛选算法
-更高效地素数判断方法应该是将素数预先保存到一个素数表中，当判断一个数是否为素数时，直接查表即可。这种方法需要解决两个问题：</p>
+<p>随机算法(参见[3])</p>
+</li>
+</ol>
+<p>refer:</p>
 <ul>
-<li>怎样快速得到素数表 (埃拉托斯特尼筛法)</li>
-<li>怎样减少素数表的大小 (采用位图数据结构或者 2 – max_int 的所有素数顺序存在内存里面用二分查找或者用hashtable)</li>
-</ul>
-</li>
-<li>
-<p>随机算法(参见[3])
-refer:</p>
-</li>
-<li>
-<p>[1]<a href="http://dongxicheng.org/structure/prime/">http://dongxicheng.org/structure/prime/</a></p>
-</li>
+<li>[1]<a href="http://dongxicheng.org/structure/prime/">http://dongxicheng.org/structure/prime/</a></li>
 <li>[2]<a href="http://coolshell.cn/articles/3738.html">http://www.zhihu.com/question/19668324</a></li>
 <li>[3]<a href="http://www.zhihu.com/question/19668324">http://www.zhihu.com/question/19668324</a></li>
 <li>[4]<a href="http://program-think.blogspot.com/2011/12/prime-algorithm-1.html">http://program-think.blogspot.com/2011/12/prime-algorithm-1.html</a></li>
-</ol>
+</ul>
 <p class="subheader">Category: <a href="../../category/algorithm.html">algorithm</a>
 
     Tagged: 

@@ -17,6 +17,7 @@ innodb page(通常是16kb)包含一个日志序列号LSN, LSN是整个数据库�
  - Percona Server 用bitmap实现了跟踪变化的innodb page 特性, 会快很多.
 
 xtrabackup调用innodb库来读数据文件，而innodb以read-write打开数据文件, 所以用xtrabackup备份的时候需要有对数据文件写的权限，但是并不会写文件.
+
 refer:
 
 - [http://www.percona.com/doc/percona-xtrabackup/2.2/xtrabackup_bin/creating_a_backup.html](http://www.percona.com/doc/percona-xtrabackup/2.2/xtrabackup_bin/creating_a_backup.html)

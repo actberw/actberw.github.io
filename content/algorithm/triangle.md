@@ -1,6 +1,33 @@
 Title:  三角形的面积
+Date: 2014-08-10 20:00:00
+Tags: algorithm, triangle
 
-http://sxyd.sdut.edu.cn/gaoshu1/lesson/7.4%20%20shuliangji.htm
-http://www.cnblogs.com/void/archive/2011/04/17/2018729.html
-http://blog.csdn.net/fox64194167/article/details/8147460
-http://books.google.com/books?id=NIfhAfIvp0UC&pg=PA111&lpg=PA111&dq=c+%E5%AE%9E%E7%8E%B0+%E4%B8%89%E8%A7%92%E5%BD%A2%E9%9D%A2%E7%A7%AF&source=bl&ots=H3fys7Ikhw&sig=SXcKFCxn4E1jnFY4uzxzYRGzkD8&hl=zh-CN&sa=X&ei=P0zkU-H1KcaBogSI4oCwDg&ved=0CHcQ6AEwCQ#v=onepage&q=c%20%E5%AE%9E%E7%8E%B0%20%E4%B8%89%E8%A7%92%E5%BD%A2%E9%9D%A2%E7%A7%AF&f=false
+1. 已知三边(a, b, c)求三角形面积.  
+海伦公式:
+假设三角形三边分别为(a, b, c), 则三角形的面积  
+$S = \sqrt{p(p-a)(p-b)(p-c)}$, 其中$p=\frac{a + b+ c}{2}$
+
+        float space(float a, float b, float c) {
+            int p;
+            p = (a + b + c) / 2;
+            return sqrt(p * (p - a) * (p - b) * (p - c));
+        }
+
+2. 已知平面三点的坐标求三角形的面积  
+利用向量叉乘
+$S = \frac{1}{2}|\overrightarrow{AB}||\overrightarrow{AC}| * sign\angle{A} = \frac{1}{2}|\overrightarrow{AB} * \overrightarrow{AC}|$
+
+        typedef struct point {
+            float x;
+            float y;
+        } point_t;
+
+        float space(point_t A, point_t B, point_t C) {
+            point_t AB = {B.x - A.x, B.y - A.y}, AC = {C.x - A.x, C.y - A.y};
+            return fabs(AB.x * AC.y - AB.y * AC.x) / 2;
+        }
+
+refer
+
+- [http://sxyd.sdut.edu.cn/gaoshu1/lesson/7.4%20%20shuliangji.htm](http://sxyd.sdut.edu.cn/gaoshu1/lesson/7.4%20%20shuliangji.htm)
+- [http://blog.csdn.net/fox64194167/article/details/8147460](http://blog.csdn.net/fox64194167/article/details/8147460)

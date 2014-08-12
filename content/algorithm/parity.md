@@ -32,3 +32,8 @@ Date: 2014-06-13 18:30:00
 
         return parity;
     }
+
+refer:
+
+ - [http://blog.csdn.net/u010993034/article/details/9316043](http://blog.csdn.net/u010993034/article/details/9316043)
+ - [http://www.geeksforgeeks.org/write-a-c-program-to-find-the-parity-of-an-unsigned-integer/](http://www.geeksforgeeks.org/write-a-c-program-to-find-the-parity-of-an-unsigned-integer/)

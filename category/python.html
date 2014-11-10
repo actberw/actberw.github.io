@@ -56,12 +56,351 @@
         
 
             <article>
+                <a href="../posts/python/descriptor.html"><h3 class="article-title">python 描述符</h3></a>
+<h6 class="subheader" title="2014-11-03T23:46:59">Mon 03 November 2014
+</h6>
+
+
+<p>描述符就是对象的一个绑定了行为的特性(attribute with "binding behavior"), 对特性的操作内部转化为相应方法的调用. 默认的特性访问实际是操作(get, set, delete)的对象的__dict__特性(参见<a href="/posts/python/magic-object.html"><strong>dict</strong></a>),但特性访问时如果查找出来的对象实现了任意的描述符方法, python就会调用描述符的方法而不是默认的行为.</p>
+<p>描述符是一个强大的通用的协议, 也是属性, 方法, 静态方法, 动态方法, super()背后的实现机制. python2.2中引入的新式类也是通过描述符实现的. 描述符简化了底层c代码, 为python程序提供了灵活的工具组.</p>
+<h3>descriptor protocal</h3>
+<div class="highlight"><pre><span class="n">descr</span><span class="p">.</span><span class="n">__get__</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">obj</span><span class="p">,</span> <span class="n">type</span><span class="o">=</span><span class="n">None</span><span class="p">)</span> <span class="o">--&gt;</span> <span class="n">value</span>
+<span class="n">descr</span><span class="p">.</span><span class="n">__set__</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">obj</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span> <span class="o">--&gt;</span> <span class="n">None</span>
+<span class="n">descr</span><span class="p">.</span><span class="n">__delete__</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">obj</span><span class="p">)</span> <span class="o">--&gt;</span> <span class="n">None</span>
+</pre></div>
+
+
+<p>定义了以上三个任意的方法的对象就是描述符.如果一个对象只定义了_<em>get_</em>(), 被称为非数据描述符(non-data descriptor)(通常用于方法), 如果同时定义了_<em>get__和__set_</em>()被称为是 数据描述符(data descriptor). </p>
+<p>要创建一个只读描述符, 同时定义_<em>get__和__set_</em>, _<em>set_</em> 只需要抛出一个AttributeError异常即可.</p>
+<h3>调用描述符</h3>
+<p>描述符的访问可以直接调用它的方法<code>type(object).__dict__['descr'].__get__(obj)</code>, 但是通常是通过访问特性的方式自动进行调用<code>obj.descr</code>.  对于obj.descr的访问方式, 遵循<a href="/posts/python/magic-object.html">特性查找顺序的</a>, 具体的调用方式取决与obj是实例还是类(新式类). </p>
+<p>obj是实例, 则在object._<em>getattribute_</em>()中把<code>obj.descr</code> into <code>type(obj).__dict__['descr'].__get__(obj, type(obj))</code></p>
+<p>obj是类, 则在type._<em>getattribute_</em>()中把<code>obj.descr</code> into <code>obj.__dict__['destr'].__get__(None, obj)</code>, 参见<a href="/posts/python/special-method-lookup.html">特殊方法的查找</a>.</p>
+<p>对于上面的处理方式可以看出: _<em>get_</em>()的第一个参数要么是owner的实例, 要么是None. 描述符必须定义为class特性, 如果定义为实例特性, python不会自动调用_<em>get_</em>() 和 _<em>set_</em>() 方法.</p>
+<p>对描述符赋值<code>obj.descr = 100</code>, 转化为_<em>set_</em>()的调用<code>type(obj).__dict__['descr'].__set__(obj, 100)</code>, 第一个参数是句点前的实例, 第二个参数是要赋值的值.
+同样的<code>del obj.descr</code>则调用__delete__()方法.</p>
+<p>refer:</p>
+<ul>
+<li>[0]<a href="http://nbviewer.ipython.org/gist/ChrisBeaumont/5758381/descriptor_writeup.ipynb">http://nbviewer.ipython.org/gist/ChrisBeaumont/5758381/descriptor_writeup.ipynb</a></li>
+<li>[1]<a href="https://docs.python.org/2/howto/descriptor.html">https://docs.python.org/2/howto/descriptor.html</a></li>
+</ul><p class="subheader">Category: <a href="../category/python.html">python</a>
+
+    Tagged: 
+    <a href="../tag/python.html">python </a>
+    <a href="../tag/descriptor-date-2014-11-03-100000.html">descriptor Date: 2014-11-03 10:00:00 </a>
+</p>
+
+
+
+            </article>
+
+
+                <hr  class="gradient"/>
+
+
+        
+
+
+            <article>
+                <a href="../posts/python/special-method-lookup.html"><h3 class="article-title">特殊方法的查找</h3></a>
+<h6 class="subheader" title="2014-11-03T21:00:00">Mon 03 November 2014
+</h6>
+
+
+<p>For old-style classes, special methods are always looked up in exactly the same way as any other method or attribute. This is the case regardless of whether the method is being looked up explicitly as in <code>x.__getitem__(i)</code> or implicitly as in <code>x[i]</code>.</p>
+<p>For new-style classes, implicit invocations ...</p><p class="subheader">Category: <a href="../category/python.html">python</a>
+
+    Tagged: 
+    <a href="../tag/python.html">python </a>
+    <a href="../tag/method.html">method </a>
+</p>
+
+
+
+                <a class="button radius secondary small right" href="../posts/python/special-method-lookup.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="../posts/python/magic-object.html"><h3 class="article-title">python magic object</h3></a>
+<h6 class="subheader" title="2014-11-03T10:00:00">Mon 03 November 2014
+</h6>
+
+
+<h3>__dict__</h3>
+<p>The default behavior for attribute access is to get, set, or delete the attribute from an object’s dictionary. For instance, a.x has a lookup chain starting with <code>a.__dict__['x']</code>, then <code>type(a).__dict__['x']</code>, and continuing through the base classes of type(a) excluding metaclasses. </p>
+<h3>Customizing ...</h3><p class="subheader">Category: <a href="../category/python.html">python</a>
+
+    Tagged: 
+    <a href="../tag/python.html">python </a>
+    <a href="../tag/__init__.html">__init__ </a>
+</p>
+
+
+
+                <a class="button radius secondary small right" href="../posts/python/magic-object.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="../posts/python/metaclass.html"><h3 class="article-title">python 元类</h3></a>
+<h6 class="subheader" title="2014-11-02T20:00:00">Sun 02 November 2014
+</h6>
+
+
+<p>元类就是用来创建类的“东西”, 类是其元类的实例(a class is an instance of its metaclass), type就是Python在背后用来创建所有类的元类(参见<a href="/posts/python/type.html">python type system</a>), 下面代码展示了type的基本用法.</p>
+<div class="highlight"><pre><span class="o">&gt;&gt;&gt;</span> <span class="n">MyClass</span> <span class="o">=</span> <span class="n">MetaClass</span><span class="p">()</span>
+
+<span class="o">&gt;&gt;&gt;</span> <span class="n">class</span> <span class="n">Foo</span><span class="p">(</span><span class="n">object</span><span class="p">)</span><span class="o">:</span> 
+        <span class="n">pass</span>
+
+<span class="o">&gt;&gt;&gt;</span> <span class="n">def</span> <span class="n">echo_bar</span><span class="p">(</span><span class="n">self</span><span class="p">)</span><span class="o">:</span>
+        <span class="n">print</span> <span class="n">self</span><span class="p">.</span><span class="n">bar</span>
+
+<span class="o">&gt;&gt;&gt;</span> <span class="n">FooChild</span> <span class="o">=</span> <span class="n">type</span><span class="p">(</span><span class="err">&#39;</span><span class="n">FooChild</span><span class="err">&#39;</span><span class="p">,</span> <span class="p">(</span><span class="n">Foo</span><span class="p">,),</span> <span class="p">{</span><span class="err">&#39;</span><span class="n">echo_bar</span><span class="err">&#39;</span><span class="o">:</span> <span class="n">echo_bar</span><span class="p">})</span> <span class="err">#</span> <span class="n">Foo</span> <span class="n">is</span> <span class="n">base</span> <span class="n">class</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">hasattr</span><span class="p">(</span><span class="n">Foo</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">echo_bar</span><span class="err">&#39;</span><span class="p">)</span>
+<span class="n">False</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">hasattr</span><span class="p">(</span><span class="n">FooChild</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">echo_bar</span><span class="err">&#39;</span><span class="p">)</span>
+<span class="n">True</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">my_foo</span> <span class="o">=</span> <span class="n">FooChild</span><span class="p">()</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">my_foo ...</span></pre></div><p class="subheader">Category: <a href="../category/python.html">python</a>
+
+    Tagged: 
+    <a href="../tag/python.html">python </a>
+    <a href="../tag/metaclass.html">metaclass </a>
+</p>
+
+
+
+                <a class="button radius secondary small right" href="../posts/python/metaclass.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="../posts/python/type.html"><h3 class="article-title">python  type system</h3></a>
+<h6 class="subheader" title="2014-11-02T14:00:00">Sun 02 November 2014
+</h6>
+
+
+<p>Up to Python 2.1 the concept of class was unrelated to the concept of type, and old-style classes were the only flavor available. For an old-style class, the statement x.<strong>class</strong> provides the class of x, but type(x) is always &lt;type 'instance'>. This reflects the fact that all ...</p><p class="subheader">Category: <a href="../category/python.html">python</a>
+
+    Tagged: 
+    <a href="../tag/python.html">python </a>
+    <a href="../tag/type.html">type </a>
+    <a href="../tag/object-model.html">object model </a>
+    <a href="../tag/class.html">class </a>
+</p>
+
+
+
+                <a class="button radius secondary small right" href="../posts/python/type.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="../posts/python/mro.html"><h3 class="article-title">python 多重继承方法解析顺序</h3></a>
+<h6 class="subheader" title="2014-11-02T13:00:00">Sun 02 November 2014
+</h6>
+
+
+<p>pyhton 支持多重继承, 方法(or attribute)查找顺序称为mro, 目前有三种mro: </p>
+<ul>
+<li>classic</li>
+<li>python 2.2 new-style</li>
+<li>c3</li>
+</ul>
+<p>其中只有c3算法是2.3+广泛使用的.</p>
+<h3>classic mro</h3>
+<p>classic mro 采用的是简单的广度有限算法(DFS), 中序遍历. 查找过程中第一个匹配的返回. 这种算法简单情况下没问题，但是diamond 继承时就出现问题了, 例如:</p>
+<div class="highlight"><pre><span class="n">class</span> <span class="n">A</span><span class="o">:</span>
+  <span class="n">def</span> <span class="n">save</span><span class="p">(</span><span class="n">self</span><span class="p">)</span><span class="o">:</span> <span class="n">pass</span>
+
+<span class="n">class</span> <span class="n">B</span><span class="p">(</span><span class="n">A</span><span class="p">)</span><span class="o">:</span> <span class="n">pass</span>
+
+<span class="n">class</span> <span class="n">C</span><span class="p">(</span><span class="n">A</span><span class="p">)</span><span class="o">:</span>
+  <span class="n">def</span> <span class="n">save</span><span class="p">(</span><span class="n">self</span><span class="p">)</span><span class="o">:</span> <span class="n">pass</span>
+
+<span class="n">class</span> <span class="n">D</span><span class="p">(</span><span class="n">B</span><span class="p">,</span> <span class="n">C</span><span class="p">)</span><span class="o">:</span> <span class="n">pass ...</span></pre></div><p class="subheader">Category: <a href="../category/python.html">python</a>
+
+    Tagged: 
+    <a href="../tag/python.html">python </a>
+    <a href="../tag/mro.html">mro </a>
+    <a href="../tag/c3.html">c3 </a>
+</p>
+
+
+
+                <a class="button radius secondary small right" href="../posts/python/mro.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="../posts/python/line-join.html"><h3 class="article-title">python续行</h3></a>
+<h6 class="subheader" title="2014-08-21T00:00:00">Thu 21 August 2014
+</h6>
+
+
+<p>pep8建议一行不要超过79个字符, python支持把逻辑行拆分成多个物理行(在编译时处理), 遵循一下规则.</p>
+<h3>显式连接</h3>
+<p>当一个物理行以反斜杠(backslash '\')结尾时(反斜杠不是字符串和注释的一部分), 会跟后面的行合并成一个逻辑行(删除掉反斜杠和后面的换行符), 但反斜杠后面不能加注释, 也不能用来续接关键词.</p>
+<div class="highlight"><pre>    <span class="k">if</span> <span class="mi">1900</span> <span class="o">&lt;</span> <span class="n">year</span> <span class="o">&lt;</span> <span class="mi">2100</span> <span class="n">and</span> <span class="mi">1</span> <span class="o">&lt;=</span> <span class="n">month</span> <span class="o">&lt;=</span> <span class="mi">12</span> \
+       <span class="n">and</span> <span class="mi">1</span> <span class="o">&lt;=</span> <span class="n">day</span> <span class="o">&lt;=</span> <span class="mi">31</span> <span class="n">and</span> <span class="mi">0</span> <span class="o">&lt;=</span> <span class="n">hour</span> <span class="o">&lt;</span> <span class="mi">24</span> \
+       <span class="n">and</span> <span class="mi">0</span> <span class="o">&lt;=</span> <span class="n">minute</span> <span class="o">&lt;</span> <span class="mi">60</span> <span class="n">and</span> <span class="mi">0</span> <span class="o">&lt;=</span> <span class="n">second</span> <span class="o">&lt;</span> <span class="mi">60</span><span class="o">:</span>   <span class="err">#</span> <span class="n">Looks</span> <span class="n">like</span> <span class="n">a</span> <span class="n">valid</span> <span class="n">date</span>
+            <span class="k">return</span> <span class="mi">1</span>
+</pre></div>
+
+
+<h3>隐式连接</h3>
+<p>在(), [], {} 的表达式可以拆分成多个物理行不需要显式的用反斜杠, 且隐式连接后面可以加注释.</p>
+<div class="highlight"><pre><span class="n">month_names</span> <span class="o">=</span> <span class="p">[</span><span class="err">&#39;</span><span class="n">Januari ...</span></pre></div><p class="subheader">Category: <a href="../category/python.html">python</a>
+
+    Tagged: 
+    <a href="../tag/python.html">python </a>
+    <a href="../tag/line-join.html">line join </a>
+</p>
+
+
+
+                <a class="button radius secondary small right" href="../posts/python/line-join.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="../posts/python/generator-vs-iterator.html"><h3 class="article-title">Iterator 和 Generator</h3></a>
+<h6 class="subheader" title="2014-08-06T21:44:18">Wed 06 August 2014
+</h6>
+
+
+<p class="subheader">Category: <a href="../category/python.html">python</a>
+
+</p>
+
+
+
+                <a class="button radius secondary small right" href="../posts/python/generator-vs-iterator.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="../posts/python/string-literal.html"><h3 class="article-title">python 字符串字面量表示方式</h3></a>
+<h6 class="subheader" title="2014-06-07T00:00:00">Sat 07 June 2014
+</h6>
+
+
+<h3>String Literals</h3>
+<p>string字面量支持前缀: r/R(raw string), u/U(unicode string), b/B(byte literal in python3, ignore in python 2), u和b后面可以跟r, 支持下面的转义字符.</p>
+<table>
+<thead>
+<tr>
+<th>Escape</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>\newline</td>
+<td>Ignored (continuation line)</td>
+</tr>
+<tr>
+<td>\</td>
+<td>Backslash (stores one )</td>
+</tr>
+<tr>
+<td>\'</td>
+<td>Single quote (stores ')</td>
+</tr>
+<tr>
+<td>\"</td>
+<td>Double quote (stores ")</td>
+</tr>
+<tr>
+<td>\a</td>
+<td>Bell</td>
+</tr>
+<tr>
+<td>\b</td>
+<td>Backspace</td>
+</tr>
+<tr>
+<td>\f</td>
+<td>Formfeed</td>
+</tr>
+<tr>
+<td>\n</td>
+<td>Newline (linefeed)</td>
+</tr>
+<tr>
+<td>\r</td>
+<td>Carriage return ...</td></tr></tbody></table><p class="subheader">Category: <a href="../category/python.html">python</a>
+
+    Tagged: 
+    <a href="../tag/python.html">python </a>
+    <a href="../tag/str.html">str </a>
+    <a href="../tag/unicode.html">unicode </a>
+</p>
+
+
+
+                <a class="button radius secondary small right" href="../posts/python/string-literal.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="../posts/python/name-underscores.html"><h3 class="article-title">python 变量或方法中下划线的意义</h3></a>
+<h6 class="subheader" title="2014-06-06T00:00:00">Fri 06 June 2014
+</h6>
+
+
+<p>The following special forms using leading or trailing underscores are recognized (these can generally be combined with any case convention):</p>
+<ul>
+<li>_single_leading_underscore: weak "internal use" indicator. E.g. from M import * does not import objects whose name starts with an underscore.Use one leading underscore only for non-public methods and instance ...</li></ul><p class="subheader">Category: <a href="../category/python.html">python</a>
+
+    Tagged: 
+    <a href="../tag/python.html">python </a>
+    <a href="../tag/underscore.html">underscore </a>
+    <a href="../tag/mangling.html">mangling </a>
+</p>
+
+
+
+                <a class="button radius secondary small right" href="../posts/python/name-underscores.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
                 <a href="../posts/python/encoding.html"><h3 class="article-title">python encoding</h3></a>
 <h6 class="subheader" title="2014-06-05T00:00:00">Thu 05 June 2014
 </h6>
 
 
-<p>http://legacy.python.org/dev/peps/pep-0263/</p><p class="subheader">Category: <a href="../category/python.html">python</a>
+<p>This PEP proposes to introduce a syntax to declare the encoding of a Python source file. The encoding information is then used by the Python parser to interpret the file using the given encoding. Most notably this enhances the interpretation of Unicode literals in the source code and makes it ...</p><p class="subheader">Category: <a href="../category/python.html">python</a>
 
     Tagged: 
     <a href="../tag/python.html">python </a>
@@ -71,8 +410,11 @@
 
 
 
+                <a class="button radius secondary small right" href="../posts/python/encoding.html">Read More</a>
+                <hr  class="gradient"/>
             </article>
 
+            <!-- /#posts-list -->
 <div class="pagination-centered">
 <h6 class="subheader">Page 1 of 1</h6>
 
@@ -80,10 +422,6 @@
 
 </p>
 </div>
-
-
-
-            <!-- /#posts-list -->
 
     </div>
     <!-- End Main Content -->
@@ -105,11 +443,13 @@
             <li><a href="../category/complexity.html">complexity</a></li>
             <li><a href="../category/coroutine.html">coroutine</a></li>
             <li><a href="../category/interview.html">interview</a></li>
+            <li><a href="../category/learn-plan.html">learn-plan</a></li>
             <li><a href="../category/misc.html">misc</a></li>
             <li><a href="../category/mysql.html">mysql</a></li>
             <li><a href="../category/python.html">python</a></li>
             <li><a href="../category/security.html">security</a></li>
-            <li><a href="../category/sort.html">sort</a></li>
+            <li><a href="../category/str.html">str</a></li>
+            <li><a href="../category/tcp-ip.html">tcp-ip</a></li>
             <li><a href="../category/tree.html">tree</a></li>
             <li><a href="../category/vim.html">vim</a></li>
    

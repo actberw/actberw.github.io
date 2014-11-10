@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8" />
+    <!-- Set the viewport width to device width for mobile -->
+    <meta name="viewport" content="width=device-width" />
+
+    <title>记录一些工作中的笔记 - c</title>
+
+    <link rel="stylesheet" href="../theme/css/normalize.css" />
+    <link rel="stylesheet" href="../theme/css/foundation.min.css" />
+    <link rel="stylesheet" href="../theme/css/style.css" />
+    <link rel="stylesheet" href="../theme/css/pygments.css" />	
+    <script src="../theme/js/vendor/custom.modernizr.js"></script>
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        "HTML-CSS": {
+      styles: {
+        ".MathJax .mo, .MathJax .mi": {color: "black ! important"}}
+          },
+            tex2jax: {inlineMath: [['$','$'], ['\\\\(','\\\\)']],processEscapes: true}
+      });
+    </script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script></script>
+</head>
+
+<body>
+
+<!-- Nav Bar -->
+<nav>
+<div class="top-bar">
+<div class="row">
+    <div class="large-9 large-centered columns">
+	    <h1><a href="..">记录一些工作中的笔记</a></h1>
+    </div>
+</div>
+</div>
+
+<!-- Show menu items and pages -->
+<div class="row">
+<div class="large-9 columns">
+    <ul class="button-group navigation">
+
+    </ul>
+</div>
+</div>
+</nav>
+<!-- End Nav -->
+
+
+<!-- Main Page Content and Sidebar -->
+<div class="row">
+
+    <!-- Main Blog Content -->
+    <div class="large-9 columns">
+        
+        
+
+            <article>
+                <a href="../posts/str/revert.html"><h3 class="article-title">字符串反转</h3></a>
+<h6 class="subheader" title="2014-11-08T00:00:00">Sat 08 November 2014
+</h6>
+
+
+<h3>反转字符串</h3>
+<div class="highlight"><pre><span class="kt">void</span> <span class="nf">revert</span><span class="p">(</span><span class="kt">char</span> <span class="o">*</span> <span class="n">str</span><span class="p">,</span> <span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">left</span><span class="p">,</span> <span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">right</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kt">char</span> <span class="n">tmp</span><span class="p">;</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">str</span> <span class="o">==</span> <span class="nb">NULL</span> <span class="o">||</span> <span class="n">left</span> <span class="o">&gt;</span> <span class="n">right</span><span class="p">)</span>
+        <span class="k">return</span><span class="p">;</span>
+    <span class="k">while</span><span class="p">(</span><span class="n">left</span> <span class="o">&lt;</span> <span class="n">right</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">tmp</span> <span class="o">=</span> <span class="n">str</span><span class="p">[</span><span class="n">left</span><span class="p">];</span>
+        <span class="n">str</span><span class="p">[</span><span class="n">left</span><span class="p">]</span> <span class="o">=</span> <span class="n">str</span><span class="p">[</span><span class="n">right</span><span class="p">];</span>
+        <span class="n">str</span><span class="p">[</span><span class="n">right</span><span class="p">]</span> <span class="o">=</span> <span class="n">tmp</span><span class="p">;</span>
+        <span class="n">left</span><span class="o">++</span><span class="p">;</span><span class="n">right</span><span class="o">--</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<h3>反转句子中单词的顺序</h3>
+<blockquote>
+<p>输入一个英文句子，翻转句子中单词的顺序，但单词内字符的顺序不变。句子中单词以空格符隔开。为简单起见，标点符号和普通字母一样处理。</p>
+<p>例如输入“I am a student.”，则输出“student. a am I”。</p>
+</blockquote>
+<p>由于本题需要翻转句子，我们先颠倒句子中的所有字符。这时，不但翻转了句子中单词的顺序，而且单词内字符也被翻转了。我们再颠倒每个单词内的字符。由于单词内的字符被翻转两次，因此顺序仍然和输入时的顺序保持一致。</p>
+<div class="highlight"><pre><span class="kt">void</span> <span class="nf">revert_world</span><span class="p">(</span><span class="kt">char</span> <span class="o">*</span> <span class="n">str</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kt">int</span> <span class="n">left</span><span class="p">,</span> <span class="n">right</span><span class="p">,</span> <span class="n">length</span> <span class="o">=</span> <span class="n">strlen</span><span class="p">(</span><span class="n">str</span><span class="p">);</span>
+    <span class="n">left</span> <span class="o">=</span> <span class="n">right</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="n">revert</span><span class="p">(</span><span class="n">str</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">length</span> <span class="o">-</span> <span class="mi">1</span><span class="p">);</span> <span class="c1">// revert string</span>
+    <span class="k">for</span> <span class="p">(;</span><span class="n">right</span> <span class="o">&lt;=</span> <span class="n">length</span><span class="p">;</span> <span class="n">right</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">str</span><span class="p">[</span><span class="n">right</span><span class="p">]</span> <span class="o">==</span> <span class="sc">&#39; &#39;</span> <span class="o">||</span> <span class="n">str</span><span class="p">[</span><span class="n">right</span><span class="p">]</span> <span class="o">==</span> <span class="sc">&#39;\0&#39;</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">revert</span><span class="p">(</span><span class="n">str</span><span class="p">,</span> <span class="n">left</span><span class="p">,</span> <span class="n">right</span> <span class="o">-</span> <span class="mi">1</span><span class="p">);</span>
+            <span class="n">right</span><span class="o">++</span><span class="p">;</span>
+            <span class="n">left</span> <span class="o">=</span> <span class="n">right</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<h3>数组循环移位</h3>
+<blockquote>
+<p>设计一个算法把含有N个元素的数组循环右移K位, 要求时间复杂度为O(N), 且只允许使用两个附加变量.</p>
+</blockquote>
+<p>可以先考虑简单的办法, 可以每次将数组的元素右移一位, 循环K次. </p>
+<div class="highlight"><pre><span class="kt">void</span> <span class="nf">right_shift</span><span class="p">(</span><span class="kt">char</span><span class="o">*</span> <span class="n">str</span><span class="p">,</span> <span class="kt">int</span> <span class="n">n</span><span class="p">,</span> <span class="kt">int</span> <span class="n">k</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kt">int</span> <span class="n">i</span><span class="p">;</span>
+    <span class="kt">char</span> <span class="n">tmp</span><span class="p">;</span>
+    <span class="n">k</span> <span class="o">%=</span> <span class="n">n</span><span class="p">;</span>
+    <span class="k">while</span><span class="p">(</span><span class="n">k</span><span class="o">--</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">tmp</span> <span class="o">=</span> <span class="n">str</span><span class="p">[</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">];</span> 
+        <span class="k">for</span><span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">--</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">str</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">str</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">];</span>
+        <span class="p">}</span>
+        <span class="n">str</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">tmp</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<p>但是算法的复杂度位O(kn), 不符合O(n)要求.</p>
+<p>假设原来的数组为ab1234, 要求转换成的数组序列为1234ab, 即循环右移了4位, 可以看出有两段是不变的: ab, 1234, 可以把这两段看成整体, 右移K位的过程看做是两部分的交换, 即后K位与前面部分的交换.</p>
+<div class="highlight"><pre><span class="kt">void</span> <span class="nf">right_shift</span><span class="p">(</span><span class="kt">char</span><span class="o">*</span> <span class="n">str</span><span class="p">,</span> <span class="kt">int</span> <span class="n">n</span><span class="p">,</span> <span class="kt">int</span> <span class="n">k</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">k</span> <span class="o">%=</span> <span class="n">n</span><span class="p">;</span>
+    <span class="n">revert</span><span class="p">(</span><span class="n">str</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">strlen</span><span class="p">(</span><span class="n">str</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">);</span>
+    <span class="n">revert</span><span class="p">(</span><span class="n">str</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">k</span><span class="o">-</span><span class="mi">1</span><span class="p">);</span>
+    <span class="n">revert</span><span class="p">(</span><span class="n">str</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div><p class="subheader">Category: <a href="../category/str.html">str</a>
+
+    Tagged: 
+    <a href="../tag/algorithm.html">algorithm </a>
+    <a href="../tag/c.html">c </a>
+    <a href="../tag/str.html">str </a>
+</p>
+
+
+
+            </article>
+
+
+                <hr  class="gradient"/>
+
+
+        
+
+
+            <article>
+                <a href="../posts/misc/signal.html"><h3 class="article-title">linux 信号</h3></a>
+<h6 class="subheader" title="2014-11-01T20:00:00">Sat 01 November 2014
+</h6>
+
+
+<p>可以 <code>man 7 signal</code> 查看详细文档.  </p>
+<h3>Signal Mask and Pending Signals</h3>
+<p>A signal may be blocked, which means that it is queued by the kernel and delivered until it is later unblocked.Between the time when it is generated and when it is delivered a signal is said to be pending ...</p><p class="subheader">Category: <a href="../category/misc.html">misc</a>
+
+    Tagged: 
+    <a href="../tag/linux.html">linux </a>
+    <a href="../tag/signal.html">signal </a>
+    <a href="../tag/c.html">c </a>
+</p>
+
+
+
+                <a class="button radius secondary small right" href="../posts/misc/signal.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="../posts/c/daemon.html"><h3 class="article-title">daemon进程c实现</h3></a>
+<h6 class="subheader" title="2014-09-11T00:00:00">Thu 11 September 2014
+</h6>
+
+
+<h3>守护进程(daemon process)特点</h3>
+<ul>
+<li>PPID 为 1</li>
+<li>控制终端(TTY, Teletypes) 为"?"</li>
+<li>守护进程必须与其运行前的环境隔离开来，包括未关闭的文件描述符，控制终端，会话，工作目录，以及umask等。这些都是从父进程继承过来的。</li>
+</ul>
+<h3>创建守护进程的步骤</h3>
+<ul>
+<li>fork创建子进程, 父进程退出</li>
+<li>调用setsid() 创建新会话</li>
+<li>再次fork，父进程退出</li>
+<li>将当前工作目录改为根目录</li>
+<li>设定uamsk值为0</li>
+<li>关闭不必要的文件描述符</li>
+<li>打开/dev/null，dup2(0, 1, 2)</li>
+</ul>
+<h3>代码示例</h3>
+<div class="highlight"><pre><span class="cp"># include &lt;unistd.h&gt;</span>
+
+<span class="kt">int</span> <span class="nf">daemonize</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kt">int</span>  <span class="n">fd</span><span class="p">;</span>
+
+    <span class="k">switch</span> <span class="p">(</span><span class="n">fork</span><span class="p">())</span> <span class="p">{</span>
+    <span class="k">case</span> <span class="o">-</span><span class="mi">1</span>:
+        <span class="c1">//log_error(NGX_LOG_EMERG ...</span></pre></div><p class="subheader">Category: <a href="../category/c.html">c</a>
+
+    Tagged: 
+    <a href="../tag/linux.html">linux </a>
+    <a href="../tag/daemon.html">daemon </a>
+    <a href="../tag/c.html">c </a>
+</p>
+
+
+
+                <a class="button radius secondary small right" href="../posts/c/daemon.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="../posts/algorithm/random-pick.html"><h3 class="article-title">随机选取</h3></a>
+<h6 class="subheader" title="2014-09-05T00:00:00">Fri 05 September 2014
+</h6>
+
+
+<p class="subheader">Category: <a href="../category/algorithm.html">algorithm</a>
+
+    Tagged: 
+    <a href="../tag/algorithm.html">algorithm </a>
+    <a href="../tag/random.html">random </a>
+    <a href="../tag/c.html">c </a>
+</p>
+
+
+
+                <a class="button radius secondary small right" href="../posts/algorithm/random-pick.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="../posts/algorithm/random-range.html"><h3 class="article-title">随机数范围</h3></a>
+<h6 class="subheader" title="2014-09-05T00:00:00">Fri 05 September 2014
+</h6>
+
+
+<h3>缩小范围</h3>
+<div class="highlight"><pre><span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">fac</span> <span class="o">=</span> <span class="p">(</span><span class="n">RAND_MAX</span> <span class="o">+</span> <span class="mi">1u</span><span class="p">)</span> <span class="o">/</span> <span class="n">N</span><span class="p">;</span>
+<span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">limit</span> <span class="o">=</span> <span class="n">fac</span> <span class="o">*</span> <span class="n">N</span><span class="p">;</span>
+<span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">r</span><span class="p">;</span>
+<span class="k">do</span> <span class="p">{</span>
+    <span class="n">r</span> <span class="o">=</span> <span class="n">rand</span><span class="p">();</span>
+<span class="p">}</span> <span class="k">while</span><span class="p">(</span><span class="n">r</span> <span class="o">&gt;=</span> <span class="n">limit</span><span class="p">);</span>
+<span class="k">return</span> <span class="n">r</span> <span class="o">/</span> <span class="n">fac</span><span class="p">;</span>
+</pre></div>
+
+
+<h3>扩大范围</h3>
+<blockquote>
+<p>rand()产生1~7之间的随机数，如何用rand()函数产生1~10之间的随机数</p>
+</blockquote>
+<p>扩大范围的处理是先用类似(rand7()-1)*7+rand7()) 构造一个大范围，然后在缩小范围处理.</p>
+<div class="highlight"><pre><span class="c1">// 循环实现 </span>
+<span class="k">int</span> <span class="n">rand10</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">int</span> <span class="n">fac</span> <span class="o">=</span> <span class="mh">49</span> <span class="o">/</span> <span class="mh">10</span><span class="p">;</span>
+    <span class="k">int</span> <span class="n">limit</span> <span class="o">=</span> <span class="n">fac</span> <span class="o">*</span> <span class="mh">10</span><span class="p">;</span>
+    <span class="k">int ...</span></pre></div><p class="subheader">Category: <a href="../category/algorithm.html">algorithm</a>
+
+    Tagged: 
+    <a href="../tag/algorithm.html">algorithm </a>
+    <a href="../tag/random.html">random </a>
+    <a href="../tag/c.html">c </a>
+</p>
+
+
+
+                <a class="button radius secondary small right" href="../posts/algorithm/random-range.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="../posts/algorithm/binary-bit.html"><h3 class="article-title">整数位的操作</h3></a>
+<h6 class="subheader" title="2014-09-04T00:00:00">Thu 04 September 2014
+</h6>
+
+
+<h3>二进制表示1的个数</h3>
+<div class="highlight"><pre><span class="cp"># 解法1</span>
+<span class="kt">int</span> <span class="nf">count</span><span class="p">(</span><span class="kt">int</span> <span class="n">v</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kt">int</span> <span class="n">num</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="k">while</span> <span class="p">(</span><span class="n">v</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">v</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">num</span><span class="o">++</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="n">v</span> <span class="o">/=</span><span class="mi">2</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="n">num</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="cp"># 解法2</span>
+<span class="kt">int</span> <span class="nf">count</span><span class="p">(</span><span class="kt">int</span> <span class="n">v</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kt">int</span> <span class="n">num</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="k">while</span> <span class="p">(</span><span class="n">v</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">num</span> <span class="o">+=</span> <span class="n">v</span> <span class="o">&amp;</span> <span class="mh">0x1</span><span class="p">;</span>
+        <span class="n">v</span> <span class="o">&gt;&gt;=</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="n">num</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="cp"># 解法 3</span>
+<span class="kt">int</span> <span class="nf">count</span><span class="p">(</span><span class="kt">int</span> <span class="n">v</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kt">int</span> <span class="n">num</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="k">while</span> <span class="p">(</span><span class="n">v</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">v</span> <span class="o">&amp;=</span> <span class="p">(</span><span class="n">v ...</span></pre></div><p class="subheader">Category: <a href="../category/algorithm.html">algorithm</a>
+
+    Tagged: 
+    <a href="../tag/algorithm.html">algorithm </a>
+    <a href="../tag/bit.html">bit </a>
+    <a href="../tag/c.html">c </a>
+</p>
+
+
+
+                <a class="button radius secondary small right" href="../posts/algorithm/binary-bit.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="../posts/c/operator-precedence.html"><h3 class="article-title">c运算符优先级</h3></a>
+<h6 class="subheader" title="2014-08-06T00:00:00">Wed 06 August 2014
+</h6>
+
+
+<p>refer:</p>
+<ul>
+<li><a href="http://www.difranco.net/compsci/C_Operator_Precedence_Table.htm">http://www.difranco.net/compsci/C_Operator_Precedence_Table.htm</a></li>
+</ul><p class="subheader">Category: <a href="../category/c.html">c</a>
+
+    Tagged: 
+    <a href="../tag/c.html">c </a>
+</p>
+
+
+
+                <a class="button radius secondary small right" href="../posts/c/operator-precedence.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="../posts/c/c-compile-process.html"><h3 class="article-title">c编译编译过程</h3></a>
+<h6 class="subheader" title="2014-08-05T00:00:00">Tue 05 August 2014
+</h6>
+
+
+<p>总共包含四步:</p>
+<ul>
+<li>预处理(Pre-Processing) (宏定义指令, 条件编译指令, 头文件)</li>
+<li>编译(Compiling)</li>
+<li>汇编(Assembling)</li>
+<li>链接(Linking)<div class="highlight"><pre>   <span class="n">pre</span><span class="o">-</span><span class="n">processing</span>     <span class="n">compiling</span>          <span class="n">assembling</span>         <span class="n">linking</span>  
+<span class="p">.</span><span class="n">c</span> <span class="o">--------------&gt;</span> <span class="p">.</span><span class="n">i</span> <span class="o">--------------&gt;</span> <span class="p">.</span><span class="n">s</span> <span class="o">--------------&gt;</span> <span class="p">.</span><span class="n">o</span> <span class="o">------------&gt;</span> <span class="n">binary</span>  
+   <span class="p">(</span><span class="n">cpp</span> <span class="o">/</span> <span class="n">gcc</span> <span class="o">-</span><span class="n">E</span><span class="p">)</span>     <span class="p">(</span><span class="n">cc</span> <span class="o">/</span> <span class="n">gcc</span> <span class="o">-</span><span class="n">S</span> <span class="p">)</span>     <span class="p">(</span><span class="n">as</span> <span class="o">/</span> <span class="n">gcc</span> <span class="o">-</span><span class="n">c</span><span class="p">)</span>      <span class="p">(</span><span class="n">gcc</span> <span class="o">/</span> <span class="n">ld</span><span class="p">)</span>
+</pre></div>
+
+
+</li>
+</ul><p class="subheader">Category: <a href="../category/c.html">c</a>
+
+    Tagged: 
+    <a href="../tag/c.html">c </a>
+    <a href="../tag/compile.html">compile </a>
+</p>
+
+
+
+                <a class="button radius secondary small right" href="../posts/c/c-compile-process.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="../posts/misc/latency-number.html"><h3 class="article-title">Latency number</h3></a>
+<h6 class="subheader" title="2014-06-10T00:00:00">Tue 10 June 2014
+</h6>
+
+
+<div class="highlight"><pre><span class="gh">Latency Comparison Numbers</span>
+<span class="gh">--------------------------</span>
+L1 cache reference                            0.5 ns
+Branch mispredict                             5   ns
+L2 cache reference                            7   ns             14x L1 cache
+Mutex lock/unlock                            25   ns
+Main memory reference                       100   ns             20x L2 cache, 200x L1 cache
+Compress 1K bytes with Zippy              3,000   ns
+Send 1K bytes over 1 ...</pre></div><p class="subheader">Category: <a href="../category/misc.html">misc</a>
+
+    Tagged: 
+    <a href="../tag/linux.html">linux </a>
+    <a href="../tag/c.html">c </a>
+    <a href="../tag/latency.html">latency </a>
+</p>
+
+
+
+                <a class="button radius secondary small right" href="../posts/misc/latency-number.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="../posts/learn-plan/c.html"><h3 class="article-title">C学习计划</h3></a>
+<h6 class="subheader" title="2013-12-01T00:00:00">Sun 01 December 2013
+</h6>
+
+
+<h3>基础教程</h3>
+<ul>
+<li>How to Think Like a Computer Scientist: C version(dropbox) (done)</li>
+<li>C程序设计语言 (doing)</li>
+<li>http://cprogrammingcodes.blogspot.hk/p/c-tutorial.html</li>
+<li>linux C 编程一站式学习</li>
+<li>征服C指针</li>
+<li>C专家编程</li>
+<li>C陷进与缺陷</li>
+<li>计算机程序的构造和解释</li>
+</ul>
+<h3>operation System</h3>
+<ul>
+<li>modern operation system</li>
+<li>linux kernel development </li>
+<li>Understanding the Linux Kernel</li>
+<li>深入理解计算机系统</li>
+</ul>
+<h3>数学</h3>
+<ul>
+<li>程序员怎样学数学<a href="http://kb.cnblogs.com/page/90166/">http://kb.cnblogs.com/page/90166/</a></li>
+<li>微积分 ...</li></ul><p class="subheader">Category: <a href="../category/learn-plan.html">learn-plan</a>
+
+    Tagged: 
+    <a href="../tag/c.html">c </a>
+</p>
+
+
+
+                <a class="button radius secondary small right" href="../posts/learn-plan/c.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+            <!-- /#posts-list -->
+<div class="pagination-centered">
+<h6 class="subheader">Page 1 of 1</h6>
+
+<p>
+
+</p>
+</div>
+
+    </div>
+    <!-- End Main Content -->
+
+    <!-- Sidebar -->
+    <aside class="large-3 columns">
+        <h5 class="sidebar-title">Site</h5>
+        <ul class="side-nav">
+            <li><a href="../archives.html">Archives</a>
+            <li><a href="../tags.html">Tags</a>
+        </ul>
+
+		
+        <h5 class="sidebar-title">Categories</h5>
+        <ul class="side-nav">
+            <li><a href="../category/adt.html">adt</a></li>
+            <li><a href="../category/algorithm.html">algorithm</a></li>
+            <li><a href="../category/c.html">c</a></li>
+            <li><a href="../category/complexity.html">complexity</a></li>
+            <li><a href="../category/coroutine.html">coroutine</a></li>
+            <li><a href="../category/interview.html">interview</a></li>
+            <li><a href="../category/learn-plan.html">learn-plan</a></li>
+            <li><a href="../category/misc.html">misc</a></li>
+            <li><a href="../category/mysql.html">mysql</a></li>
+            <li><a href="../category/python.html">python</a></li>
+            <li><a href="../category/security.html">security</a></li>
+            <li><a href="../category/str.html">str</a></li>
+            <li><a href="../category/tcp-ip.html">tcp-ip</a></li>
+            <li><a href="../category/tree.html">tree</a></li>
+            <li><a href="../category/vim.html">vim</a></li>
+   
+        </ul>
+
+        <h5 class="sidebar-title">Links</h5>
+        <ul class="side-nav">
+            <li><a href="https://github.com/actberw">github</a></li>
+        </ul>
+		
+        <h5 class="sidebar-title">Social</h5>
+        <ul class="side-nav">
+            <li><a href="http://weibo.com/u/1950796544">weibo</a></li>
+        </ul>
+
+    </aside> <!-- End Sidebar -->
+
+</div> <!-- End Main Content and Sidebar -->
+
+
+<!-- Footer -->
+<footer class="row">
+    <div class="large-12 columns">
+        <hr />
+        <div class="row">
+            <div class="large-6 columns">
+              <!--                  <p>记录一些工作中的笔记 by actberw</p> -->
+            </div>
+            </div>
+    </div>
+</footer>

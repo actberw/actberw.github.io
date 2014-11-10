@@ -56,43 +56,17 @@
         
 
             <article>
-                <a href="../posts/algorithm/random.html"><h3 class="article-title">随机数及检验</h3></a>
-<h6 class="subheader" title="2014-08-06T21:44:18">Wed 06 August 2014
+                <a href="../posts/algorithm/random-pick.html"><h3 class="article-title">随机选取</h3></a>
+<h6 class="subheader" title="2014-09-05T00:00:00">Fri 05 September 2014
 </h6>
 
 
-<ol>
-<li>
-<p>随机数算法</p>
-<ul>
-<li>取中法</li>
-<li>线性同余法</li>
-<li>移位法</li>
-<li>梅森旋转算法</li>
-</ul>
-</li>
-<li>
-<p>检验</p>
-<ul>
-<li>参数检验</li>
-<li>均匀性检验</li>
-<li>独立性检验</li>
-</ul>
-</li>
-</ol>
-<p>refer:</p>
-<ul>
-<li><a href="http://blog.csdn.net/zmazon/article/details/17383521">http://blog.csdn.net/zmazon/article/details/17383521</a></li>
-<li><a href="http://wenku.baidu.com/view/0295fdd7b14e852458fb574e.html">http://wenku.baidu.com/view/0295fdd7b14e852458fb574e.html</a></li>
-<li><a href="http://wenku.baidu.com/view/bec3a060ddccda38376bafe4.html?from=related">http://wenku.baidu.com/view/bec3a060ddccda38376bafe4.html?from=related</a></li>
-<li><a href="http://carlnerv.com/2014/c%E6%A0%87%E5%87%86%E5%BA%93%E9%87%8C%E7%9A%84rand.html">http://carlnerv.com/2014/c%E6%A0%87%E5%87%86%E5%BA%93%E9%87%8C%E7%9A%84rand.html</a></li>
-<li><a href="http://www.dewen.org/q/15492">http://www.dewen.org/q/15492</a></li>
-<li><a href="http://club.alibabatech.org/article_detail.htm?articleId=2">http://club.alibabatech.org/article_detail.htm?articleId=2</a></li>
-</ul><p class="subheader">Category: <a href="../category/algorithm.html">algorithm</a>
+<p class="subheader">Category: <a href="../category/algorithm.html">algorithm</a>
 
     Tagged: 
     <a href="../tag/algorithm.html">algorithm </a>
     <a href="../tag/random.html">random </a>
+    <a href="../tag/c.html">c </a>
 </p>
 
 
@@ -108,17 +82,102 @@
 
             <article>
                 <a href="../posts/algorithm/random-range.html"><h3 class="article-title">随机数范围</h3></a>
-<h6 class="subheader" title="2014-08-06T21:44:18">Wed 06 August 2014
+<h6 class="subheader" title="2014-09-05T00:00:00">Fri 05 September 2014
 </h6>
 
 
+<h3>缩小范围</h3>
+<div class="highlight"><pre><span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">fac</span> <span class="o">=</span> <span class="p">(</span><span class="n">RAND_MAX</span> <span class="o">+</span> <span class="mi">1u</span><span class="p">)</span> <span class="o">/</span> <span class="n">N</span><span class="p">;</span>
+<span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">limit</span> <span class="o">=</span> <span class="n">fac</span> <span class="o">*</span> <span class="n">N</span><span class="p">;</span>
+<span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">r</span><span class="p">;</span>
+<span class="k">do</span> <span class="p">{</span>
+    <span class="n">r</span> <span class="o">=</span> <span class="n">rand</span><span class="p">();</span>
+<span class="p">}</span> <span class="k">while</span><span class="p">(</span><span class="n">r</span> <span class="o">&gt;=</span> <span class="n">limit</span><span class="p">);</span>
+<span class="k">return</span> <span class="n">r</span> <span class="o">/</span> <span class="n">fac</span><span class="p">;</span>
+</pre></div>
+
+
+<h3>扩大范围</h3>
+<blockquote>
+<p>rand()产生1~7之间的随机数，如何用rand()函数产生1~10之间的随机数</p>
+</blockquote>
+<p>扩大范围的处理是先用类似(rand7()-1)*7+rand7()) 构造一个大范围，然后在缩小范围处理.</p>
+<div class="highlight"><pre><span class="c1">// 循环实现 </span>
+<span class="k">int</span> <span class="n">rand10</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">int</span> <span class="n">fac</span> <span class="o">=</span> <span class="mh">49</span> <span class="o">/</span> <span class="mh">10</span><span class="p">;</span>
+    <span class="k">int</span> <span class="n">limit</span> <span class="o">=</span> <span class="n">fac</span> <span class="o">*</span> <span class="mh">10</span><span class="p">;</span>
+    <span class="k">int ...</span></pre></div><p class="subheader">Category: <a href="../category/algorithm.html">algorithm</a>
+
+    Tagged: 
+    <a href="../tag/algorithm.html">algorithm </a>
+    <a href="../tag/random.html">random </a>
+    <a href="../tag/c.html">c </a>
+</p>
+
+
+
+                <a class="button radius secondary small right" href="../posts/algorithm/random-range.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="../posts/algorithm/shuffle.html"><h3 class="article-title">洗牌算法之Knuth Shuffle</h3></a>
+<h6 class="subheader" title="2014-09-05T00:00:00">Fri 05 September 2014
+</h6>
+
+
+<p>算法描述:</p>
+<blockquote>
+<p>Let X1, X2…. XN be the set of N numbers to be shuffled.</p>
+<p>Set j to N<br />
+Generate a random number R. (uniformly distributed between 0 and 1)<br />
+Set k to (jR+1). k is now a random integer, between 1 and j.<br />
+Exchange Xk and Xj<br />
+Decrease j ...</p></blockquote><p class="subheader">Category: <a href="../category/algorithm.html">algorithm</a>
+
+    Tagged: 
+    <a href="../tag/algorithm.html">algorithm </a>
+    <a href="../tag/random.html">random </a>
+    <a href="../tag/shuffle.html">shuffle </a>
+</p>
+
+
+
+                <a class="button radius secondary small right" href="../posts/algorithm/shuffle.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="../posts/algorithm/random.html"><h3 class="article-title">随机数及检验</h3></a>
+<h6 class="subheader" title="2014-06-12T00:00:00">Thu 12 June 2014
+</h6>
+
+
+<h3>随机数算法</h3>
+<ul>
+<li>取中法</li>
+<li>线性同余法(Linear congruential generator)(参见参考[7])<br />
+ $N_{i+1} = aN_{i} + C$ (mod m), 其中其中a为乘子，C为增量，m为模. 产生的随机序列$R_n = N_i / m$.</li>
+<li>移位法</li>
+<li>梅森旋转算法</li>
+</ul>
+<h3>检验</h3>
+<ul>
+<li>参数检验</li>
+<li>均匀性检验</li>
+<li>独立性检验</li>
+</ul>
 <p>refer:</p>
 <ul>
-<li><a href="http://blog.csdn.net/hackbuteer1/article/details/7486704">http://blog.csdn.net/hackbuteer1/article/details/7486704</a></li>
-<li><a href="http://yaronspace.cn/blog/archives/1326">http://yaronspace.cn/blog/archives/1326</a></li>
-<li><a href="http://stackoverflow.com/questions/2999075/generate-a-random-number-within-range/2999130#2999130">http://stackoverflow.com/questions/2999075/generate-a-random-number-within-range/2999130#2999130</a></li>
-<li><a href="http://stackoverflow.com/questions/3746814/create-a-random-number-less-than-a-max-given-value">http://stackoverflow.com/questions/3746814/create-a-random-number-less-than-a-max-given-value</a></li>
-</ul><p class="subheader">Category: <a href="../category/algorithm.html">algorithm</a>
+<li>[1]<a href="http://blog.csdn.net/zmazon/article/details/17383521">http://blog.csdn.net/zmazon/article/details/17383521</a></li>
+<li>[2]<a href="http://wenku.baidu.com/view/0295fdd7b14e852458fb574e.html">http://wenku.baidu.com/view/0295fdd7b14e852458fb574e.html</a></li>
+<li>[3]<a href="http://wenku.baidu.com/view/bec3a060ddccda38376bafe4.html?from=related">http://wenku ...</a></li></ul><p class="subheader">Category: <a href="../category/algorithm.html">algorithm</a>
 
     Tagged: 
     <a href="../tag/algorithm.html">algorithm </a>
@@ -127,7 +186,7 @@
 
 
 
-                <a class="button radius secondary small right" href="../posts/algorithm/random-range.html">Read More</a>
+                <a class="button radius secondary small right" href="../posts/algorithm/random.html">Read More</a>
                 <hr  class="gradient"/>
             </article>
 
@@ -160,11 +219,13 @@
             <li><a href="../category/complexity.html">complexity</a></li>
             <li><a href="../category/coroutine.html">coroutine</a></li>
             <li><a href="../category/interview.html">interview</a></li>
+            <li><a href="../category/learn-plan.html">learn-plan</a></li>
             <li><a href="../category/misc.html">misc</a></li>
             <li><a href="../category/mysql.html">mysql</a></li>
             <li><a href="../category/python.html">python</a></li>
             <li><a href="../category/security.html">security</a></li>
-            <li><a href="../category/sort.html">sort</a></li>
+            <li><a href="../category/str.html">str</a></li>
+            <li><a href="../category/tcp-ip.html">tcp-ip</a></li>
             <li><a href="../category/tree.html">tree</a></li>
             <li><a href="../category/vim.html">vim</a></li>
    

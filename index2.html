@@ -57,39 +57,23 @@
 
 
             <article>
-                <a href="./posts/sort/index.html"><h3 class="article-title">基本排序算法</h3></a>
-<h6 class="subheader" title="2014-08-06T21:44:18">Wed 06 August 2014
+                <a href="./posts/python/magic-object.html"><h3 class="article-title">python magic object</h3></a>
+<h6 class="subheader" title="2014-11-03T10:00:00">Mon 03 November 2014
 </h6>
 
-Translations: 
-        <a href="./posts/mysql/index.html">cn</a>
 
-<ol>
-<li>分类<ul>
-<li>插入排序: 直接插入排序，Shell排序</li>
-<li>选择排序: 直接选择排序，堆排序</li>
-<li>冒泡排序: 冒泡排序，快速排序</li>
-<li>归并排序，基数排序，桶排序</li>
-</ul>
-</li>
-</ol>
-<p>refer:</p>
-<ul>
-<li><a href="http://www.acmerblog.com/article-sort-3969.html">http://www.acmerblog.com/article-sort-3969.html</a></li>
-<li><a href="http://www.acmerblog.com/sort-algorithm1-3374.html">http://www.acmerblog.com/sort-algorithm1-3374.html</a></li>
-<li><a href="http://www.acmerblog.com/quick-sort-5789.html">http://www.acmerblog.com/quick-sort-5789.html</a></li>
-</ul><p class="subheader">Category: <a href="./category/sort.html">sort</a>
+<h3>__dict__</h3>
+<p>The default behavior for attribute access is to get, set, or delete the attribute from an object’s dictionary. For instance, a.x has a lookup chain starting with <code>a.__dict__['x']</code>, then <code>type(a).__dict__['x']</code>, and continuing through the base classes of type(a) excluding metaclasses. </p>
+<h3>Customizing ...</h3><p class="subheader">Category: <a href="./category/python.html">python</a>
 
     Tagged: 
-    <a href="./tag/algorithm.html">algorithm </a>
-    <a href="./tag/sort.html">sort </a>
+    <a href="./tag/python.html">python </a>
+    <a href="./tag/__init__.html">__init__ </a>
 </p>
 
 
-Translations: 
-        <a href="./posts/mysql/index.html">cn</a>
 
-                <a class="button radius secondary small right" href="./posts/sort/index.html">Read More</a>
+                <a class="button radius secondary small right" href="./posts/python/magic-object.html">Read More</a>
                 <hr  class="gradient"/>
             </article>
 
@@ -97,22 +81,36 @@ Translations:
 
 
             <article>
-                <a href="./posts/mysql/index.html"><h3 class="article-title">索引信息</h3></a>
-<h6 class="subheader" title="2014-08-06T21:44:18">Wed 06 August 2014
+                <a href="./posts/python/metaclass.html"><h3 class="article-title">python 元类</h3></a>
+<h6 class="subheader" title="2014-11-02T20:00:00">Sun 02 November 2014
 </h6>
 
-Translations: 
-        <a href="./posts/sort/index.html">cn</a>
 
-<p>http://www.mysqlperformanceblog.com/2011/10/06/when-does-innodb-update-table-statistics-and-when-it-can-bite/</p><p class="subheader">Category: <a href="./category/mysql.html">mysql</a>
+<p>元类就是用来创建类的“东西”, 类是其元类的实例(a class is an instance of its metaclass), type就是Python在背后用来创建所有类的元类(参见<a href="/posts/python/type.html">python type system</a>), 下面代码展示了type的基本用法.</p>
+<div class="highlight"><pre><span class="o">&gt;&gt;&gt;</span> <span class="n">MyClass</span> <span class="o">=</span> <span class="n">MetaClass</span><span class="p">()</span>
 
+<span class="o">&gt;&gt;&gt;</span> <span class="n">class</span> <span class="n">Foo</span><span class="p">(</span><span class="n">object</span><span class="p">)</span><span class="o">:</span> 
+        <span class="n">pass</span>
+
+<span class="o">&gt;&gt;&gt;</span> <span class="n">def</span> <span class="n">echo_bar</span><span class="p">(</span><span class="n">self</span><span class="p">)</span><span class="o">:</span>
+        <span class="n">print</span> <span class="n">self</span><span class="p">.</span><span class="n">bar</span>
+
+<span class="o">&gt;&gt;&gt;</span> <span class="n">FooChild</span> <span class="o">=</span> <span class="n">type</span><span class="p">(</span><span class="err">&#39;</span><span class="n">FooChild</span><span class="err">&#39;</span><span class="p">,</span> <span class="p">(</span><span class="n">Foo</span><span class="p">,),</span> <span class="p">{</span><span class="err">&#39;</span><span class="n">echo_bar</span><span class="err">&#39;</span><span class="o">:</span> <span class="n">echo_bar</span><span class="p">})</span> <span class="err">#</span> <span class="n">Foo</span> <span class="n">is</span> <span class="n">base</span> <span class="n">class</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">hasattr</span><span class="p">(</span><span class="n">Foo</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">echo_bar</span><span class="err">&#39;</span><span class="p">)</span>
+<span class="n">False</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">hasattr</span><span class="p">(</span><span class="n">FooChild</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">echo_bar</span><span class="err">&#39;</span><span class="p">)</span>
+<span class="n">True</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">my_foo</span> <span class="o">=</span> <span class="n">FooChild</span><span class="p">()</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">my_foo ...</span></pre></div><p class="subheader">Category: <a href="./category/python.html">python</a>
+
+    Tagged: 
+    <a href="./tag/python.html">python </a>
+    <a href="./tag/metaclass.html">metaclass </a>
 </p>
 
 
-Translations: 
-        <a href="./posts/sort/index.html">cn</a>
 
-                <a class="button radius secondary small right" href="./posts/mysql/index.html">Read More</a>
+                <a class="button radius secondary small right" href="./posts/python/metaclass.html">Read More</a>
                 <hr  class="gradient"/>
             </article>
 
@@ -120,54 +118,63 @@ Translations:
 
 
             <article>
-                <a href="./posts/misc/openstack-sum.html"><h3 class="article-title">openstack</h3></a>
-<h6 class="subheader" title="2014-08-06T21:44:18">Wed 06 August 2014
+                <a href="./posts/python/type.html"><h3 class="article-title">python  type system</h3></a>
+<h6 class="subheader" title="2014-11-02T14:00:00">Sun 02 November 2014
 </h6>
 
 
-<ol>
-<li>
-<p>openstack简介<br />
-  OpenStack是一个由rackspace和NSNA于2010年发布的云计算平台, 旨在为公有云和私有云提供一个易于扩展的、功能丰富的解决方案，也可以说OpenStack是一个云计算操作系统，它整合各种底层硬件硬件资源，为系统管理员提供Web界面的控制面板以方便资源管理，为开发者的应用程序提供统一管理接口，为终端用户提供无缝的透明的云计算服务。最近的icehouse版本主要包含了10个核心组件：  </p>
+<p>Up to Python 2.1 the concept of class was unrelated to the concept of type, and old-style classes were the only flavor available. For an old-style class, the statement x.<strong>class</strong> provides the class of x, but type(x) is always &lt;type 'instance'>. This reflects the fact that all ...</p><p class="subheader">Category: <a href="./category/python.html">python</a>
+
+    Tagged: 
+    <a href="./tag/python.html">python </a>
+    <a href="./tag/type.html">type </a>
+    <a href="./tag/object-model.html">object model </a>
+    <a href="./tag/class.html">class </a>
+</p>
+
+
+
+                <a class="button radius secondary small right" href="./posts/python/type.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="./posts/python/mro.html"><h3 class="article-title">python 多重继承方法解析顺序</h3></a>
+<h6 class="subheader" title="2014-11-02T13:00:00">Sun 02 November 2014
+</h6>
+
+
+<p>pyhton 支持多重继承, 方法(or attribute)查找顺序称为mro, 目前有三种mro: </p>
 <ul>
-<li>计算(Nova)</li>
-<li>对象存储(Swift)</li>
-<li>块存储(Cinder)</li>
-<li>镜像(Glance)</li>
-<li>网络(Neutron)</li>
-<li>身份认证(Keystone)</li>
-<li>控制面板(Horizon)</li>
-<li>计量/监控服务(Ceilometer)</li>
-<li>编排组织服务(Heat)</li>
-<li>数据库服务(Trove)。</li>
+<li>classic</li>
+<li>python 2.2 new-style</li>
+<li>c3</li>
 </ul>
-</li>
-<li>
-<p>openstack部署  </p>
-<ul>
-<li>
-<p>部署模型一般是Three-node architecture, 分别是:  </p>
-<ul>
-<li>控制节点</li>
-<li>网络节点</li>
-<li>计算机点</li>
-</ul>
-</li>
-<li>
-<p>潜在的技术难点   </p>
-<ul>
-<li>网络<br />
-虚拟机比较多的情况下，虚拟网络会更加复杂, CPU需要消耗大量的资源匹配网络流表，灵活的网络管理会境地网络的性能。</li>
-<li>镜像风暴<br />
-当镜像较多且每个镜像都很大时会消耗更多的网络宽带和 IO。</li>
-<li>openstack api<br />
-每个openstack组件的api都监听单一端口 ...</li></ul></li></ul></li></ol><p class="subheader">Category: <a href="./category/misc.html">misc</a>
+<p>其中只有c3算法是2.3+广泛使用的.</p>
+<h3>classic mro</h3>
+<p>classic mro 采用的是简单的广度有限算法(DFS), 中序遍历. 查找过程中第一个匹配的返回. 这种算法简单情况下没问题，但是diamond 继承时就出现问题了, 例如:</p>
+<div class="highlight"><pre><span class="n">class</span> <span class="n">A</span><span class="o">:</span>
+  <span class="n">def</span> <span class="n">save</span><span class="p">(</span><span class="n">self</span><span class="p">)</span><span class="o">:</span> <span class="n">pass</span>
 
+<span class="n">class</span> <span class="n">B</span><span class="p">(</span><span class="n">A</span><span class="p">)</span><span class="o">:</span> <span class="n">pass</span>
+
+<span class="n">class</span> <span class="n">C</span><span class="p">(</span><span class="n">A</span><span class="p">)</span><span class="o">:</span>
+  <span class="n">def</span> <span class="n">save</span><span class="p">(</span><span class="n">self</span><span class="p">)</span><span class="o">:</span> <span class="n">pass</span>
+
+<span class="n">class</span> <span class="n">D</span><span class="p">(</span><span class="n">B</span><span class="p">,</span> <span class="n">C</span><span class="p">)</span><span class="o">:</span> <span class="n">pass ...</span></pre></div><p class="subheader">Category: <a href="./category/python.html">python</a>
+
+    Tagged: 
+    <a href="./tag/python.html">python </a>
+    <a href="./tag/mro.html">mro </a>
+    <a href="./tag/c3.html">c3 </a>
 </p>
 
 
 
-                <a class="button radius secondary small right" href="./posts/misc/openstack-sum.html">Read More</a>
+                <a class="button radius secondary small right" href="./posts/python/mro.html">Read More</a>
                 <hr  class="gradient"/>
             </article>
 
@@ -175,21 +182,289 @@ Translations:
 
 
             <article>
-                <a href="./posts/c/operator-precedence.html"><h3 class="article-title">c运算符优先级</h3></a>
-<h6 class="subheader" title="2014-08-06T21:44:18">Wed 06 August 2014
+                <a href="./posts/misc/signal.html"><h3 class="article-title">linux 信号</h3></a>
+<h6 class="subheader" title="2014-11-01T20:00:00">Sat 01 November 2014
 </h6>
 
 
+<p>可以 <code>man 7 signal</code> 查看详细文档.  </p>
+<h3>Signal Mask and Pending Signals</h3>
+<p>A signal may be blocked, which means that it is queued by the kernel and delivered until it is later unblocked.Between the time when it is generated and when it is delivered a signal is said to be pending ...</p><p class="subheader">Category: <a href="./category/misc.html">misc</a>
+
+    Tagged: 
+    <a href="./tag/linux.html">linux </a>
+    <a href="./tag/signal.html">signal </a>
+    <a href="./tag/c.html">c </a>
+</p>
+
+
+
+                <a class="button radius secondary small right" href="./posts/misc/signal.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="./posts/misc/thread.html"><h3 class="article-title">线程(thread)</h3></a>
+<h6 class="subheader" title="2014-10-28T00:00:00">Tue 28 October 2014
+</h6>
+
+
+<p>线程是操作系统调度的基本单位(thread is a basic unit of CPU utilization), 它被包含在进程之中, 线程提供了一种并行的方式, 可以利用多核cpu(kernel thread). 一个进程中可以并发多个线程. 同一进程中的多条线程将共享该进程中的资源，如text区, data区, 虚拟地址空间，文件描述符和信号处理, 但线程有自己的调用栈, 寄存器环境(包括pc register), 本地存储, signal mask等. 进程是操作系统分配资源的最小单元, 相对于进程线程有以下优势:</p>
+<ul>
+<li>创建速度快, 占用资源少</li>
+<li>线程间切换比进程间更快</li>
+<li>线程共享地址空间, 通讯更方便(straightforward)</li>
+</ul>
+<p><img alt="muiti thread process" src="/img/thread_processes.jpg" /></p>
+<p>线程有两种实现: kernel thread 和user thread.</p>
+<h3>kernel thread</h3>
+<p>通常说的内核线程有两种含义:</p>
+<ul>
+<li>运行在内核态daemon线程</li>
+<li>可以被内核调度的实体</li>
+</ul>
+<p>内核线程由内核管理创建, 调度 永远都运行在内核态，抢占式的调度, 内核线程只能之用大于PAGE_OFFSET ...</p><p class="subheader">Category: <a href="./category/misc.html">misc</a>
+
+    Tagged: 
+    <a href="./tag/linux.html">linux </a>
+    <a href="./tag/thread.html">thread </a>
+    <a href="./tag/user-thread.html">user thread </a>
+    <a href="./tag/kernel-thread.html">kernel thread </a>
+</p>
+
+
+
+                <a class="button radius secondary small right" href="./posts/misc/thread.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="./posts/misc/systemcall.html"><h3 class="article-title">系统调用(system call)</h3></a>
+<h6 class="subheader" title="2014-10-27T00:00:00">Mon 27 October 2014
+</h6>
+
+
+<p>System calls provide userland processes a way to request services from the kernel, services which are managed by operating system like storage, memory, network, process management etc. System calls provide an essential interface between a process and the operating system.Usually, system calls are not invoked directly, instead, most system ...</p><p class="subheader">Category: <a href="./category/misc.html">misc</a>
+
+    Tagged: 
+    <a href="./tag/linux.html">linux </a>
+    <a href="./tag/system-call.html">system call </a>
+</p>
+
+
+
+                <a class="button radius secondary small right" href="./posts/misc/systemcall.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="./posts/c/process-uid.html"><h3 class="article-title">进程用户ID</h3></a>
+<h6 class="subheader" title="2014-10-24T22:00:00">Fri 24 October 2014
+</h6>
+
+
+<p>每个进程有三种用户ID :</p>
+<ul>
+<li>实际用户ID(real user id, or ruid)或组</li>
+<li>有效用户ID(effective user id, or euid)或组</li>
+<li>保存用户ID(saved user id, or suid)或组</li>
+</ul>
+<h3>实际用户ID</h3>
+<p>实际用户ID即执行程序得用户ID, 是进程所有者ID. 实际用户ID有两方面的影响:</p>
+<ul>
+<li>发送信号的权限, 非特权用户进程只有信号发送进程的实际用户ID或有效用户ID等于信号接收进程的实际用户ID或保存的用户ID时才能发送信号.</li>
+<li>access函数做权限检测时会用到</li>
+</ul>
+<h3>有效用户ID</h3>
+<p>通常跟实际用户ID相同, 但当设置了设置用户ID(set-user-ID bit)时(参见<a href="/posts/misc/file-permission.html">文件权限</a>)，有效用户ID为文件所有者的ID. 有效用户ID通常用来:</p>
+<ul>
+<li>权限检测</li>
+<li>进程创建的文件的所有者</li>
+</ul>
+<h3>保存用户ID</h3>
+<p>保存用户ID常用来以很高权限(elevated privileges)运行的进程暂时要做一些低权限的操作(unprivileged), 以便进程以后可以再修改回原来的有效用户ID重新获得更高的权限(an unprivileged ...</p><p class="subheader">Category: <a href="./category/c.html">c</a>
+
+    Tagged: 
+    <a href="./tag/linux.html">linux </a>
+    <a href="./tag/setuid.html">setuid </a>
+    <a href="./tag/getuid.html">getuid </a>
+    <a href="./tag/setresuid.html">setresuid </a>
+</p>
+
+
+
+                <a class="button radius secondary small right" href="./posts/c/process-uid.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="./posts/misc/shebang.html"><h3 class="article-title">Linux上的Shebang符号(#!)</h3></a>
+<h6 class="subheader" title="2014-10-24T21:00:00">Fri 24 October 2014
+</h6>
+
+
+<p>shebang取自#(SHArp)和!(bang), 它是很多脚本文件中第一行的前两个字符, 用来告诉Unix系统要用shebang后面指定的解释器来解释该脚本, 同时把文件名和参数一起作为参数传递给制定的解释器。所以，在很多脚本中，第一行往往都是这么写的</p>
+<div class="highlight"><pre> <span class="c">#!/bin/bash</span>
+</pre></div>
+
+
+<p>shebang符号后的解释程序一定要是绝对路径.</p><p class="subheader">Category: <a href="./category/misc.html">misc</a>
+
+    Tagged: 
+    <a href="./tag/linux.html">linux </a>
+    <a href="./tag/shebang.html">shebang </a>
+</p>
+
+
+
+                <a class="button radius secondary small right" href="./posts/misc/shebang.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="./posts/misc/file-permission.html"><h3 class="article-title">linux 文件权限</h3></a>
+<h6 class="subheader" title="2014-10-04T19:00:00">Sat 04 October 2014
+</h6>
+
+
+<p><code>ls -al /</code>  显示结果第一栏表示文件的属性共有十个, 第一个代表这个文件类型是, 后面三个一组分别代表: 文件所有者权限(u), 文件所有者组权限(g), 其他用户权限(o).</p>
+<div class="highlight"><pre>    <span class="n">drwxrwxrwt</span>  <span class="mi">4</span> <span class="n">root</span> <span class="n">root</span>  <span class="mi">4096</span> <span class="n">Oct</span>  <span class="mi">4</span> <span class="mi">19</span><span class="o">:</span><span class="mo">00</span> <span class="n">tmp</span>
+</pre></div>
+
+
+<h3>文件类型</h3>
+<ul>
+<li>d 表示目录  </li>
+<li>- 表示文件  </li>
+<li>l 表示连结档(link file)；   </li>
+<li>b 表示装置文件里面的可供储存的接口设备；   </li>
+<li>c 表示装置文件里面的串行端口设备，例如键盘、鼠标。   </li>
+</ul>
+<h3>文件权限</h3>
+<table>
+<thead>
+<tr>
+<th>权限</th>
+<th>对文件</th>
+<th>对目录</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>r(4)</td>
+<td>read</td>
+<td>可以<code>ll</code></td>
+</tr>
+<tr>
+<td>w(2)</td>
+<td>write</td>
+<td>可以在目录下添加或删除文件</td>
+</tr>
+<tr>
+<td>x(1 ...</td></tr></tbody></table><p class="subheader">Category: <a href="./category/misc.html">misc</a>
+
+    Tagged: 
+    <a href="./tag/linux.html">linux </a>
+    <a href="./tag/chmod.html">chmod </a>
+    <a href="./tag/ls.html">ls </a>
+    <a href="./tag/setuid.html">setuid </a>
+    <a href="./tag/chmod.html">chmod </a>
+    <a href="./tag/sticky.html">sticky </a>
+</p>
+
+
+
+                <a class="button radius secondary small right" href="./posts/misc/file-permission.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="./posts/misc/env.html"><h3 class="article-title">env, set和export</h3></a>
+<h6 class="subheader" title="2014-09-30T22:27:04">Tue 30 September 2014
+</h6>
+
+
+<p>http://www.thegeekstuff.com/2010/05/bash-variables/
+http://www.computerhope.com/unix/uset.htm
+http://askubuntu.com/questions/205688/whats-the-difference-between-set-export-and-env-and-when-should-i-use-each
+http://www.360doc.com/content/11/0920/16/3200886_149794240.shtml</p><p class="subheader">Category: <a href="./category/misc.html">misc</a>
+
+</p>
+
+
+
+                <a class="button radius secondary small right" href="./posts/misc/env.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="./posts/security/masscan.html"><h3 class="article-title">扫描器masscan</h3></a>
+<h6 class="subheader" title="2014-09-27T18:54:10">Sat 27 September 2014
+</h6>
+
+
+<p>http://reverland.org/network/2014/04/18/</p><p class="subheader">Category: <a href="./category/security.html">security</a>
+
+    Tagged: 
+    <a href="./tag/masscan.html">masscan </a>
+    <a href="./tag/zmap.html">zmap </a>
+    <a href="./tag/nmap.html">nmap </a>
+</p>
+
+
+
+                <a class="button radius secondary small right" href="./posts/security/masscan.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="./posts/c/function-call.html"><h3 class="article-title">函数调用过程分析</h3></a>
+<h6 class="subheader" title="2014-09-24T00:00:00">Wed 24 September 2014
+</h6>
+
+
+<p>参数传递
+X86时代，参数传递是通过入栈实现的，相对CPU来说，存储器访问太慢；这样函数调用的效率就不高，在x86-64时代，寄存器数量多了，GCC就可以利用多达6个寄存器来存储参数，多于6个的参数，依然还是通过入栈实现。了解这些对我们写代码很有帮助，起码有两点启示</p>
 <p>refer:</p>
 <ul>
-<li><a href="http://www.difranco.net/compsci/C_Operator_Precedence_Table.htm">http://www.difranco.net/compsci/C_Operator_Precedence_Table.htm</a></li>
+<li>http://www.cnblogs.com/bangerlee/archive/2012/05/22/2508772.html</li>
+<li>http://www.unixwiz.net/techtips/win32-callconv-asm.html</li>
+<li>http://learn.akae.cn/media/ch19s01.html</li>
 </ul><p class="subheader">Category: <a href="./category/c.html">c</a>
 
+    Tagged: 
+    <a href="./tag/callstack.html">callstack </a>
+    <a href="./tag/stack-frame.html">stack frame </a>
+    <a href="./tag/function-call.html">function call </a>
 </p>
 
 
 
-                <a class="button radius secondary small right" href="./posts/c/operator-precedence.html">Read More</a>
+                <a class="button radius secondary small right" href="./posts/c/function-call.html">Read More</a>
                 <hr  class="gradient"/>
             </article>
 
@@ -197,45 +472,26 @@ Translations:
 
 
             <article>
-                <a href="./posts/algorithm/random.html"><h3 class="article-title">随机数及检验</h3></a>
-<h6 class="subheader" title="2014-08-06T21:44:18">Wed 06 August 2014
+                <a href="./posts/misc/risc-vs-cisc.html"><h3 class="article-title">risc vs cisc</h3></a>
+<h6 class="subheader" title="2014-09-23T16:21:06">Tue 23 September 2014
 </h6>
 
 
-<ol>
-<li>
-<p>随机数算法</p>
-<ul>
-<li>取中法</li>
-<li>线性同余法</li>
-<li>移位法</li>
-<li>梅森旋转算法</li>
-</ul>
-</li>
-<li>
-<p>检验</p>
-<ul>
-<li>参数检验</li>
-<li>均匀性检验</li>
-<li>独立性检验</li>
-</ul>
-</li>
-</ol>
-<p>refer:</p>
-<ul>
-<li><a href="http://blog.csdn.net/zmazon/article/details/17383521">http://blog.csdn.net/zmazon/article/details/17383521</a></li>
-<li><a href="http://wenku.baidu.com/view/0295fdd7b14e852458fb574e.html">http://wenku.baidu.com/view/0295fdd7b14e852458fb574e.html</a></li>
-<li><a href="http://wenku.baidu.com/view/bec3a060ddccda38376bafe4.html?from=related">http://wenku.baidu.com/view/bec3a060ddccda38376bafe4.html?from=related</a></li>
-<li><a href="http://carlnerv.com/2014/c%E6%A0%87%E5%87%86%E5%BA%93%E9%87%8C%E7%9A%84rand.html">http://carlnerv.com/2014/c%E6%A0%87%E5%87%86%E5%BA%93%E9%87 ...</a></li></ul><p class="subheader">Category: <a href="./category/algorithm.html">algorithm</a>
+<p>http://cs.stanford.edu/people/eroberts/courses/soco/projects/risc/risccisc/
+http://www.valleytalk.org/2010/11/27/atom%E7%9A%84%E5%89%8D%E7%94%9F%E4%BB%8A%E4%B8%96/
+http://blog.jobbole.com/40844/
+http://www.360doc.com/content/12/0329/14/9470897_198942451.shtml</p><p class="subheader">Category: <a href="./category/misc.html">misc</a>
 
     Tagged: 
-    <a href="./tag/algorithm.html">algorithm </a>
-    <a href="./tag/random.html">random </a>
+    <a href="./tag/risc.html">risc </a>
+    <a href="./tag/cisc.html">cisc </a>
+    <a href="./tag/arm.html">arm </a>
+    <a href="./tag/x86.html">x86 </a>
 </p>
 
 
 
-                <a class="button radius secondary small right" href="./posts/algorithm/random.html">Read More</a>
+                <a class="button radius secondary small right" href="./posts/misc/risc-vs-cisc.html">Read More</a>
                 <hr  class="gradient"/>
             </article>
 
@@ -243,284 +499,43 @@ Translations:
 
 
             <article>
-                <a href="./posts/algorithm/random-range.html"><h3 class="article-title">随机数范围</h3></a>
-<h6 class="subheader" title="2014-08-06T21:44:18">Wed 06 August 2014
+                <a href="./posts/misc/debian-sourcelist.html"><h3 class="article-title">debian 源</h3></a>
+<h6 class="subheader" title="2014-09-23T15:00:00">Tue 23 September 2014
 </h6>
 
 
-<p>refer:</p>
-<ul>
-<li><a href="http://blog.csdn.net/hackbuteer1/article/details/7486704">http://blog.csdn.net/hackbuteer1/article/details/7486704</a></li>
-<li><a href="http://yaronspace.cn/blog/archives/1326">http://yaronspace.cn/blog/archives/1326</a></li>
-<li><a href="http://stackoverflow.com/questions/2999075/generate-a-random-number-within-range/2999130#2999130">http://stackoverflow.com/questions/2999075/generate-a-random-number-within-range/2999130#2999130</a></li>
-<li><a href="http://stackoverflow.com/questions/3746814/create-a-random-number-less-than-a-max-given-value">http://stackoverflow.com/questions/3746814/create-a-random-number-less-than-a-max-given-value</a></li>
-</ul><p class="subheader">Category: <a href="./category/algorithm.html">algorithm</a>
-
-    Tagged: 
-    <a href="./tag/algorithm.html">algorithm </a>
-    <a href="./tag/random.html">random </a>
-</p>
-
-
-
-                <a class="button radius secondary small right" href="./posts/algorithm/random-range.html">Read More</a>
-                <hr  class="gradient"/>
-            </article>
-
-        
-
-
-            <article>
-                <a href="./posts/misc/regex.html"><h3 class="article-title">linux shell 正则表达式(BREs,EREs,PREs)差异比较</h3></a>
-<h6 class="subheader" title="2014-08-06T21:44:18">Wed 06 August 2014
-</h6>
-
-
-<p class="subheader">Category: <a href="./category/misc.html">misc</a>
-
-</p>
-
-
-
-                <a class="button radius secondary small right" href="./posts/misc/regex.html">Read More</a>
-                <hr  class="gradient"/>
-            </article>
-
-        
-
-
-            <article>
-                <a href="./posts/misc/scope.html"><h3 class="article-title">Lexical and Dynamic Scoping</h3></a>
-<h6 class="subheader" title="2014-08-06T21:44:18">Wed 06 August 2014
-</h6>
-
-
-<p class="subheader">Category: <a href="./category/misc.html">misc</a>
-
-</p>
-
-
-
-                <a class="button radius secondary small right" href="./posts/misc/scope.html">Read More</a>
-                <hr  class="gradient"/>
-            </article>
-
-        
-
-
-            <article>
-                <a href="./posts/mysql/transation.html"><h3 class="article-title">mysql innodb 事务</h3></a>
-<h6 class="subheader" title="2014-08-06T21:44:18">Wed 06 August 2014
-</h6>
-
-
-<p class="subheader">Category: <a href="./category/mysql.html">mysql</a>
-
-</p>
-
-
-
-                <a class="button radius secondary small right" href="./posts/mysql/transation.html">Read More</a>
-                <hr  class="gradient"/>
-            </article>
-
-        
-
-
-            <article>
-                <a href="./posts/tree/traverse.html"><h3 class="article-title">树的遍历</h3></a>
-<h6 class="subheader" title="2014-08-06T21:44:18">Wed 06 August 2014
-</h6>
-
-
-<p>http://biaobiaoqi.me/blog/2013/04/27/travsal-binary-tree/</p><p class="subheader">Category: <a href="./category/tree.html">tree</a>
-
-</p>
-
-
-
-                <a class="button radius secondary small right" href="./posts/tree/traverse.html">Read More</a>
-                <hr  class="gradient"/>
-            </article>
-
-        
-
-
-            <article>
-                <a href="./posts/tree/tree.html"><h3 class="article-title">树</h3></a>
-<h6 class="subheader" title="2014-08-06T21:44:18">Wed 06 August 2014
-</h6>
-
-
-<ol>
-<li>树的种类:<ul>
-<li>无序树</li>
-<li>有序树<ul>
-<li>二叉树<ul>
-<li>完全二叉树</li>
-<li>满二叉树</li>
-<li>自平衡二叉查找树(avl, red-black)</li>
-</ul>
-</li>
-<li>霍夫曼树</li>
-<li>B树(B+, B*)</li>
-<li>trie树(后缀树)</li>
-<li>lsm树</li>
-<li>COLA</li>
-</ul>
-</li>
-</ul>
-</li>
-</ol><p class="subheader">Category: <a href="./category/tree.html">tree</a>
-
-</p>
-
-
-
-                <a class="button radius secondary small right" href="./posts/tree/tree.html">Read More</a>
-                <hr  class="gradient"/>
-            </article>
-
-        
-
-
-            <article>
-                <a href="./posts/vim/trick.html"><h3 class="article-title">vim 快捷技巧</h3></a>
-<h6 class="subheader" title="2014-08-06T21:44:18">Wed 06 August 2014
-</h6>
-
-
-<ol>
-<li>
-<p>快速操作符号内的内容<br />
-    以下命令可以对标点内的内容进行操作。</p>
-<ul>
-<li>ci'、ci"、ci(、ci[、ci{、ci&lt; - 分别更改这些配对标点符号中的文本内容</li>
-<li>di'、di"、di(或dib、di[、di{或diB、di&lt; - 分别删除这些配对标点符号中的文本内容</li>
-<li>yi'、yi"、yi(、yi[、yi{、yi&lt; - 分别复制这些配对标点符号中的文本内容</li>
-<li>vi'、vi"、vi(、vi[、vi{、vi&lt; - 分别选中这些配对标点符号中的文本内容</li>
-</ul>
-<p>另外如果把上面的i改成a可以连配对标点一起操作。</p>
-</li>
-</ol><p class="subheader">Category: <a href="./category/vim.html">vim</a>
-
-</p>
-
-
-
-                <a class="button radius secondary small right" href="./posts/vim/trick.html">Read More</a>
-                <hr  class="gradient"/>
-            </article>
-
-        
-
-
-            <article>
-                <a href="./posts/mysql/xtrabackup-install.html"><h3 class="article-title">xtrabackup安装及使用</h3></a>
-<h6 class="subheader" title="2014-06-23T00:00:00">Mon 23 June 2014
-</h6>
-
-
-<ol>
-<li>
-<p>安装</p>
-<div class="highlight"><pre><span class="n">wget</span> <span class="n">http</span><span class="o">:</span><span class="c1">//www.percona.com/redir/downloads/XtraBackup/LATEST/deb/precise/x86_64/percona-xtrabackup_2.1.6-702-1.precise_amd64.deb</span>
-<span class="cp"># 可能需要安装依赖:libdbd-mysql-perl </span>
-<span class="n">dpkg</span> <span class="o">-</span><span class="n">i</span> <span class="p">.</span><span class="o">/</span><span class="n">percona</span><span class="o">-</span><span class="n">xtrabackup_2</span><span class="mf">.1.6</span><span class="o">-</span><span class="mi">702</span><span class="o">-</span><span class="mf">1.</span><span class="n">precise_amd64</span><span class="p">.</span><span class="n">deb</span>
-<span class="cp"># 安装完成后会产生四个命令行工具:innobackupex, xtrabackup, xbcrypt, xbstream</span>
+<h3>/etc/apt/sources.list 中源格式</h3>
+<div class="highlight"><pre><span class="c"># format  </span>
+<span class="k">deb</span> <span class="s">http://site.example.com/debian</span> <span class="kp">distribution</span> <span class="kp">component1</span>
+<span class="c"># example  </span>
+<span class="k">deb-src</span> <span class="s">http://ftp.us.debian.org/debian/</span> <span class="kp">wheezy</span> <span class="kp">main</span>
 </pre></div>
 
 
-</li>
-<li>
-<p>使用innobackupex增量备份<br />
-innobackupex 是个perl脚本,封装xtrabackup,会根据mysql服务器得版本选择xtrabackup得版本, innobackupex可以备份myisam和innodb表, 同时也会备份表定义文件(.frm).</p>
-<div class="highlight"><pre><span class="cp"># first setp full backup</span>
-<span class="n">BASE_DIR</span><span class="o">=/</span><span class="n">data</span><span class="o">/</span><span class="n">mysql_backup ...</span></pre></div></li></ol><p class="subheader">Category: <a href="./category/mysql.html">mysql</a>
-
-    Tagged: 
-    <a href="./tag/mysql.html">mysql </a>
-    <a href="./tag/xtrabackup.html">xtrabackup </a>
-</p>
-
-
-
-                <a class="button radius secondary small right" href="./posts/mysql/xtrabackup-install.html">Read More</a>
-                <hr  class="gradient"/>
-            </article>
-
-        
-
-
-            <article>
-                <a href="./posts/algorithm/prime-number.html"><h3 class="article-title">素数算法</h3></a>
-<h6 class="subheader" title="2014-06-15T19:00:00">Sun 15 June 2014
-</h6>
-
-
-<ol>
-<li>
-<p>原始算法<br />
-素数的定义: 除了能被1和它本身整除而不能被其他任何数整除的数。根据素数定义 只需要用2到n-1去除n，如果都除不尽，则n是素数，否则，只要其中有一个数能整除则n不是素数。</p>
-<div class="highlight"><pre><span class="kt">bool</span> <span class="nf">is_primer</span><span class="p">(</span><span class="kt">int</span> <span class="n">num</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">num</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
-        <span class="k">if</span><span class="p">(</span><span class="n">num</span> <span class="o">%</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span> <span class="cm">/*若整除则为假，否则为真*/</span>
-            <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
-        <span class="p">}</span>
-    <span class="p">}</span>
-    <span class="k">return</span> <span class="nb">true</span><span class="p">;</span>
-<span class="p">}</span>
-</pre></div>
-
-
-</li>
-<li>
-<p>从2到sqrt(N)的整数是否整除N</p>
-<div class="highlight"><pre><span class="kt">bool</span> <span class="nf">is_primer</span><span class="p">(</span><span class="kt">int</span> <span class="n">num</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span> <span class="n">i</span> <span class="o">*</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">num</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
-        <span class="k">if</span><span class="p">(</span><span class="n">num</span> <span class="o">%</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span> <span class="cm">/*若整除则为假 ...</span></pre></div></li></ol><p class="subheader">Category: <a href="./category/algorithm.html">algorithm</a>
-
-    Tagged: 
-    <a href="./tag/algorithm.html">algorithm </a>
-    <a href="./tag/prime-number.html">prime number </a>
-</p>
-
-
-
-                <a class="button radius secondary small right" href="./posts/algorithm/prime-number.html">Read More</a>
-                <hr  class="gradient"/>
-            </article>
-
-        
-
-
-            <article>
-                <a href="./posts/adt/array.html"><h3 class="article-title">数组</h3></a>
-<h6 class="subheader" title="2014-06-15T15:00:00">Sun 15 June 2014
-</h6>
-
-
-<p>数组是一组相同类型得数据得固定集合，他们得存储空空间相邻，可以通过 <em>索引访问</em>.</p>
-<p>refer:</p>
 <ul>
-<li><a href="http://stackoverflow.com/questions/6127503/shuffle-array-in-c%5D">http://stackoverflow.com/questions/6127503/shuffle-array-in-c</a></li>
-<li><a href="https://www.biostars.org/p/63016/">https://www.biostars.org/p/63016/</a></li>
-</ul><p class="subheader">Category: <a href="./category/adt.html">adt</a>
+<li>第一部分(deb or deb-src)表示文档类型, deb表示预编译得二进制包, deb-src表示源码包.  </li>
+<li>第二部分是镜像url.   </li>
+<li>第三部分表示debian发型版本号, 可以是release code名(squeeze, wheezy)或者是release class (oldstable, stable, testing, unstable)    </li>
+<li>第四部分包许可类型:   <ul>
+<li>main 本身是自由软件，且所有直接依赖的包也都是自由软件。  </li>
+<li>contrib 本身是自由软件，但直接依赖的包中有某个是非自由软件 ...</li></ul></li></ul><p class="subheader">Category: <a href="./category/misc.html">misc</a>
 
     Tagged: 
-    <a href="./tag/algorithm.html">algorithm </a>
-    <a href="./tag/array.html">array </a>
+    <a href="./tag/debian.html">debian </a>
+    <a href="./tag/linux.html">linux </a>
+    <a href="./tag/apt.html">apt </a>
+    <a href="./tag/sourcelist.html">sourcelist </a>
 </p>
 
 
 
-                <a class="button radius secondary small right" href="./posts/adt/array.html">Read More</a>
+                <a class="button radius secondary small right" href="./posts/misc/debian-sourcelist.html">Read More</a>
                 <hr  class="gradient"/>
             </article>
 
             <!-- /#posts-list -->
 <div class="pagination-centered">
-<h6 class="subheader">Page 2 of 3</h6>
+<h6 class="subheader">Page 2 of 7</h6>
 
 <p>
             <a href="./index.html">&laquo; Prev</a>
@@ -549,11 +564,13 @@ innobackupex 是个perl脚本,封装xtrabackup,会根据mysql服务器得版本�
             <li><a href="./category/complexity.html">complexity</a></li>
             <li><a href="./category/coroutine.html">coroutine</a></li>
             <li><a href="./category/interview.html">interview</a></li>
+            <li><a href="./category/learn-plan.html">learn-plan</a></li>
             <li><a href="./category/misc.html">misc</a></li>
             <li><a href="./category/mysql.html">mysql</a></li>
             <li><a href="./category/python.html">python</a></li>
             <li><a href="./category/security.html">security</a></li>
-            <li><a href="./category/sort.html">sort</a></li>
+            <li><a href="./category/str.html">str</a></li>
+            <li><a href="./category/tcp-ip.html">tcp-ip</a></li>
             <li><a href="./category/tree.html">tree</a></li>
             <li><a href="./category/vim.html">vim</a></li>
    

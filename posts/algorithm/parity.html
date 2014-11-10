@@ -62,7 +62,9 @@
 </h6>
 
 
-    <p>如何判断给定位数的二进制数中1的个数是奇数还是偶数的二进制数, 算法得复杂度为O(lgn), n为待检查得数字。</p>
+    <p>奇偶校验位是一个表示给定位数的二进制数中1的个数是奇数还是偶数的二进制数。奇偶校验位是最简单的错误检测码。</p>
+<p>奇偶校验位有两种类型：偶校验位与奇校验位。如果一组给定数据位中1的个数是奇数，那么偶校验位就置为1反之则为0，从而使得总的1的个数是偶数。如果给定一组数据位中1的个数是偶数，那么奇校验位就置为1反之为0，使得总的1的个数是奇数。偶校验实际上是循环冗余校验的一个特例，通过多项式x + 1得到1位CRC。</p>
+<p>如何判断给定位数的二进制数中1的个数是奇数还是偶数的二进制数(参见<a href="/posts/algorithm/binary-bit.html">整数位的操作</a>), n为待检查得数字。</p>
 <div class="highlight"><pre><span class="cm">/* Function to get parity of number n. It returns 1</span>
 <span class="cm"> * if n has odd parity, and returns 0 if n has even</span>
 <span class="cm"> * parity</span>
@@ -92,6 +94,13 @@
     <span class="k">return</span> <span class="n">parity</span><span class="p">;</span>
 <span class="p">}</span>
 </pre></div>
+
+
+<p>refer:</p>
+<ul>
+<li><a href="http://blog.csdn.net/u010993034/article/details/9316043">http://blog.csdn.net/u010993034/article/details/9316043</a></li>
+<li><a href="http://www.geeksforgeeks.org/write-a-c-program-to-find-the-parity-of-an-unsigned-integer/">http://www.geeksforgeeks.org/write-a-c-program-to-find-the-parity-of-an-unsigned-integer/</a></li>
+</ul>
 <p class="subheader">Category: <a href="../../category/algorithm.html">algorithm</a>
 
     Tagged: 
@@ -122,11 +131,13 @@
             <li><a href="../../category/complexity.html">complexity</a></li>
             <li><a href="../../category/coroutine.html">coroutine</a></li>
             <li><a href="../../category/interview.html">interview</a></li>
+            <li><a href="../../category/learn-plan.html">learn-plan</a></li>
             <li><a href="../../category/misc.html">misc</a></li>
             <li><a href="../../category/mysql.html">mysql</a></li>
             <li><a href="../../category/python.html">python</a></li>
             <li><a href="../../category/security.html">security</a></li>
-            <li><a href="../../category/sort.html">sort</a></li>
+            <li><a href="../../category/str.html">str</a></li>
+            <li><a href="../../category/tcp-ip.html">tcp-ip</a></li>
             <li><a href="../../category/tree.html">tree</a></li>
             <li><a href="../../category/vim.html">vim</a></li>
    

@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8" />
+    <!-- Set the viewport width to device width for mobile -->
+    <meta name="viewport" content="width=device-width" />
+
+    <title>IP地址及子网掩码</title>
+
+    <link rel="stylesheet" href="../../theme/css/normalize.css" />
+    <link rel="stylesheet" href="../../theme/css/foundation.min.css" />
+    <link rel="stylesheet" href="../../theme/css/style.css" />
+    <link rel="stylesheet" href="../../theme/css/pygments.css" />	
+    <script src="../../theme/js/vendor/custom.modernizr.js"></script>
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        "HTML-CSS": {
+      styles: {
+        ".MathJax .mo, .MathJax .mi": {color: "black ! important"}}
+          },
+            tex2jax: {inlineMath: [['$','$'], ['\\\\(','\\\\)']],processEscapes: true}
+      });
+    </script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script></script>
+</head>
+
+<body>
+
+<!-- Nav Bar -->
+<nav>
+<div class="top-bar">
+<div class="row">
+    <div class="large-9 large-centered columns">
+	    <h1><a href="../..">记录一些工作中的笔记</a></h1>
+    </div>
+</div>
+</div>
+
+<!-- Show menu items and pages -->
+<div class="row">
+<div class="large-9 columns">
+    <ul class="button-group navigation">
+
+    </ul>
+</div>
+</div>
+</nav>
+<!-- End Nav -->
+
+
+<!-- Main Page Content and Sidebar -->
+<div class="row">
+
+    <!-- Main Blog Content -->
+    <div class="large-9 columns">
+<article>
+    <header>
+        <h3 class="article-title"><a href="../../posts/tcp-ip/ip.html" rel="bookmark"
+        title="Permalink to IP地址及子网掩码">IP地址及子网掩码</a></h3>
+    </header>
+
+<h6 class="subheader" title="2014-09-19T15:00:00">Fri 19 September 2014
+</h6>
+
+
+    <h3>IP地址得表示方法</h3>
+<p>IP地址是一个32位的二进制数，通常被分割为4个“8位二进制数”（也就是4个字节）用“点分十进制”表示成（a.b.c.d）的形式，其中，a,b,c,d都是0~255之间的十进制整数。</p>
+<p>最初设计互联网络时，为了便于寻址以及层次化构造网络，每个IP地址包括两个标识码（ID），即网络ID和主机ID。同一个物理网络上的所有主机都使用同一个网络ID，网络上的一个主机（包括网络上工作站，服务器和路由器等）有一个主机ID与其对应。分类:  </p>
+<ul>
+<li>A类地址: 网络标识由第一组8位二进制数表示，网络标识的第一位二进制数取值必须为0。A类地址第一个地址为00000001，最后一个地址是01111111，换算成十进制就是127，其中127留作保留地址，A类地址的第一段范围是：1～126，A类地址允许有$2^7$ - 2 = 126个网段（减2是因为0不用，127留作它用），网络中的主机标识占3组8位二进制数，每个网络允许有$2^{24}$ - 2 = 16777216台主机（<em>减2是因为全0地址为网络地址，全1为广播地址，这两个地址一般不分配给主机</em>）。通常分配给拥有大量主机的网络。 </li>
+<li>B类地址: 网络标识由前两组8位二进制数表示，网络标识的前两位二进制数取值必须为10。 B类地址第一个地址为10000000，最后一个地址是10111111，换算成十进制B类地址第一段范围就是128～191，B类地址允许有$2^{14}$ =16384个网段，网络中的主机标识占2组8位二进制数，每个网络允许有$2^{16}$ - 2 = 65533台主机，适用于结点比较多的网络。 </li>
+<li>C类地址: 网络标识由前3组8位二进制数表示，网络标识的前3位二进制数取值必须为110。C类地址第一个地址为11000000，最后一个地址是11011111，换算成十进制C类地址第一段范围就是192～223，C类地址允许有$2^{21}$ = 2097152个网段，网络中的主机标识占1组8位二进制数，每个网络允许有$2^8$ - 2 = 254台主机，适用于结点比较少的网络。</li>
+</ul>
+<h3>几类特殊的ip</h3>
+<ul>
+<li>私有ip</li>
+<li>网络地址<br />
+ TCP/IP规定，主机号全为0的地址叫做网络地址</li>
+<li>广播地址<br />
+ TCP/IP规定，主机号全为1的地址用于广播之用，叫做广播地址。所谓广播，指同时向同一子网所有主机发送报文。</li>
+</ul>
+<h3>子网掩码</h3>
+<p>子网掩码是一个32位地址，是与IP地址结合使用的一种技术, 目的是为了将一个IP地址的网络地址部分和主机地址部分分开. 表示方法:<br />
+    - 通过与IP地址格式相同的点分十进制表示<br />
+    如：255.0.0.0 或255.255.255.128
+    - 在IP地址后加上"/"符号以及1-32的数字，其中1-32的数字表示子网掩码中网络标识位的长度<br />
+    如：192.168.1.1/24 的子网掩码也可以表示为255.255.255.0</p>
+<h3>子网划分</h3>
+<ul>
+<li>根据子网数划分</li>
+<li>根据主机数划分</li>
+</ul>
+<p class="subheader">Category: <a href="../../category/tcp-ip.html">tcp-ip</a>
+
+    Tagged: 
+    <a href="../../tag/tcpip.html">tcp/ip </a>
+</p>
+
+
+
+
+</article>
+    </div>
+    <!-- End Main Content -->
+
+    <!-- Sidebar -->
+    <aside class="large-3 columns">
+        <h5 class="sidebar-title">Site</h5>
+        <ul class="side-nav">
+            <li><a href="../../archives.html">Archives</a>
+            <li><a href="../../tags.html">Tags</a>
+        </ul>
+
+		
+        <h5 class="sidebar-title">Categories</h5>
+        <ul class="side-nav">
+            <li><a href="../../category/adt.html">adt</a></li>
+            <li><a href="../../category/algorithm.html">algorithm</a></li>
+            <li><a href="../../category/c.html">c</a></li>
+            <li><a href="../../category/complexity.html">complexity</a></li>
+            <li><a href="../../category/coroutine.html">coroutine</a></li>
+            <li><a href="../../category/interview.html">interview</a></li>
+            <li><a href="../../category/learn-plan.html">learn-plan</a></li>
+            <li><a href="../../category/misc.html">misc</a></li>
+            <li><a href="../../category/mysql.html">mysql</a></li>
+            <li><a href="../../category/python.html">python</a></li>
+            <li><a href="../../category/security.html">security</a></li>
+            <li><a href="../../category/str.html">str</a></li>
+            <li><a href="../../category/tcp-ip.html">tcp-ip</a></li>
+            <li><a href="../../category/tree.html">tree</a></li>
+            <li><a href="../../category/vim.html">vim</a></li>
+   
+        </ul>
+
+        <h5 class="sidebar-title">Links</h5>
+        <ul class="side-nav">
+            <li><a href="https://github.com/actberw">github</a></li>
+        </ul>
+		
+        <h5 class="sidebar-title">Social</h5>
+        <ul class="side-nav">
+            <li><a href="http://weibo.com/u/1950796544">weibo</a></li>
+        </ul>
+
+    </aside> <!-- End Sidebar -->
+
+</div> <!-- End Main Content and Sidebar -->
+
+
+<!-- Footer -->
+<footer class="row">
+    <div class="large-12 columns">
+        <hr />
+        <div class="row">
+            <div class="large-6 columns">
+              <!--                  <p>记录一些工作中的笔记 by actberw</p> -->
+            </div>
+            </div>
+    </div>
+</footer>

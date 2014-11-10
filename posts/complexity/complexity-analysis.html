@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8" />
+    <!-- Set the viewport width to device width for mobile -->
+    <meta name="viewport" content="width=device-width" />
+
+    <title>算法复杂度分析</title>
+
+    <link rel="stylesheet" href="../../theme/css/normalize.css" />
+    <link rel="stylesheet" href="../../theme/css/foundation.min.css" />
+    <link rel="stylesheet" href="../../theme/css/style.css" />
+    <link rel="stylesheet" href="../../theme/css/pygments.css" />	
+    <script src="../../theme/js/vendor/custom.modernizr.js"></script>
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        "HTML-CSS": {
+      styles: {
+        ".MathJax .mo, .MathJax .mi": {color: "black ! important"}}
+          },
+            tex2jax: {inlineMath: [['$','$'], ['\\\\(','\\\\)']],processEscapes: true}
+      });
+    </script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script></script>
+</head>
+
+<body>
+
+<!-- Nav Bar -->
+<nav>
+<div class="top-bar">
+<div class="row">
+    <div class="large-9 large-centered columns">
+	    <h1><a href="../..">记录一些工作中的笔记</a></h1>
+    </div>
+</div>
+</div>
+
+<!-- Show menu items and pages -->
+<div class="row">
+<div class="large-9 columns">
+    <ul class="button-group navigation">
+
+    </ul>
+</div>
+</div>
+</nav>
+<!-- End Nav -->
+
+
+<!-- Main Page Content and Sidebar -->
+<div class="row">
+
+    <!-- Main Blog Content -->
+    <div class="large-9 columns">
+<article>
+    <header>
+        <h3 class="article-title"><a href="../../posts/complexity/complexity-analysis.html" rel="bookmark"
+        title="Permalink to 算法复杂度分析">算法复杂度分析</a></h3>
+    </header>
+
+<h6 class="subheader" title="2014-06-07T15:00:00">Sat 07 June 2014
+</h6>
+
+
+    <p>算法的复杂度是用来衡量算法运行所需要的计算机资源（时间、空间）的量, 分为时间复杂度和空间复杂度. 时间复杂度是指衡量算法执行时间的长短；空间复杂度是指衡量算法所需存储空间的大小。</p>
+<h3>Landau符号</h3>
+<p>Landau符号其实是由德国数论学家保罗·巴赫曼（Paul Bachmann）在其1892年的著作《解析数论》首先引入，由另一位德国数论学家艾德蒙·朗道（Edmund Landau）推广。Landau符号的作用在于用简单的函数来描述复杂函数行为，给出一个上或下（确）界。在计算算法复杂度时一般只用到大O符号，Landau符号体系中的小o符号、Θ符号等等比较不常用。这里的O，最初是用大写希腊字母，但现在都用大写英语字母O；小o符号也是用小写英语字母o，Θ符号则维持大写希腊字母Θ.</p>
+<table>
+<thead>
+<tr>
+<th>Asymptotic comparison</th>
+<th>operatorNumeric comparison operator</th>
+<th>------</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>f(n) = o(g(n))</td>
+<td>∀ε&gt;0,∃$n_0$∈ℕ,∀n≥$n_0$,f(n)/g(n)&lt;ε</td>
+<td>f的阶低于g的阶</td>
+</tr>
+<tr>
+<td>f(n) = O(g(n))</td>
+<td>∃c&gt;0,$n_0$∈ℕ,∀n≥$n_0$,f(n)≤cg(n)</td>
+<td>f的阶不高于g的阶。</td>
+</tr>
+<tr>
+<td>f(n) = Ω(g(n))</td>
+<td>∃c&gt;0,$n_0$∈ℕ,∀n≥$n_0$,f(n)≥cg(n)</td>
+<td>f的阶不低于g的阶。</td>
+</tr>
+<tr>
+<td>f(n) = θ(g(n))</td>
+<td>⟺ f(n)=O(g(n))&amp;&amp;f(n)=Ω(g(n))</td>
+<td>f的阶等于g的阶。</td>
+</tr>
+</tbody>
+</table>
+<h3>大O表示法</h3>
+<p>f (n) = Ο(g (n)) 表示存在一个常数C，使得在当n趋于正无穷时总有 f (n) ≤ C * g(n)。简单来说，就是f(n)在n趋于正无穷时最大也就跟g(n)差不多大。虽然对g(n)没有规定，但是一般都是取尽可能简单的函数。例如，O($2n^2+n+1$) = O ($3n^2+n+3$) = O ($7n^2+n$) = O ($n^2$) ，一般都只用O($n^2$)表示就可以了。</p>
+<p>注意到大O符号里隐藏着一个常数C，所以g(n)里一般不加系数。如果把f(n)当做一棵树，那么O(g(n))所表达的就是树干，只关心其中的主干，其他的细枝末节全都抛弃不管。</p>
+<h3>渐进分析法 (asymptotic behavior)</h3>
+<p>Asymptotic Analysis is the big idea that handles above issues in analyzing algorithms. In Asymptotic Analysis, we evaluate the performance of an algorithm in terms of input size (we don’t measure the actual running time). We calculate, how does the time (or space) taken by an algorithm increases with the input size.</p>
+<p>随着问题得规模n得增加丢掉增长慢得因子，只保留增长最快得那个(参见refer[5]).</p>
+<ul>
+<li>f(n) = 109 gives f(n) = O(1)</li>
+<li>f(n) = 5n + 12 gives f(n) = O(n)</li>
+<li>f(n) = $n^2 + 3n + 112$ gives f(n) = O($n^2$)</li>
+</ul>
+<h3>时间复杂度和渐近时间复杂度</h3>
+<p>一个是时间复杂度，一个是渐近时间复杂度。前者是某个算法的时间耗费，它是该算法所求解问题规模n的函数，而后者是指当问题规模趋向无穷大时，该算法时间复杂度的数量级, 含有。</p>
+<h3>常用的函数</h3>
+<p>一个良好的算法能够对性能起到关键作用，因此性能改进的首要点是对算法的改进。在算法的时间复杂度排序上依次是:
+O(1) -&gt; O(lg n) -&gt; O(n) -&gt; O(n lg n) -&gt; O($n^2$) -&gt; O($n^3$) -&gt; O($n^k$) -&gt; O($k^n$) -&gt; O(n!), 注: 在算法复杂度分析中，lg通常表示以2为底的对数。</p>
+<p>refer:</p>
+<ul>
+<li>[0][Asymptotic Notations][http://www.geeksforgeeks.org/analysis-of-algorithms-set-3asymptotic-notations/]</li>
+<li>[1]<a href="http://bigocheatsheet.com/">常用算法的复杂度</a></li>
+<li>[2]<a href="http://www.gocalf.com/blog/algorithm-complexity-and-master-theorem.html">http://www.gocalf.com/blog/algorithm-complexity-and-master-theorem.html</a></li>
+<li>[3]<a href="http://discrete.gr/complexity/">http://discrete.gr/complexity/</a></li>
+<li>[4]<a href="http://aofa.cs.princeton.edu/home/">princeton lectures</a></li>
+<li>[5]<a href="http://www.geeksforgeeks.org/analysis-of-algorithms-set-1-asymptotic-analysis/">渐进式分析法</a></li>
+</ul>
+<p class="subheader">Category: <a href="../../category/complexity.html">complexity</a>
+
+    Tagged: 
+    <a href="../../tag/algorithm.html">algorithm </a>
+    <a href="../../tag/algorithm-analysis.html">algorithm analysis </a>
+</p>
+
+
+
+
+</article>
+    </div>
+    <!-- End Main Content -->
+
+    <!-- Sidebar -->
+    <aside class="large-3 columns">
+        <h5 class="sidebar-title">Site</h5>
+        <ul class="side-nav">
+            <li><a href="../../archives.html">Archives</a>
+            <li><a href="../../tags.html">Tags</a>
+        </ul>
+
+		
+        <h5 class="sidebar-title">Categories</h5>
+        <ul class="side-nav">
+            <li><a href="../../category/adt.html">adt</a></li>
+            <li><a href="../../category/algorithm.html">algorithm</a></li>
+            <li><a href="../../category/c.html">c</a></li>
+            <li><a href="../../category/complexity.html">complexity</a></li>
+            <li><a href="../../category/coroutine.html">coroutine</a></li>
+            <li><a href="../../category/interview.html">interview</a></li>
+            <li><a href="../../category/learn-plan.html">learn-plan</a></li>
+            <li><a href="../../category/misc.html">misc</a></li>
+            <li><a href="../../category/mysql.html">mysql</a></li>
+            <li><a href="../../category/python.html">python</a></li>
+            <li><a href="../../category/security.html">security</a></li>
+            <li><a href="../../category/str.html">str</a></li>
+            <li><a href="../../category/tcp-ip.html">tcp-ip</a></li>
+            <li><a href="../../category/tree.html">tree</a></li>
+            <li><a href="../../category/vim.html">vim</a></li>
+   
+        </ul>
+
+        <h5 class="sidebar-title">Links</h5>
+        <ul class="side-nav">
+            <li><a href="https://github.com/actberw">github</a></li>
+        </ul>
+		
+        <h5 class="sidebar-title">Social</h5>
+        <ul class="side-nav">
+            <li><a href="http://weibo.com/u/1950796544">weibo</a></li>
+        </ul>
+
+    </aside> <!-- End Sidebar -->
+
+</div> <!-- End Main Content and Sidebar -->
+
+
+<!-- Footer -->
+<footer class="row">
+    <div class="large-12 columns">
+        <hr />
+        <div class="row">
+            <div class="large-6 columns">
+              <!--                  <p>记录一些工作中的笔记 by actberw</p> -->
+            </div>
+            </div>
+    </div>
+</footer>

@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8" />
+    <!-- Set the viewport width to device width for mobile -->
+    <meta name="viewport" content="width=device-width" />
+
+    <title>记录一些工作中的笔记 - a20</title>
+
+    <link rel="stylesheet" href="../theme/css/normalize.css" />
+    <link rel="stylesheet" href="../theme/css/foundation.min.css" />
+    <link rel="stylesheet" href="../theme/css/style.css" />
+    <link rel="stylesheet" href="../theme/css/pygments.css" />	
+    <script src="../theme/js/vendor/custom.modernizr.js"></script>
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        "HTML-CSS": {
+      styles: {
+        ".MathJax .mo, .MathJax .mi": {color: "black ! important"}}
+          },
+            tex2jax: {inlineMath: [['$','$'], ['\\\\(','\\\\)']],processEscapes: true}
+      });
+    </script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script></script>
+</head>
+
+<body>
+
+<!-- Nav Bar -->
+<nav>
+<div class="top-bar">
+<div class="row">
+    <div class="large-9 large-centered columns">
+	    <h1><a href="..">记录一些工作中的笔记</a></h1>
+    </div>
+</div>
+</div>
+
+<!-- Show menu items and pages -->
+<div class="row">
+<div class="large-9 columns">
+    <ul class="button-group navigation">
+
+    </ul>
+</div>
+</div>
+</nav>
+<!-- End Nav -->
+
+
+<!-- Main Page Content and Sidebar -->
+<div class="row">
+
+    <!-- Main Blog Content -->
+    <div class="large-9 columns">
+        
+        
+
+            <article>
+                <a href="../posts/misc/a20-gate.html"><h3 class="article-title">a20gate</h3></a>
+<h6 class="subheader" title="2014-09-21T00:00:00">Sun 21 September 2014
+</h6>
+
+
+<h3>real mode 模式寻址</h3>
+<p>8086/8088 的地址线有 20 条: A0 ~ A19, 最大可以访问1M内存. 它的寻址方法是：segment:offset，这是一种被称为 logic address（逻辑地址）表示法. 物理地址 = 段地址 * 0x10 + 偏移地址。F000:FFFF = F0000 + FFFF = FFFFF，这是 8086/8088 所能访问的最高地址。8086/8088 的寻址范围是可以表示为：从 0000:0000 - 0000:FFFF,0000:0000 - 1000:FFFF, ... ,F000:0000 - F000:FFFF 段</p>
+<h3>访问 extended memory</h3>
+<p>80286 intel实现了24 位的Address bus，那么在real mode下80286能够访问到的最高地址: FFFF:FFFF = FFFF0 + FFFF = 10FFEFh(h表示16进制). 这已经是logic address所能表达的极限范围了，100000h 以上的内存被称为extend memory，从100000h ~ 10FFEFh这片内存区域在 DOS 下被称为 High Memory（高端内存）。高端内存是 80286 在 real mode 所能访问到的区域，而 8086/8088 所不能访问到的。</p>
+<h3>wraparound 现象</h3>
+<p>当在 8086/8088 下执行 FFFF:FFFF 这个内存寻址时，会产生什么结果呢? 结果很明显: 由于 8086/8088 只有 20 条 address bus，从A0 ~ A19，地址10FFEF的高4位会被抛弃，实际上送上 address bus 的只有0FFEF, 所以 8086/8088 下访问 FFFF:FFFF 地址结果只能访问到 1M 以内的地址。这就是 wraparound 现象：访问 1M 以上地址都会回绕到 1M 内的模值。</p>
+<p>由于80286具有24条address bus，对于FFFF:FFFF地址的访问，会正确得到访问, 不存在 wraparound 现象。所以访问高端内存时，在real mode下80286 和 8086/8088 的行为不一致！</p>
+<h3>引入 A20 Gate</h3>
+<p>为了使用 80286 和 8086/8088 在 real mode 下的行为一致，即在80286下也产生wraparound现象。IBM 想出了古怪方法：当 80286 运行在 real mode 时，将 A20 地址线（第 21 条 address bus）置为 0，这样使得 80286 在 real mode 下第 21 条 address line 无效，从而人为造成了 wraparound 现象。</p>
+<p>refer: </p>
+<ul>
+<li>[0]<a href="http://www.mouseos.com/arch/a20gate.html">http://www.mouseos.com/arch/a20gate.html</a></li>
+<li>[1]<a href="http://docs.huihoo.com/gnu_linux/own_os/booting-a20_4.htm">http://docs.huihoo.com/gnu_linux/own_os/booting-a20_4.htm</a></li>
+</ul><p class="subheader">Category: <a href="../category/misc.html">misc</a>
+
+    Tagged: 
+    <a href="../tag/a20.html">a20 </a>
+    <a href="../tag/real-mode.html">real mode </a>
+</p>
+
+
+
+            </article>
+
+<div class="pagination-centered">
+<h6 class="subheader">Page 1 of 1</h6>
+
+<p>
+
+</p>
+</div>
+
+
+
+            <!-- /#posts-list -->
+
+    </div>
+    <!-- End Main Content -->
+
+    <!-- Sidebar -->
+    <aside class="large-3 columns">
+        <h5 class="sidebar-title">Site</h5>
+        <ul class="side-nav">
+            <li><a href="../archives.html">Archives</a>
+            <li><a href="../tags.html">Tags</a>
+        </ul>
+
+		
+        <h5 class="sidebar-title">Categories</h5>
+        <ul class="side-nav">
+            <li><a href="../category/adt.html">adt</a></li>
+            <li><a href="../category/algorithm.html">algorithm</a></li>
+            <li><a href="../category/c.html">c</a></li>
+            <li><a href="../category/complexity.html">complexity</a></li>
+            <li><a href="../category/coroutine.html">coroutine</a></li>
+            <li><a href="../category/interview.html">interview</a></li>
+            <li><a href="../category/learn-plan.html">learn-plan</a></li>
+            <li><a href="../category/misc.html">misc</a></li>
+            <li><a href="../category/mysql.html">mysql</a></li>
+            <li><a href="../category/python.html">python</a></li>
+            <li><a href="../category/security.html">security</a></li>
+            <li><a href="../category/str.html">str</a></li>
+            <li><a href="../category/tcp-ip.html">tcp-ip</a></li>
+            <li><a href="../category/tree.html">tree</a></li>
+            <li><a href="../category/vim.html">vim</a></li>
+   
+        </ul>
+
+        <h5 class="sidebar-title">Links</h5>
+        <ul class="side-nav">
+            <li><a href="https://github.com/actberw">github</a></li>
+        </ul>
+		
+        <h5 class="sidebar-title">Social</h5>
+        <ul class="side-nav">
+            <li><a href="http://weibo.com/u/1950796544">weibo</a></li>
+        </ul>
+
+    </aside> <!-- End Sidebar -->
+
+</div> <!-- End Main Content and Sidebar -->
+
+
+<!-- Footer -->
+<footer class="row">
+    <div class="large-12 columns">
+        <hr />
+        <div class="row">
+            <div class="large-6 columns">
+              <!--                  <p>记录一些工作中的笔记 by actberw</p> -->
+            </div>
+            </div>
+    </div>
+</footer>

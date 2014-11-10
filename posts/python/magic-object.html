@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8" />
+    <!-- Set the viewport width to device width for mobile -->
+    <meta name="viewport" content="width=device-width" />
+
+    <title>python magic object</title>
+
+    <link rel="stylesheet" href="../../theme/css/normalize.css" />
+    <link rel="stylesheet" href="../../theme/css/foundation.min.css" />
+    <link rel="stylesheet" href="../../theme/css/style.css" />
+    <link rel="stylesheet" href="../../theme/css/pygments.css" />	
+    <script src="../../theme/js/vendor/custom.modernizr.js"></script>
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        "HTML-CSS": {
+      styles: {
+        ".MathJax .mo, .MathJax .mi": {color: "black ! important"}}
+          },
+            tex2jax: {inlineMath: [['$','$'], ['\\\\(','\\\\)']],processEscapes: true}
+      });
+    </script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script></script>
+</head>
+
+<body>
+
+<!-- Nav Bar -->
+<nav>
+<div class="top-bar">
+<div class="row">
+    <div class="large-9 large-centered columns">
+	    <h1><a href="../..">记录一些工作中的笔记</a></h1>
+    </div>
+</div>
+</div>
+
+<!-- Show menu items and pages -->
+<div class="row">
+<div class="large-9 columns">
+    <ul class="button-group navigation">
+
+    </ul>
+</div>
+</div>
+</nav>
+<!-- End Nav -->
+
+
+<!-- Main Page Content and Sidebar -->
+<div class="row">
+
+    <!-- Main Blog Content -->
+    <div class="large-9 columns">
+<article>
+    <header>
+        <h3 class="article-title"><a href="../../posts/python/magic-object.html" rel="bookmark"
+        title="Permalink to python magic object">python magic object</a></h3>
+    </header>
+
+<h6 class="subheader" title="2014-11-03T10:00:00">Mon 03 November 2014
+</h6>
+
+
+    <h3>__dict__</h3>
+<p>The default behavior for attribute access is to get, set, or delete the attribute from an object’s dictionary. For instance, a.x has a lookup chain starting with <code>a.__dict__['x']</code>, then <code>type(a).__dict__['x']</code>, and continuing through the base classes of type(a) excluding metaclasses. </p>
+<h3>Customizing attribute access</h3>
+<p>__getattr__, __setattr__, __delattr__, __getattribute__(new-style class)
+A key difference between __getattr__ and __getattribute__ is that __getattr__ is only invoked if the attribute wasn't found the usual ways. It's good for implementing a fallback for missing attributes, and is probably the one of two you want</p>
+<p>When retrieving an attribute from an object (print objectname.attrname) Python follows these steps(参见<a href="/posts/python/mro.html">mro</a>和refer[0]):</p>
+<ul>
+<li>If attrname is a special (i.e. Python-provided) attribute for objectname, return it.</li>
+<li>Check <code>objectname.__class__.__dict__</code> for attrname. If it exists and is a data-descriptor, return the descriptor result. Search all bases of <code>objectname.__class__</code> for the same case.</li>
+<li>Check <code>objectname.__dict__</code> for attrname, and return if found. If objectname is a class, search its bases too. If it is a class and a descriptor exists in it or its bases, return the descriptor result.</li>
+<li>Check <code>objectname.__class__.__dict__</code> for attrname. If it exists and is a non-data descriptor, return the descriptor result. If it exists, and is not a descriptor, just return it. If it exists and is a data descriptor, we shouldn't be here because we would have returned at point 2. Search all bases of <code>objectname.__class__</code> for same case.</li>
+<li>Raise AttributeError</li>
+</ul>
+<p><code>type.__getattribute__</code> 实现了上面的类搜索, <code>object.__getattribute__</code>实现了实例搜索, 参见<a href="/posts/python/special-method-lookup.html">特殊方法的查找</a>.</p>
+<h3>__slots__</h3>
+<p>By default, instances of both old and new-style classes have a dictionary for attribute storage. This wastes space for objects having very few instance variables. The space consumption can become acute when creating large numbers of instances.</p>
+<p>The default can be overridden by defining __slots__ in a new-style class definition. The __slots__ declaration takes a sequence of instance variables and reserves just enough space in each instance to hold a value for each variable. Space is saved because __dict__ is not created for each instance.</p>
+<h3>Customizing instance and subclass checks</h3>
+<p>The following methods are used to override the default behavior of the isinstance() and issubclass() built-in functions.__instancecheck__ and __subclasscheck__</p>
+<h3>__call__</h3>
+<p>alled when the instance is “called” as a function; if this method is defined, x(arg1, arg2, ...) is a shorthand for x.__call__(arg1, arg2, ...).</p>
+<div class="highlight"><pre><span class="n">class</span> <span class="n">A</span><span class="p">(</span><span class="n">object</span><span class="p">)</span><span class="o">:</span>
+    <span class="n">def</span> <span class="n">__init__</span><span class="p">(</span><span class="n">self</span><span class="p">)</span><span class="o">:</span>
+        <span class="n">print</span> <span class="s">&quot;init&quot;</span>
+
+    <span class="n">def</span> <span class="n">__call__</span><span class="p">(</span><span class="n">self</span><span class="p">)</span><span class="o">:</span>
+        <span class="n">print</span> <span class="s">&quot;call&quot;</span>
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="err">&#39;</span><span class="n">__main__</span><span class="err">&#39;</span><span class="o">:</span>
+    <span class="n">a</span> <span class="o">=</span> <span class="n">A</span><span class="p">()</span>
+    <span class="err">#</span> <span class="n">print</span> <span class="n">init</span>
+    <span class="n">a</span><span class="p">()</span>
+    <span class="err">#</span> <span class="n">print</span> <span class="n">call</span>
+</pre></div>
+
+
+<p>refer:</p>
+<ul>
+<li>[0]<a href="http://www.cafepy.com/article/python_attributes_and_methods/python_attributes_and_methods.html">http://www.cafepy.com/article/python_attributes_and_methods/python_attributes_and_methods.html</a></li>
+</ul>
+<p class="subheader">Category: <a href="../../category/python.html">python</a>
+
+    Tagged: 
+    <a href="../../tag/python.html">python </a>
+    <a href="../../tag/__init__.html">__init__ </a>
+</p>
+
+
+
+
+</article>
+    </div>
+    <!-- End Main Content -->
+
+    <!-- Sidebar -->
+    <aside class="large-3 columns">
+        <h5 class="sidebar-title">Site</h5>
+        <ul class="side-nav">
+            <li><a href="../../archives.html">Archives</a>
+            <li><a href="../../tags.html">Tags</a>
+        </ul>
+
+		
+        <h5 class="sidebar-title">Categories</h5>
+        <ul class="side-nav">
+            <li><a href="../../category/adt.html">adt</a></li>
+            <li><a href="../../category/algorithm.html">algorithm</a></li>
+            <li><a href="../../category/c.html">c</a></li>
+            <li><a href="../../category/complexity.html">complexity</a></li>
+            <li><a href="../../category/coroutine.html">coroutine</a></li>
+            <li><a href="../../category/interview.html">interview</a></li>
+            <li><a href="../../category/learn-plan.html">learn-plan</a></li>
+            <li><a href="../../category/misc.html">misc</a></li>
+            <li><a href="../../category/mysql.html">mysql</a></li>
+            <li><a href="../../category/python.html">python</a></li>
+            <li><a href="../../category/security.html">security</a></li>
+            <li><a href="../../category/str.html">str</a></li>
+            <li><a href="../../category/tcp-ip.html">tcp-ip</a></li>
+            <li><a href="../../category/tree.html">tree</a></li>
+            <li><a href="../../category/vim.html">vim</a></li>
+   
+        </ul>
+
+        <h5 class="sidebar-title">Links</h5>
+        <ul class="side-nav">
+            <li><a href="https://github.com/actberw">github</a></li>
+        </ul>
+		
+        <h5 class="sidebar-title">Social</h5>
+        <ul class="side-nav">
+            <li><a href="http://weibo.com/u/1950796544">weibo</a></li>
+        </ul>
+
+    </aside> <!-- End Sidebar -->
+
+</div> <!-- End Main Content and Sidebar -->
+
+
+<!-- Footer -->
+<footer class="row">
+    <div class="large-12 columns">
+        <hr />
+        <div class="row">
+            <div class="large-6 columns">
+              <!--                  <p>记录一些工作中的笔记 by actberw</p> -->
+            </div>
+            </div>
+    </div>
+</footer>

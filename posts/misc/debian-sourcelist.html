@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8" />
+    <!-- Set the viewport width to device width for mobile -->
+    <meta name="viewport" content="width=device-width" />
+
+    <title>debian 源</title>
+
+    <link rel="stylesheet" href="../../theme/css/normalize.css" />
+    <link rel="stylesheet" href="../../theme/css/foundation.min.css" />
+    <link rel="stylesheet" href="../../theme/css/style.css" />
+    <link rel="stylesheet" href="../../theme/css/pygments.css" />	
+    <script src="../../theme/js/vendor/custom.modernizr.js"></script>
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        "HTML-CSS": {
+      styles: {
+        ".MathJax .mo, .MathJax .mi": {color: "black ! important"}}
+          },
+            tex2jax: {inlineMath: [['$','$'], ['\\\\(','\\\\)']],processEscapes: true}
+      });
+    </script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script></script>
+</head>
+
+<body>
+
+<!-- Nav Bar -->
+<nav>
+<div class="top-bar">
+<div class="row">
+    <div class="large-9 large-centered columns">
+	    <h1><a href="../..">记录一些工作中的笔记</a></h1>
+    </div>
+</div>
+</div>
+
+<!-- Show menu items and pages -->
+<div class="row">
+<div class="large-9 columns">
+    <ul class="button-group navigation">
+
+    </ul>
+</div>
+</div>
+</nav>
+<!-- End Nav -->
+
+
+<!-- Main Page Content and Sidebar -->
+<div class="row">
+
+    <!-- Main Blog Content -->
+    <div class="large-9 columns">
+<article>
+    <header>
+        <h3 class="article-title"><a href="../../posts/misc/debian-sourcelist.html" rel="bookmark"
+        title="Permalink to debian 源">debian 源</a></h3>
+    </header>
+
+<h6 class="subheader" title="2014-09-23T15:00:00">Tue 23 September 2014
+</h6>
+
+
+    <h3>/etc/apt/sources.list 中源格式</h3>
+<div class="highlight"><pre><span class="c"># format  </span>
+<span class="k">deb</span> <span class="s">http://site.example.com/debian</span> <span class="kp">distribution</span> <span class="kp">component1</span>
+<span class="c"># example  </span>
+<span class="k">deb-src</span> <span class="s">http://ftp.us.debian.org/debian/</span> <span class="kp">wheezy</span> <span class="kp">main</span>
+</pre></div>
+
+
+<ul>
+<li>第一部分(deb or deb-src)表示文档类型, deb表示预编译得二进制包, deb-src表示源码包.  </li>
+<li>第二部分是镜像url.   </li>
+<li>第三部分表示debian发型版本号, 可以是release code名(squeeze, wheezy)或者是release class (oldstable, stable, testing, unstable)    </li>
+<li>第四部分包许可类型:   <ul>
+<li>main 本身是自由软件，且所有直接依赖的包也都是自由软件。  </li>
+<li>contrib 本身是自由软件，但直接依赖的包中有某个是非自由软件。  </li>
+<li>non-free 本身并非自由软件  </li>
+</ul>
+</li>
+</ul>
+<h3>国内源</h3>
+<p>主要是163得源参见refer[2]</p>
+<p>注: 修改/etc/apt/sources.list后要执行apt-get update 更新有效软件包列表.</p>
+<p>refer:</p>
+<ul>
+<li>[0]<a href="https://wiki.debian.org/SourcesList">https://wiki.debian.org/SourcesList</a></li>
+<li>[1]<a href="http://forum.ubuntu.org.cn/viewtopic.php?t=366506">http://forum.ubuntu.org.cn/viewtopic.php?t=366506</a></li>
+<li>[2]<a href="http://mirrors.163.com/.help/debian.html">http://mirrors.163.com/.help/debian.html</a></li>
+</ul>
+<p class="subheader">Category: <a href="../../category/misc.html">misc</a>
+
+    Tagged: 
+    <a href="../../tag/debian.html">debian </a>
+    <a href="../../tag/linux.html">linux </a>
+    <a href="../../tag/apt.html">apt </a>
+    <a href="../../tag/sourcelist.html">sourcelist </a>
+</p>
+
+
+
+
+</article>
+    </div>
+    <!-- End Main Content -->
+
+    <!-- Sidebar -->
+    <aside class="large-3 columns">
+        <h5 class="sidebar-title">Site</h5>
+        <ul class="side-nav">
+            <li><a href="../../archives.html">Archives</a>
+            <li><a href="../../tags.html">Tags</a>
+        </ul>
+
+		
+        <h5 class="sidebar-title">Categories</h5>
+        <ul class="side-nav">
+            <li><a href="../../category/adt.html">adt</a></li>
+            <li><a href="../../category/algorithm.html">algorithm</a></li>
+            <li><a href="../../category/c.html">c</a></li>
+            <li><a href="../../category/complexity.html">complexity</a></li>
+            <li><a href="../../category/coroutine.html">coroutine</a></li>
+            <li><a href="../../category/interview.html">interview</a></li>
+            <li><a href="../../category/learn-plan.html">learn-plan</a></li>
+            <li><a href="../../category/misc.html">misc</a></li>
+            <li><a href="../../category/mysql.html">mysql</a></li>
+            <li><a href="../../category/python.html">python</a></li>
+            <li><a href="../../category/security.html">security</a></li>
+            <li><a href="../../category/str.html">str</a></li>
+            <li><a href="../../category/tcp-ip.html">tcp-ip</a></li>
+            <li><a href="../../category/tree.html">tree</a></li>
+            <li><a href="../../category/vim.html">vim</a></li>
+   
+        </ul>
+
+        <h5 class="sidebar-title">Links</h5>
+        <ul class="side-nav">
+            <li><a href="https://github.com/actberw">github</a></li>
+        </ul>
+		
+        <h5 class="sidebar-title">Social</h5>
+        <ul class="side-nav">
+            <li><a href="http://weibo.com/u/1950796544">weibo</a></li>
+        </ul>
+
+    </aside> <!-- End Sidebar -->
+
+</div> <!-- End Main Content and Sidebar -->
+
+
+<!-- Footer -->
+<footer class="row">
+    <div class="large-12 columns">
+        <hr />
+        <div class="row">
+            <div class="large-6 columns">
+              <!--                  <p>记录一些工作中的笔记 by actberw</p> -->
+            </div>
+            </div>
+    </div>
+</footer>

@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8" />
+    <!-- Set the viewport width to device width for mobile -->
+    <meta name="viewport" content="width=device-width" />
+
+    <title>记录一些工作中的笔记 - misc</title>
+
+    <link rel="stylesheet" href="../theme/css/normalize.css" />
+    <link rel="stylesheet" href="../theme/css/foundation.min.css" />
+    <link rel="stylesheet" href="../theme/css/style.css" />
+    <link rel="stylesheet" href="../theme/css/pygments.css" />	
+    <script src="../theme/js/vendor/custom.modernizr.js"></script>
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        "HTML-CSS": {
+      styles: {
+        ".MathJax .mo, .MathJax .mi": {color: "black ! important"}}
+          },
+            tex2jax: {inlineMath: [['$','$'], ['\\\\(','\\\\)']],processEscapes: true}
+      });
+    </script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script></script>
+</head>
+
+<body>
+
+<!-- Nav Bar -->
+<nav>
+<div class="top-bar">
+<div class="row">
+    <div class="large-9 large-centered columns">
+	    <h1><a href="..">记录一些工作中的笔记</a></h1>
+    </div>
+</div>
+</div>
+
+<!-- Show menu items and pages -->
+<div class="row">
+<div class="large-9 columns">
+    <ul class="button-group navigation">
+
+    </ul>
+</div>
+</div>
+</nav>
+<!-- End Nav -->
+
+
+<!-- Main Page Content and Sidebar -->
+<div class="row">
+
+    <!-- Main Blog Content -->
+    <div class="large-9 columns">
+        
+        
+
+
+            <article>
+                <a href="../posts/misc/real-vs-protect.html"><h3 class="article-title">x86实模式(real mode)和保护模式(protect mode)</h3></a>
+<h6 class="subheader" title="2014-09-21T21:00:00">Sun 21 September 2014
+</h6>
+
+
+<h3>8086</h3>
+<p>1978年intel发布了8086 16-bit cpu, 20位地址总线, 最大可寻址$2^{20}$ = 1M, 同时引入了一个非常重要的概念----段, 以支持20位的地址总线。</p>
+<p>为了支持分段机制，Intel在8086的CPU里新增了4个段寄存器: CS, DS, SS, ES. 寻址方法是：segment:offset, 物理地址 = 段地址 * 0x10 + 偏移地址.  8086的诞生标志着Intel 正式进入了x86时代. 段机制虽然实现了地址空间的提升, 但是也带来的一些问题:  </p>
+<ul>
+<li>同一个物理地址有多种表示方法, 例如0x01C0:0x0000和0x0000:0x1C00所表示的物理地址都是0x01C00。</li>
+<li>地址空间缺乏保护机制</li>
+</ul>
+<h3>80286及80386</h3>
+<p>由于8086的上述问题，1982年Intel在80286的CPU里首次引入的保护模式。同时为了保持向后兼容8086, 80286支持实模式, 在实模式下工作方式跟8086相同, 寻址方式依然是: segment:offset. 支持保护模式的x86启动时工作在实模式下, Protected mode may only be entered after ...</p><p class="subheader">Category: <a href="../category/misc.html">misc</a>
+
+    Tagged: 
+    <a href="../tag/real-mode.html">real mode </a>
+    <a href="../tag/protect-mode.html">protect mode </a>
+    <a href="../tag/gdt.html">gdt </a>
+    <a href="../tag/ldt.html">ldt </a>
+    <a href="../tag/cpu-ring.html">cpu ring </a>
+    <a href="../tag/ring.html">ring </a>
+    <a href="../tag/x86.html">x86 </a>
+</p>
+
+
+
+                <a class="button radius secondary small right" href="../posts/misc/real-vs-protect.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="../posts/misc/register.html"><h3 class="article-title">x86 register</h3></a>
+<h6 class="subheader" title="2014-09-21T20:00:00">Sun 21 September 2014
+</h6>
+
+
+<h3>数据寄存器</h3>
+<p>8086 有8个8位数据寄存器，这些8位寄存器可分别组成16位寄存器:<br />
+AH &amp; AL＝AX(accumulator register):累加寄存器，常用于运算 <br />
+BH &amp; BL＝BX(base register):基址寄存器，常用于地址索引 <br />
+CH &amp; CL＝CX(count register):计数寄存器，常用于计数 <br />
+DH &amp; DL＝DX(data register):数据寄存器，常用于数据传递。  </p>
+<h3>段寄存器</h3>
+<p>8086设定了4个段寄存器，专门用来保存段地址, 386及以后保护模式下用来保存段选择器(segment selector), 但是仍是16位:<br />
+CS(Code Segment):代码段寄存器 <br />
+DS(Data Segment):数据段寄存器 <br />
+SS(Stack Segment ...</p><p class="subheader">Category: <a href="../category/misc.html">misc</a>
+
+    Tagged: 
+    <a href="../tag/register.html">register </a>
+    <a href="../tag/assembly.html">assembly </a>
+</p>
+
+
+
+                <a class="button radius secondary small right" href="../posts/misc/register.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="../posts/misc/assembly.html"><h3 class="article-title">assembly</h3></a>
+<h6 class="subheader" title="2014-09-21T15:00:00">Sun 21 September 2014
+</h6>
+
+
+<h3>语法格式</h3>
+<p>绝大多数 Linux 程序员以前只接触过DOS/Windows 下的汇编语言，这些汇编代码都是 Intel 风格的。但在 Unix 和 Linux 系统中，更多&gt;采用的还是 AT&amp;T 格式，两者在语法格式上有着很大的不同：</p>
+<ul>
+<li>在 AT&amp;T 汇编格式中，寄存器名要加上 '%' 作为前缀；而在 Intel 汇编格式中，寄存器名不需要加前缀</li>
+<li>在 AT&amp;T 汇编格式中，用 '$' 前缀表示一个立即操作数；而在 Intel 汇编格式中，立即数的表示不用带任何前缀</li>
+<li>AT&amp;T 和 Intel 格式中的源操作数和目标操作数的位置正好相反。在 Intel 汇编格式中，目标操作数在源操作数的左边；而在 ...</li></ul><p class="subheader">Category: <a href="../category/misc.html">misc</a>
+
+    Tagged: 
+    <a href="../tag/assembly.html">assembly </a>
+    <a href="../tag/gas.html">gas </a>
+</p>
+
+
+
+                <a class="button radius secondary small right" href="../posts/misc/assembly.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="../posts/misc/a20-gate.html"><h3 class="article-title">a20gate</h3></a>
+<h6 class="subheader" title="2014-09-21T00:00:00">Sun 21 September 2014
+</h6>
+
+
+<h3>real mode 模式寻址</h3>
+<p>8086/8088 的地址线有 20 条: A0 ~ A19, 最大可以访问1M内存. 它的寻址方法是：segment:offset，这是一种被称为 logic address（逻辑地址）表示法. 物理地址 = 段地址 * 0x10 + 偏移地址。F000:FFFF = F0000 + FFFF = FFFFF，这是 8086/8088 所能访问的最高地址。8086/8088 的寻址范围是可以表示为：从 0000:0000 - 0000:FFFF,0000:0000 - 1000:FFFF, ... ,F000:0000 - F000:FFFF 段</p>
+<h3>访问 ...</h3><p class="subheader">Category: <a href="../category/misc.html">misc</a>
+
+    Tagged: 
+    <a href="../tag/a20.html">a20 </a>
+    <a href="../tag/real-mode.html">real mode </a>
+</p>
+
+
+
+                <a class="button radius secondary small right" href="../posts/misc/a20-gate.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="../posts/misc/orphan-process-and-zombie-process.html"><h3 class="article-title">linux 僵尸(zombie)进程和孤儿(orphan)进程</h3></a>
+<h6 class="subheader" title="2014-09-12T00:00:00">Fri 12 September 2014
+</h6>
+
+
+<h3>Zombie Processes</h3>
+<p>In Unix and Linux systems, the zombie (or defunct) process is a process that has completed execution but still has an entry in the process table, it is a process in the <a href="http://en.wikipedia.org/wiki/Process_state">Terminated state</a>. A zombie process remains in the operating system and does nothing until the parent ...</p><p class="subheader">Category: <a href="../category/misc.html">misc</a>
+
+    Tagged: 
+    <a href="../tag/linux.html">linux </a>
+    <a href="../tag/zombie.html">zombie </a>
+    <a href="../tag/orphan.html">orphan </a>
+    <a href="../tag/process.html">process </a>
+</p>
+
+
+
+                <a class="button radius secondary small right" href="../posts/misc/orphan-process-and-zombie-process.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="../posts/misc/hdd.html"><h3 class="article-title">硬盘(hard disk drive)构造</h3></a>
+<h6 class="subheader" title="2014-08-06T21:44:18">Wed 06 August 2014
+</h6>
+
+
+<p>Zone bit recording 技术</p>
+<p>refer:</p>
+<ul>
+<li><a href="http://www.programlife.net/disk-struct.html">http://www.programlife.net/disk-struct.html</a></li>
+</ul><p class="subheader">Category: <a href="../category/misc.html">misc</a>
+
+    Tagged: 
+    <a href="../tag/hdd.html">hdd </a>
+    <a href="../tag/linux.html">linux </a>
+    <a href="../tag/zbr.html">zbr </a>
+</p>
+
+
+
+                <a class="button radius secondary small right" href="../posts/misc/hdd.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="../posts/misc/openstack-sum.html"><h3 class="article-title">openstack</h3></a>
+<h6 class="subheader" title="2014-08-06T21:44:18">Wed 06 August 2014
+</h6>
+
+
+<ol>
+<li>
+<p>openstack简介<br />
+  OpenStack是一个由rackspace和NSNA于2010年发布的云计算平台, 旨在为公有云和私有云提供一个易于扩展的、功能丰富的解决方案，也可以说OpenStack是一个云计算操作系统，它整合各种底层硬件硬件资源，为系统管理员提供Web界面的控制面板以方便资源管理，为开发者的应用程序提供统一管理接口，为终端用户提供无缝的透明的云计算服务。最近的icehouse版本主要包含了10个核心组件：  </p>
+<ul>
+<li>计算(Nova)</li>
+<li>对象存储(Swift)</li>
+<li>块存储(Cinder)</li>
+<li>镜像(Glance)</li>
+<li>网络(Neutron)</li>
+<li>身份认证(Keystone)</li>
+<li>控制面板(Horizon)</li>
+<li>计量/监控服务(Ceilometer)</li>
+<li>编排组织服务(Heat)</li>
+<li>数据库服务(Trove)。</li>
+</ul>
+</li>
+<li>
+<p>openstack部署  </p>
+<ul>
+<li>
+<p>部署模型一般是Three-node architecture, 分别是:  </p>
+<ul>
+<li>控制节点</li>
+<li>网络节点</li>
+<li>计算机点</li>
+</ul>
+</li>
+<li>
+<p>潜在的技术难点   </p>
+<ul>
+<li>网络<br />
+虚拟机比较多的情况下，虚拟网络会更加复杂, CPU需要消耗大量的资源匹配网络流表，灵活的网络管理会境地网络的性能。</li>
+<li>镜像风暴<br />
+当镜像较多且每个镜像都很大时会消耗更多的网络宽带和 IO。</li>
+<li>openstack api<br />
+每个openstack组件的api都监听单一端口 ...</li></ul></li></ul></li></ol><p class="subheader">Category: <a href="../category/misc.html">misc</a>
+
+</p>
+
+
+
+                <a class="button radius secondary small right" href="../posts/misc/openstack-sum.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="../posts/misc/regex.html"><h3 class="article-title">linux shell 正则表达式(BREs,EREs,PREs)差异比较</h3></a>
+<h6 class="subheader" title="2014-08-06T21:44:18">Wed 06 August 2014
+</h6>
+
+
+<p class="subheader">Category: <a href="../category/misc.html">misc</a>
+
+</p>
+
+
+
+                <a class="button radius secondary small right" href="../posts/misc/regex.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="../posts/misc/scope.html"><h3 class="article-title">Lexical and Dynamic Scoping</h3></a>
+<h6 class="subheader" title="2014-08-06T21:44:18">Wed 06 August 2014
+</h6>
+
+
+<p class="subheader">Category: <a href="../category/misc.html">misc</a>
+
+</p>
+
+
+
+                <a class="button radius secondary small right" href="../posts/misc/scope.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="../posts/misc/umask.html"><h3 class="article-title">umask 命令</h3></a>
+<h6 class="subheader" title="2014-06-11T23:00:00">Wed 11 June 2014
+</h6>
+
+
+<p>该命令用来设置限制新文件权限的掩码, 默认是022, umask 命令允许你设定文件创建时的缺省模式，对应每一类用户(文件属主、同组用户、其他用户)存在一个相应的umask值中的数字。对于文件来说，这一数字的最 大值分别是6。系统不允许你在创建一个文本文件时就赋予它执行权限，必须在创建后用chmod命令增加这一权限。目录则允许设置执行权限，这样针对目录来 说，umask中各个数字最大可以到7。
+C = P &amp; (~Q) , C: final file's permission, P: requested permission, Q: mask 
+所以对于默认的(022) 文件的权限是:644(-rw-r--r--),  目录是:755(drwxr-xr-x)</p><p class="subheader">Category: <a href="../category/misc.html">misc</a>
+
+    Tagged: 
+    <a href="../tag/linux.html">linux </a>
+    <a href="../tag/umask.html">umask </a>
+</p>
+
+
+
+                <a class="button radius secondary small right" href="../posts/misc/umask.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="../posts/misc/latency-number.html"><h3 class="article-title">Latency number</h3></a>
+<h6 class="subheader" title="2014-06-10T00:00:00">Tue 10 June 2014
+</h6>
+
+
+<div class="highlight"><pre><span class="gh">Latency Comparison Numbers</span>
+<span class="gh">--------------------------</span>
+L1 cache reference                            0.5 ns
+Branch mispredict                             5   ns
+L2 cache reference                            7   ns             14x L1 cache
+Mutex lock/unlock                            25   ns
+Main memory reference                       100   ns             20x L2 cache, 200x L1 cache
+Compress 1K bytes with Zippy              3,000   ns
+Send 1K bytes over 1 ...</pre></div><p class="subheader">Category: <a href="../category/misc.html">misc</a>
+
+    Tagged: 
+    <a href="../tag/linux.html">linux </a>
+    <a href="../tag/c.html">c </a>
+    <a href="../tag/latency.html">latency </a>
+</p>
+
+
+
+                <a class="button radius secondary small right" href="../posts/misc/latency-number.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="../posts/misc/pelican.html"><h3 class="article-title">pelican</h3></a>
+<h6 class="subheader" title="2014-06-05T00:00:00">Thu 05 June 2014
+</h6>
+
+
+<ol>
+<li>
+<p>安装</p>
+<ul>
+<li>
+<p>依赖<br />
+    At this time, Pelican is dependent on the following Python packages:</p>
+<ul>
+<li>feedgenerator, to generate the Atom feeds</li>
+<li>jinja2, for templating support</li>
+<li>docutils, for supporting reStructuredText as an input format</li>
+</ul>
+<p>If you’re not using Python 2.7, you will also need the argparse package.</p>
+<p>Optionally:</p>
+<ul>
+<li>pygments, for syntax ...</li></ul></li></ul></li></ol><p class="subheader">Category: <a href="../category/misc.html">misc</a>
+
+    Tagged: 
+    <a href="../tag/pelican.html">pelican </a>
+    <a href="../tag/python.html">python </a>
+</p>
+
+
+
+                <a class="button radius secondary small right" href="../posts/misc/pelican.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+            <!-- /#posts-list -->
+<div class="pagination-centered">
+<h6 class="subheader">Page 2 of 2</h6>
+
+<p>
+            <a href="../category/misc.html">&laquo; Prev</a>
+
+</p>
+</div>
+
+    </div>
+    <!-- End Main Content -->
+
+    <!-- Sidebar -->
+    <aside class="large-3 columns">
+        <h5 class="sidebar-title">Site</h5>
+        <ul class="side-nav">
+            <li><a href="../archives.html">Archives</a>
+            <li><a href="../tags.html">Tags</a>
+        </ul>
+
+		
+        <h5 class="sidebar-title">Categories</h5>
+        <ul class="side-nav">
+            <li><a href="../category/adt.html">adt</a></li>
+            <li><a href="../category/algorithm.html">algorithm</a></li>
+            <li><a href="../category/c.html">c</a></li>
+            <li><a href="../category/complexity.html">complexity</a></li>
+            <li><a href="../category/coroutine.html">coroutine</a></li>
+            <li><a href="../category/interview.html">interview</a></li>
+            <li><a href="../category/learn-plan.html">learn-plan</a></li>
+            <li><a href="../category/misc.html">misc</a></li>
+            <li><a href="../category/mysql.html">mysql</a></li>
+            <li><a href="../category/python.html">python</a></li>
+            <li><a href="../category/security.html">security</a></li>
+            <li><a href="../category/str.html">str</a></li>
+            <li><a href="../category/tcp-ip.html">tcp-ip</a></li>
+            <li><a href="../category/tree.html">tree</a></li>
+            <li><a href="../category/vim.html">vim</a></li>
+   
+        </ul>
+
+        <h5 class="sidebar-title">Links</h5>
+        <ul class="side-nav">
+            <li><a href="https://github.com/actberw">github</a></li>
+        </ul>
+		
+        <h5 class="sidebar-title">Social</h5>
+        <ul class="side-nav">
+            <li><a href="http://weibo.com/u/1950796544">weibo</a></li>
+        </ul>
+
+    </aside> <!-- End Sidebar -->
+
+</div> <!-- End Main Content and Sidebar -->
+
+
+<!-- Footer -->
+<footer class="row">
+    <div class="large-12 columns">
+        <hr />
+        <div class="row">
+            <div class="large-6 columns">
+              <!--                  <p>记录一些工作中的笔记 by actberw</p> -->
+            </div>
+            </div>
+    </div>
+</footer>

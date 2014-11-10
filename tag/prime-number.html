@@ -61,10 +61,8 @@
 </h6>
 
 
-<ol>
-<li>
-<p>原始算法<br />
-素数的定义: 除了能被1和它本身整除而不能被其他任何数整除的数。根据素数定义 只需要用2到n-1去除n，如果都除不尽，则n是素数，否则，只要其中有一个数能整除则n不是素数。</p>
+<h3>原始算法</h3>
+<p>素数的定义: 除了能被1和它本身整除而不能被其他任何数整除的数。根据素数定义 只需要用2到n-1去除n，如果都除不尽，则n是素数，否则，只要其中有一个数能整除则n不是素数。</p>
 <div class="highlight"><pre><span class="kt">bool</span> <span class="nf">is_primer</span><span class="p">(</span><span class="kt">int</span> <span class="n">num</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">num</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
         <span class="k">if</span><span class="p">(</span><span class="n">num</span> <span class="o">%</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span> <span class="cm">/*若整除则为假，否则为真*/</span>
@@ -76,9 +74,7 @@
 </pre></div>
 
 
-</li>
-<li>
-<p>从2到sqrt(N)的整数是否整除N</p>
+<h3>从2到sqrt(N)的整数是否整除N</h3>
 <div class="highlight"><pre><span class="kt">bool</span> <span class="nf">is_primer</span><span class="p">(</span><span class="kt">int</span> <span class="n">num</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span> <span class="n">i</span> <span class="o">*</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">num</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
         <span class="k">if</span><span class="p">(</span><span class="n">num</span> <span class="o">%</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span> <span class="cm">/*若整除则为假，否则为真*/</span>
@@ -90,9 +86,7 @@
 </pre></div>
 
 
-</li>
-<li>
-<p>改进去掉偶数得判断(i+=2)</p>
+<h3>改进去掉偶数得判断(i+=2)</h3>
 <div class="highlight"><pre><span class="kt">bool</span> <span class="nf">is_primer</span><span class="p">(</span><span class="kt">int</span> <span class="n">num</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">if</span> <span class="p">(</span><span class="n">num</span> <span class="o">==</span> <span class="mi">2</span><span class="p">)</span> 
         <span class="k">return</span> <span class="nb">true</span><span class="p">;</span>
@@ -109,19 +103,33 @@
 </pre></div>
 
 
-</li>
-<li>
-<p>筛选算法
-更高效地素数判断方法应该是将素数预先保存到一个素数表中，当判断一个数是否为素数时，直接查表即可。这种方法需要解决两个问题：</p>
+<h3>筛选算法</h3>
+<p>更高效地素数判断方法应该是将素数预先保存到一个素数表中，当判断一个数是否为素数时，直接查表即可。这种方法需要解决两个问题:</p>
 <ul>
 <li>怎样快速得到素数表 (埃拉托斯特尼筛法)</li>
-<li>怎样减少素数表的大小 (采用位图数据结构或者 2 – max_int 的所有素数顺序存在内存里面用二分查找或者用hashtable)</li>
+<li>怎样减少素数表的大小 (采用位图数据结构或者2~max_int的所有素数顺序存在内存里面用二分查找或者用hashtable)</li>
 </ul>
-</li>
-<li>
-<p>随机算法(参见[3])</p>
-</li>
-</ol>
+<p>埃拉托斯特尼筛法(参见[1]).</p>
+<blockquote>
+<p>对于1到n全部整数, 逐个判断它们是否是素数, 找出一个非素数, 就把它挖掉, 最后剩下的就是素数。具体方法是： &lt;1&gt; 定义is_primer[i] = true; &lt;2&gt; 从2开始, 依次遍历整个is_primer(直到sqrt(N)), 如果is_primer[i]=true,则is_primer[i]=false i ∈ {n², n²+n, n²+2n, ..., limit}</p>
+</blockquote>
+<div class="highlight"><pre><span class="cp">#define N 1000</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kt">int</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">a</span><span class="p">[</span><span class="n">N</span><span class="p">];</span>
+    <span class="c1">//init</span>
+    <span class="k">for</span> <span class="p">(</span><span class="n">i</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">N</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+
+    <span class="k">for</span> <span class="p">(</span><span class="n">i</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">sqrt</span><span class="p">(</span><span class="n">N</span><span class="p">);</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="p">{</span>
+            <span class="k">for</span> <span class="p">(</span> <span class="n">j</span> <span class="o">=</span> <span class="n">i</span><span class="p">;</span> <span class="n">i</span> <span class="o">*</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">N</span><span class="p">;</span> <span class="n">j</span><span class="o">++</span><span class="p">)</span>
+                <span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="o">*</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<h3>随机算法(参见[3])</h3>
 <p>refer:</p>
 <ul>
 <li>[1]<a href="http://dongxicheng.org/structure/prime/">http://dongxicheng.org/structure/prime/</a></li>
@@ -171,11 +179,13 @@
             <li><a href="../category/complexity.html">complexity</a></li>
             <li><a href="../category/coroutine.html">coroutine</a></li>
             <li><a href="../category/interview.html">interview</a></li>
+            <li><a href="../category/learn-plan.html">learn-plan</a></li>
             <li><a href="../category/misc.html">misc</a></li>
             <li><a href="../category/mysql.html">mysql</a></li>
             <li><a href="../category/python.html">python</a></li>
             <li><a href="../category/security.html">security</a></li>
-            <li><a href="../category/sort.html">sort</a></li>
+            <li><a href="../category/str.html">str</a></li>
+            <li><a href="../category/tcp-ip.html">tcp-ip</a></li>
             <li><a href="../category/tree.html">tree</a></li>
             <li><a href="../category/vim.html">vim</a></li>
    

@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8" />
+    <!-- Set the viewport width to device width for mobile -->
+    <meta name="viewport" content="width=device-width" />
+
+    <title>x86 register</title>
+
+    <link rel="stylesheet" href="../../theme/css/normalize.css" />
+    <link rel="stylesheet" href="../../theme/css/foundation.min.css" />
+    <link rel="stylesheet" href="../../theme/css/style.css" />
+    <link rel="stylesheet" href="../../theme/css/pygments.css" />	
+    <script src="../../theme/js/vendor/custom.modernizr.js"></script>
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        "HTML-CSS": {
+      styles: {
+        ".MathJax .mo, .MathJax .mi": {color: "black ! important"}}
+          },
+            tex2jax: {inlineMath: [['$','$'], ['\\\\(','\\\\)']],processEscapes: true}
+      });
+    </script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script></script>
+</head>
+
+<body>
+
+<!-- Nav Bar -->
+<nav>
+<div class="top-bar">
+<div class="row">
+    <div class="large-9 large-centered columns">
+	    <h1><a href="../..">记录一些工作中的笔记</a></h1>
+    </div>
+</div>
+</div>
+
+<!-- Show menu items and pages -->
+<div class="row">
+<div class="large-9 columns">
+    <ul class="button-group navigation">
+
+    </ul>
+</div>
+</div>
+</nav>
+<!-- End Nav -->
+
+
+<!-- Main Page Content and Sidebar -->
+<div class="row">
+
+    <!-- Main Blog Content -->
+    <div class="large-9 columns">
+<article>
+    <header>
+        <h3 class="article-title"><a href="../../posts/misc/register.html" rel="bookmark"
+        title="Permalink to x86 register">x86 register</a></h3>
+    </header>
+
+<h6 class="subheader" title="2014-09-21T20:00:00">Sun 21 September 2014
+</h6>
+
+
+    <h3>数据寄存器</h3>
+<p>8086 有8个8位数据寄存器，这些8位寄存器可分别组成16位寄存器:<br />
+AH &amp; AL＝AX(accumulator register):累加寄存器，常用于运算 <br />
+BH &amp; BL＝BX(base register):基址寄存器，常用于地址索引 <br />
+CH &amp; CL＝CX(count register):计数寄存器，常用于计数 <br />
+DH &amp; DL＝DX(data register):数据寄存器，常用于数据传递。  </p>
+<h3>段寄存器</h3>
+<p>8086设定了4个段寄存器，专门用来保存段地址, 386及以后保护模式下用来保存段选择器(segment selector), 但是仍是16位:<br />
+CS(Code Segment):代码段寄存器 <br />
+DS(Data Segment):数据段寄存器 <br />
+SS(Stack Segment):堆栈段寄存器 <br />
+ES(Extra Segment):附加段寄存器。<br />
+386后增加了FS,GS</p>
+<h3>特殊功能的寄存器</h3>
+<p>SP(Stack Pointer):堆栈指针寄存器，可指向目前的堆栈位置。<br />
+BP(Base Pointer):基址指针寄存器, 参见<a href="/posts/c/function-call.html">callstack</a><br />
+SI(Source Index):源变址寄存器可用来存放相对于DS段之源变址指针<br />
+DI(Destination Index):目的变址寄存器，可用来存放相对于 ES 段之目的变址指针。<br />
+IP(Instruction Pointer):指令指针寄存器<br />
+FLAGS: 标识寄存器</p>
+<p>注: BX,BP为基址寄存器;SI,DI为变址寄存器. 32位cpu除了段寄存器外其他的加e前缀，64位cpu加r前缀. 64位cpu其他寄存器参见refer[3].</p>
+<p>refer:</p>
+<ul>
+<li>[0]<a href="http://cseweb.ucsd.edu/classes/sp11/cse141/pdf/02/S01_x86_64.key.pdf">http://cseweb.ucsd.edu/classes/sp11/cse141/pdf/02/S01_x86_64.key.pdf</a></li>
+<li>[1]<a href="http://nannan408.iteye.com/blog/982942">http://nannan408.iteye.com/blog/982942</a></li>
+<li>[2]<a href="http://blog.csdn.net/hgd_dingjun/article/details/2809958">http://blog.csdn.net/hgd_dingjun/article/details/2809958</a></li>
+<li>[3]<a href="https://software.intel.com/en-us/articles/introduction-to-x64-assembly">https://software.intel.com/en-us/articles/introduction-to-x64-assembly</a></li>
+</ul>
+<p class="subheader">Category: <a href="../../category/misc.html">misc</a>
+
+    Tagged: 
+    <a href="../../tag/register.html">register </a>
+    <a href="../../tag/assembly.html">assembly </a>
+</p>
+
+
+
+
+</article>
+    </div>
+    <!-- End Main Content -->
+
+    <!-- Sidebar -->
+    <aside class="large-3 columns">
+        <h5 class="sidebar-title">Site</h5>
+        <ul class="side-nav">
+            <li><a href="../../archives.html">Archives</a>
+            <li><a href="../../tags.html">Tags</a>
+        </ul>
+
+		
+        <h5 class="sidebar-title">Categories</h5>
+        <ul class="side-nav">
+            <li><a href="../../category/adt.html">adt</a></li>
+            <li><a href="../../category/algorithm.html">algorithm</a></li>
+            <li><a href="../../category/c.html">c</a></li>
+            <li><a href="../../category/complexity.html">complexity</a></li>
+            <li><a href="../../category/coroutine.html">coroutine</a></li>
+            <li><a href="../../category/interview.html">interview</a></li>
+            <li><a href="../../category/learn-plan.html">learn-plan</a></li>
+            <li><a href="../../category/misc.html">misc</a></li>
+            <li><a href="../../category/mysql.html">mysql</a></li>
+            <li><a href="../../category/python.html">python</a></li>
+            <li><a href="../../category/security.html">security</a></li>
+            <li><a href="../../category/str.html">str</a></li>
+            <li><a href="../../category/tcp-ip.html">tcp-ip</a></li>
+            <li><a href="../../category/tree.html">tree</a></li>
+            <li><a href="../../category/vim.html">vim</a></li>
+   
+        </ul>
+
+        <h5 class="sidebar-title">Links</h5>
+        <ul class="side-nav">
+            <li><a href="https://github.com/actberw">github</a></li>
+        </ul>
+		
+        <h5 class="sidebar-title">Social</h5>
+        <ul class="side-nav">
+            <li><a href="http://weibo.com/u/1950796544">weibo</a></li>
+        </ul>
+
+    </aside> <!-- End Sidebar -->
+
+</div> <!-- End Main Content and Sidebar -->
+
+
+<!-- Footer -->
+<footer class="row">
+    <div class="large-12 columns">
+        <hr />
+        <div class="row">
+            <div class="large-6 columns">
+              <!--                  <p>记录一些工作中的笔记 by actberw</p> -->
+            </div>
+            </div>
+    </div>
+</footer>

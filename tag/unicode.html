@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8" />
+    <!-- Set the viewport width to device width for mobile -->
+    <meta name="viewport" content="width=device-width" />
+
+    <title>记录一些工作中的笔记 - unicode</title>
+
+    <link rel="stylesheet" href="../theme/css/normalize.css" />
+    <link rel="stylesheet" href="../theme/css/foundation.min.css" />
+    <link rel="stylesheet" href="../theme/css/style.css" />
+    <link rel="stylesheet" href="../theme/css/pygments.css" />	
+    <script src="../theme/js/vendor/custom.modernizr.js"></script>
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        "HTML-CSS": {
+      styles: {
+        ".MathJax .mo, .MathJax .mi": {color: "black ! important"}}
+          },
+            tex2jax: {inlineMath: [['$','$'], ['\\\\(','\\\\)']],processEscapes: true}
+      });
+    </script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script></script>
+</head>
+
+<body>
+
+<!-- Nav Bar -->
+<nav>
+<div class="top-bar">
+<div class="row">
+    <div class="large-9 large-centered columns">
+	    <h1><a href="..">记录一些工作中的笔记</a></h1>
+    </div>
+</div>
+</div>
+
+<!-- Show menu items and pages -->
+<div class="row">
+<div class="large-9 columns">
+    <ul class="button-group navigation">
+
+    </ul>
+</div>
+</div>
+</nav>
+<!-- End Nav -->
+
+
+<!-- Main Page Content and Sidebar -->
+<div class="row">
+
+    <!-- Main Blog Content -->
+    <div class="large-9 columns">
+        
+        
+
+            <article>
+                <a href="../posts/python/string-literal.html"><h3 class="article-title">python 字符串字面量表示方式</h3></a>
+<h6 class="subheader" title="2014-06-07T00:00:00">Sat 07 June 2014
+</h6>
+
+
+<h3>String Literals</h3>
+<p>string字面量支持前缀: r/R(raw string), u/U(unicode string), b/B(byte literal in python3, ignore in python 2), u和b后面可以跟r, 支持下面的转义字符.</p>
+<table>
+<thead>
+<tr>
+<th>Escape</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>\newline</td>
+<td>Ignored (continuation line)</td>
+</tr>
+<tr>
+<td>\</td>
+<td>Backslash (stores one )</td>
+</tr>
+<tr>
+<td>\'</td>
+<td>Single quote (stores ')</td>
+</tr>
+<tr>
+<td>\"</td>
+<td>Double quote (stores ")</td>
+</tr>
+<tr>
+<td>\a</td>
+<td>Bell</td>
+</tr>
+<tr>
+<td>\b</td>
+<td>Backspace</td>
+</tr>
+<tr>
+<td>\f</td>
+<td>Formfeed</td>
+</tr>
+<tr>
+<td>\n</td>
+<td>Newline (linefeed)</td>
+</tr>
+<tr>
+<td>\r</td>
+<td>Carriage return</td>
+</tr>
+<tr>
+<td>\t</td>
+<td>Horizontal tab</td>
+</tr>
+<tr>
+<td>\v</td>
+<td>Vertical tab</td>
+</tr>
+<tr>
+<td>\xhh</td>
+<td>Character with hex value hh (at most 2 digits)</td>
+</tr>
+<tr>
+<td>\ooo</td>
+<td>Character with octal value ooo (up to 3 digits)</td>
+</tr>
+<tr>
+<td>\0</td>
+<td>Null: binary 0 character (doesn’t end string)</td>
+</tr>
+<tr>
+<td id="id">\N</td>
+<td>Unicode database ID</td>
+</tr>
+<tr>
+<td>\uhhhh</td>
+<td>Unicode 16-bit hex</td>
+</tr>
+<tr>
+<td>\Uhhhhhhhh</td>
+<td>Unicode 32-bit hexa</td>
+</tr>
+<tr>
+<td>\other</td>
+<td>Not an escape (keeps both \ and other)</td>
+</tr>
+</tbody>
+</table>
+<h3>Unicode Literals</h3>
+<p>unicode字面量用前缀u/U表示, 特殊的字符可以用 <code>'\u' + 四个十六进制</code>  或者  <code>'\U' + 八个十六进制</code> 转义序列表示, 也可以用string literals的8为转义序列'\x', 但是 '\x' 后面只能跟两个十六进制符号(只能表示ascii字符部分).</p>
+<div class="highlight"><pre><span class="o">&gt;&gt;&gt;</span> <span class="n">s</span> <span class="o">=</span> <span class="n">u</span><span class="s">&quot;a</span><span class="se">\xac\u1234\u20ac\U00008000</span><span class="s">&quot;</span>
+<span class="p">...</span> <span class="err">#</span>      <span class="o">^^^^</span> <span class="n">two</span><span class="o">-</span><span class="n">digit</span> <span class="n">hex</span> <span class="n">escape</span>
+<span class="p">...</span> <span class="err">#</span>          <span class="o">^^^^^^</span> <span class="n">four</span><span class="o">-</span><span class="n">digit</span> <span class="n">Unicode</span> <span class="n">escape</span>
+<span class="p">...</span> <span class="err">#</span>                      <span class="o">^^^^^^^^^^</span> <span class="n">eight</span><span class="o">-</span><span class="n">digit</span> <span class="n">Unicode</span> <span class="n">escape</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="k">for</span> <span class="n">c</span> <span class="n">in</span> <span class="n">s</span><span class="o">:</span>  <span class="n">print</span> <span class="n">ord</span><span class="p">(</span><span class="n">c</span><span class="p">),</span>
+<span class="p">...</span>
+<span class="mi">97</span> <span class="mi">172</span> <span class="mi">4660</span> <span class="mi">8364</span> <span class="mi">32768</span>
+</pre></div>
+
+
+<p>refer:</p>
+<ul>
+<li>[0]<a href="https://www.inkling.com/read/learning-python-mark-lutz-4th/chapter-7/string-literals">https://www.inkling.com/read/learning-python-mark-lutz-4th/chapter-7/string-literals</a></li>
+<li>[1]<a href="https://docs.python.org/2/reference/lexical_analysis.html#string-literals">https://docs.python.org/2/reference/lexical_analysis.html#string-literals</a></li>
+<li>[2]<a href="https://docs.python.org/2/howto/unicode.html#unicode-literals-in-python-source-code">https://docs.python.org/2/howto/unicode.html#unicode-literals-in-python-source-code</a></li>
+<li>[3]<a href="http://legacy.python.org/dev/peps/pep-0223/">http://legacy.python.org/dev/peps/pep-0223/</a></li>
+</ul><p class="subheader">Category: <a href="../category/python.html">python</a>
+
+    Tagged: 
+    <a href="../tag/python.html">python </a>
+    <a href="../tag/str.html">str </a>
+    <a href="../tag/unicode.html">unicode </a>
+</p>
+
+
+
+            </article>
+
+<div class="pagination-centered">
+<h6 class="subheader">Page 1 of 1</h6>
+
+<p>
+
+</p>
+</div>
+
+
+
+            <!-- /#posts-list -->
+
+    </div>
+    <!-- End Main Content -->
+
+    <!-- Sidebar -->
+    <aside class="large-3 columns">
+        <h5 class="sidebar-title">Site</h5>
+        <ul class="side-nav">
+            <li><a href="../archives.html">Archives</a>
+            <li><a href="../tags.html">Tags</a>
+        </ul>
+
+		
+        <h5 class="sidebar-title">Categories</h5>
+        <ul class="side-nav">
+            <li><a href="../category/adt.html">adt</a></li>
+            <li><a href="../category/algorithm.html">algorithm</a></li>
+            <li><a href="../category/c.html">c</a></li>
+            <li><a href="../category/complexity.html">complexity</a></li>
+            <li><a href="../category/coroutine.html">coroutine</a></li>
+            <li><a href="../category/interview.html">interview</a></li>
+            <li><a href="../category/learn-plan.html">learn-plan</a></li>
+            <li><a href="../category/misc.html">misc</a></li>
+            <li><a href="../category/mysql.html">mysql</a></li>
+            <li><a href="../category/python.html">python</a></li>
+            <li><a href="../category/security.html">security</a></li>
+            <li><a href="../category/str.html">str</a></li>
+            <li><a href="../category/tcp-ip.html">tcp-ip</a></li>
+            <li><a href="../category/tree.html">tree</a></li>
+            <li><a href="../category/vim.html">vim</a></li>
+   
+        </ul>
+
+        <h5 class="sidebar-title">Links</h5>
+        <ul class="side-nav">
+            <li><a href="https://github.com/actberw">github</a></li>
+        </ul>
+		
+        <h5 class="sidebar-title">Social</h5>
+        <ul class="side-nav">
+            <li><a href="http://weibo.com/u/1950796544">weibo</a></li>
+        </ul>
+
+    </aside> <!-- End Sidebar -->
+
+</div> <!-- End Main Content and Sidebar -->
+
+
+<!-- Footer -->
+<footer class="row">
+    <div class="large-12 columns">
+        <hr />
+        <div class="row">
+            <div class="large-6 columns">
+              <!--                  <p>记录一些工作中的笔记 by actberw</p> -->
+            </div>
+            </div>
+    </div>
+</footer>

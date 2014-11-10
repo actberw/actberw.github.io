@@ -63,34 +63,61 @@
 
 
     <p>在算法分析中，当一个算法中包含递归调用时，其时间复杂度的分析会转化为一个递归方程求解。实际上，这个问题是数学上求解渐近阶的问题，而递归方程的形式多种多样，其求解方法也是不一而足，比较常用的有以下四种方法:</p>
-<ol>
-<li>
-<p>代入法(Substitution Method)<br />
-  代入法的基本步骤是先推测递归方程的显式解，然后用数学归纳法来验证该解是否合理。</p>
-</li>
-<li>
-<p>公式法(Master Method)<br />
-  设常数a &gt;= 1，b &gt; 1，f(n)为函数，T(n)为非负整数，T(n) = a T(n / b) + f(n)，则有:<br />
-    若f(n)=O($n^{log_{b}a−ε}$),ε&gt;0 ，那么T(n)=Θ($nlog_{b}a$) 。<br />
-    若f(n)=Θ($n^{log_{b}a}$) ，那么T(n)=Θ($n^{log_{b}a}logn$) 。<br />
-    若f(n)=Ω($n^{log_{b}a+ε}$),ε&gt;0 ，并且对于某个常数c &lt; 1和充分大的n有af(n/b)≤cf(n) ，那么T(n)=Θ(f(n)) 。<br />
-    比如常见的二分查找算法，时间复杂度的递推方程为T(n) = T(n / 2) + θ(1)，显然有nlogba=n0=Θ(1) ，满足Master定理第二条，可以得到其时间复杂度为T(n) = θ(log n)  </p>
-</li>
-<li>
-<p>迭代法(Iteration Method)<br />
-  迭代法的基本步骤是迭代地展开递归方程的右端，使之成为一个非递归的和式，然后通过对和式的估计来达到对方程左端即方程的解的估计。适用于: Tn = T(n-1 +N , Tn = Tn/2 + 1,   T(n) = 3T(n/4) + O(n), 对于Tn = 2Tn/2 +1, Tn = 2Tn/2 + n, 直接令n = $2^k$ 迭代</p>
-</li>
-<li>
-<p>母函数法<br />
-  参见参考[2],[4]和<a href="/mu-han-shu-generating-function.html">母函数介绍</a></p>
-</li>
-<li>
-<p>差分方程法(Difference Formula Method)<br />
-  参见参考[4]</p>
-</li>
-</ol>
+<h3>代入法(Substitution Method)</h3>
+<p>代入法的基本步骤是先推测递归方程的显式解，然后用数学归纳法来验证该解是否合理。</p>
+<h3>Recurrence Tree Method</h3>
+<p>For example consider the recurrence relation 
+$T(n) = T(\frac{n}{4}) + T(\frac{n}{2}) + cn^2$</p>
+<div class="highlight"><pre>       <span class="n">cn2</span>
+     <span class="o">/</span>      \
+ <span class="n">T</span><span class="p">(</span><span class="n">n</span><span class="o">/</span><span class="mi">4</span><span class="p">)</span>     <span class="n">T</span><span class="p">(</span><span class="n">n</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+
+
+<p>If we further break down the expression $T(\frac{n}{4})$ and $T(\frac{n}{2})$, 
+we get following recursion tree.</p>
+<div class="highlight"><pre>              <span class="n">cn2</span>
+          <span class="o">/</span>         <span class="err">\</span>      
+       <span class="n">c</span><span class="p">(</span><span class="n">n2</span><span class="p">)</span><span class="o">/</span><span class="mi">16</span>       <span class="n">c</span><span class="p">(</span><span class="n">n2</span><span class="p">)</span><span class="o">/</span><span class="mi">4</span>
+      <span class="o">/</span>      <span class="err">\</span>          <span class="o">/</span>     \
+  <span class="n">T</span><span class="p">(</span><span class="n">n</span><span class="o">/</span><span class="mi">16</span><span class="p">)</span>     <span class="n">T</span><span class="p">(</span><span class="n">n</span><span class="o">/</span><span class="mi">8</span><span class="p">)</span>  <span class="n">T</span><span class="p">(</span><span class="n">n</span><span class="o">/</span><span class="mi">8</span><span class="p">)</span>    <span class="n">T</span><span class="p">(</span><span class="n">n</span><span class="o">/</span><span class="mi">4</span><span class="p">)</span>
+</pre></div>
+
+
+<p>Breaking down further gives us following</p>
+<div class="highlight"><pre>                 <span class="n">cn2</span>
+            <span class="o">/</span>            <span class="err">\</span>      
+       <span class="n">c</span><span class="p">(</span><span class="n">n2</span><span class="p">)</span><span class="o">/</span><span class="mi">16</span>          <span class="n">c</span><span class="p">(</span><span class="n">n2</span><span class="p">)</span><span class="o">/</span><span class="mi">4</span>
+       <span class="o">/</span>      <span class="err">\</span>            <span class="o">/</span>      \
+<span class="n">c</span><span class="p">(</span><span class="n">n2</span><span class="p">)</span><span class="o">/</span><span class="mi">256</span>   <span class="n">c</span><span class="p">(</span><span class="n">n2</span><span class="p">)</span><span class="o">/</span><span class="mi">64</span>  <span class="n">c</span><span class="p">(</span><span class="n">n2</span><span class="p">)</span><span class="o">/</span><span class="mi">64</span>    <span class="n">c</span><span class="p">(</span><span class="n">n2</span><span class="p">)</span><span class="o">/</span><span class="mi">16</span>
+ <span class="o">/</span>    <span class="err">\</span>      <span class="o">/</span>    <span class="err">\</span>    <span class="o">/</span>    <span class="err">\</span>       <span class="o">/</span>    \
+</pre></div>
+
+
+<p>To know the value of T(n), we need to calculate sum of tree 
+nodes level by level. If we sum the above tree level by level, 
+we get the following series
+$T(n)  = c(n^2 + \frac{5}{16}(n^2) + \frac{25}{256}(n^2)) + ....$
+The above series is geometrical progression with ratio $\frac{5}{16}$.</p>
+<p>To get an upper bound, we can sum the infinite series. </p>
+<p>We get the sum as $(n^2)/(1 - \frac{5}{16})$ which is $O(n^2)$</p>
+<h3>公式法(Master Method)</h3>
+<p>设常数a &gt;= 1，b &gt; 1，f(n)为函数，T(n)为非负整数，T(n) = a T(n / b) + f(n)，则有:  </p>
+<ul>
+<li>若f(n)=O($n^{log_{b}a−ε}$),ε&gt;0 ，那么T(n)=Θ($nlog_{b}a$) 。  </li>
+<li>若f(n)=Θ($n^{log_{b}a}$) ，那么T(n)=Θ($n^{log_{b}a}logn$) 。  </li>
+<li>若f(n)=Ω($n^{log_{b}a+ε}$),ε&gt;0 ，并且对于某个常数c &lt; 1和充分大的n有af(n/b)≤cf(n) ，那么T(n)=Θ(f(n)) 。  </li>
+</ul>
+<p>比如常见的二分查找算法，时间复杂度的递推方程为T(n) = T(n / 2) + θ(1)，显然有nlogba=n0=Θ(1) ，满足Master定理第二条，可以得到其时间复杂度为T(n) = θ(log n)  </p>
+<h3>迭代法(Iteration Method)</h3>
+<p>迭代法的基本步骤是迭代地展开递归方程的右端，使之成为一个非递归的和式，然后通过对和式的估计来达到对方程左端即方程的解的估计。适用于: Tn = T(n-1 +N , Tn = Tn/2 + 1,   T(n) = 3T(n/4) + O(n), 对于Tn = 2Tn/2 +1, Tn = 2Tn/2 + n, 直接令n = $2^k$ 迭代</p>
+<h3>母函数法</h3>
+<p>参见参考[2],[4]和<a href="/mu-han-shu-generating-function.html">母函数介绍</a></p>
+<h3>差分方程法(Difference Formula Method)</h3>
+<p>参见参考[4]</p>
 <p>refer:</p>
 <ul>
+<li>[0]<a href="http://www.geeksforgeeks.org/analysis-algorithm-set-4-master-method-solving-recurrences/">http://www.geeksforgeeks.org/analysis-algorithm-set-4-master-method-solving-recurrences/</a></li>
 <li>[1]<a href="http://www.gocalf.com/blog/algorithm-complexity-and-master-theorem.html">http://www.gocalf.com/blog/algorithm-complexity-and-master-theorem.html</a></li>
 <li>[2]<a href="http://www.cnblogs.com/python27/archive/2011/12/09/2282486.html">http://www.cnblogs.com/python27/archive/2011/12/09/2282486.html</a></li>
 <li>[3]<a href="http://blog.csdn.net/metasearch/article/details/4428865">http://blog.csdn.net/metasearch/article/details/4428865</a></li>
@@ -127,11 +154,13 @@
             <li><a href="../../category/complexity.html">complexity</a></li>
             <li><a href="../../category/coroutine.html">coroutine</a></li>
             <li><a href="../../category/interview.html">interview</a></li>
+            <li><a href="../../category/learn-plan.html">learn-plan</a></li>
             <li><a href="../../category/misc.html">misc</a></li>
             <li><a href="../../category/mysql.html">mysql</a></li>
             <li><a href="../../category/python.html">python</a></li>
             <li><a href="../../category/security.html">security</a></li>
-            <li><a href="../../category/sort.html">sort</a></li>
+            <li><a href="../../category/str.html">str</a></li>
+            <li><a href="../../category/tcp-ip.html">tcp-ip</a></li>
             <li><a href="../../category/tree.html">tree</a></li>
             <li><a href="../../category/vim.html">vim</a></li>
    

@@ -58,22 +58,84 @@
         title="Permalink to 随机数范围">随机数范围</a></h3>
     </header>
 
-<h6 class="subheader" title="2014-08-06T21:44:18">Wed 06 August 2014
+<h6 class="subheader" title="2014-09-05T00:00:00">Fri 05 September 2014
 </h6>
 
 
-    <p>refer:</p>
+    <h3>缩小范围</h3>
+<div class="highlight"><pre><span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">fac</span> <span class="o">=</span> <span class="p">(</span><span class="n">RAND_MAX</span> <span class="o">+</span> <span class="mi">1u</span><span class="p">)</span> <span class="o">/</span> <span class="n">N</span><span class="p">;</span>
+<span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">limit</span> <span class="o">=</span> <span class="n">fac</span> <span class="o">*</span> <span class="n">N</span><span class="p">;</span>
+<span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">r</span><span class="p">;</span>
+<span class="k">do</span> <span class="p">{</span>
+    <span class="n">r</span> <span class="o">=</span> <span class="n">rand</span><span class="p">();</span>
+<span class="p">}</span> <span class="k">while</span><span class="p">(</span><span class="n">r</span> <span class="o">&gt;=</span> <span class="n">limit</span><span class="p">);</span>
+<span class="k">return</span> <span class="n">r</span> <span class="o">/</span> <span class="n">fac</span><span class="p">;</span>
+</pre></div>
+
+
+<h3>扩大范围</h3>
+<blockquote>
+<p>rand()产生1~7之间的随机数，如何用rand()函数产生1~10之间的随机数</p>
+</blockquote>
+<p>扩大范围的处理是先用类似(rand7()-1)*7+rand7()) 构造一个大范围，然后在缩小范围处理.</p>
+<div class="highlight"><pre><span class="c1">// 循环实现 </span>
+<span class="k">int</span> <span class="n">rand10</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">int</span> <span class="n">fac</span> <span class="o">=</span> <span class="mh">49</span> <span class="o">/</span> <span class="mh">10</span><span class="p">;</span>
+    <span class="k">int</span> <span class="n">limit</span> <span class="o">=</span> <span class="n">fac</span> <span class="o">*</span> <span class="mh">10</span><span class="p">;</span>
+    <span class="k">int</span> <span class="n">x</span> <span class="o">=</span> <span class="mh">0</span><span class="p">;</span>
+    <span class="k">do</span> <span class="p">{</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="p">(</span><span class="n">rand7</span><span class="p">()</span><span class="o">-</span><span class="mh">1</span><span class="p">)</span><span class="o">*</span><span class="mh">7</span><span class="o">+</span><span class="n">rand7</span><span class="p">();</span>
+    <span class="p">}</span><span class="k">while</span><span class="p">(</span><span class="n">x</span> <span class="o">&gt;=</span> <span class="n">limit</span><span class="p">);</span>                 <span class="c1">//大于40的，即41~49区间的取值舍弃</span>
+
+    <span class="k">return</span> <span class="n">x</span> <span class="o">/</span> <span class="n">fac</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c1">// 递归实现 </span>
+<span class="k">int</span> <span class="n">rand10</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">int</span> <span class="n">fac</span> <span class="o">=</span> <span class="mh">49</span> <span class="o">/</span> <span class="mh">10</span><span class="p">;</span>
+    <span class="k">int</span> <span class="n">limit</span> <span class="o">=</span> <span class="n">fac</span> <span class="o">*</span> <span class="mh">10</span><span class="p">;</span>
+    <span class="k">int</span> <span class="n">x</span> <span class="o">=</span> <span class="p">(</span><span class="n">rand7</span><span class="p">()</span><span class="o">-</span><span class="mh">1</span><span class="p">)</span><span class="o">*</span><span class="mh">7</span><span class="o">+</span><span class="n">rand7</span><span class="p">();</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">x</span> <span class="o">&gt;=</span> <span class="n">limit</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">rand10</span><span class="p">()</span>
+    <span class="k">else</span>
+        <span class="k">return</span> <span class="n">x</span> <span class="o">/</span> <span class="n">fac</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<h3>概率问题</h3>
+<p>refer:</p>
+<blockquote>
+<p>已知随机数生成函数f()，返回0的概率是60%，返回1的概率是40%。根据f()求随机数函数g()，使返回0和1的概率是50%，不能用已有的随机生成库函数。</p>
+</blockquote>
+<p>分析: 调用f()两次即可，会出现4种结果(0,0), (0,1), (1,0), (1,1)，其中出现(0,1), (1,0)的概率是一样的，可以构造出等概率事件，比如出现(0,1)可返回0，出现(1,0)可返回1，如果出现其他两种情况则舍掉重新调用。</p>
+<div class="highlight"><pre><span class="kt">int</span> <span class="nf">rand</span><span class="p">()</span> <span class="p">{</span>
+<span class="kt">int</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">;</span>
+<span class="k">while</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">a</span> <span class="o">=</span> <span class="n">f</span><span class="p">();</span>
+    <span class="n">b</span> <span class="o">=</span> <span class="n">f</span><span class="p">();</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">a</span> <span class="o">==</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">b</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">a</span> <span class="o">==</span> <span class="mi">1</span> <span class="o">&amp;&amp;</span> <span class="n">b</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="k">return</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+
+
 <ul>
-<li><a href="http://blog.csdn.net/hackbuteer1/article/details/7486704">http://blog.csdn.net/hackbuteer1/article/details/7486704</a></li>
-<li><a href="http://yaronspace.cn/blog/archives/1326">http://yaronspace.cn/blog/archives/1326</a></li>
-<li><a href="http://stackoverflow.com/questions/2999075/generate-a-random-number-within-range/2999130#2999130">http://stackoverflow.com/questions/2999075/generate-a-random-number-within-range/2999130#2999130</a></li>
-<li><a href="http://stackoverflow.com/questions/3746814/create-a-random-number-less-than-a-max-given-value">http://stackoverflow.com/questions/3746814/create-a-random-number-less-than-a-max-given-value</a></li>
+<li><a href="http://c-faq.com/lib/randrange.html">http://c-faq.com/lib/randrange.html</a></li>
+<li><a href="http://www.dewen.io/q/15492?sort=newest">http://www.dewen.io/q/15492?sort=newest</a></li>
+<li><a href="http://www.byywee.com/page/M0/S906/906096.html">http://www.byywee.com/page/M0/S906/906096.html</a></li>
+<li><a href="http://www.verydemo.com/demo_c180_i34806.html">http://www.verydemo.com/demo_c180_i34806.html</a></li>
+<li><a href="http://sumnous.github.io/blog/2014/05/13/random-pick-function/">http://sumnous.github.io/blog/2014/05/13/random-pick-function/</a></li>
 </ul>
 <p class="subheader">Category: <a href="../../category/algorithm.html">algorithm</a>
 
     Tagged: 
     <a href="../../tag/algorithm.html">algorithm </a>
     <a href="../../tag/random.html">random </a>
+    <a href="../../tag/c.html">c </a>
 </p>
 
 
@@ -100,11 +162,13 @@
             <li><a href="../../category/complexity.html">complexity</a></li>
             <li><a href="../../category/coroutine.html">coroutine</a></li>
             <li><a href="../../category/interview.html">interview</a></li>
+            <li><a href="../../category/learn-plan.html">learn-plan</a></li>
             <li><a href="../../category/misc.html">misc</a></li>
             <li><a href="../../category/mysql.html">mysql</a></li>
             <li><a href="../../category/python.html">python</a></li>
             <li><a href="../../category/security.html">security</a></li>
-            <li><a href="../../category/sort.html">sort</a></li>
+            <li><a href="../../category/str.html">str</a></li>
+            <li><a href="../../category/tcp-ip.html">tcp-ip</a></li>
             <li><a href="../../category/tree.html">tree</a></li>
             <li><a href="../../category/vim.html">vim</a></li>
    

@@ -61,8 +61,9 @@
 </h6>
 
 
-<p>该命令用来设置限制新文件权限的掩码, 默认是022, umask 命令允许你设定文件创建时的缺省模式，对应每一类用户(文件属主、同组用户、其他用户)存在一个相应的umask值中的数字。对于文件来说，这一数字的最 大值分别是6。系统不允许你在创建一个文本文件时就赋予它执行权限，必须在创建后用chmod命令增加这一权限。目录则允许设置执行权限，这样针对目录来 说，umask中各个数字最大可以到7。</p>
-<p>所以对于默认的(022) 文件的权限是:644(-rw-r--r--),  目录是:755(drwxr-xr-x)</p><p class="subheader">Category: <a href="../category/misc.html">misc</a>
+<p>该命令用来设置限制新文件权限的掩码, 默认是022, umask 命令允许你设定文件创建时的缺省模式，对应每一类用户(文件属主、同组用户、其他用户)存在一个相应的umask值中的数字。对于文件来说，这一数字的最 大值分别是6。系统不允许你在创建一个文本文件时就赋予它执行权限，必须在创建后用chmod命令增加这一权限。目录则允许设置执行权限，这样针对目录来 说，umask中各个数字最大可以到7。
+C = P &amp; (~Q) , C: final file's permission, P: requested permission, Q: mask 
+所以对于默认的(022) 文件的权限是:644(-rw-r--r--),  目录是:755(drwxr-xr-x)</p><p class="subheader">Category: <a href="../category/misc.html">misc</a>
 
     Tagged: 
     <a href="../tag/linux.html">linux </a>
@@ -105,11 +106,13 @@
             <li><a href="../category/complexity.html">complexity</a></li>
             <li><a href="../category/coroutine.html">coroutine</a></li>
             <li><a href="../category/interview.html">interview</a></li>
+            <li><a href="../category/learn-plan.html">learn-plan</a></li>
             <li><a href="../category/misc.html">misc</a></li>
             <li><a href="../category/mysql.html">mysql</a></li>
             <li><a href="../category/python.html">python</a></li>
             <li><a href="../category/security.html">security</a></li>
-            <li><a href="../category/sort.html">sort</a></li>
+            <li><a href="../category/str.html">str</a></li>
+            <li><a href="../category/tcp-ip.html">tcp-ip</a></li>
             <li><a href="../category/tree.html">tree</a></li>
             <li><a href="../category/vim.html">vim</a></li>
    

@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8" />
+    <!-- Set the viewport width to device width for mobile -->
+    <meta name="viewport" content="width=device-width" />
+
+    <title>记录一些工作中的笔记 - object model</title>
+
+    <link rel="stylesheet" href="../theme/css/normalize.css" />
+    <link rel="stylesheet" href="../theme/css/foundation.min.css" />
+    <link rel="stylesheet" href="../theme/css/style.css" />
+    <link rel="stylesheet" href="../theme/css/pygments.css" />	
+    <script src="../theme/js/vendor/custom.modernizr.js"></script>
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        "HTML-CSS": {
+      styles: {
+        ".MathJax .mo, .MathJax .mi": {color: "black ! important"}}
+          },
+            tex2jax: {inlineMath: [['$','$'], ['\\\\(','\\\\)']],processEscapes: true}
+      });
+    </script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script></script>
+</head>
+
+<body>
+
+<!-- Nav Bar -->
+<nav>
+<div class="top-bar">
+<div class="row">
+    <div class="large-9 large-centered columns">
+	    <h1><a href="..">记录一些工作中的笔记</a></h1>
+    </div>
+</div>
+</div>
+
+<!-- Show menu items and pages -->
+<div class="row">
+<div class="large-9 columns">
+    <ul class="button-group navigation">
+
+    </ul>
+</div>
+</div>
+</nav>
+<!-- End Nav -->
+
+
+<!-- Main Page Content and Sidebar -->
+<div class="row">
+
+    <!-- Main Blog Content -->
+    <div class="large-9 columns">
+        
+        
+
+            <article>
+                <a href="../posts/python/type.html"><h3 class="article-title">python  type system</h3></a>
+<h6 class="subheader" title="2014-11-02T14:00:00">Sun 02 November 2014
+</h6>
+
+
+<p>Up to Python 2.1 the concept of class was unrelated to the concept of type, and old-style classes were the only flavor available. For an old-style class, the statement x.<strong>class</strong> provides the class of x, but type(x) is always &lt;type 'instance'>. This reflects the fact that all old-style instances, independent of their class, are implemented with a single built-in type, called instance. New-style classes were introduced in Python 2.2 to unify the concepts of class and type. The term type is equivalent to the term class, a new-style class is simply a user-defined type. If x is an instance of a new-style class, then type(x) is typically the same as x.<strong>class</strong> . this post is about new-style class or type.</p>
+<h3>object defination</h3>
+<p>We define an object by saying it has:
+    - Identity
+    - A value
+    - A type
+    - One or more bases</p>
+<p>In python, everything is an object.</p>
+<h3>object and relationship</h3>
+<p>These are the subclass-superclass relationship (a.k.a. specialization or inheritance, "man is an animal", etc.) and the type-instance relationship (a.k.a instantiation, "Joe is a man", etc.). &lt;type 'type'> and &lt;type 'object'> are two primitive objects of the system. If an object is an instance of &lt;type 'type'>, then it is a type, otherwise it is not a type(参见<a href="/posts/python/metaclass.html">python元类</a>). &lt;type 'type'> is an instance of itself and a subclass of &lt;type 'object'>. &lt;type 'object'> is an instance of &lt;type 'type'> and a subclass of no object. </p>
+<div class="highlight"><pre><span class="o">&gt;&gt;&gt;</span> <span class="n">isinstance</span><span class="p">(</span><span class="n">object</span><span class="p">,</span> <span class="n">object</span><span class="p">)</span> <span class="mi">1</span>
+<span class="n">True</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">isinstance</span><span class="p">(</span><span class="n">type</span><span class="p">,</span> <span class="n">object</span><span class="p">)</span> <span class="mi">2</span>
+<span class="n">True</span>
+</pre></div>
+
+
+<p>Type objects share the following traits:</p>
+<div class="highlight"><pre><span class="o">-</span> <span class="n">They</span> <span class="n">are</span> <span class="n">used</span> <span class="n">to</span> <span class="n">represent</span> <span class="n">abstract</span> <span class="n">data</span> <span class="n">types</span> <span class="n">in</span> <span class="n">programs</span>
+<span class="o">-</span> <span class="n">They</span> <span class="n">can</span> <span class="n">be</span> <span class="n">subclassed</span>
+<span class="o">-</span> <span class="n">They</span> <span class="n">can</span> <span class="n">be</span> <span class="n">instantiated</span>
+<span class="o">-</span> <span class="n">The</span> <span class="n">type</span> <span class="n">of</span> <span class="n">any</span> <span class="n">type</span> <span class="n">object</span> <span class="n">is</span> <span class="o">&lt;</span><span class="n">type</span> <span class="err">&#39;</span><span class="n">type</span><span class="err">&#39;</span><span class="o">&gt;</span><span class="p">.</span>
+</pre></div>
+
+
+<h3>more built-in types</h3>
+<p><img alt="built-in types" src="/img/builtin_types.png" /><br />
+solid line means inheritance from, dashed line means an instance of.<br />
+If we created a new object by subclassing &lt;type 'type'> it would be in the leftmost space, and would also be both a subclass and instance of &lt;type 'type'></p>
+<p>refer:</p>
+<ul>
+<li>[0]<a href="http://www.cafepy.com/article/python_types_and_objects/python_types_and_objects.html">http://www.cafepy.com/article/python_types_and_objects/python_types_and_objects.html</a></li>
+</ul><p class="subheader">Category: <a href="../category/python.html">python</a>
+
+    Tagged: 
+    <a href="../tag/python.html">python </a>
+    <a href="../tag/type.html">type </a>
+    <a href="../tag/object-model.html">object model </a>
+    <a href="../tag/class.html">class </a>
+</p>
+
+
+
+            </article>
+
+<div class="pagination-centered">
+<h6 class="subheader">Page 1 of 1</h6>
+
+<p>
+
+</p>
+</div>
+
+
+
+            <!-- /#posts-list -->
+
+    </div>
+    <!-- End Main Content -->
+
+    <!-- Sidebar -->
+    <aside class="large-3 columns">
+        <h5 class="sidebar-title">Site</h5>
+        <ul class="side-nav">
+            <li><a href="../archives.html">Archives</a>
+            <li><a href="../tags.html">Tags</a>
+        </ul>
+
+		
+        <h5 class="sidebar-title">Categories</h5>
+        <ul class="side-nav">
+            <li><a href="../category/adt.html">adt</a></li>
+            <li><a href="../category/algorithm.html">algorithm</a></li>
+            <li><a href="../category/c.html">c</a></li>
+            <li><a href="../category/complexity.html">complexity</a></li>
+            <li><a href="../category/coroutine.html">coroutine</a></li>
+            <li><a href="../category/interview.html">interview</a></li>
+            <li><a href="../category/learn-plan.html">learn-plan</a></li>
+            <li><a href="../category/misc.html">misc</a></li>
+            <li><a href="../category/mysql.html">mysql</a></li>
+            <li><a href="../category/python.html">python</a></li>
+            <li><a href="../category/security.html">security</a></li>
+            <li><a href="../category/str.html">str</a></li>
+            <li><a href="../category/tcp-ip.html">tcp-ip</a></li>
+            <li><a href="../category/tree.html">tree</a></li>
+            <li><a href="../category/vim.html">vim</a></li>
+   
+        </ul>
+
+        <h5 class="sidebar-title">Links</h5>
+        <ul class="side-nav">
+            <li><a href="https://github.com/actberw">github</a></li>
+        </ul>
+		
+        <h5 class="sidebar-title">Social</h5>
+        <ul class="side-nav">
+            <li><a href="http://weibo.com/u/1950796544">weibo</a></li>
+        </ul>
+
+    </aside> <!-- End Sidebar -->
+
+</div> <!-- End Main Content and Sidebar -->
+
+
+<!-- Footer -->
+<footer class="row">
+    <div class="large-12 columns">
+        <hr />
+        <div class="row">
+            <div class="large-6 columns">
+              <!--                  <p>记录一些工作中的笔记 by actberw</p> -->
+            </div>
+            </div>
+    </div>
+</footer>

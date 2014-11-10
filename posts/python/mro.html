@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8" />
+    <!-- Set the viewport width to device width for mobile -->
+    <meta name="viewport" content="width=device-width" />
+
+    <title>python 多重继承方法解析顺序</title>
+
+    <link rel="stylesheet" href="../../theme/css/normalize.css" />
+    <link rel="stylesheet" href="../../theme/css/foundation.min.css" />
+    <link rel="stylesheet" href="../../theme/css/style.css" />
+    <link rel="stylesheet" href="../../theme/css/pygments.css" />	
+    <script src="../../theme/js/vendor/custom.modernizr.js"></script>
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        "HTML-CSS": {
+      styles: {
+        ".MathJax .mo, .MathJax .mi": {color: "black ! important"}}
+          },
+            tex2jax: {inlineMath: [['$','$'], ['\\\\(','\\\\)']],processEscapes: true}
+      });
+    </script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script></script>
+</head>
+
+<body>
+
+<!-- Nav Bar -->
+<nav>
+<div class="top-bar">
+<div class="row">
+    <div class="large-9 large-centered columns">
+	    <h1><a href="../..">记录一些工作中的笔记</a></h1>
+    </div>
+</div>
+</div>
+
+<!-- Show menu items and pages -->
+<div class="row">
+<div class="large-9 columns">
+    <ul class="button-group navigation">
+
+    </ul>
+</div>
+</div>
+</nav>
+<!-- End Nav -->
+
+
+<!-- Main Page Content and Sidebar -->
+<div class="row">
+
+    <!-- Main Blog Content -->
+    <div class="large-9 columns">
+<article>
+    <header>
+        <h3 class="article-title"><a href="../../posts/python/mro.html" rel="bookmark"
+        title="Permalink to python 多重继承方法解析顺序">python 多重继承方法解析顺序</a></h3>
+    </header>
+
+<h6 class="subheader" title="2014-11-02T13:00:00">Sun 02 November 2014
+</h6>
+
+
+    <p>pyhton 支持多重继承, 方法(or attribute)查找顺序称为mro, 目前有三种mro: </p>
+<ul>
+<li>classic</li>
+<li>python 2.2 new-style</li>
+<li>c3</li>
+</ul>
+<p>其中只有c3算法是2.3+广泛使用的.</p>
+<h3>classic mro</h3>
+<p>classic mro 采用的是简单的广度有限算法(DFS), 中序遍历. 查找过程中第一个匹配的返回. 这种算法简单情况下没问题，但是diamond 继承时就出现问题了, 例如:</p>
+<div class="highlight"><pre><span class="n">class</span> <span class="n">A</span><span class="o">:</span>
+  <span class="n">def</span> <span class="n">save</span><span class="p">(</span><span class="n">self</span><span class="p">)</span><span class="o">:</span> <span class="n">pass</span>
+
+<span class="n">class</span> <span class="n">B</span><span class="p">(</span><span class="n">A</span><span class="p">)</span><span class="o">:</span> <span class="n">pass</span>
+
+<span class="n">class</span> <span class="n">C</span><span class="p">(</span><span class="n">A</span><span class="p">)</span><span class="o">:</span>
+  <span class="n">def</span> <span class="n">save</span><span class="p">(</span><span class="n">self</span><span class="p">)</span><span class="o">:</span> <span class="n">pass</span>
+
+<span class="n">class</span> <span class="n">D</span><span class="p">(</span><span class="n">B</span><span class="p">,</span> <span class="n">C</span><span class="p">)</span><span class="o">:</span> <span class="n">pass</span>
+</pre></div>
+
+
+<p>对于D classic mro查找方法的顺序为: D, B, A, C, A, 调用save方法时A的save方法会被调用, 正确情况应该是C的save方法</p>
+<h3>python 2.2 new-style</h3>
+<p>针对上面的问题2.2中查找算法做了下改进,依然是中序遍历, 不过对于mro中多次出现的类, 只保留最后出现的那个，其他的删除,  上面的用新的mro算法就是: D, B, C, A. 但是这种算法依然有不适用的情况, 参见refer[0].</p>
+<h3>c3</h3>
+<p>在复杂的继承中满足所有情况的mro规则就是monotonic, 简单的标记介绍: </p>
+<p>C1 C2 ... CN
+表示类列表(list of classes)[C1, C2, ... , CN], 其中表头是第一个项C1(head=C1), 表尾是除了表头的其他项(tail=C2 ... CN.)</p>
+<p>C + (C1 C2 ... CN) = C C1 C2 ... CN</p>
+<p>表示列表相加 [C] + [C1, C2, ... ,CN].</p>
+<p>如果要计算L[C](the linearization L[C] of the class C). 规则如下:</p>
+<blockquote>
+<p>the linearization of C is the sum of C plus the merge of the linearizations of the parents and the list of the parents.</p>
+</blockquote>
+<p>符号表示为:</p>
+<div class="highlight"><pre><span class="n">L</span><span class="p">[</span><span class="n">C</span><span class="p">(</span><span class="n">B1</span> <span class="p">...</span> <span class="n">BN</span><span class="p">)]</span> <span class="o">=</span> <span class="n">C</span> <span class="o">+</span> <span class="n">merge</span><span class="p">(</span><span class="n">L</span><span class="p">[</span><span class="n">B1</span><span class="p">]</span> <span class="p">...</span> <span class="n">L</span><span class="p">[</span><span class="n">BN</span><span class="p">],</span> <span class="n">B1</span> <span class="p">...</span> <span class="n">BN</span><span class="p">)</span>
+</pre></div>
+
+
+<p>merge的计算遵循下面的规则:</p>
+<blockquote>
+<p>take the head of the first list; if this head is not in the tail of any of the other lists, then add it to the linearization of C and remove it from the lists in the merge, otherwise look at the head of the next list and take it, if it is a good head. Then repeat the operation until all the class are removed or it is impossible to find good heads. In this case, it is impossible to construct the merge, Python 2.3 will refuse to create the class C and will raise an exception</p>
+</blockquote>
+<h3>bad mro</h3>
+<p>A MRO is bad when it breaks such fundamental properties as local precedence ordering and monotonicity. </p>
+<p>refer:</p>
+<ul>
+<li>[0]<a href="http://python-history.blogspot.com/2010/06/method-resolution-order.html">http://python-history.blogspot.com/2010/06/method-resolution-order.html</a></li>
+<li>[1]<a href="https://www.python.org/download/releases/2.3/mro/">https://www.python.org/download/releases/2.3/mro/</a></li>
+</ul>
+<p class="subheader">Category: <a href="../../category/python.html">python</a>
+
+    Tagged: 
+    <a href="../../tag/python.html">python </a>
+    <a href="../../tag/mro.html">mro </a>
+    <a href="../../tag/c3.html">c3 </a>
+</p>
+
+
+
+
+</article>
+    </div>
+    <!-- End Main Content -->
+
+    <!-- Sidebar -->
+    <aside class="large-3 columns">
+        <h5 class="sidebar-title">Site</h5>
+        <ul class="side-nav">
+            <li><a href="../../archives.html">Archives</a>
+            <li><a href="../../tags.html">Tags</a>
+        </ul>
+
+		
+        <h5 class="sidebar-title">Categories</h5>
+        <ul class="side-nav">
+            <li><a href="../../category/adt.html">adt</a></li>
+            <li><a href="../../category/algorithm.html">algorithm</a></li>
+            <li><a href="../../category/c.html">c</a></li>
+            <li><a href="../../category/complexity.html">complexity</a></li>
+            <li><a href="../../category/coroutine.html">coroutine</a></li>
+            <li><a href="../../category/interview.html">interview</a></li>
+            <li><a href="../../category/learn-plan.html">learn-plan</a></li>
+            <li><a href="../../category/misc.html">misc</a></li>
+            <li><a href="../../category/mysql.html">mysql</a></li>
+            <li><a href="../../category/python.html">python</a></li>
+            <li><a href="../../category/security.html">security</a></li>
+            <li><a href="../../category/str.html">str</a></li>
+            <li><a href="../../category/tcp-ip.html">tcp-ip</a></li>
+            <li><a href="../../category/tree.html">tree</a></li>
+            <li><a href="../../category/vim.html">vim</a></li>
+   
+        </ul>
+
+        <h5 class="sidebar-title">Links</h5>
+        <ul class="side-nav">
+            <li><a href="https://github.com/actberw">github</a></li>
+        </ul>
+		
+        <h5 class="sidebar-title">Social</h5>
+        <ul class="side-nav">
+            <li><a href="http://weibo.com/u/1950796544">weibo</a></li>
+        </ul>
+
+    </aside> <!-- End Sidebar -->
+
+</div> <!-- End Main Content and Sidebar -->
+
+
+<!-- Footer -->
+<footer class="row">
+    <div class="large-12 columns">
+        <hr />
+        <div class="row">
+            <div class="large-6 columns">
+              <!--                  <p>记录一些工作中的笔记 by actberw</p> -->
+            </div>
+            </div>
+    </div>
+</footer>

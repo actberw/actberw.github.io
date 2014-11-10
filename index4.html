@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8" />
+    <!-- Set the viewport width to device width for mobile -->
+    <meta name="viewport" content="width=device-width" />
+
+    <title>记录一些工作中的笔记</title>
+
+    <link rel="stylesheet" href="./theme/css/normalize.css" />
+    <link rel="stylesheet" href="./theme/css/foundation.min.css" />
+    <link rel="stylesheet" href="./theme/css/style.css" />
+    <link rel="stylesheet" href="./theme/css/pygments.css" />	
+    <script src="./theme/js/vendor/custom.modernizr.js"></script>
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        "HTML-CSS": {
+      styles: {
+        ".MathJax .mo, .MathJax .mi": {color: "black ! important"}}
+          },
+            tex2jax: {inlineMath: [['$','$'], ['\\\\(','\\\\)']],processEscapes: true}
+      });
+    </script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script></script>
+</head>
+
+<body>
+
+<!-- Nav Bar -->
+<nav>
+<div class="top-bar">
+<div class="row">
+    <div class="large-9 large-centered columns">
+	    <h1><a href=".">记录一些工作中的笔记</a></h1>
+    </div>
+</div>
+</div>
+
+<!-- Show menu items and pages -->
+<div class="row">
+<div class="large-9 columns">
+    <ul class="button-group navigation">
+
+    </ul>
+</div>
+</div>
+</nav>
+<!-- End Nav -->
+
+
+<!-- Main Page Content and Sidebar -->
+<div class="row">
+
+    <!-- Main Blog Content -->
+    <div class="large-9 columns">
+        
+        
+
+
+            <article>
+                <a href="./posts/coroutine/asymmetric-vs-symmetric.html"><h3 class="article-title">asymmetric coroutine和symmetric coroutine</h3></a>
+<h6 class="subheader" title="2014-09-01T00:00:00">Mon 01 September 2014
+</h6>
+
+
+<p>http://blog.csdn.net/wzzfeitian/article/details/8832017
+http://www.crystalclearsoftware.com/soc/coroutine/coroutine/symmetric_coroutines.html
+https://blog.kghost.info/2011/12/20/abstract-control-2-stackful-coroutine/</p>
+<p>https://blog.kghost.info/2011/11/15/abstract-control-1-stackless-coroutine/
+https://blog.kghost.info/2011/12/20/abstract-control-2-stackful-coroutine/</p><p class="subheader">Category: <a href="./category/coroutine.html">coroutine</a>
+
+</p>
+
+
+
+                <a class="button radius secondary small right" href="./posts/coroutine/asymmetric-vs-symmetric.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="./posts/c/concatenation.html"><h3 class="article-title">c字符串续行</h3></a>
+<h6 class="subheader" title="2014-08-21T00:00:00">Thu 21 August 2014
+</h6>
+
+
+<p>示例:  </p>
+<div class="highlight"><pre><span class="kt">char</span> <span class="o">*</span><span class="n">my_string</span> <span class="o">=</span> <span class="s">&quot;Line 1 \</span>
+<span class="s">                   Line 2&quot;</span><span class="p">;</span>
+
+<span class="kt">char</span> <span class="o">*</span><span class="n">my_string</span> <span class="o">=</span> <span class="s">&quot;Line 1 &quot;</span>
+                  <span class="s">&quot;Line 2&quot;</span><span class="p">;</span>
+</pre></div>
+
+
+<p>注: With a #define, you have to add an extra '\' to concatenate the two strings:</p>
+<div class="highlight"><pre><span class="cp">#define kMyString &quot;Line 1&quot;\</span>
+<span class="cp">                  &quot;Line 2&quot;;</span>
+</pre></div>
+
+
+<p>refer:</p>
+<ul>
+<li>[0]<a href="http://stackoverflow.com/questions/797318/how-to-split-a-string-literal-across-multiple-lines-in-c-objective-c">http://stackoverflow.com/questions/797318/how-to-split-a-string-literal-across-multiple-lines-in-c-objective-c</a></li>
+</ul><p class="subheader">Category: <a href="./category/c.html">c</a>
+
+</p>
+
+
+
+                <a class="button radius secondary small right" href="./posts/c/concatenation.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="./posts/python/line-join.html"><h3 class="article-title">python续行</h3></a>
+<h6 class="subheader" title="2014-08-21T00:00:00">Thu 21 August 2014
+</h6>
+
+
+<p>pep8建议一行不要超过79个字符, python支持把逻辑行拆分成多个物理行(在编译时处理), 遵循一下规则.</p>
+<h3>显式连接</h3>
+<p>当一个物理行以反斜杠(backslash '\')结尾时(反斜杠不是字符串和注释的一部分), 会跟后面的行合并成一个逻辑行(删除掉反斜杠和后面的换行符), 但反斜杠后面不能加注释, 也不能用来续接关键词.</p>
+<div class="highlight"><pre>    <span class="k">if</span> <span class="mi">1900</span> <span class="o">&lt;</span> <span class="n">year</span> <span class="o">&lt;</span> <span class="mi">2100</span> <span class="n">and</span> <span class="mi">1</span> <span class="o">&lt;=</span> <span class="n">month</span> <span class="o">&lt;=</span> <span class="mi">12</span> \
+       <span class="n">and</span> <span class="mi">1</span> <span class="o">&lt;=</span> <span class="n">day</span> <span class="o">&lt;=</span> <span class="mi">31</span> <span class="n">and</span> <span class="mi">0</span> <span class="o">&lt;=</span> <span class="n">hour</span> <span class="o">&lt;</span> <span class="mi">24</span> \
+       <span class="n">and</span> <span class="mi">0</span> <span class="o">&lt;=</span> <span class="n">minute</span> <span class="o">&lt;</span> <span class="mi">60</span> <span class="n">and</span> <span class="mi">0</span> <span class="o">&lt;=</span> <span class="n">second</span> <span class="o">&lt;</span> <span class="mi">60</span><span class="o">:</span>   <span class="err">#</span> <span class="n">Looks</span> <span class="n">like</span> <span class="n">a</span> <span class="n">valid</span> <span class="n">date</span>
+            <span class="k">return</span> <span class="mi">1</span>
+</pre></div>
+
+
+<h3>隐式连接</h3>
+<p>在(), [], {} 的表达式可以拆分成多个物理行不需要显式的用反斜杠, 且隐式连接后面可以加注释.</p>
+<div class="highlight"><pre><span class="n">month_names</span> <span class="o">=</span> <span class="p">[</span><span class="err">&#39;</span><span class="n">Januari ...</span></pre></div><p class="subheader">Category: <a href="./category/python.html">python</a>
+
+    Tagged: 
+    <a href="./tag/python.html">python </a>
+    <a href="./tag/line-join.html">line join </a>
+</p>
+
+
+
+                <a class="button radius secondary small right" href="./posts/python/line-join.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="./posts/c/float.html"><h3 class="article-title">浮点数</h3></a>
+<h6 class="subheader" title="2014-08-20T12:00:00">Wed 20 August 2014
+</h6>
+
+
+<p>http://www.cprogramming.com/tutorial/floating_point/understanding_floating_point_representation.html
+http://codereview.stackexchange.com/questions/6040/faster-comparison-to-infinity-in-python
+http://www.geeksforgeeks.org/comparison-float-value-c/
+http://www.cnblogs.com/FlyingBread/archive/2009/02/15/660206.html</p><p class="subheader">Category: <a href="./category/c.html">c</a>
+
+    Tagged: 
+    <a href="./tag/float.html">float </a>
+</p>
+
+
+
+                <a class="button radius secondary small right" href="./posts/c/float.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="./posts/mysql/xtrabackup.html"><h3 class="article-title">xtrbackup备份原理</h3></a>
+<h6 class="subheader" title="2014-08-10T21:00:00">Sun 10 August 2014
+</h6>
+
+
+<p>xtrabackup备份主要做两件事情:</p>
+<ul>
+<li>后台启动一个日志复制线程监控innodb日志文件，发现变动时复制到xtrabackup_logfile</li>
+<li>复制innodb数据文件, 并不是简单的复制，跟innodb同样的方式打开文件，打开数据字典( data dictionary)复制innodb page.</li>
+</ul>
+<p>当数据文件复制完成时，停止日志复制线程同时创建文件xtrabackup_checkpoints记录 LSN(log sequence number)信息.</p>
+<p>复制数据文件时每次读取1M大小(这个没法配置), 并检查每个page是否损坏.日志文件时每次512KB.</p>
+<p>innodb page(通常是16kb)包含一个日志序列号LSN, LSN是整个数据库的版本号, LSN的大小表示最近多久被修改过. 增量备份的原理就是复制LSN大于xtrabackup_checkpoints记录的最后LSN.</p>
+<p>有两种算法找到变动的page:</p>
+<ul>
+<li>读取所有的page比较LSN，mysql及Percona Server都支持 (数据库的大小影响备份的快慢)</li>
+<li>Percona Server 用bitmap实现了跟踪变化的innodb page 特性, 会快很多.</li>
+</ul>
+<p>xtrabackup调用innodb库来读数据文件，而innodb以read-write打开数据文件, 所以用xtrabackup备份的时候需要有对数据文件写的权限，但是并不会写文件.</p>
+<p>refer:</p>
+<ul>
+<li><a href="http://www.percona.com/doc/percona-xtrabackup/2.2/xtrabackup_bin/creating_a_backup.html">http://www.percona.com/doc ...</a></li></ul><p class="subheader">Category: <a href="./category/mysql.html">mysql</a>
+
+    Tagged: 
+    <a href="./tag/mysql.html">mysql </a>
+    <a href="./tag/xtrabackup.html">xtrabackup </a>
+</p>
+
+
+
+                <a class="button radius secondary small right" href="./posts/mysql/xtrabackup.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="./posts/algorithm/triangle.html"><h3 class="article-title">三角形的面积</h3></a>
+<h6 class="subheader" title="2014-08-10T20:00:00">Sun 10 August 2014
+</h6>
+
+
+<h3>已知三边(a, b, c)求三角形面积.</h3>
+<p>海伦公式:
+假设三角形三边分别为(a, b, c), 则三角形的面积<br />
+$S = \sqrt{p(p-a)(p-b)(p-c)}$, 其中$p=\frac{a + b+ c}{2}$</p>
+<div class="highlight"><pre><span class="kt">float</span> <span class="nf">space</span><span class="p">(</span><span class="kt">float</span> <span class="n">a</span><span class="p">,</span> <span class="kt">float</span> <span class="n">b</span><span class="p">,</span> <span class="kt">float</span> <span class="n">c</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kt">int</span> <span class="n">p</span><span class="p">;</span>
+    <span class="n">p</span> <span class="o">=</span> <span class="p">(</span><span class="n">a</span> <span class="o">+</span> <span class="n">b</span> <span class="o">+</span> <span class="n">c</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span><span class="p">;</span>
+    <span class="k">return</span> <span class="n">sqrt</span><span class="p">(</span><span class="n">p</span> <span class="o">*</span> <span class="p">(</span><span class="n">p</span> <span class="o">-</span> <span class="n">a</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">p</span> <span class="o">-</span> <span class="n">b</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">p</span> <span class="o">-</span> <span class="n">c</span><span class="p">));</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<h3>已知平面三点的坐标求三角形的面积</h3>
+<p>利用向量叉乘 ...</p><p class="subheader">Category: <a href="./category/algorithm.html">algorithm</a>
+
+    Tagged: 
+    <a href="./tag/algorithm.html">algorithm </a>
+    <a href="./tag/triangle.html">triangle </a>
+</p>
+
+
+
+                <a class="button radius secondary small right" href="./posts/algorithm/triangle.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="./posts/mysql/xtrabackup-install.html"><h3 class="article-title">xtrabackup安装及使用</h3></a>
+<h6 class="subheader" title="2014-08-10T20:00:00">Sun 10 August 2014
+</h6>
+
+
+<h3>安装</h3>
+<div class="highlight"><pre><span class="n">wget</span> <span class="n">http</span><span class="o">:</span><span class="c1">//www.percona.com/redir/downloads/XtraBackup/LATEST/deb/precise/x86_64/percona-xtrabackup_2.1.6-702-1.precise_amd64.deb</span>
+<span class="cp"># 可能需要安装依赖:libdbd-mysql-perl </span>
+<span class="n">dpkg</span> <span class="o">-</span><span class="n">i</span> <span class="p">.</span><span class="o">/</span><span class="n">percona</span><span class="o">-</span><span class="n">xtrabackup_2</span><span class="mf">.1.6</span><span class="o">-</span><span class="mi">702</span><span class="o">-</span><span class="mf">1.</span><span class="n">precise_amd64</span><span class="p">.</span><span class="n">deb</span>
+<span class="cp"># 安装完成后会产生四个命令行工具:innobackupex, xtrabackup, xbcrypt, xbstream</span>
+</pre></div>
+
+
+<h3>使用innobackupex增量备份</h3>
+<p>innobackupex 是个perl脚本,封装xtrabackup,会根据mysql服务器得版本选择xtrabackup得版本, innobackupex可以备份myisam和innodb表, 同时也会备份表定义文件(.frm).</p>
+<div class="highlight"><pre><span class="cp"># first setp full backup</span>
+<span class="n">BASE_DIR</span><span class="o">=/</span><span class="n">data</span><span class="o">/</span><span class="n">mysql_backup ...</span></pre></div><p class="subheader">Category: <a href="./category/mysql.html">mysql</a>
+
+    Tagged: 
+    <a href="./tag/mysql.html">mysql </a>
+    <a href="./tag/xtrabackup.html">xtrabackup </a>
+</p>
+
+
+
+                <a class="button radius secondary small right" href="./posts/mysql/xtrabackup-install.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="./posts/vim/trick.html"><h3 class="article-title">vim 快捷技巧</h3></a>
+<h6 class="subheader" title="2014-08-09T00:00:00">Sat 09 August 2014
+</h6>
+
+
+<h3>快速操作符号内的内容</h3>
+<p>以下命令可以对标点内的内容进行操作:</p>
+<ul>
+<li>ci'、ci"、ci(、ci[、ci{、ci&lt; - 分别更改这些配对标点符号中的文本内容</li>
+<li>di'、di"、di(或dib、di[、di{或diB、di&lt; - 分别删除这些配对标点符号中的文本内容</li>
+<li>yi'、yi"、yi(、yi[、yi{、yi&lt; - 分别复制这些配对标点符号中的文本内容</li>
+<li>vi'、vi"、vi(、vi[、vi{、vi&lt; - 分别选中这些配对标点符号中的文本内容</li>
+</ul>
+<p>另外如果把上面的i改成a可以连配对标点一起操作。</p><p class="subheader">Category: <a href="./category/vim.html">vim</a>
+
+    Tagged: 
+    <a href="./tag/vim.html">vim </a>
+</p>
+
+
+
+                <a class="button radius secondary small right" href="./posts/vim/trick.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="./posts/coroutine/continuation.html"><h3 class="article-title">continuation</h3></a>
+<h6 class="subheader" title="2014-08-06T21:44:18">Wed 06 August 2014
+</h6>
+
+
+<p class="subheader">Category: <a href="./category/coroutine.html">coroutine</a>
+
+</p>
+
+
+
+                <a class="button radius secondary small right" href="./posts/coroutine/continuation.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="./posts/security/cve.html"><h3 class="article-title">漏洞库</h3></a>
+<h6 class="subheader" title="2014-08-06T21:44:18">Wed 06 August 2014
+</h6>
+
+
+<p class="subheader">Category: <a href="./category/security.html">security</a>
+
+</p>
+
+
+
+                <a class="button radius secondary small right" href="./posts/security/cve.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="./posts/security/exploit.html"><h3 class="article-title">Exploit和shellcode简介</h3></a>
+<h6 class="subheader" title="2014-08-06T21:44:18">Wed 06 August 2014
+</h6>
+
+
+<p>refer:<br />
+- <a href="http://badishi.com/on-vulnerabilities-exploits-and-shellcodes/">http://badishi.com/on-vulnerabilities-exploits-and-shellcodes/</a>
+- <a href="http://www.exploit-db.com/">http://www.exploit-db.com/</a>
+- <a href="http://www.clevcode.org/cve-2014-3153-exploit/">http://www.clevcode.org/cve-2014-3153-exploit/</a>
+- <a href="http://www.seckungfu.com/">http://www.seckungfu.com/</a></p><p class="subheader">Category: <a href="./category/security.html">security</a>
+
+</p>
+
+
+
+                <a class="button radius secondary small right" href="./posts/security/exploit.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="./posts/python/generator-vs-iterator.html"><h3 class="article-title">Iterator 和 Generator</h3></a>
+<h6 class="subheader" title="2014-08-06T21:44:18">Wed 06 August 2014
+</h6>
+
+
+<p class="subheader">Category: <a href="./category/python.html">python</a>
+
+</p>
+
+
+
+                <a class="button radius secondary small right" href="./posts/python/generator-vs-iterator.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="./posts/misc/hdd.html"><h3 class="article-title">硬盘(hard disk drive)构造</h3></a>
+<h6 class="subheader" title="2014-08-06T21:44:18">Wed 06 August 2014
+</h6>
+
+
+<p>Zone bit recording 技术</p>
+<p>refer:</p>
+<ul>
+<li><a href="http://www.programlife.net/disk-struct.html">http://www.programlife.net/disk-struct.html</a></li>
+</ul><p class="subheader">Category: <a href="./category/misc.html">misc</a>
+
+    Tagged: 
+    <a href="./tag/hdd.html">hdd </a>
+    <a href="./tag/linux.html">linux </a>
+    <a href="./tag/zbr.html">zbr </a>
+</p>
+
+
+
+                <a class="button radius secondary small right" href="./posts/misc/hdd.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="./posts/interview/horse-race.html"><h3 class="article-title">赛马问题</h3></a>
+<h6 class="subheader" title="2014-08-06T21:44:18">Wed 06 August 2014
+</h6>
+
+
+<p>refer:</p>
+<ul>
+<li><a href="http://hsiq.blogspot.jp/2008/08/blog-post_28.html">http://hsiq.blogspot.jp/2008/08/blog-post_28.html</a></li>
+</ul><p class="subheader">Category: <a href="./category/interview.html">interview</a>
+
+</p>
+
+
+
+                <a class="button radius secondary small right" href="./posts/interview/horse-race.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="./posts/misc/openstack-sum.html"><h3 class="article-title">openstack</h3></a>
+<h6 class="subheader" title="2014-08-06T21:44:18">Wed 06 August 2014
+</h6>
+
+
+<ol>
+<li>
+<p>openstack简介<br />
+  OpenStack是一个由rackspace和NSNA于2010年发布的云计算平台, 旨在为公有云和私有云提供一个易于扩展的、功能丰富的解决方案，也可以说OpenStack是一个云计算操作系统，它整合各种底层硬件硬件资源，为系统管理员提供Web界面的控制面板以方便资源管理，为开发者的应用程序提供统一管理接口，为终端用户提供无缝的透明的云计算服务。最近的icehouse版本主要包含了10个核心组件：  </p>
+<ul>
+<li>计算(Nova)</li>
+<li>对象存储(Swift)</li>
+<li>块存储(Cinder)</li>
+<li>镜像(Glance)</li>
+<li>网络(Neutron)</li>
+<li>身份认证(Keystone)</li>
+<li>控制面板(Horizon)</li>
+<li>计量/监控服务(Ceilometer)</li>
+<li>编排组织服务(Heat)</li>
+<li>数据库服务(Trove)。</li>
+</ul>
+</li>
+<li>
+<p>openstack部署  </p>
+<ul>
+<li>
+<p>部署模型一般是Three-node architecture, 分别是:  </p>
+<ul>
+<li>控制节点</li>
+<li>网络节点</li>
+<li>计算机点</li>
+</ul>
+</li>
+<li>
+<p>潜在的技术难点   </p>
+<ul>
+<li>网络<br />
+虚拟机比较多的情况下，虚拟网络会更加复杂, CPU需要消耗大量的资源匹配网络流表，灵活的网络管理会境地网络的性能。</li>
+<li>镜像风暴<br />
+当镜像较多且每个镜像都很大时会消耗更多的网络宽带和 IO。</li>
+<li>openstack api<br />
+每个openstack组件的api都监听单一端口 ...</li></ul></li></ul></li></ol><p class="subheader">Category: <a href="./category/misc.html">misc</a>
+
+</p>
+
+
+
+                <a class="button radius secondary small right" href="./posts/misc/openstack-sum.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+            <!-- /#posts-list -->
+<div class="pagination-centered">
+<h6 class="subheader">Page 4 of 7</h6>
+
+<p>
+            <a href="./index3.html">&laquo; Prev</a>
+
+        <a href="./index5.html">Next &raquo;</a>
+</p>
+</div>
+
+    </div>
+    <!-- End Main Content -->
+
+    <!-- Sidebar -->
+    <aside class="large-3 columns">
+        <h5 class="sidebar-title">Site</h5>
+        <ul class="side-nav">
+            <li><a href="./archives.html">Archives</a>
+            <li><a href="./tags.html">Tags</a>
+        </ul>
+
+		
+        <h5 class="sidebar-title">Categories</h5>
+        <ul class="side-nav">
+            <li><a href="./category/adt.html">adt</a></li>
+            <li><a href="./category/algorithm.html">algorithm</a></li>
+            <li><a href="./category/c.html">c</a></li>
+            <li><a href="./category/complexity.html">complexity</a></li>
+            <li><a href="./category/coroutine.html">coroutine</a></li>
+            <li><a href="./category/interview.html">interview</a></li>
+            <li><a href="./category/learn-plan.html">learn-plan</a></li>
+            <li><a href="./category/misc.html">misc</a></li>
+            <li><a href="./category/mysql.html">mysql</a></li>
+            <li><a href="./category/python.html">python</a></li>
+            <li><a href="./category/security.html">security</a></li>
+            <li><a href="./category/str.html">str</a></li>
+            <li><a href="./category/tcp-ip.html">tcp-ip</a></li>
+            <li><a href="./category/tree.html">tree</a></li>
+            <li><a href="./category/vim.html">vim</a></li>
+   
+        </ul>
+
+        <h5 class="sidebar-title">Links</h5>
+        <ul class="side-nav">
+            <li><a href="https://github.com/actberw">github</a></li>
+        </ul>
+		
+        <h5 class="sidebar-title">Social</h5>
+        <ul class="side-nav">
+            <li><a href="http://weibo.com/u/1950796544">weibo</a></li>
+        </ul>
+
+    </aside> <!-- End Sidebar -->
+
+</div> <!-- End Main Content and Sidebar -->
+
+
+<!-- Footer -->
+<footer class="row">
+    <div class="large-12 columns">
+        <hr />
+        <div class="row">
+            <div class="large-6 columns">
+              <!--                  <p>记录一些工作中的笔记 by actberw</p> -->
+            </div>
+            </div>
+    </div>
+</footer>

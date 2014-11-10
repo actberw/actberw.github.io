@@ -57,294 +57,26 @@
 
 
             <article>
-                <a href="../posts/adt/stack.html"><h3 class="article-title">栈</h3></a>
-<h6 class="subheader" title="2014-06-13T19:00:00">Fri 13 June 2014
-</h6>
-
-
-<p>应用:
-- 中缀表达式转后缀表达式
-- 表达式(后缀)求值
-- http://blog.jobbole.com/52367/
-- http://www.douban.com/note/46700342/
-- <a href="http://blog.csdn.net/amd_why/article/details/7883027">http://blog.csdn.net/amd_why/article/details/7883027</a></p><p class="subheader">Category: <a href="../category/adt.html">adt</a>
-
-    Tagged: 
-    <a href="../tag/stack.html">stack </a>
-    <a href="../tag/algorithm.html">algorithm </a>
-    <a href="../tag/data-structure.html">data structure </a>
-</p>
-
-
-
-                <a class="button radius secondary small right" href="../posts/adt/stack.html">Read More</a>
-                <hr  class="gradient"/>
-            </article>
-
-        
-
-
-            <article>
-                <a href="../posts/algorithm/parity.html"><h3 class="article-title">奇偶检验</h3></a>
-<h6 class="subheader" title="2014-06-13T18:30:00">Fri 13 June 2014
-</h6>
-
-
-<p>如何判断给定位数的二进制数中1的个数是奇数还是偶数的二进制数, 算法得复杂度为O(lgn), n为待检查得数字。</p>
-<div class="highlight"><pre><span class="cm">/* Function to get parity of number n. It returns 1</span>
-<span class="cm"> * if n has odd parity, and returns 0 if n has even</span>
-<span class="cm"> * parity</span>
-<span class="cm"> */</span>
-
-<span class="c1">//解法1</span>
-<span class="n">bool</span> <span class="n">get_parity</span><span class="p">(</span><span class="k">unsigned</span> <span class="k">int</span> <span class="n">n</span><span class="p">)</span>
-<span class="p">{</span>
-    <span class="n">bool</span> <span class="n">parity</span> <span class="o">=</span> <span class="mh">0</span><span class="p">;</span>
-    <span class="k">while</span> <span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="p">{</span>
-        <span class="n">parity</span> <span class="o">=</span> <span class="o">!</span><span class="n">parity</span><span class="p">;</span>
-        <span class="n">n</span>      <span class="o">=</span> <span class="n">n</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">n</span> <span class="o">-</span> <span class="mh">1</span><span class="p">);</span>
-    <span class="p">}</span>
-    <span class="k">return</span> <span class="n">parity</span><span class="p">;</span>
-<span class="p">}</span>
-
-<span class="c1">//解法2</span>
-<span class="k">unsigned</span> <span class="k">int</span> <span class="n">get_parity2 ...</span></pre></div><p class="subheader">Category: <a href="../category/algorithm.html">algorithm</a>
-
-    Tagged: 
-    <a href="../tag/algorithm.html">algorithm </a>
-</p>
-
-
-
-                <a class="button radius secondary small right" href="../posts/algorithm/parity.html">Read More</a>
-                <hr  class="gradient"/>
-            </article>
-
-        
-
-
-            <article>
-                <a href="../posts/adt/link-list.html"><h3 class="article-title">链表</h3></a>
-<h6 class="subheader" title="2014-06-12T19:00:00">Thu 12 June 2014
-</h6>
-
-
-<ol>
-<li>
-<p>定义
-链表是一组数据项的集合, 其中每个数据项是节点的一部分，每个节点包含指向下一个节点的链接. 对比数组链表的优缺点如下:可以高效的重排数据项例如插入节点的复杂度为O(1)，但是不能快速的访问任意的数据项，只能沿着链表一个一个节点的访问.</p>
-<ul>
-<li>
-<p>优点</p>
-<ul>
-<li>链表是动态数据结构，可以按需分配内存</li>
-<li>删除和增加节点复杂度为O(1)</li>
-</ul>
-</li>
-<li>
-<p>缺点</p>
-<ul>
-<li>因为额外的指针域需要更多的内存 </li>
-<li>只能从头节点顺序的访问</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>
-<p>分类</p>
-<ul>
-<li>单链表(Singly linked list)<br />
-它包含两个域，一个信息域和一个指针域。这个链接指向列表中的下一个节点，而最后一个节点则指向一个空值。</li>
-<li>双向链表(Doubly linked list)<br />
-每个节点有两个连接：一个指向前一个节点，（当此“连接”为第一个“连接”时，指向空值或者空列表）；而另一个指向下一个节点，（当此“连接”为最后一个“连接”时，指向空值或者空列表）</li>
-<li>循环链表(Circular list)<br />
-在一个 循环链表中 ...</li></ul></li></ol><p class="subheader">Category: <a href="../category/adt.html">adt</a>
-
-    Tagged: 
-    <a href="../tag/data-structure.html">data structure </a>
-</p>
-
-
-
-                <a class="button radius secondary small right" href="../posts/adt/link-list.html">Read More</a>
-                <hr  class="gradient"/>
-            </article>
-
-        
-
-
-            <article>
-                <a href="../posts/algorithm/matrix.html"><h3 class="article-title">矩阵乘法优化</h3></a>
-<h6 class="subheader" title="2014-06-12T12:00:00">Thu 12 June 2014
-</h6>
-
-
-<ul>
-<li><a href="http://zh.wikipedia.org/wiki/%E7%9F%A9%E9%98%B5%E6%8C%87%E6%95%B0">http://zh.wikipedia.org/wiki/%E7%9F%A9%E9%98%B5%E6%8C%87%E6%95%B0</a></li>
-<li><a href="http://www.zhihu.com/question/19706331">http://www.zhihu.com/question/19706331</a></li>
-<li><a href="http://www.ituring.com.cn/article/17978">http://www.ituring.com.cn/article/17978</a></li>
-<li><a href="http://www.zhihu.com/question/22854639">http://www.zhihu.com/question/22854639</a></li>
-</ul><p class="subheader">Category: <a href="../category/algorithm.html">algorithm</a>
-
-    Tagged: 
-    <a href="../tag/algorithm.html">algorithm </a>
-    <a href="../tag/matrix.html">matrix </a>
-</p>
-
-
-
-                <a class="button radius secondary small right" href="../posts/algorithm/matrix.html">Read More</a>
-                <hr  class="gradient"/>
-            </article>
-
-        
-
-
-            <article>
-                <a href="../posts/misc/umask.html"><h3 class="article-title">umask 命令</h3></a>
-<h6 class="subheader" title="2014-06-11T23:00:00">Wed 11 June 2014
-</h6>
-
-
-<p>该命令用来设置限制新文件权限的掩码, 默认是022, umask 命令允许你设定文件创建时的缺省模式，对应每一类用户(文件属主、同组用户、其他用户)存在一个相应的umask值中的数字。对于文件来说，这一数字的最 大值分别是6。系统不允许你在创建一个文本文件时就赋予它执行权限，必须在创建后用chmod命令增加这一权限。目录则允许设置执行权限，这样针对目录来 说，umask中各个数字最大可以到7。</p>
-<p>所以对于默认的(022) 文件的权限是:644(-rw-r--r--),  目录是:755(drwxr-xr-x)</p><p class="subheader">Category: <a href="../category/misc.html">misc</a>
-
-    Tagged: 
-    <a href="../tag/linux.html">linux </a>
-    <a href="../tag/umask.html">umask </a>
-</p>
-
-
-
-                <a class="button radius secondary small right" href="../posts/misc/umask.html">Read More</a>
-                <hr  class="gradient"/>
-            </article>
-
-        
-
-
-            <article>
-                <a href="../posts/algorithm/fibonacci.html"><h3 class="article-title">斐波纳契数列</h3></a>
-<h6 class="subheader" title="2014-06-11T19:00:00">Wed 11 June 2014
-</h6>
-
-
-<blockquote>
-<p>问题描述：Fibonacci数（Fibonacci Number）的定义是：$F_n = F_{n - 1} + F_{n - 2}$，并且$F_0$ = 0，$F_1$ = 1。对于任意指定的整数n（n ≥ 0），计算$F_n$的精确值，并分析算法的时间、空间复杂度。</p>
-</blockquote>
-<p>有下面几种解法:</p>
-<ol>
-<li>
-<p>递归法 <br />
-  根据Fibonacci的递推公式，对于输入的n，直接递归地调用相同的函数分别求出$F_{n - 1}$和$F_{n - 2}$，二者相加就是结果。递归的终止点就是递推方程的初值，即n取0或1的时候。</p>
-<div class="highlight"><pre><span class="kt">int</span> <span class="nf">fibonacii</span><span class="p">(</span><span class="kt">int</span> <span class="n">n</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">if</span> <span class="p">(</span><span class="n">n</span> <span class="o">&lt;=</span> <span class="mi">1</span><span class="p">)</span> <span class="k">return</span> <span class="n">n</span><span class="p">;</span>
-    <span class="k">return ...</span></pre></div></li></ol><p class="subheader">Category: <a href="../category/algorithm.html">algorithm</a>
-
-    Tagged: 
-    <a href="../tag/algorithm.html">algorithm </a>
-</p>
-
-
-
-                <a class="button radius secondary small right" href="../posts/algorithm/fibonacci.html">Read More</a>
-                <hr  class="gradient"/>
-            </article>
-
-        
-
-
-            <article>
-                <a href="../posts/adt/common-data-structure.html"><h3 class="article-title">常见的数据结构</h3></a>
-<h6 class="subheader" title="2014-06-11T00:00:00">Wed 11 June 2014
-</h6>
-
-
-<ol>
-<li>数组(array)</li>
-<li>链表(linked list)</li>
-<li>栈(stack)和队列(queue)</li>
-<li>树(tree)</li>
-<li>图(graph)</li>
-<li>堆(heap)</li>
-<li>散列表(hash table)</li>
-<li>字符串(string)</li>
-</ol>
-<p>refer:</p>
-<ul>
-<li><a href="http://www.cnblogs.com/yjiyjige/archive/2013/05/20/3088644.html">http://www.cnblogs.com/yjiyjige/archive/2013/05/20/3088644.html</a></li>
-<li><a href="http://www.luocong.com/dsaanotes/index-Z-H-3.htm">http://www.luocong.com/dsaanotes/index-Z-H-3.htm</a></li>
-</ul><p class="subheader">Category: <a href="../category/adt.html">adt</a>
-
-    Tagged: 
-    <a href="../tag/data-structure.html">data structure </a>
-</p>
-
-
-
-                <a class="button radius secondary small right" href="../posts/adt/common-data-structure.html">Read More</a>
-                <hr  class="gradient"/>
-            </article>
-
-        
-
-
-            <article>
-                <a href="../posts/interview/complexity.html"><h3 class="article-title">算法的复杂度面试题目</h3></a>
-<h6 class="subheader" title="2014-06-07T19:00:00">Sat 07 June 2014
-</h6>
-
-Translations: 
-        <a href="../posts/complexity/complexity.html">cn</a>
-
-<ol>
-<li>
-<blockquote>
-<p>简述：实现一个函数，对一个正整数n，算得到1需要的最少操作次数：
-如果n为偶数，将其处以2；如果n为奇数，可以加1或减1；一直处理下去。
-要求：实现函数（实现尽可能高效）int func(unsigned int n)；n为输入，返回最小的运算次数。</p>
-</blockquote>
-</li>
-</ol>
-<p>refer:</p>
-<ul>
-<li><a href="http://zhiqiang.org/blog/science/computer-science/complexity-of-recursive-algorithm.html">http://zhiqiang.org/blog/science/computer-science/complexity-of-recursive-algorithm.html</a></li>
-</ul><p class="subheader">Category: <a href="../category/interview.html">interview</a>
-
-    Tagged: 
-    <a href="../tag/algorithm-analysis.html">algorithm analysis </a>
-</p>
-
-
-Translations: 
-        <a href="../posts/complexity/complexity.html">cn</a>
-
-                <a class="button radius secondary small right" href="../posts/interview/complexity.html">Read More</a>
-                <hr  class="gradient"/>
-            </article>
-
-        
-
-
-            <article>
-                <a href="../posts/complexity/generating-function.html"><h3 class="article-title">母函数(generating function)</h3></a>
-<h6 class="subheader" title="2014-06-07T18:00:00">Sat 07 June 2014
+                <a href="../posts/misc/linker-and-loader.html"><h3 class="article-title">链接器(linker)和加载器(loader)</h3></a>
+<h6 class="subheader" title="2014-09-22T22:57:04">Mon 22 September 2014
 </h6>
 
 
 <h4>refer:</h4>
 <ul>
-<li>http://www.cnblogs.com/python27/archive/2011/12/09/2282486.html</li>
-<li>http://www.doc88.com/p-39037791334.html</li>
-<li>http://blog.sina.com.cn/s/blog_48258fbe0100gcy8.html</li>
-<li>http://www.guokr.com/blog/68001/</li>
-</ul><p class="subheader">Category: <a href="../category/complexity.html">complexity</a>
+<li>http://www.linuxjournal.com/article/6463</li>
+<li>http://www.linuxjournaldigital.com/linuxjournal/201109#pg77</li>
+<li>http://en.wikipedia.org/wiki/Relocation_(computing)</li>
+<li>http://read.pudn.com/downloads56/ebook/196880/lnl_7_coly.pdf</li>
+<li>http://www.yeolar.com/note/2012/03/20/linux-linking/</li>
+<li>http://www.cnblogs.com/zhanjl/p/3273014.html</li>
+<li>http://blog.csdn ...</li></ul><p class="subheader">Category: <a href="../category/misc.html">misc</a>
 
 </p>
 
 
 
-                <a class="button radius secondary small right" href="../posts/complexity/generating-function.html">Read More</a>
+                <a class="button radius secondary small right" href="../posts/misc/linker-and-loader.html">Read More</a>
                 <hr  class="gradient"/>
             </article>
 
@@ -352,29 +84,26 @@ Translations:
 
 
             <article>
-                <a href="../posts/complexity/recursion-complexity.html"><h3 class="article-title">递归算法的复杂度分析</h3></a>
-<h6 class="subheader" title="2014-06-07T17:00:00">Sat 07 June 2014
+                <a href="../posts/misc/tls.html"><h3 class="article-title">线程局部存储(thread local storage)</h3></a>
+<h6 class="subheader" title="2014-09-22T00:00:00">Mon 22 September 2014
 </h6>
 
 
-<p>在算法分析中，当一个算法中包含递归调用时，其时间复杂度的分析会转化为一个递归方程求解。实际上，这个问题是数学上求解渐近阶的问题，而递归方程的形式多种多样，其求解方法也是不一而足，比较常用的有以下四种方法:</p>
-<ol>
-<li>
-<p>代入法(Substitution Method)<br />
-  代入法的基本步骤是先推测递归方程的显式解，然后用数学归纳法来验证该解是否合理。</p>
-</li>
-<li>
-<p>公式法(Master Method)<br />
-  设常数a &gt;= 1，b &gt; 1，f(n)为函数，T(n)为非负整数，T(n) = a T(n / b) + f(n)，则有:<br />
-    若f(n)=O($n^{log_{b}a−ε}$),ε&gt;0 ，那么T(n)=Θ($nlog_{b ...</p></li></ol><p class="subheader">Category: <a href="../category/complexity.html">complexity</a>
+<p>refer:</p>
+<ul>
+<li>http://www.akkadia.org/drepper/tls.pdf</li>
+<li>http://stackoverflow.com/questions/6611346/amd64-fs-gs-registers-in-linux</li>
+</ul><p class="subheader">Category: <a href="../category/misc.html">misc</a>
 
     Tagged: 
-    <a href="../tag/algorithm-analysis.html">algorithm analysis </a>
+    <a href="../tag/tls.html">tls </a>
+    <a href="../tag/thread.html">thread </a>
+    <a href="../tag/linux.html">linux </a>
 </p>
 
 
 
-                <a class="button radius secondary small right" href="../posts/complexity/recursion-complexity.html">Read More</a>
+                <a class="button radius secondary small right" href="../posts/misc/tls.html">Read More</a>
                 <hr  class="gradient"/>
             </article>
 
@@ -382,40 +111,325 @@ Translations:
 
 
             <article>
-                <a href="../posts/complexity/loop-complexity.html"><h3 class="article-title">循环的时间复杂度</h3></a>
-<h6 class="subheader" title="2014-06-07T16:00:00">Sat 07 June 2014
+                <a href="../posts/misc/segment-in-linux.html"><h3 class="article-title">Linux 段机制的实现</h3></a>
+<h6 class="subheader" title="2014-09-21T21:48:26">Sun 21 September 2014
 </h6>
 
 
-<ol>
-<li>O(1)<br />
-  一个函数调用或是一组语句都认为是O(1)的复杂度  (如果没有调用不包含循环，递归或其他非常量复杂度的函数), 如果循环的次数是一个常量，则也认为是 O(1).</li>
-<li>
-<p>O(n)<br />
-  如果在一个大小为n循环中，循环变量按照一个常量C递增或递减，这个循环的复杂度就为O(n).</p>
-<div class="highlight"><pre><span class="c1">// c是常量  </span>
-<span class="k">for</span> <span class="p">(</span><span class="k">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mh">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="p">;</span> <span class="n">i</span> <span class="o">+=</span> <span class="n">c</span><span class="p">)</span> <span class="p">{</span> 
-     <span class="c1">// some O(1) expressions</span>
-<span class="p">}</span>
+<p class="subheader">Category: <a href="../category/misc.html">misc</a>
 
-<span class="k">for</span> <span class="p">(</span><span class="k">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">n</span><span class="p">;</span> <span class="n">i</span> <span class="o">&gt;</span> <span class="mh">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">-=</span> <span class="n">c</span><span class="p">)</span> <span class="p">{</span>
-     <span class="c1">// some O(1) expressions</span>
-<span class="p">}</span>
+</p>
+
+
+
+                <a class="button radius secondary small right" href="../posts/misc/segment-in-linux.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="../posts/misc/real-vs-protect.html"><h3 class="article-title">x86实模式(real mode)和保护模式(protect mode)</h3></a>
+<h6 class="subheader" title="2014-09-21T21:00:00">Sun 21 September 2014
+</h6>
+
+
+<h3>8086</h3>
+<p>1978年intel发布了8086 16-bit cpu, 20位地址总线, 最大可寻址$2^{20}$ = 1M, 同时引入了一个非常重要的概念----段, 以支持20位的地址总线。</p>
+<p>为了支持分段机制，Intel在8086的CPU里新增了4个段寄存器: CS, DS, SS, ES. 寻址方法是：segment:offset, 物理地址 = 段地址 * 0x10 + 偏移地址.  8086的诞生标志着Intel 正式进入了x86时代. 段机制虽然实现了地址空间的提升, 但是也带来的一些问题:  </p>
+<ul>
+<li>同一个物理地址有多种表示方法, 例如0x01C0:0x0000和0x0000:0x1C00所表示的物理地址都是0x01C00。</li>
+<li>地址空间缺乏保护机制</li>
+</ul>
+<h3>80286及80386</h3>
+<p>由于8086的上述问题，1982年Intel在80286的CPU里首次引入的保护模式。同时为了保持向后兼容8086, 80286支持实模式, 在实模式下工作方式跟8086相同, 寻址方式依然是: segment:offset. 支持保护模式的x86启动时工作在实模式下, Protected mode may only be entered after ...</p><p class="subheader">Category: <a href="../category/misc.html">misc</a>
+
+    Tagged: 
+    <a href="../tag/real-mode.html">real mode </a>
+    <a href="../tag/protect-mode.html">protect mode </a>
+    <a href="../tag/gdt.html">gdt </a>
+    <a href="../tag/ldt.html">ldt </a>
+    <a href="../tag/cpu-ring.html">cpu ring </a>
+    <a href="../tag/ring.html">ring </a>
+    <a href="../tag/x86.html">x86 </a>
+</p>
+
+
+
+                <a class="button radius secondary small right" href="../posts/misc/real-vs-protect.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="../posts/misc/register.html"><h3 class="article-title">x86 register</h3></a>
+<h6 class="subheader" title="2014-09-21T20:00:00">Sun 21 September 2014
+</h6>
+
+
+<h3>数据寄存器</h3>
+<p>8086 有8个8位数据寄存器，这些8位寄存器可分别组成16位寄存器:<br />
+AH &amp; AL＝AX(accumulator register):累加寄存器，常用于运算 <br />
+BH &amp; BL＝BX(base register):基址寄存器，常用于地址索引 <br />
+CH &amp; CL＝CX(count register):计数寄存器，常用于计数 <br />
+DH &amp; DL＝DX(data register):数据寄存器，常用于数据传递。  </p>
+<h3>段寄存器</h3>
+<p>8086设定了4个段寄存器，专门用来保存段地址, 386及以后保护模式下用来保存段选择器(segment selector), 但是仍是16位:<br />
+CS(Code Segment):代码段寄存器 <br />
+DS(Data Segment):数据段寄存器 <br />
+SS(Stack Segment ...</p><p class="subheader">Category: <a href="../category/misc.html">misc</a>
+
+    Tagged: 
+    <a href="../tag/register.html">register </a>
+    <a href="../tag/assembly.html">assembly </a>
+</p>
+
+
+
+                <a class="button radius secondary small right" href="../posts/misc/register.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="../posts/misc/assembly.html"><h3 class="article-title">assembly</h3></a>
+<h6 class="subheader" title="2014-09-21T15:00:00">Sun 21 September 2014
+</h6>
+
+
+<h3>语法格式</h3>
+<p>绝大多数 Linux 程序员以前只接触过DOS/Windows 下的汇编语言，这些汇编代码都是 Intel 风格的。但在 Unix 和 Linux 系统中，更多&gt;采用的还是 AT&amp;T 格式，两者在语法格式上有着很大的不同：</p>
+<ul>
+<li>在 AT&amp;T 汇编格式中，寄存器名要加上 '%' 作为前缀；而在 Intel 汇编格式中，寄存器名不需要加前缀</li>
+<li>在 AT&amp;T 汇编格式中，用 '$' 前缀表示一个立即操作数；而在 Intel 汇编格式中，立即数的表示不用带任何前缀</li>
+<li>AT&amp;T 和 Intel 格式中的源操作数和目标操作数的位置正好相反。在 Intel 汇编格式中，目标操作数在源操作数的左边；而在 ...</li></ul><p class="subheader">Category: <a href="../category/misc.html">misc</a>
+
+    Tagged: 
+    <a href="../tag/assembly.html">assembly </a>
+    <a href="../tag/gas.html">gas </a>
+</p>
+
+
+
+                <a class="button radius secondary small right" href="../posts/misc/assembly.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="../posts/misc/a20-gate.html"><h3 class="article-title">a20gate</h3></a>
+<h6 class="subheader" title="2014-09-21T00:00:00">Sun 21 September 2014
+</h6>
+
+
+<h3>real mode 模式寻址</h3>
+<p>8086/8088 的地址线有 20 条: A0 ~ A19, 最大可以访问1M内存. 它的寻址方法是：segment:offset，这是一种被称为 logic address（逻辑地址）表示法. 物理地址 = 段地址 * 0x10 + 偏移地址。F000:FFFF = F0000 + FFFF = FFFFF，这是 8086/8088 所能访问的最高地址。8086/8088 的寻址范围是可以表示为：从 0000:0000 - 0000:FFFF,0000:0000 - 1000:FFFF, ... ,F000:0000 - F000:FFFF 段</p>
+<h3>访问 ...</h3><p class="subheader">Category: <a href="../category/misc.html">misc</a>
+
+    Tagged: 
+    <a href="../tag/a20.html">a20 </a>
+    <a href="../tag/real-mode.html">real mode </a>
+</p>
+
+
+
+                <a class="button radius secondary small right" href="../posts/misc/a20-gate.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="../posts/tcp-ip/ip.html"><h3 class="article-title">IP地址及子网掩码</h3></a>
+<h6 class="subheader" title="2014-09-19T15:00:00">Fri 19 September 2014
+</h6>
+
+
+<h3>IP地址得表示方法</h3>
+<p>IP地址是一个32位的二进制数，通常被分割为4个“8位二进制数”（也就是4个字节）用“点分十进制”表示成（a.b.c.d）的形式，其中，a,b,c,d都是0~255之间的十进制整数。</p>
+<p>最初设计互联网络时，为了便于寻址以及层次化构造网络，每个IP地址包括两个标识码（ID），即网络ID和主机ID。同一个物理网络上的所有主机都使用同一个网络ID，网络上的一个主机（包括网络上工作站，服务器和路由器等）有一个主机ID与其对应。分类:  </p>
+<ul>
+<li>A类地址: 网络标识由第一组8位二进制数表示，网络标识的第一位二进制数取值必须为0。A类地址第一个地址为00000001，最后一个地址是01111111，换算成十进制就是127，其中127留作保留地址，A类地址的第一段范围是：1～126，A类地址允许有$2^7$ - 2 = 126个网段（减2是因为0不用，127留作它用），网络中的主机标识占3组8位二进制数，每个网络允许有$2 ...</li></ul><p class="subheader">Category: <a href="../category/tcp-ip.html">tcp-ip</a>
+
+    Tagged: 
+    <a href="../tag/tcpip.html">tcp/ip </a>
+</p>
+
+
+
+                <a class="button radius secondary small right" href="../posts/tcp-ip/ip.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="../posts/misc/orphan-process-and-zombie-process.html"><h3 class="article-title">linux 僵尸(zombie)进程和孤儿(orphan)进程</h3></a>
+<h6 class="subheader" title="2014-09-12T00:00:00">Fri 12 September 2014
+</h6>
+
+
+<h3>Zombie Processes</h3>
+<p>In Unix and Linux systems, the zombie (or defunct) process is a process that has completed execution but still has an entry in the process table, it is a process in the <a href="http://en.wikipedia.org/wiki/Process_state">Terminated state</a>. A zombie process remains in the operating system and does nothing until the parent ...</p><p class="subheader">Category: <a href="../category/misc.html">misc</a>
+
+    Tagged: 
+    <a href="../tag/linux.html">linux </a>
+    <a href="../tag/zombie.html">zombie </a>
+    <a href="../tag/orphan.html">orphan </a>
+    <a href="../tag/process.html">process </a>
+</p>
+
+
+
+                <a class="button radius secondary small right" href="../posts/misc/orphan-process-and-zombie-process.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="../posts/c/daemon.html"><h3 class="article-title">daemon进程c实现</h3></a>
+<h6 class="subheader" title="2014-09-11T00:00:00">Thu 11 September 2014
+</h6>
+
+
+<h3>守护进程(daemon process)特点</h3>
+<ul>
+<li>PPID 为 1</li>
+<li>控制终端(TTY, Teletypes) 为"?"</li>
+<li>守护进程必须与其运行前的环境隔离开来，包括未关闭的文件描述符，控制终端，会话，工作目录，以及umask等。这些都是从父进程继承过来的。</li>
+</ul>
+<h3>创建守护进程的步骤</h3>
+<ul>
+<li>fork创建子进程, 父进程退出</li>
+<li>调用setsid() 创建新会话</li>
+<li>再次fork，父进程退出</li>
+<li>将当前工作目录改为根目录</li>
+<li>设定uamsk值为0</li>
+<li>关闭不必要的文件描述符</li>
+<li>打开/dev/null，dup2(0, 1, 2)</li>
+</ul>
+<h3>代码示例</h3>
+<div class="highlight"><pre><span class="cp"># include &lt;unistd.h&gt;</span>
+
+<span class="kt">int</span> <span class="nf">daemonize</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kt">int</span>  <span class="n">fd</span><span class="p">;</span>
+
+    <span class="k">switch</span> <span class="p">(</span><span class="n">fork</span><span class="p">())</span> <span class="p">{</span>
+    <span class="k">case</span> <span class="o">-</span><span class="mi">1</span>:
+        <span class="c1">//log_error(NGX_LOG_EMERG ...</span></pre></div><p class="subheader">Category: <a href="../category/c.html">c</a>
+
+    Tagged: 
+    <a href="../tag/linux.html">linux </a>
+    <a href="../tag/daemon.html">daemon </a>
+    <a href="../tag/c.html">c </a>
+</p>
+
+
+
+                <a class="button radius secondary small right" href="../posts/c/daemon.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="../posts/algorithm/gcd.html"><h3 class="article-title">最大公约数算法(Greatest Common Divisor)</h3></a>
+<h6 class="subheader" title="2014-09-06T00:00:00">Sat 06 September 2014
+</h6>
+
+
+<p>公元前300年左右, 欧几里得(Euclid)就在他的著作&lt;几何原本&gt;中给出了--辗转相除法. 原理是:假设用f(x, y)表示x, y的最大公约数, 取$k=\frac{x/y}, x =ky + b$, 如果一个数能同时整除x,y, 则必能同时被b, y整除. 而能同时被b, y整除则能同时整除x,y, 即b, y的公约数与x, y的公约数相同, 最大公约数也相同, 则有f(x, y) = f(y, x%y) (x &gt;= y &gt;= 0), 如此便把愿问题转化为求两个更小的数的最大公约数, 直到其中一个为0, 剩下的一个就是两者的最大公约数.</p>
+<h3>解法一</h3>
+<p>最简单的办法就是直接实现辗转相除法</p>
+<div class="highlight"><pre><span class="cp"># O(log n)</span>
+<span class="kt">int ...</span></pre></div><p class="subheader">Category: <a href="../category/algorithm.html">algorithm</a>
+
+    Tagged: 
+    <a href="../tag/algorithm.html">algorithm </a>
+    <a href="../tag/gcd.html">gcd </a>
+</p>
+
+
+
+                <a class="button radius secondary small right" href="../posts/algorithm/gcd.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="../posts/algorithm/random-pick.html"><h3 class="article-title">随机选取</h3></a>
+<h6 class="subheader" title="2014-09-05T00:00:00">Fri 05 September 2014
+</h6>
+
+
+<p class="subheader">Category: <a href="../category/algorithm.html">algorithm</a>
+
+    Tagged: 
+    <a href="../tag/algorithm.html">algorithm </a>
+    <a href="../tag/random.html">random </a>
+    <a href="../tag/c.html">c </a>
+</p>
+
+
+
+                <a class="button radius secondary small right" href="../posts/algorithm/random-pick.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="../posts/algorithm/random-range.html"><h3 class="article-title">随机数范围</h3></a>
+<h6 class="subheader" title="2014-09-05T00:00:00">Fri 05 September 2014
+</h6>
+
+
+<h3>缩小范围</h3>
+<div class="highlight"><pre><span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">fac</span> <span class="o">=</span> <span class="p">(</span><span class="n">RAND_MAX</span> <span class="o">+</span> <span class="mi">1u</span><span class="p">)</span> <span class="o">/</span> <span class="n">N</span><span class="p">;</span>
+<span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">limit</span> <span class="o">=</span> <span class="n">fac</span> <span class="o">*</span> <span class="n">N</span><span class="p">;</span>
+<span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">r</span><span class="p">;</span>
+<span class="k">do</span> <span class="p">{</span>
+    <span class="n">r</span> <span class="o">=</span> <span class="n">rand</span><span class="p">();</span>
+<span class="p">}</span> <span class="k">while</span><span class="p">(</span><span class="n">r</span> <span class="o">&gt;=</span> <span class="n">limit</span><span class="p">);</span>
+<span class="k">return</span> <span class="n">r</span> <span class="o">/</span> <span class="n">fac</span><span class="p">;</span>
 </pre></div>
 
 
-</li>
-<li>
-<p>O(n^c)<br />
-  嵌套循环的时间复杂度等于行最内层语句执行的次数。例如，下面的示例循环具有为O(n^2 ...</p></li></ol><p class="subheader">Category: <a href="../category/complexity.html">complexity</a>
+<h3>扩大范围</h3>
+<blockquote>
+<p>rand()产生1~7之间的随机数，如何用rand()函数产生1~10之间的随机数</p>
+</blockquote>
+<p>扩大范围的处理是先用类似(rand7()-1)*7+rand7()) 构造一个大范围，然后在缩小范围处理.</p>
+<div class="highlight"><pre><span class="c1">// 循环实现 </span>
+<span class="k">int</span> <span class="n">rand10</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">int</span> <span class="n">fac</span> <span class="o">=</span> <span class="mh">49</span> <span class="o">/</span> <span class="mh">10</span><span class="p">;</span>
+    <span class="k">int</span> <span class="n">limit</span> <span class="o">=</span> <span class="n">fac</span> <span class="o">*</span> <span class="mh">10</span><span class="p">;</span>
+    <span class="k">int ...</span></pre></div><p class="subheader">Category: <a href="../category/algorithm.html">algorithm</a>
 
     Tagged: 
-    <a href="../tag/algorithm-analysis.html">algorithm analysis </a>
+    <a href="../tag/algorithm.html">algorithm </a>
+    <a href="../tag/random.html">random </a>
+    <a href="../tag/c.html">c </a>
 </p>
 
 
 
-                <a class="button radius secondary small right" href="../posts/complexity/loop-complexity.html">Read More</a>
+                <a class="button radius secondary small right" href="../posts/algorithm/random-range.html">Read More</a>
                 <hr  class="gradient"/>
             </article>
 
@@ -423,40 +437,29 @@ Translations:
 
 
             <article>
-                <a href="../posts/complexity/complexity.html"><h3 class="article-title">算法复杂度分析</h3></a>
-<h6 class="subheader" title="2014-06-07T15:00:00">Sat 07 June 2014
+                <a href="../posts/algorithm/shuffle.html"><h3 class="article-title">洗牌算法之Knuth Shuffle</h3></a>
+<h6 class="subheader" title="2014-09-05T00:00:00">Fri 05 September 2014
 </h6>
 
-Translations: 
-        <a href="../posts/interview/complexity.html">cn</a>
 
-<p>算法的复杂度是用来衡量算法运行所需要的计算机资源（时间、空间）的量, 分为时间复杂度和空间复杂度. 时间复杂度是指衡量算法执行时间的长短；空间复杂度是指衡量算法所需存储空间的大小。</p>
-<ol>
-<li>
-<p>Landau符号<br />
-    Landau符号其实是由德国数论学家保罗·巴赫曼（Paul Bachmann）在其1892年的著作《解析数论》首先引入，由另一位德国数论学家艾德蒙·朗道（Edmund Landau）推广。Landau符号的作用在于用简单的函数来描述复杂函数行为，给出一个上或下（确）界。在计算算法复杂度时一般只用到大O符号，Landau符号体系中的小o符号、Θ符号等等比较不常用。这里的O，最初是用大写希腊字母，但现在都用大写英语字母O；小o符号也是用小写英语字母o，Θ符号则维持大写希腊字母Θ.</p>
-<table>
-<thead>
-<tr>
-<th>Asymptotic comparison</th>
-<th>operatorNumeric comparison operator</th>
-<th>------</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>f(n) = o(g(n))</td>
-<td>∀ε&gt;0,∃$n_0$∈ℕ,∀n≥$n_0$,f(n ...</td></tr></tbody></table></li></ol><p class="subheader">Category: <a href="../category/complexity.html">complexity</a>
+<p>算法描述:</p>
+<blockquote>
+<p>Let X1, X2…. XN be the set of N numbers to be shuffled.</p>
+<p>Set j to N<br />
+Generate a random number R. (uniformly distributed between 0 and 1)<br />
+Set k to (jR+1). k is now a random integer, between 1 and j.<br />
+Exchange Xk and Xj<br />
+Decrease j ...</p></blockquote><p class="subheader">Category: <a href="../category/algorithm.html">algorithm</a>
 
     Tagged: 
-    <a href="../tag/algorithm-analysis.html">algorithm analysis </a>
+    <a href="../tag/algorithm.html">algorithm </a>
+    <a href="../tag/random.html">random </a>
+    <a href="../tag/shuffle.html">shuffle </a>
 </p>
 
 
-Translations: 
-        <a href="../posts/interview/complexity.html">cn</a>
 
-                <a class="button radius secondary small right" href="../posts/complexity/complexity.html">Read More</a>
+                <a class="button radius secondary small right" href="../posts/algorithm/shuffle.html">Read More</a>
                 <hr  class="gradient"/>
             </article>
 
@@ -464,69 +467,60 @@ Translations:
 
 
             <article>
-                <a href="../posts/python/encoding.html"><h3 class="article-title">python encoding</h3></a>
-<h6 class="subheader" title="2014-06-05T00:00:00">Thu 05 June 2014
+                <a href="../posts/algorithm/binary-bit.html"><h3 class="article-title">整数位的操作</h3></a>
+<h6 class="subheader" title="2014-09-04T00:00:00">Thu 04 September 2014
 </h6>
 
 
-<p>http://legacy.python.org/dev/peps/pep-0263/</p><p class="subheader">Category: <a href="../category/python.html">python</a>
+<h3>二进制表示1的个数</h3>
+<div class="highlight"><pre><span class="cp"># 解法1</span>
+<span class="kt">int</span> <span class="nf">count</span><span class="p">(</span><span class="kt">int</span> <span class="n">v</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kt">int</span> <span class="n">num</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="k">while</span> <span class="p">(</span><span class="n">v</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">v</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">num</span><span class="o">++</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="n">v</span> <span class="o">/=</span><span class="mi">2</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="n">num</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="cp"># 解法2</span>
+<span class="kt">int</span> <span class="nf">count</span><span class="p">(</span><span class="kt">int</span> <span class="n">v</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kt">int</span> <span class="n">num</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="k">while</span> <span class="p">(</span><span class="n">v</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">num</span> <span class="o">+=</span> <span class="n">v</span> <span class="o">&amp;</span> <span class="mh">0x1</span><span class="p">;</span>
+        <span class="n">v</span> <span class="o">&gt;&gt;=</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="n">num</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="cp"># 解法 3</span>
+<span class="kt">int</span> <span class="nf">count</span><span class="p">(</span><span class="kt">int</span> <span class="n">v</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kt">int</span> <span class="n">num</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="k">while</span> <span class="p">(</span><span class="n">v</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">v</span> <span class="o">&amp;=</span> <span class="p">(</span><span class="n">v ...</span></pre></div><p class="subheader">Category: <a href="../category/algorithm.html">algorithm</a>
 
     Tagged: 
-    <a href="../tag/python.html">python </a>
-    <a href="../tag/encoding.html">encoding </a>
-    <a href="../tag/utf-8.html">utf-8 </a>
+    <a href="../tag/algorithm.html">algorithm </a>
+    <a href="../tag/bit.html">bit </a>
+    <a href="../tag/c.html">c </a>
 </p>
 
 
 
-                <a class="button radius secondary small right" href="../posts/python/encoding.html">Read More</a>
-                <hr  class="gradient"/>
-            </article>
-
-        
-
-
-            <article>
-                <a href="../posts/misc/pelican.html"><h3 class="article-title">pelican</h3></a>
-<h6 class="subheader" title="2014-06-05T00:00:00">Thu 05 June 2014
-</h6>
-
-
-<ol>
-<li>
-<p>安装</p>
-<ul>
-<li>
-<p>依赖<br />
-    At this time, Pelican is dependent on the following Python packages:</p>
-<ul>
-<li>feedgenerator, to generate the Atom feeds</li>
-<li>jinja2, for templating support</li>
-<li>docutils, for supporting reStructuredText as an input format</li>
-</ul>
-<p>If you’re not using Python 2.7, you will also need the argparse package.</p>
-<p>Optionally:</p>
-<ul>
-<li>pygments, for syntax ...</li></ul></li></ul></li></ol><p class="subheader">Category: <a href="../category/misc.html">misc</a>
-
-    Tagged: 
-    <a href="../tag/pelican.html">pelican </a>
-    <a href="../tag/python.html">python </a>
-</p>
-
-
-
-                <a class="button radius secondary small right" href="../posts/misc/pelican.html">Read More</a>
+                <a class="button radius secondary small right" href="../posts/algorithm/binary-bit.html">Read More</a>
                 <hr  class="gradient"/>
             </article>
 
             <!-- /#posts-list -->
 <div class="pagination-centered">
-<h6 class="subheader">Page 3 of 3</h6>
+<h6 class="subheader">Page 3 of 7</h6>
 
 <p>
             <a href="../author/actberw2.html">&laquo; Prev</a>
 
+        <a href="../author/actberw4.html">Next &raquo;</a>
 </p>
 </div>
 
@@ -550,11 +544,13 @@ Translations:
             <li><a href="../category/complexity.html">complexity</a></li>
             <li><a href="../category/coroutine.html">coroutine</a></li>
             <li><a href="../category/interview.html">interview</a></li>
+            <li><a href="../category/learn-plan.html">learn-plan</a></li>
             <li><a href="../category/misc.html">misc</a></li>
             <li><a href="../category/mysql.html">mysql</a></li>
             <li><a href="../category/python.html">python</a></li>
             <li><a href="../category/security.html">security</a></li>
-            <li><a href="../category/sort.html">sort</a></li>
+            <li><a href="../category/str.html">str</a></li>
+            <li><a href="../category/tcp-ip.html">tcp-ip</a></li>
             <li><a href="../category/tree.html">tree</a></li>
             <li><a href="../category/vim.html">vim</a></li>
    

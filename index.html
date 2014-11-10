@@ -56,33 +56,15 @@
         
 
             <article>
-                <a href="./posts/mysql/xtrabackup.html"><h3 class="article-title">xtrbackup备份原理</h3></a>
-<h6 class="subheader" title="2014-08-10T21:00:00">Sun 10 August 2014
+                <a href="./posts/algorithm/union-find.html"><h3 class="article-title">合并查找算法(union-find)</h3></a>
+<h6 class="subheader" title="2014-11-10T16:12:52">Mon 10 November 2014
 </h6>
 
 
-<p>xtrabackup备份主要做两件事情:</p>
-<ul>
-<li>后台启动一个日志复制线程监控innodb日志文件，发现变动时复制到xtrabackup_logfile</li>
-<li>复制innodb数据文件, 并不是简单的复制，跟innodb同样的方式打开文件，打开数据字典( data dictionary)复制innodb page.</li>
-</ul>
-<p>当数据文件复制完成时，停止日志复制线程同时创建文件xtrabackup_checkpoints记录 LSN(log sequence number)信息.</p>
-<p>复制数据文件时每次读取1M大小(这个没法配置), 并检查每个page是否损坏.日志文件时每次512KB.</p>
-<p>innodb page(通常是16kb)包含一个日志序列号LSN, LSN是整个数据库的版本号, LSN的大小表示最近多久被修改过. 增量备份的原理就是复制LSN大于xtrabackup_checkpoints记录的最后LSN.有两种算法找到变动的page:</p>
-<ul>
-<li>读取所有的page比较LSN，mysql及Percona Server都支持 (数据库的大小影响备份的快慢)</li>
-<li>Percona Server 用bitmap实现了跟踪变化的innodb page 特性, 会快很多.</li>
-</ul>
-<p>xtrabackup调用innodb库来读数据文件，而innodb以read-write打开数据文件, 所以用xtrabackup备份的时候需要有对数据文件写的权限，但是并不会写文件.</p>
-<p>refer:</p>
-<ul>
-<li><a href="http://www.percona.com/doc/percona-xtrabackup/2.2/xtrabackup_bin/creating_a_backup.html">http://www.percona.com/doc/percona-xtrabackup/2.2/xtrabackup_bin/creating_a_backup.html</a></li>
-<li><a href="http://www.percona.com/doc/percona-xtrabackup/2.2/xtrabackup_bin/implementation_details.html">http://www.percona.com/doc/percona-xtrabackup/2.2/xtrabackup_bin/implementation_details.html</a></li>
-</ul><p class="subheader">Category: <a href="./category/mysql.html">mysql</a>
+<h3>连通性问题</h3>
+<p>http://www.geeksforgeeks.org/union-find/
+http://www.geeksforgeeks.org/union-find-algorithm-set-2-union-by-rank/</p><p class="subheader">Category: <a href="./category/algorithm.html">algorithm</a>
 
-    Tagged: 
-    <a href="./tag/mysql.html">mysql </a>
-    <a href="./tag/xtrabackup.html">xtrabackup </a>
 </p>
 
 
@@ -97,30 +79,20 @@
 
 
             <article>
-                <a href="./posts/mysql/quote.html"><h3 class="article-title">mysql中的引号</h3></a>
-<h6 class="subheader" title="2014-08-10T20:44:00">Sun 10 August 2014
+                <a href="./posts/algorithm/palindrome-number.html"><h3 class="article-title">回文数</h3></a>
+<h6 class="subheader" title="2014-11-10T14:27:02">Mon 10 November 2014
 </h6>
 
 
-<p>mysql字符串指用单引号(‘'’)或双引号(‘"’)引起来的字符序列。例如：</p>
-<p>'a string'</p>
-<p>"another string"</p>
-<p>如果SQL服务器模式启用了ANSI_QUOTES，可以只用单引号引用字符串。用双引号引用的字符串被解释为一个识别符。</p>
-<p>refer:</p>
-<ul>
-<li><a href="http://dev.mysql.com/doc/refman/5.6/en/string-literals.html">http://dev.mysql.com/doc/refman/5.6/en/string-literals.html</a></li>
-<li><a href="http://dev.mysql.com/doc/refman/5.6/en/sql-mode.html#sqlmode_ansi_quotes">http://dev.mysql.com/doc/refman/5.6/en/sql-mode.html#sqlmode_ansi_quotes</a></li>
-<li><a href="http://segmentfault.com/q/1010000000236690">http://segmentfault.com/q/1010000000236690</a></li>
-</ul><p class="subheader">Category: <a href="./category/mysql.html">mysql</a>
+<p>http://segmentfault.com/blog/code/1190000000453441
+http://zh.wikipedia.org/wiki/%E5%9B%9E%E6%96%87%E6%95%B0
+http://blog.csdn.net/cklsoft/article/details/40862037</p><p class="subheader">Category: <a href="./category/algorithm.html">algorithm</a>
 
-    Tagged: 
-    <a href="./tag/mysql.html">mysql </a>
-    <a href="./tag/quote.html">quote </a>
 </p>
 
 
 
-                <a class="button radius secondary small right" href="./posts/mysql/quote.html">Read More</a>
+                <a class="button radius secondary small right" href="./posts/algorithm/palindrome-number.html">Read More</a>
                 <hr  class="gradient"/>
             </article>
 
@@ -128,38 +100,152 @@
 
 
             <article>
-                <a href="./posts/algorithm/triangle.html"><h3 class="article-title">三角形的面积</h3></a>
-<h6 class="subheader" title="2014-08-10T20:00:00">Sun 10 August 2014
+                <a href="./posts/algorithm/binary-search.html"><h3 class="article-title">二分查找</h3></a>
+<h6 class="subheader" title="2014-11-10T00:00:00">Mon 10 November 2014
+</h6>
+
+
+<p>http://hedengcheng.com/?p=595
+http://blog.csdn.net/cklsoft/article/details/40841637
+http://blog.csdn.net/daniel_ustc/article/details/17307937
+http://blog.csdn.net/xjm199/article/details/17841281
+http://www.cnblogs.com/gaochundong/p/binary_search.html</p><p class="subheader">Category: <a href="./category/algorithm.html">algorithm</a>
+
+    Tagged: 
+    <a href="./tag/algorithm.html">algorithm </a>
+    <a href="./tag/binary-search.html">binary search </a>
+</p>
+
+
+
+                <a class="button radius secondary small right" href="./posts/algorithm/binary-search.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="./posts/misc/eof.html"><h3 class="article-title">EOF是什么</h3></a>
+<h6 class="subheader" title="2014-11-09T23:11:47">Sun 09 November 2014
+</h6>
+
+
+<p>http://www.ruanyifeng.com/blog/2011/11/eof.html</p><p class="subheader">Category: <a href="./category/misc.html">misc</a>
+
+</p>
+
+
+
+                <a class="button radius secondary small right" href="./posts/misc/eof.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="./posts/algorithm/sort.html"><h3 class="article-title">基本排序算法</h3></a>
+<h6 class="subheader" title="2014-11-09T15:07:59">Sun 09 November 2014
 </h6>
 
 
 <ol>
-<li>
-<p>已知三边(a, b, c)求三角形面积.<br />
-海伦公式:
-假设三角形三边分别为(a, b, c), 则三角形的面积<br />
-$S = \sqrt{p(p-a)(p-b)(p-c)}$, 其中$p=\frac{a + b+ c}{2}$</p>
-<div class="highlight"><pre><span class="kt">float</span> <span class="nf">space</span><span class="p">(</span><span class="kt">float</span> <span class="n">a</span><span class="p">,</span> <span class="kt">float</span> <span class="n">b</span><span class="p">,</span> <span class="kt">float</span> <span class="n">c</span><span class="p">)</span> <span class="p">{</span>
-    <span class="kt">int</span> <span class="n">p</span><span class="p">;</span>
-    <span class="n">p</span> <span class="o">=</span> <span class="p">(</span><span class="n">a</span> <span class="o">+</span> <span class="n">b</span> <span class="o">+</span> <span class="n">c</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span><span class="p">;</span>
-    <span class="k">return</span> <span class="n">sqrt</span><span class="p">(</span><span class="n">p</span> <span class="o">*</span> <span class="p">(</span><span class="n">p</span> <span class="o">-</span> <span class="n">a</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">p</span> <span class="o">-</span> <span class="n">b</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">p</span> <span class="o">-</span> <span class="n">c</span><span class="p">));</span>
+<li>分类<ul>
+<li>插入排序: 直接插入排序，Shell排序</li>
+<li>选择排序: 直接选择排序，堆排序</li>
+<li>冒泡排序: 冒泡排序，快速排序</li>
+<li>归并排序，基数排序，桶排序</li>
+</ul>
+</li>
+</ol>
+<p>A sorting algorithm is said to be stable if two objects with equal keys appear in the same order in sorted output as they appear in the input unsorted array. Some sorting algorithms are stable by nature ...</p><p class="subheader">Category: <a href="./category/algorithm.html">algorithm</a>
+
+    Tagged: 
+    <a href="./tag/algorithm.html">algorithm </a>
+    <a href="./tag/sort.html">sort </a>
+</p>
+
+
+
+                <a class="button radius secondary small right" href="./posts/algorithm/sort.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="./posts/algorithm/eight-queens.html"><h3 class="article-title">八皇后问题</h3></a>
+<h6 class="subheader" title="2014-11-09T14:57:05">Sun 09 November 2014
+</h6>
+
+
+<blockquote>
+<p>八皇后问题是一个古老而著名的问题，是回溯算法的典型例题。该问题是十九世纪著名的数学家高斯1850年提出：在8X8格的国际象棋上摆放八个皇后，使其不能互相攻击，即任意两个皇后都不能处于同一行、同一列或同一斜线上，问有多少种摆法。</p>
+</blockquote>
+<h3>代码(递归)</h3>
+<div class="highlight"><pre><span class="cp">#include&lt;stdlib.h&gt;</span>
+<span class="cp">#include&lt;stdio.h&gt;</span>
+
+<span class="cp">#define N 8</span>
+
+<span class="kt">int</span> <span class="n">queen</span><span class="p">[</span><span class="n">N</span><span class="p">],</span> <span class="n">sum</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+
+<span class="kt">int</span> <span class="nf">check</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="p">{</span><span class="c1">//n: row number</span>
+    <span class="kt">int</span> <span class="n">i</span><span class="p">;</span>
+    <span class="k">for</span> <span class="p">(</span><span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">((</span><span class="n">queen</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="n">queen</span><span class="p">[</span><span class="n">n</span><span class="p">])</span> <span class="o">||</span> <span class="p">(</span><span class="n">abs</span><span class="p">(</span><span class="n">queen</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">-</span> <span class="n">queen</span><span class="p">[</span><span class="n">n</span><span class="p">])</span> <span class="o">==</span> <span class="p">(</span><span class="n">n</span> <span class="o">-</span> <span class="n">i ...</span></pre></div><p class="subheader">Category: <a href="./category/algorithm.html">algorithm</a>
+
+    Tagged: 
+    <a href="./tag/algorithm.html">algorithm </a>
+    <a href="./tag/cc.html">c/c++ </a>
+</p>
+
+
+
+                <a class="button radius secondary small right" href="./posts/algorithm/eight-queens.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="./posts/str/revert.html"><h3 class="article-title">字符串反转</h3></a>
+<h6 class="subheader" title="2014-11-08T00:00:00">Sat 08 November 2014
+</h6>
+
+
+<h3>反转字符串</h3>
+<div class="highlight"><pre><span class="kt">void</span> <span class="nf">revert</span><span class="p">(</span><span class="kt">char</span> <span class="o">*</span> <span class="n">str</span><span class="p">,</span> <span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">left</span><span class="p">,</span> <span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">right</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kt">char</span> <span class="n">tmp</span><span class="p">;</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">str</span> <span class="o">==</span> <span class="nb">NULL</span> <span class="o">||</span> <span class="n">left</span> <span class="o">&gt;</span> <span class="n">right</span><span class="p">)</span>
+        <span class="k">return</span><span class="p">;</span>
+    <span class="k">while</span><span class="p">(</span><span class="n">left</span> <span class="o">&lt;</span> <span class="n">right</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">tmp</span> <span class="o">=</span> <span class="n">str</span><span class="p">[</span><span class="n">left</span><span class="p">];</span>
+        <span class="n">str</span><span class="p">[</span><span class="n">left</span><span class="p">]</span> <span class="o">=</span> <span class="n">str</span><span class="p">[</span><span class="n">right</span><span class="p">];</span>
+        <span class="n">str</span><span class="p">[</span><span class="n">right</span><span class="p">]</span> <span class="o">=</span> <span class="n">tmp</span><span class="p">;</span>
+        <span class="n">left</span><span class="o">++</span><span class="p">;</span><span class="n">right</span><span class="o">--</span><span class="p">;</span>
+    <span class="p">}</span>
 <span class="p">}</span>
 </pre></div>
 
 
-</li>
-<li>
-<p>已知平面三点的坐标求三角形的面积<br />
-利用向量叉乘 ...</p></li></ol><p class="subheader">Category: <a href="./category/algorithm.html">algorithm</a>
+<h3>反转句子中单词的顺序</h3>
+<blockquote>
+<p>输入一个英文句子，翻转句子中单词的顺序，但单词内字符的顺序不变。句子中单词以空格符隔开。为简单起见，标点符号和普通字母一样处理。</p>
+<p>例如输入“I am a student.”，则输出“student. a am ...</p></blockquote><p class="subheader">Category: <a href="./category/str.html">str</a>
 
     Tagged: 
     <a href="./tag/algorithm.html">algorithm </a>
-    <a href="./tag/triangle.html">triangle </a>
+    <a href="./tag/c.html">c </a>
+    <a href="./tag/str.html">str </a>
 </p>
 
 
 
-                <a class="button radius secondary small right" href="./posts/algorithm/triangle.html">Read More</a>
+                <a class="button radius secondary small right" href="./posts/str/revert.html">Read More</a>
                 <hr  class="gradient"/>
             </article>
 
@@ -167,28 +253,21 @@ $S = \sqrt{p(p-a)(p-b)(p-c)}$, 其中$p=\frac{a + b+ c}{2}$</p>
 
 
             <article>
-                <a href="./posts/algorithm/basic-data-structure.html"><h3 class="article-title">算法: c语言实现读书笔记</h3></a>
-<h6 class="subheader" title="2014-08-07T19:00:00">Thu 07 August 2014
+                <a href="./posts/algorithm/hanoi.html"><h3 class="article-title">汉诺塔(Tower of Hanoi)</h3></a>
+<h6 class="subheader" title="2014-11-06T21:07:25">Thu 06 November 2014
 </h6>
 
 
-<p>3.1  基本组件<br />
-基本数据类型(char, int, float, double), arrry, struct, point</p>
-<p>3.2 数组(array)<br />
-埃拉托斯特尼筛法(参见[1])</p>
 <blockquote>
-<p>对于1到n全部整数，逐个判断它们是否是素数，找出一个非素数，就把它挖掉，最后剩下的就是素数。具体方法是： &lt;1&gt; 定义is_primer[i] = true; &lt;2&gt; 从2开始，依次遍历整个is_primer(直到sqrt(N))，如果is_primer[i]=true,则is_primer[i]=false i ∈ {n², n²+n, n²+2n, ..., limit}</p>
+<p>有一个梵塔，塔内有三个座A、B、C，A座上有诺干个盘子，盘子大小不等，大的在下，小的在上（如图）。 把这些个盘子从A座移到C座，中间可以借用B座但每次只能允许移动一个盘子，并且在移动过程中，3个座上的盘子始终保持大盘在下，小盘在上.</p>
 </blockquote>
-<div class="highlight"><pre><span class="cp">#define N 1000</span>
-<span class="kt">int ...</span></pre></div><p class="subheader">Category: <a href="./category/algorithm.html">algorithm</a>
+<p>A key to solving this puzzle is to recognize that it can be solved by breaking the problem down into a collection of smaller problems and further breaking those problems down into even smaller problems until ...</p><p class="subheader">Category: <a href="./category/algorithm.html">algorithm</a>
 
-    Tagged: 
-    <a href="./tag/note.html">note </a>
 </p>
 
 
 
-                <a class="button radius secondary small right" href="./posts/algorithm/basic-data-structure.html">Read More</a>
+                <a class="button radius secondary small right" href="./posts/algorithm/hanoi.html">Read More</a>
                 <hr  class="gradient"/>
             </article>
 
@@ -196,18 +275,18 @@ $S = \sqrt{p(p-a)(p-b)(p-c)}$, 其中$p=\frac{a + b+ c}{2}$</p>
 
 
             <article>
-                <a href="./posts/coroutine/asymmetric-vs-symmetric.html"><h3 class="article-title">asymmetric coroutine和symmetric coroutine</h3></a>
-<h6 class="subheader" title="2014-08-06T21:44:18">Wed 06 August 2014
+                <a href="./posts/complexity/amortized-analysis.html"><h3 class="article-title">Amortized Analysis</h3></a>
+<h6 class="subheader" title="2014-11-06T16:07:17">Thu 06 November 2014
 </h6>
 
 
-<p class="subheader">Category: <a href="./category/coroutine.html">coroutine</a>
+<p>http://www.geeksforgeeks.org/analysis-algorithm-set-5-amortized-analysis-introduction/</p><p class="subheader">Category: <a href="./category/complexity.html">complexity</a>
 
 </p>
 
 
 
-                <a class="button radius secondary small right" href="./posts/coroutine/asymmetric-vs-symmetric.html">Read More</a>
+                <a class="button radius secondary small right" href="./posts/complexity/amortized-analysis.html">Read More</a>
                 <hr  class="gradient"/>
             </article>
 
@@ -215,8 +294,75 @@ $S = \sqrt{p(p-a)(p-b)(p-c)}$, 其中$p=\frac{a + b+ c}{2}$</p>
 
 
             <article>
-                <a href="./posts/misc/closure.html"><h3 class="article-title">必包(closure)</h3></a>
-<h6 class="subheader" title="2014-08-06T21:44:18">Wed 06 August 2014
+                <a href="./posts/misc/tsl.html"><h3 class="article-title">Tsl</h3></a>
+<h6 class="subheader" title="2014-11-05T13:05:09">Wed 05 November 2014
+</h6>
+
+
+<p>http://www.ruanyifeng.com/blog/2014/02/ssl_tls.html
+http://www.cnblogs.com/P_Chou/archive/2010/12/27/https-ssl-certification.html
+http://www.zhihu.com/question/20744215/answer/16056710
+http://openwares.net/misc/cert_conceptions.html
+http://www.co.ccpit.org/ca/Htm/menu-item-frame2-content10.htm
+http://blog.chinaunix.net/uid-192074-id-3135733.html
+http ...</p><p class="subheader">Category: <a href="./category/misc.html">misc</a>
+
+</p>
+
+
+
+                <a class="button radius secondary small right" href="./posts/misc/tsl.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="./posts/misc/shell.html"><h3 class="article-title">linux shell</h3></a>
+<h6 class="subheader" title="2014-11-05T13:04:03">Wed 05 November 2014
+</h6>
+
+
+<p>http://www.dewen.io/q/15349/Linux%EF%BC%9A%28%29%E5%92%8C%7B%7D%E6%89%A7%E8%A1%8C%E6%8C%87%E4%BB%A4%E7%9A%84%E6%97%B6%E5%80%99%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA ...</p><p class="subheader">Category: <a href="./category/misc.html">misc</a>
+
+</p>
+
+
+
+                <a class="button radius secondary small right" href="./posts/misc/shell.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="./posts/security/shellshock.html"><h3 class="article-title">Shellshock漏洞</h3></a>
+<h6 class="subheader" title="2014-11-05T13:04:02">Wed 05 November 2014
+</h6>
+
+
+<p>http://www.infoq.com/cn/news/2014/10/shellshock?utm_campaign=infoq_content&amp;utm_source=infoq&amp;utm_medium=feed&amp;utm_term=global
+http://www.oschina.net/translate/protect-yourself-from-non-obvious-dangers-curl-url-pipe-sh</p>
+<p>https://www.trustedsec.com/september-2014/shellshock-dhcp-rce-proof-concept/
+http://blog.erratasec.com/2014/09/bash-shellshock-scan-of-internet.html#.VFTZ6PSUeXz</p>
+<p>http://it.deepinmind.com/%E5%85%B6%E5%AE%83/2014/09 ...</p><p class="subheader">Category: <a href="./category/security.html">security</a>
+
+</p>
+
+
+
+                <a class="button radius secondary small right" href="./posts/security/shellshock.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="./posts/misc/closure.html"><h3 class="article-title">闭包(closure)</h3></a>
+<h6 class="subheader" title="2014-11-04T13:24:36">Tue 04 November 2014
 </h6>
 
 
@@ -234,98 +380,30 @@ $S = \sqrt{p(p-a)(p-b)(p-c)}$, 其中$p=\frac{a + b+ c}{2}$</p>
 
 
             <article>
-                <a href="./posts/coroutine/continuation.html"><h3 class="article-title">continuation</h3></a>
-<h6 class="subheader" title="2014-08-06T21:44:18">Wed 06 August 2014
+                <a href="./posts/python/descriptor.html"><h3 class="article-title">python 描述符</h3></a>
+<h6 class="subheader" title="2014-11-03T23:46:59">Mon 03 November 2014
 </h6>
 
 
-<p class="subheader">Category: <a href="./category/coroutine.html">coroutine</a>
-
-</p>
-
-
-
-                <a class="button radius secondary small right" href="./posts/coroutine/continuation.html">Read More</a>
-                <hr  class="gradient"/>
-            </article>
-
-        
+<p>描述符就是对象的一个绑定了行为的特性(attribute with "binding behavior"), 对特性的操作内部转化为相应方法的调用. 默认的特性访问实际是操作(get, set, delete)的对象的__dict__特性(参见<a href="/posts/python/magic-object.html"><strong>dict</strong></a>),但特性访问时如果查找出来的对象实现了任意的描述符方法, python就会调用描述符的方法而不是默认的行为.</p>
+<p>描述符是一个强大的通用的协议, 也是属性, 方法, 静态方法, 动态方法, super()背后的实现机制. python2.2中引入的新式类也是通过描述符实现的. 描述符简化了底层c代码, 为python程序提供了灵活的工具组.</p>
+<h3>descriptor protocal</h3>
+<div class="highlight"><pre><span class="n">descr</span><span class="p">.</span><span class="n">__get__</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">obj</span><span class="p">,</span> <span class="n">type</span><span class="o">=</span><span class="n">None</span><span class="p">)</span> <span class="o">--&gt;</span> <span class="n">value</span>
+<span class="n">descr</span><span class="p">.</span><span class="n">__set__</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">obj</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span> <span class="o">--&gt;</span> <span class="n">None</span>
+<span class="n">descr</span><span class="p">.</span><span class="n">__delete__</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">obj</span><span class="p">)</span> <span class="o">--&gt;</span> <span class="n">None</span>
+</pre></div>
 
 
-            <article>
-                <a href="./posts/sort/counting-sort.html"><h3 class="article-title">计数排序</h3></a>
-<h6 class="subheader" title="2014-08-06T21:44:18">Wed 06 August 2014
-</h6>
-
-
-<p>http://www.cnblogs.com/kkun/archive/2011/11/23/2260299.html</p><p class="subheader">Category: <a href="./category/sort.html">sort</a>
-
-</p>
-
-
-
-                <a class="button radius secondary small right" href="./posts/sort/counting-sort.html">Read More</a>
-                <hr  class="gradient"/>
-            </article>
-
-        
-
-
-            <article>
-                <a href="./posts/security/cve.html"><h3 class="article-title">漏洞库</h3></a>
-<h6 class="subheader" title="2014-08-06T21:44:18">Wed 06 August 2014
-</h6>
-
-
-<p class="subheader">Category: <a href="./category/security.html">security</a>
-
-</p>
-
-
-
-                <a class="button radius secondary small right" href="./posts/security/cve.html">Read More</a>
-                <hr  class="gradient"/>
-            </article>
-
-        
-
-
-            <article>
-                <a href="./posts/algorithm/design.html"><h3 class="article-title">算法设计范式(paradigm)</h3></a>
-<h6 class="subheader" title="2014-08-06T21:44:18">Wed 06 August 2014
-</h6>
-
-
-<ol>
-<li>
-<p>分治法(divide and conquer)
-  字面上的解释是“分而治之”, 就是把一个复杂的问题分成K个的相同或相似的子问题, 直到最后子问题可以简单的直接求解, 原问题的解即子问题的解的合并. 特征:</p>
-<ul>
-<li>该问题的规模缩小到一定的程度就可以容易地解决.</li>
-<li>该问题可以分解为若干个规模较小的相同问题, 即该问题具有最优子结构性质.</li>
-<li>利用该问题分解出的子问题的解可以合并为该问题的解</li>
-<li>该问题所分解出的各个子问题是相互独立的, 即子问题之间不包含公共的子子问题.</li>
-</ul>
-<p>第一条特征是绝大多数问题都可以满足的, 因为问题的计算复杂性一般是随着问题规模的增加而增加, 第二条特征是应用分治法的前提它也是大多数问题可以满足的, 此特征反映了递归思想的应用,
-第三条特征是关键, 能否利用分治法完全取决于问题是否具有第三条特征, 如果具备了第一条和第二条特征, 而不具备第三条特征, 则可以考虑用贪心法或动态规划法, 第四条特征涉及到分治法的效率, 如果各子问题是不独立的则分治法要做许多不必要的工作, 重复地解公共的子问题, 此时虽然可用分治法, 但一般用动态规划法较好.</p>
-</li>
-<li>
-<p>动态规划(dynamic programming)
-    动态规划常常适用于有重叠子问题[2]和最优子结构性质的问题, 动态规划法试图仅仅解决每个子问题一次, 从而减少计算量： 一旦某个给定子问题的解已经算出, 则将其记忆化存储, 以便下次需要同一个子问题解之时直接查表. </p>
-</li>
-<li>
-<p>贪心算法(greedy algorithms)</p>
-</li>
-<li>回溯法(backtrack)
-    回溯算法实际上一个类似枚举的搜索尝试过程, 主要是在搜索尝试过程中寻找问题的解, 当发现已不满足求解条件时, 就 ...</li></ol><p class="subheader">Category: <a href="./category/algorithm.html">algorithm</a>
+<p>定义了以上三个任意的方法的对象就是描述符.如果一个对象只定义了_<em>get_</em>(), 被称为非数据描述符 ...</p><p class="subheader">Category: <a href="./category/python.html">python</a>
 
     Tagged: 
-    <a href="./tag/algorithm.html">algorithm </a>
+    <a href="./tag/python.html">python </a>
+    <a href="./tag/descriptor-date-2014-11-03-100000.html">descriptor Date: 2014-11-03 10:00:00 </a>
 </p>
 
 
 
-                <a class="button radius secondary small right" href="./posts/algorithm/design.html">Read More</a>
+                <a class="button radius secondary small right" href="./posts/python/descriptor.html">Read More</a>
                 <hr  class="gradient"/>
             </article>
 
@@ -333,137 +411,28 @@ $S = \sqrt{p(p-a)(p-b)(p-c)}$, 其中$p=\frac{a + b+ c}{2}$</p>
 
 
             <article>
-                <a href="./posts/algorithm/eight-queens.html"><h3 class="article-title">八皇后问题</h3></a>
-<h6 class="subheader" title="2014-08-06T21:44:18">Wed 06 August 2014
+                <a href="./posts/python/special-method-lookup.html"><h3 class="article-title">特殊方法的查找</h3></a>
+<h6 class="subheader" title="2014-11-03T21:00:00">Mon 03 November 2014
 </h6>
 
 
-<ol>
-<li>
-<p>问题描述</p>
-<blockquote>
-<p>八皇后问题是一个古老而著名的问题，是回溯算法的典型例题。该问题是十九世纪著名的数学家高斯1850年提出：在8X8格的国际象棋上摆放八个皇后，使其不能互相攻击，即任意两个皇后都不能处于同一行、同一列或同一斜线上，问有多少种摆法。</p>
-</blockquote>
-</li>
-<li>
-<p>代码(递归)</p>
-<div class="highlight"><pre><span class="cp">#include&lt;stdlib.h&gt;</span>
-<span class="cp">#include&lt;stdio.h&gt;</span>
-
-<span class="cp">#define N 8</span>
-
-<span class="kt">int</span> <span class="n">queen</span><span class="p">[</span><span class="n">N</span><span class="p">],</span> <span class="n">sum</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
-
-<span class="kt">int</span> <span class="nf">check</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="p">{</span><span class="c1">//n: row number</span>
-    <span class="kt">int</span> <span class="n">i</span><span class="p">;</span>
-    <span class="k">for</span> <span class="p">(</span><span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
-        <span class="k">if</span> <span class="p">((</span><span class="n">queen</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="n">queen</span><span class="p">[</span><span class="n">n</span><span class="p">])</span> <span class="o">||</span> <span class="p">(</span><span class="n">abs</span><span class="p">(</span><span class="n">queen</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">-</span> <span class="n">queen</span><span class="p">[</span><span class="n">n</span><span class="p">])</span> <span class="o">==</span> <span class="p">(</span><span class="n">n ...</span></pre></div></li></ol><p class="subheader">Category: <a href="./category/algorithm.html">algorithm</a>
+<p>For old-style classes, special methods are always looked up in exactly the same way as any other method or attribute. This is the case regardless of whether the method is being looked up explicitly as in <code>x.__getitem__(i)</code> or implicitly as in <code>x[i]</code>.</p>
+<p>For new-style classes, implicit invocations ...</p><p class="subheader">Category: <a href="./category/python.html">python</a>
 
     Tagged: 
-    <a href="./tag/algorithm.html">algorithm </a>
-    <a href="./tag/cc.html">c/c++ </a>
+    <a href="./tag/python.html">python </a>
+    <a href="./tag/method.html">method </a>
 </p>
 
 
 
-                <a class="button radius secondary small right" href="./posts/algorithm/eight-queens.html">Read More</a>
-                <hr  class="gradient"/>
-            </article>
-
-        
-
-
-            <article>
-                <a href="./posts/security/exploit.html"><h3 class="article-title">Exploit和shellcode简介</h3></a>
-<h6 class="subheader" title="2014-08-06T21:44:18">Wed 06 August 2014
-</h6>
-
-
-<p>refer:<br />
-- <a href="http://badishi.com/on-vulnerabilities-exploits-and-shellcodes/">http://badishi.com/on-vulnerabilities-exploits-and-shellcodes/</a>
-- <a href="http://www.exploit-db.com/">http://www.exploit-db.com/</a>
-- <a href="http://www.clevcode.org/cve-2014-3153-exploit/">http://www.clevcode.org/cve-2014-3153-exploit/</a>
-- <a href="http://www.seckungfu.com/">http://www.seckungfu.com/</a></p><p class="subheader">Category: <a href="./category/security.html">security</a>
-
-</p>
-
-
-
-                <a class="button radius secondary small right" href="./posts/security/exploit.html">Read More</a>
-                <hr  class="gradient"/>
-            </article>
-
-        
-
-
-            <article>
-                <a href="./posts/coroutine/generator-vs-iterator.html"><h3 class="article-title">Iterator 和 Generator</h3></a>
-<h6 class="subheader" title="2014-08-06T21:44:18">Wed 06 August 2014
-</h6>
-
-
-<p class="subheader">Category: <a href="./category/coroutine.html">coroutine</a>
-
-</p>
-
-
-
-                <a class="button radius secondary small right" href="./posts/coroutine/generator-vs-iterator.html">Read More</a>
-                <hr  class="gradient"/>
-            </article>
-
-        
-
-
-            <article>
-                <a href="./posts/misc/hdd.html"><h3 class="article-title">硬盘(hard disk drive)构造</h3></a>
-<h6 class="subheader" title="2014-08-06T21:44:18">Wed 06 August 2014
-</h6>
-
-
-<p>Zone bit recording 技术</p>
-<p>refer:</p>
-<ul>
-<li><a href="http://www.programlife.net/disk-struct.html">http://www.programlife.net/disk-struct.html</a></li>
-</ul><p class="subheader">Category: <a href="./category/misc.html">misc</a>
-
-    Tagged: 
-    <a href="./tag/hdd.html">hdd </a>
-    <a href="./tag/linux.html">linux </a>
-    <a href="./tag/zbr.html">zbr </a>
-</p>
-
-
-
-                <a class="button radius secondary small right" href="./posts/misc/hdd.html">Read More</a>
-                <hr  class="gradient"/>
-            </article>
-
-        
-
-
-            <article>
-                <a href="./posts/interview/horse-race.html"><h3 class="article-title">赛马问题</h3></a>
-<h6 class="subheader" title="2014-08-06T21:44:18">Wed 06 August 2014
-</h6>
-
-
-<p>refer:</p>
-<ul>
-<li><a href="http://hsiq.blogspot.jp/2008/08/blog-post_28.html">http://hsiq.blogspot.jp/2008/08/blog-post_28.html</a></li>
-</ul><p class="subheader">Category: <a href="./category/interview.html">interview</a>
-
-</p>
-
-
-
-                <a class="button radius secondary small right" href="./posts/interview/horse-race.html">Read More</a>
+                <a class="button radius secondary small right" href="./posts/python/special-method-lookup.html">Read More</a>
                 <hr  class="gradient"/>
             </article>
 
             <!-- /#posts-list -->
 <div class="pagination-centered">
-<h6 class="subheader">Page 1 of 3</h6>
+<h6 class="subheader">Page 1 of 7</h6>
 
 <p>
 
@@ -491,11 +460,13 @@ $S = \sqrt{p(p-a)(p-b)(p-c)}$, 其中$p=\frac{a + b+ c}{2}$</p>
             <li><a href="./category/complexity.html">complexity</a></li>
             <li><a href="./category/coroutine.html">coroutine</a></li>
             <li><a href="./category/interview.html">interview</a></li>
+            <li><a href="./category/learn-plan.html">learn-plan</a></li>
             <li><a href="./category/misc.html">misc</a></li>
             <li><a href="./category/mysql.html">mysql</a></li>
             <li><a href="./category/python.html">python</a></li>
             <li><a href="./category/security.html">security</a></li>
-            <li><a href="./category/sort.html">sort</a></li>
+            <li><a href="./category/str.html">str</a></li>
+            <li><a href="./category/tcp-ip.html">tcp-ip</a></li>
             <li><a href="./category/tree.html">tree</a></li>
             <li><a href="./category/vim.html">vim</a></li>
    

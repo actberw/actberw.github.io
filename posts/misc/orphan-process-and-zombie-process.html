@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8" />
+    <!-- Set the viewport width to device width for mobile -->
+    <meta name="viewport" content="width=device-width" />
+
+    <title>linux 僵尸(zombie)进程和孤儿(orphan)进程</title>
+
+    <link rel="stylesheet" href="../../theme/css/normalize.css" />
+    <link rel="stylesheet" href="../../theme/css/foundation.min.css" />
+    <link rel="stylesheet" href="../../theme/css/style.css" />
+    <link rel="stylesheet" href="../../theme/css/pygments.css" />	
+    <script src="../../theme/js/vendor/custom.modernizr.js"></script>
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        "HTML-CSS": {
+      styles: {
+        ".MathJax .mo, .MathJax .mi": {color: "black ! important"}}
+          },
+            tex2jax: {inlineMath: [['$','$'], ['\\\\(','\\\\)']],processEscapes: true}
+      });
+    </script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script></script>
+</head>
+
+<body>
+
+<!-- Nav Bar -->
+<nav>
+<div class="top-bar">
+<div class="row">
+    <div class="large-9 large-centered columns">
+	    <h1><a href="../..">记录一些工作中的笔记</a></h1>
+    </div>
+</div>
+</div>
+
+<!-- Show menu items and pages -->
+<div class="row">
+<div class="large-9 columns">
+    <ul class="button-group navigation">
+
+    </ul>
+</div>
+</div>
+</nav>
+<!-- End Nav -->
+
+
+<!-- Main Page Content and Sidebar -->
+<div class="row">
+
+    <!-- Main Blog Content -->
+    <div class="large-9 columns">
+<article>
+    <header>
+        <h3 class="article-title"><a href="../../posts/misc/orphan-process-and-zombie-process.html" rel="bookmark"
+        title="Permalink to linux 僵尸(zombie)进程和孤儿(orphan)进程">linux 僵尸(zombie)进程和孤儿(orphan)进程</a></h3>
+    </header>
+
+<h6 class="subheader" title="2014-09-12T00:00:00">Fri 12 September 2014
+</h6>
+
+
+    <h3>Zombie Processes</h3>
+<p>In Unix and Linux systems, the zombie (or defunct) process is a process that has completed execution but still has an entry in the process table, it is a process in the <a href="http://en.wikipedia.org/wiki/Process_state">Terminated state</a>. A zombie process remains in the operating system and does nothing until the parent process determines that the exit status is no longer needed.</p>
+<p>Normally, when a process finishes execution, it reports the execution status to its parent process. Until the parent process decides that the child processes exit status is not needed anymore, the child process turns into a defunct or zombie process. Once the exit status is read via the <code>wait</code> system call, the zombie's entry is removed from the process table and it is said to be "reaped". It does not use resources and cannot be scheduled for execution.The <code>kill</code> command has no effect on a zombie process, Zombies can be identified in the output from the Unix ps command by the presence of a "Z" in the "STAT" column.</p>
+<div class="highlight"><pre><span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kt">int</span> <span class="n">status</span><span class="p">;</span>
+    <span class="kt">pid_t</span> <span class="n">pid</span> <span class="o">=</span> <span class="n">fork</span><span class="p">();</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">pid</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span><span class="c1">// child process</span>
+        <span class="n">exit</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="n">printf</span><span class="p">(</span><span class="s">&quot;zombie process: %d</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">pid</span><span class="p">);</span>
+        <span class="n">sleep</span><span class="p">(</span><span class="mi">30</span><span class="p">);</span>
+        <span class="c1">// wait(&amp;status);</span>
+        <span class="c1">// printf(&quot;zombie process: %d\n, status: %d\n&quot;, pid, WEXITSTATUS(status));</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<h3>Orphan Processes</h3>
+<p>An Orphan Process is a process that is still executing but whose parent is dead (terminated), then adopted by the init process.
+参见<a href="/posts/c/daemon.html">daemon进程</a></p>
+<p>refer:</p>
+<ul>
+<li><a href="http://lesca.me/archives/process-relationship.html">http://lesca.me/archives/process-relationship.html</a></li>
+<li><a href="http://en.wikipedia.org/wiki/Zombie_process">http://en.wikipedia.org/wiki/Zombie_process</a></li>
+<li><a href="http://linuxg.net/what-are-zombie-and-orphan-processes-and-how-to-kill-them/">http://linuxg.net/what-are-zombie-and-orphan-processes-and-how-to-kill-them/</a></li>
+</ul>
+<p class="subheader">Category: <a href="../../category/misc.html">misc</a>
+
+    Tagged: 
+    <a href="../../tag/linux.html">linux </a>
+    <a href="../../tag/zombie.html">zombie </a>
+    <a href="../../tag/orphan.html">orphan </a>
+    <a href="../../tag/process.html">process </a>
+</p>
+
+
+
+
+</article>
+    </div>
+    <!-- End Main Content -->
+
+    <!-- Sidebar -->
+    <aside class="large-3 columns">
+        <h5 class="sidebar-title">Site</h5>
+        <ul class="side-nav">
+            <li><a href="../../archives.html">Archives</a>
+            <li><a href="../../tags.html">Tags</a>
+        </ul>
+
+		
+        <h5 class="sidebar-title">Categories</h5>
+        <ul class="side-nav">
+            <li><a href="../../category/adt.html">adt</a></li>
+            <li><a href="../../category/algorithm.html">algorithm</a></li>
+            <li><a href="../../category/c.html">c</a></li>
+            <li><a href="../../category/complexity.html">complexity</a></li>
+            <li><a href="../../category/coroutine.html">coroutine</a></li>
+            <li><a href="../../category/interview.html">interview</a></li>
+            <li><a href="../../category/learn-plan.html">learn-plan</a></li>
+            <li><a href="../../category/misc.html">misc</a></li>
+            <li><a href="../../category/mysql.html">mysql</a></li>
+            <li><a href="../../category/python.html">python</a></li>
+            <li><a href="../../category/security.html">security</a></li>
+            <li><a href="../../category/str.html">str</a></li>
+            <li><a href="../../category/tcp-ip.html">tcp-ip</a></li>
+            <li><a href="../../category/tree.html">tree</a></li>
+            <li><a href="../../category/vim.html">vim</a></li>
+   
+        </ul>
+
+        <h5 class="sidebar-title">Links</h5>
+        <ul class="side-nav">
+            <li><a href="https://github.com/actberw">github</a></li>
+        </ul>
+		
+        <h5 class="sidebar-title">Social</h5>
+        <ul class="side-nav">
+            <li><a href="http://weibo.com/u/1950796544">weibo</a></li>
+        </ul>
+
+    </aside> <!-- End Sidebar -->
+
+</div> <!-- End Main Content and Sidebar -->
+
+
+<!-- Footer -->
+<footer class="row">
+    <div class="large-12 columns">
+        <hr />
+        <div class="row">
+            <div class="large-6 columns">
+              <!--                  <p>记录一些工作中的笔记 by actberw</p> -->
+            </div>
+            </div>
+    </div>
+</footer>

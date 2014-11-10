@@ -62,7 +62,31 @@
 </h6>
 
 
-    <p>http://legacy.python.org/dev/peps/pep-0263/</p>
+    <p>This PEP proposes to introduce a syntax to declare the encoding of a Python source file. The encoding information is then used by the Python parser to interpret the file using the given encoding. Most notably this enhances the interpretation of Unicode literals in the source code and makes it possible to write Unicode literals using e.g. UTF-8 directly in an Unicode aware editor.</p>
+<p>To define a source code encoding, a magic comment must be placed into the source files either as first or second line in the file, such as:</p>
+<div class="highlight"><pre> <span class="c"># coding=&lt;encoding name&gt;</span>
+</pre></div>
+
+
+<p>or </p>
+<div class="highlight"><pre>  <span class="c">#!/usr/bin/python</span>
+  <span class="c"># -*- coding: &lt;encoding name&gt; -*-</span>
+</pre></div>
+
+
+<p>Python's tokenizer/compiler combo will need to be updated to work as follows:</p>
+<ul>
+<li>read the file</li>
+<li>decode it into Unicode assuming a fixed per-file encoding</li>
+<li>convert it into a UTF-8 byte string</li>
+<li>tokenize the UTF-8 content</li>
+<li>compile it, creating Unicode objects from the given Unicode data and creating string objects from the Unicode literal data by first reencoding the UTF-8 data into 8-bit string data using the given file encoding</li>
+</ul>
+<p>Note that Python identifiers are restricted to the ASCII subset of the encoding, and thus need no further conversion.  encoding 指定正确的情况下, 统一用unicode还是str根据情况选择.</p>
+<p>refer:</p>
+<ul>
+<li>[0]<a href="http://legacy.python.org/dev/peps/pep-0263/">http://legacy.python.org/dev/peps/pep-0263/</a></li>
+</ul>
 <p class="subheader">Category: <a href="../../category/python.html">python</a>
 
     Tagged: 
@@ -95,11 +119,13 @@
             <li><a href="../../category/complexity.html">complexity</a></li>
             <li><a href="../../category/coroutine.html">coroutine</a></li>
             <li><a href="../../category/interview.html">interview</a></li>
+            <li><a href="../../category/learn-plan.html">learn-plan</a></li>
             <li><a href="../../category/misc.html">misc</a></li>
             <li><a href="../../category/mysql.html">mysql</a></li>
             <li><a href="../../category/python.html">python</a></li>
             <li><a href="../../category/security.html">security</a></li>
-            <li><a href="../../category/sort.html">sort</a></li>
+            <li><a href="../../category/str.html">str</a></li>
+            <li><a href="../../category/tcp-ip.html">tcp-ip</a></li>
             <li><a href="../../category/tree.html">tree</a></li>
             <li><a href="../../category/vim.html">vim</a></li>
    

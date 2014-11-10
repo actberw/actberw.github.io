@@ -56,6 +56,27 @@
         
 
             <article>
+                <a href="../posts/complexity/amortized-analysis.html"><h3 class="article-title">Amortized Analysis</h3></a>
+<h6 class="subheader" title="2014-11-06T16:07:17">Thu 06 November 2014
+</h6>
+
+
+<p>http://www.geeksforgeeks.org/analysis-algorithm-set-5-amortized-analysis-introduction/</p><p class="subheader">Category: <a href="../category/complexity.html">complexity</a>
+
+</p>
+
+
+
+            </article>
+
+
+                <hr  class="gradient"/>
+
+
+        
+
+
+            <article>
                 <a href="../posts/complexity/generating-function.html"><h3 class="article-title">母函数(generating function)</h3></a>
 <h6 class="subheader" title="2014-06-07T18:00:00">Sat 07 June 2014
 </h6>
@@ -73,11 +94,9 @@
 
 
 
-            </article>
-
-
+                <a class="button radius secondary small right" href="../posts/complexity/generating-function.html">Read More</a>
                 <hr  class="gradient"/>
-
+            </article>
 
         
 
@@ -89,15 +108,18 @@
 
 
 <p>在算法分析中，当一个算法中包含递归调用时，其时间复杂度的分析会转化为一个递归方程求解。实际上，这个问题是数学上求解渐近阶的问题，而递归方程的形式多种多样，其求解方法也是不一而足，比较常用的有以下四种方法:</p>
-<ol>
-<li>
-<p>代入法(Substitution Method)<br />
-  代入法的基本步骤是先推测递归方程的显式解，然后用数学归纳法来验证该解是否合理。</p>
-</li>
-<li>
-<p>公式法(Master Method)<br />
-  设常数a &gt;= 1，b &gt; 1，f(n)为函数，T(n)为非负整数，T(n) = a T(n / b) + f(n)，则有:<br />
-    若f(n)=O($n^{log_{b}a−ε}$),ε&gt;0 ，那么T(n)=Θ($nlog_{b ...</p></li></ol><p class="subheader">Category: <a href="../category/complexity.html">complexity</a>
+<h3>代入法(Substitution Method)</h3>
+<p>代入法的基本步骤是先推测递归方程的显式解，然后用数学归纳法来验证该解是否合理。</p>
+<h3>Recurrence Tree Method</h3>
+<p>For example consider the recurrence relation 
+$T(n) = T(\frac{n}{4}) + T(\frac{n}{2}) + cn^2$</p>
+<div class="highlight"><pre>       <span class="n">cn2</span>
+     <span class="o">/</span>      \
+ <span class="n">T</span><span class="p">(</span><span class="n">n</span><span class="o">/</span><span class="mi">4</span><span class="p">)</span>     <span class="n">T</span><span class="p">(</span><span class="n">n</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+
+
+<p>If we further break down the expression $T(\frac ...</p><p class="subheader">Category: <a href="../category/complexity.html">complexity</a>
 
     Tagged: 
     <a href="../tag/algorithm-analysis.html">algorithm analysis </a>
@@ -154,18 +176,14 @@
 
 
             <article>
-                <a href="../posts/complexity/complexity.html"><h3 class="article-title">算法复杂度分析</h3></a>
+                <a href="../posts/complexity/complexity-analysis.html"><h3 class="article-title">算法复杂度分析</h3></a>
 <h6 class="subheader" title="2014-06-07T15:00:00">Sat 07 June 2014
 </h6>
 
-Translations: 
-        <a href="../posts/interview/complexity.html">cn</a>
 
 <p>算法的复杂度是用来衡量算法运行所需要的计算机资源（时间、空间）的量, 分为时间复杂度和空间复杂度. 时间复杂度是指衡量算法执行时间的长短；空间复杂度是指衡量算法所需存储空间的大小。</p>
-<ol>
-<li>
-<p>Landau符号<br />
-    Landau符号其实是由德国数论学家保罗·巴赫曼（Paul Bachmann）在其1892年的著作《解析数论》首先引入，由另一位德国数论学家艾德蒙·朗道（Edmund Landau）推广。Landau符号的作用在于用简单的函数来描述复杂函数行为，给出一个上或下（确）界。在计算算法复杂度时一般只用到大O符号，Landau符号体系中的小o符号、Θ符号等等比较不常用。这里的O，最初是用大写希腊字母，但现在都用大写英语字母O；小o符号也是用小写英语字母o，Θ符号则维持大写希腊字母Θ.</p>
+<h3>Landau符号</h3>
+<p>Landau符号其实是由德国数论学家保罗·巴赫曼（Paul Bachmann）在其1892年的著作《解析数论》首先引入，由另一位德国数论学家艾德蒙·朗道（Edmund Landau）推广。Landau符号的作用在于用简单的函数来描述复杂函数行为，给出一个上或下（确）界。在计算算法复杂度时一般只用到大O符号，Landau符号体系中的小o符号、Θ符号等等比较不常用。这里的O，最初是用大写希腊字母，但现在都用大写英语字母O；小o符号也是用小写英语字母o，Θ符号则维持大写希腊字母Θ.</p>
 <table>
 <thead>
 <tr>
@@ -177,17 +195,16 @@ Translations:
 <tbody>
 <tr>
 <td>f(n) = o(g(n))</td>
-<td>∀ε&gt;0,∃$n_0$∈ℕ,∀n≥$n_0$,f(n ...</td></tr></tbody></table></li></ol><p class="subheader">Category: <a href="../category/complexity.html">complexity</a>
+<td>∀ε&gt;0,∃$n_0$∈ℕ,∀n≥$n_0$,f(n ...</td></tr></tbody></table><p class="subheader">Category: <a href="../category/complexity.html">complexity</a>
 
     Tagged: 
+    <a href="../tag/algorithm.html">algorithm </a>
     <a href="../tag/algorithm-analysis.html">algorithm analysis </a>
 </p>
 
 
-Translations: 
-        <a href="../posts/interview/complexity.html">cn</a>
 
-                <a class="button radius secondary small right" href="../posts/complexity/complexity.html">Read More</a>
+                <a class="button radius secondary small right" href="../posts/complexity/complexity-analysis.html">Read More</a>
                 <hr  class="gradient"/>
             </article>
 
@@ -220,11 +237,13 @@ Translations:
             <li><a href="../category/complexity.html">complexity</a></li>
             <li><a href="../category/coroutine.html">coroutine</a></li>
             <li><a href="../category/interview.html">interview</a></li>
+            <li><a href="../category/learn-plan.html">learn-plan</a></li>
             <li><a href="../category/misc.html">misc</a></li>
             <li><a href="../category/mysql.html">mysql</a></li>
             <li><a href="../category/python.html">python</a></li>
             <li><a href="../category/security.html">security</a></li>
-            <li><a href="../category/sort.html">sort</a></li>
+            <li><a href="../category/str.html">str</a></li>
+            <li><a href="../category/tcp-ip.html">tcp-ip</a></li>
             <li><a href="../category/tree.html">tree</a></li>
             <li><a href="../category/vim.html">vim</a></li>
    

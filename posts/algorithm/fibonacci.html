@@ -65,11 +65,9 @@
     <blockquote>
 <p>问题描述：Fibonacci数（Fibonacci Number）的定义是：$F_n = F_{n - 1} + F_{n - 2}$，并且$F_0$ = 0，$F_1$ = 1。对于任意指定的整数n（n ≥ 0），计算$F_n$的精确值，并分析算法的时间、空间复杂度。</p>
 </blockquote>
-<p>有下面几种解法:</p>
-<ol>
-<li>
-<p>递归法 <br />
-  根据Fibonacci的递推公式，对于输入的n，直接递归地调用相同的函数分别求出$F_{n - 1}$和$F_{n - 2}$，二者相加就是结果。递归的终止点就是递推方程的初值，即n取0或1的时候。</p>
+<p>有下面几种解法.</p>
+<h3>递归法</h3>
+<p>根据Fibonacci的递推公式，对于输入的n，直接递归地调用相同的函数分别求出$F_{n - 1}$和$F_{n - 2}$，二者相加就是结果。递归的终止点就是递推方程的初值，即n取0或1的时候。</p>
 <div class="highlight"><pre><span class="kt">int</span> <span class="nf">fibonacii</span><span class="p">(</span><span class="kt">int</span> <span class="n">n</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">if</span> <span class="p">(</span><span class="n">n</span> <span class="o">&lt;=</span> <span class="mi">1</span><span class="p">)</span> <span class="k">return</span> <span class="n">n</span><span class="p">;</span>
     <span class="k">return</span> <span class="n">fibonacii</span><span class="p">(</span><span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="n">fibonacii</span><span class="p">(</span><span class="n">n</span> <span class="o">-</span> <span class="mi">2</span><span class="p">);</span>
@@ -77,17 +75,15 @@
 </pre></div>
 
 
-<p>时间复杂度是O($n^2$)，空间复杂度是O(n)。<br />
-  这个算法的时间复杂度有着跟Fibonacci类似的递推方程：$T_n = T_{n - 1} + T_{n - 2} + O(1)$, 具体解法见下图:</p>
+<p>时间复杂度是O($2^n$)(实际上是黄金分割$\frac{1+\sqrt{5}}{2}$)，空间复杂度是O(n)。<br />
+这个算法的时间复杂度有着跟Fibonacci类似的递推方程：$T_n = T_{n - 1} + T_{n - 2} + O(1)$, 具体解法见下图:</p>
 <ul>
 <li>先用特征方程求出Fibonacci通项
 <img alt="Fibonacci-recursion-complexity" src="/img/fibonacci-complexity.png" /></li>
 <li>设 $K_n$为计算Fn所需要的加法次数, $K_n$ = $K_{n-1}$ + $K_{n-2}$ + 1, $K_0$ = 0, $K_1$ = 0, $K_2$ = 1, 则有$K_n$ + 1 = $K_{n-1}$ + 1 + $K_{n-2}$ + 1, $K_n$ + 1 是斐波那契数列, $K_n$ = fibonacci(n+1) - 1, 所以O(fibonacci(n+1) - 1) = O(fibonacci(n+1))</li>
 </ul>
-</li>
-<li>
-<p>递推法<br />
-  虽然只是一字之差，但递推法的复杂度要小的多。这个方法就是按照递推方程，从n = 0和n = 1开始，逐个求出所有小于n的Fibonacci数，最后就可以算出F(n)。由于每次计算值需要用到前两个Fibonacci数，更小的数就可以丢弃了，可以将空间复杂度降到最低。算法如下：</p>
+<h3>递推法</h3>
+<p>虽然只是一字之差，但递推法的复杂度要小的多。这个方法就是按照递推方程，从n = 0和n = 1开始，逐个求出所有小于n的Fibonacci数，最后就可以算出F(n)。由于每次计算值需要用到前两个Fibonacci数，更小的数就可以丢弃了，可以将空间复杂度降到最低。算法如下：</p>
 <div class="highlight"><pre><span class="kt">int</span> <span class="nf">fibonacii2</span><span class="p">(</span><span class="kt">int</span> <span class="n">n</span><span class="p">)</span> <span class="p">{</span>
     <span class="kt">int</span> <span class="n">x</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">t</span><span class="p">;</span>
     <span class="k">if</span> <span class="p">(</span><span class="n">n</span> <span class="o">&lt;=</span> <span class="mi">1</span><span class="p">)</span> <span class="k">return</span> <span class="n">n</span><span class="p">;</span>
@@ -101,15 +97,11 @@
 </pre></div>
 
 
-<p>显然时间复杂度是O(n)，空间复杂度是O(1)。<br />
-  比较一下递归法和递推法，二者都用了分治的思想——把目标问题拆为若干个小问题，利用小问题的解得到目标问题的解。二者的区别实际上就是普通分治算法和动态规划的区别。</p>
-</li>
-<li>
-<p>矩阵法<br />
-  我们把Fibonacci数列中相邻的两项：$F_n$和$F_{n - 1}$写成一个2 * 1的矩阵，然后对其进行变形</p>
-</li>
-</ol>
-<p>有关Fibonacci问题:</p>
+<p>显然时间复杂度是O(n)，空间复杂度是O(1)。  </p>
+<p>比较一下递归法和递推法，二者都用了分治的思想——把目标问题拆为若干个小问题，利用小问题的解得到目标问题的解。二者的区别实际上就是普通分治算法和动态规划的区别。</p>
+<h3>矩阵法</h3>
+<p>我们把Fibonacci数列中相邻的两项：$F_n$和$F_{n - 1}$写成一个2 * 1的矩阵，然后对其进行变形</p>
+<h3>有关Fibonacci问题</h3>
 <ol>
 <li>在递归计算$F_n$的时候，需要对较小的$F_{n-1}$，$F_{n-2}$，…, $F_l$, $F_0$精确计算多少次?<br />
 \begin{eqnarray*} 
@@ -153,11 +145,13 @@ F_n = F_{n-1} + F_{n-2}<br />
             <li><a href="../../category/complexity.html">complexity</a></li>
             <li><a href="../../category/coroutine.html">coroutine</a></li>
             <li><a href="../../category/interview.html">interview</a></li>
+            <li><a href="../../category/learn-plan.html">learn-plan</a></li>
             <li><a href="../../category/misc.html">misc</a></li>
             <li><a href="../../category/mysql.html">mysql</a></li>
             <li><a href="../../category/python.html">python</a></li>
             <li><a href="../../category/security.html">security</a></li>
-            <li><a href="../../category/sort.html">sort</a></li>
+            <li><a href="../../category/str.html">str</a></li>
+            <li><a href="../../category/tcp-ip.html">tcp-ip</a></li>
             <li><a href="../../category/tree.html">tree</a></li>
             <li><a href="../../category/vim.html">vim</a></li>
    

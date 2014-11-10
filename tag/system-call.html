@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8" />
+    <!-- Set the viewport width to device width for mobile -->
+    <meta name="viewport" content="width=device-width" />
+
+    <title>记录一些工作中的笔记 - system call</title>
+
+    <link rel="stylesheet" href="../theme/css/normalize.css" />
+    <link rel="stylesheet" href="../theme/css/foundation.min.css" />
+    <link rel="stylesheet" href="../theme/css/style.css" />
+    <link rel="stylesheet" href="../theme/css/pygments.css" />	
+    <script src="../theme/js/vendor/custom.modernizr.js"></script>
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        "HTML-CSS": {
+      styles: {
+        ".MathJax .mo, .MathJax .mi": {color: "black ! important"}}
+          },
+            tex2jax: {inlineMath: [['$','$'], ['\\\\(','\\\\)']],processEscapes: true}
+      });
+    </script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script></script>
+</head>
+
+<body>
+
+<!-- Nav Bar -->
+<nav>
+<div class="top-bar">
+<div class="row">
+    <div class="large-9 large-centered columns">
+	    <h1><a href="..">记录一些工作中的笔记</a></h1>
+    </div>
+</div>
+</div>
+
+<!-- Show menu items and pages -->
+<div class="row">
+<div class="large-9 columns">
+    <ul class="button-group navigation">
+
+    </ul>
+</div>
+</div>
+</nav>
+<!-- End Nav -->
+
+
+<!-- Main Page Content and Sidebar -->
+<div class="row">
+
+    <!-- Main Blog Content -->
+    <div class="large-9 columns">
+        
+        
+
+            <article>
+                <a href="../posts/misc/systemcall.html"><h3 class="article-title">系统调用(system call)</h3></a>
+<h6 class="subheader" title="2014-10-27T00:00:00">Mon 27 October 2014
+</h6>
+
+
+<p>System calls provide userland processes a way to request services from the kernel, services which are managed by operating system like storage, memory, network, process management etc. System calls provide an essential interface between a process and the operating system.Usually, system calls are not invoked directly, instead, most system calls have corresponding C library wrapper functions which perform the steps required (e.g., trapping to kernel mode) in order to invoke the system call. </p>
+<h3>Information and Control Flow Across Priviledge Levels</h3>
+<p>As system call is processed in kernel mode, when a user space process invokes a system call, a transition between user mode and kernel mode is required and executes the appropriate kernel function.</p>
+<p>But no process context switch(mode switch vs context switch see refer[3]) is necessary – although a privilege context switch does occur, it is processed in the context of whichever ever process invoked it. Multiple indirections, switching from user mode to kernel mode and back (much more expensive than a function call)<br />
+<img alt="image" src="/img/syscall.gif" /></p>
+<h3>Implementation</h3>
+<p>In order to actually do the switch from user mode to kernel mode there are some assembly instructions.For x86 architectures there are two possibilities: software interrupt(int $0x80) or the newer "sysenter". </p>
+<p>Regardless of how the <em>system call handler</em> is invoked, both possibilities cause:</p>
+<ul>
+<li>the CPU to switch to kernel mode,</li>
+<li>the necessary registers to be saved</li>
+<li>some validity checks</li>
+<li>invoke the system call corresponding to the number provided by the user space process.  </li>
+</ul>
+<p>Simply entering kernel-space alone is not sufficient because there are multiple system calls, all of which enter the kernel in the same manner. Thus, the system call number must be passed into the kernel. On x86, the syscall number is fed to the kernel via the %eax register.  System calls are identified by their numbers. The number of the call foo is __NR_foo. For example, the number of _llseek used above is __NR__llseek, defined as 140 in /usr/include/asm-i386/unistd.h. Different architectures have different numbers.  Often, the kernel routine that handles the call foo is called sys_foo. One finds the association between numbers and names in the sys_call_table, for example in arch/i386/kernel/entry.S.  </p>
+<p>In addition to the system call number, most syscalls require that one or more parameters be passed to them. Somehow, user-space must relay the parameters to the kernel during the trap. The easiest way to do this is via the same means that the syscall number is passed: The parameters are stored in registers. On x86, the registers ebx, ecx, edx, esi, and edi contain, in order, the first five arguments. In the unlikely case of six or more arguments, a single register is used to hold a pointer to user-space where all the parameters are stored.  </p>
+<p>The return value is sent to user-space also via register, it is written into the %eax register on x86.The return value is defined by the system call being invoked, in general, a 0 return value indicates  success, a -1 return value indicates an error, and an error code is stored in errno.</p>
+<p>refer:</p>
+<ul>
+<li>[0]<a href="http://en.wikipedia.org/wiki/System_call">http://en.wikipedia.org/wiki/System_call</a></li>
+<li>[1]<a href="http://articles.manugarg.com/systemcallinlinux2_6.html">http://articles.manugarg.com/systemcallinlinux2_6.html</a></li>
+<li>[2]<a href="http://www.enseignement.polytechnique.fr/informatique/INF583/INF583_3.pdf">http://www.enseignement.polytechnique.fr/informatique/INF583/INF583_3.pdf</a></li>
+<li>[3]<a href="http://stackoverflow.com/questions/9238326/system-call-and-context-switch">http://stackoverflow.com/questions/9238326/system-call-and-context-switch</a></li>
+<li>[4]<a href="http://people.ee.ethz.ch/~arkeller/linux/multi/kernel_user_space_howto-5.html">http://people.ee.ethz.ch/~arkeller/linux/multi/kernel_user_space_howto-5.html</a></li>
+<li>[5]<a href="http://web.cs.ucdavis.edu/~wu/ecs251/KernelScheduledEntity_FreeBSD_2000.pdf">http://web.cs.ucdavis.edu/~wu/ecs251/KernelScheduledEntity_FreeBSD_2000.pdf</a></li>
+</ul><p class="subheader">Category: <a href="../category/misc.html">misc</a>
+
+    Tagged: 
+    <a href="../tag/linux.html">linux </a>
+    <a href="../tag/system-call.html">system call </a>
+</p>
+
+
+
+            </article>
+
+<div class="pagination-centered">
+<h6 class="subheader">Page 1 of 1</h6>
+
+<p>
+
+</p>
+</div>
+
+
+
+            <!-- /#posts-list -->
+
+    </div>
+    <!-- End Main Content -->
+
+    <!-- Sidebar -->
+    <aside class="large-3 columns">
+        <h5 class="sidebar-title">Site</h5>
+        <ul class="side-nav">
+            <li><a href="../archives.html">Archives</a>
+            <li><a href="../tags.html">Tags</a>
+        </ul>
+
+		
+        <h5 class="sidebar-title">Categories</h5>
+        <ul class="side-nav">
+            <li><a href="../category/adt.html">adt</a></li>
+            <li><a href="../category/algorithm.html">algorithm</a></li>
+            <li><a href="../category/c.html">c</a></li>
+            <li><a href="../category/complexity.html">complexity</a></li>
+            <li><a href="../category/coroutine.html">coroutine</a></li>
+            <li><a href="../category/interview.html">interview</a></li>
+            <li><a href="../category/learn-plan.html">learn-plan</a></li>
+            <li><a href="../category/misc.html">misc</a></li>
+            <li><a href="../category/mysql.html">mysql</a></li>
+            <li><a href="../category/python.html">python</a></li>
+            <li><a href="../category/security.html">security</a></li>
+            <li><a href="../category/str.html">str</a></li>
+            <li><a href="../category/tcp-ip.html">tcp-ip</a></li>
+            <li><a href="../category/tree.html">tree</a></li>
+            <li><a href="../category/vim.html">vim</a></li>
+   
+        </ul>
+
+        <h5 class="sidebar-title">Links</h5>
+        <ul class="side-nav">
+            <li><a href="https://github.com/actberw">github</a></li>
+        </ul>
+		
+        <h5 class="sidebar-title">Social</h5>
+        <ul class="side-nav">
+            <li><a href="http://weibo.com/u/1950796544">weibo</a></li>
+        </ul>
+
+    </aside> <!-- End Sidebar -->
+
+</div> <!-- End Main Content and Sidebar -->
+
+
+<!-- Footer -->
+<footer class="row">
+    <div class="large-12 columns">
+        <hr />
+        <div class="row">
+            <div class="large-6 columns">
+              <!--                  <p>记录一些工作中的笔记 by actberw</p> -->
+            </div>
+            </div>
+    </div>
+</footer>

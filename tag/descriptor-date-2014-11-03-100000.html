@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8" />
+    <!-- Set the viewport width to device width for mobile -->
+    <meta name="viewport" content="width=device-width" />
+
+    <title>记录一些工作中的笔记 - descriptor Date: 2014-11-03 10:00:00</title>
+
+    <link rel="stylesheet" href="../theme/css/normalize.css" />
+    <link rel="stylesheet" href="../theme/css/foundation.min.css" />
+    <link rel="stylesheet" href="../theme/css/style.css" />
+    <link rel="stylesheet" href="../theme/css/pygments.css" />	
+    <script src="../theme/js/vendor/custom.modernizr.js"></script>
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        "HTML-CSS": {
+      styles: {
+        ".MathJax .mo, .MathJax .mi": {color: "black ! important"}}
+          },
+            tex2jax: {inlineMath: [['$','$'], ['\\\\(','\\\\)']],processEscapes: true}
+      });
+    </script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script></script>
+</head>
+
+<body>
+
+<!-- Nav Bar -->
+<nav>
+<div class="top-bar">
+<div class="row">
+    <div class="large-9 large-centered columns">
+	    <h1><a href="..">记录一些工作中的笔记</a></h1>
+    </div>
+</div>
+</div>
+
+<!-- Show menu items and pages -->
+<div class="row">
+<div class="large-9 columns">
+    <ul class="button-group navigation">
+
+    </ul>
+</div>
+</div>
+</nav>
+<!-- End Nav -->
+
+
+<!-- Main Page Content and Sidebar -->
+<div class="row">
+
+    <!-- Main Blog Content -->
+    <div class="large-9 columns">
+        
+        
+
+            <article>
+                <a href="../posts/python/descriptor.html"><h3 class="article-title">python 描述符</h3></a>
+<h6 class="subheader" title="2014-11-03T23:46:59">Mon 03 November 2014
+</h6>
+
+
+<p>描述符就是对象的一个绑定了行为的特性(attribute with "binding behavior"), 对特性的操作内部转化为相应方法的调用. 默认的特性访问实际是操作(get, set, delete)的对象的__dict__特性(参见<a href="/posts/python/magic-object.html"><strong>dict</strong></a>),但特性访问时如果查找出来的对象实现了任意的描述符方法, python就会调用描述符的方法而不是默认的行为.</p>
+<p>描述符是一个强大的通用的协议, 也是属性, 方法, 静态方法, 动态方法, super()背后的实现机制. python2.2中引入的新式类也是通过描述符实现的. 描述符简化了底层c代码, 为python程序提供了灵活的工具组.</p>
+<h3>descriptor protocal</h3>
+<div class="highlight"><pre><span class="n">descr</span><span class="p">.</span><span class="n">__get__</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">obj</span><span class="p">,</span> <span class="n">type</span><span class="o">=</span><span class="n">None</span><span class="p">)</span> <span class="o">--&gt;</span> <span class="n">value</span>
+<span class="n">descr</span><span class="p">.</span><span class="n">__set__</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">obj</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span> <span class="o">--&gt;</span> <span class="n">None</span>
+<span class="n">descr</span><span class="p">.</span><span class="n">__delete__</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">obj</span><span class="p">)</span> <span class="o">--&gt;</span> <span class="n">None</span>
+</pre></div>
+
+
+<p>定义了以上三个任意的方法的对象就是描述符.如果一个对象只定义了_<em>get_</em>(), 被称为非数据描述符(non-data descriptor)(通常用于方法), 如果同时定义了_<em>get__和__set_</em>()被称为是 数据描述符(data descriptor). </p>
+<p>要创建一个只读描述符, 同时定义_<em>get__和__set_</em>, _<em>set_</em> 只需要抛出一个AttributeError异常即可.</p>
+<h3>调用描述符</h3>
+<p>描述符的访问可以直接调用它的方法<code>type(object).__dict__['descr'].__get__(obj)</code>, 但是通常是通过访问特性的方式自动进行调用<code>obj.descr</code>.  对于obj.descr的访问方式, 遵循<a href="/posts/python/magic-object.html">特性查找顺序的</a>, 具体的调用方式取决与obj是实例还是类(新式类). </p>
+<p>obj是实例, 则在object._<em>getattribute_</em>()中把<code>obj.descr</code> into <code>type(obj).__dict__['descr'].__get__(obj, type(obj))</code></p>
+<p>obj是类, 则在type._<em>getattribute_</em>()中把<code>obj.descr</code> into <code>obj.__dict__['destr'].__get__(None, obj)</code>, 参见<a href="/posts/python/special-method-lookup.html">特殊方法的查找</a>.</p>
+<p>对于上面的处理方式可以看出: _<em>get_</em>()的第一个参数要么是owner的实例, 要么是None. 描述符必须定义为class特性, 如果定义为实例特性, python不会自动调用_<em>get_</em>() 和 _<em>set_</em>() 方法.</p>
+<p>对描述符赋值<code>obj.descr = 100</code>, 转化为_<em>set_</em>()的调用<code>type(obj).__dict__['descr'].__set__(obj, 100)</code>, 第一个参数是句点前的实例, 第二个参数是要赋值的值.
+同样的<code>del obj.descr</code>则调用__delete__()方法.</p>
+<p>refer:</p>
+<ul>
+<li>[0]<a href="http://nbviewer.ipython.org/gist/ChrisBeaumont/5758381/descriptor_writeup.ipynb">http://nbviewer.ipython.org/gist/ChrisBeaumont/5758381/descriptor_writeup.ipynb</a></li>
+<li>[1]<a href="https://docs.python.org/2/howto/descriptor.html">https://docs.python.org/2/howto/descriptor.html</a></li>
+</ul><p class="subheader">Category: <a href="../category/python.html">python</a>
+
+    Tagged: 
+    <a href="../tag/python.html">python </a>
+    <a href="../tag/descriptor-date-2014-11-03-100000.html">descriptor Date: 2014-11-03 10:00:00 </a>
+</p>
+
+
+
+            </article>
+
+<div class="pagination-centered">
+<h6 class="subheader">Page 1 of 1</h6>
+
+<p>
+
+</p>
+</div>
+
+
+
+            <!-- /#posts-list -->
+
+    </div>
+    <!-- End Main Content -->
+
+    <!-- Sidebar -->
+    <aside class="large-3 columns">
+        <h5 class="sidebar-title">Site</h5>
+        <ul class="side-nav">
+            <li><a href="../archives.html">Archives</a>
+            <li><a href="../tags.html">Tags</a>
+        </ul>
+
+		
+        <h5 class="sidebar-title">Categories</h5>
+        <ul class="side-nav">
+            <li><a href="../category/adt.html">adt</a></li>
+            <li><a href="../category/algorithm.html">algorithm</a></li>
+            <li><a href="../category/c.html">c</a></li>
+            <li><a href="../category/complexity.html">complexity</a></li>
+            <li><a href="../category/coroutine.html">coroutine</a></li>
+            <li><a href="../category/interview.html">interview</a></li>
+            <li><a href="../category/learn-plan.html">learn-plan</a></li>
+            <li><a href="../category/misc.html">misc</a></li>
+            <li><a href="../category/mysql.html">mysql</a></li>
+            <li><a href="../category/python.html">python</a></li>
+            <li><a href="../category/security.html">security</a></li>
+            <li><a href="../category/str.html">str</a></li>
+            <li><a href="../category/tcp-ip.html">tcp-ip</a></li>
+            <li><a href="../category/tree.html">tree</a></li>
+            <li><a href="../category/vim.html">vim</a></li>
+   
+        </ul>
+
+        <h5 class="sidebar-title">Links</h5>
+        <ul class="side-nav">
+            <li><a href="https://github.com/actberw">github</a></li>
+        </ul>
+		
+        <h5 class="sidebar-title">Social</h5>
+        <ul class="side-nav">
+            <li><a href="http://weibo.com/u/1950796544">weibo</a></li>
+        </ul>
+
+    </aside> <!-- End Sidebar -->
+
+</div> <!-- End Main Content and Sidebar -->
+
+
+<!-- Footer -->
+<footer class="row">
+    <div class="large-12 columns">
+        <hr />
+        <div class="row">
+            <div class="large-6 columns">
+              <!--                  <p>记录一些工作中的笔记 by actberw</p> -->
+            </div>
+            </div>
+    </div>
+</footer>

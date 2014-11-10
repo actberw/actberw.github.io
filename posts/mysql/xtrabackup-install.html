@@ -58,13 +58,11 @@
         title="Permalink to xtrabackup安装及使用">xtrabackup安装及使用</a></h3>
     </header>
 
-<h6 class="subheader" title="2014-06-23T00:00:00">Mon 23 June 2014
+<h6 class="subheader" title="2014-08-10T20:00:00">Sun 10 August 2014
 </h6>
 
 
-    <ol>
-<li>
-<p>安装</p>
+    <h3>安装</h3>
 <div class="highlight"><pre><span class="n">wget</span> <span class="n">http</span><span class="o">:</span><span class="c1">//www.percona.com/redir/downloads/XtraBackup/LATEST/deb/precise/x86_64/percona-xtrabackup_2.1.6-702-1.precise_amd64.deb</span>
 <span class="cp"># 可能需要安装依赖:libdbd-mysql-perl </span>
 <span class="n">dpkg</span> <span class="o">-</span><span class="n">i</span> <span class="p">.</span><span class="o">/</span><span class="n">percona</span><span class="o">-</span><span class="n">xtrabackup_2</span><span class="mf">.1.6</span><span class="o">-</span><span class="mi">702</span><span class="o">-</span><span class="mf">1.</span><span class="n">precise_amd64</span><span class="p">.</span><span class="n">deb</span>
@@ -72,10 +70,8 @@
 </pre></div>
 
 
-</li>
-<li>
-<p>使用innobackupex增量备份<br />
-innobackupex 是个perl脚本,封装xtrabackup,会根据mysql服务器得版本选择xtrabackup得版本, innobackupex可以备份myisam和innodb表, 同时也会备份表定义文件(.frm).</p>
+<h3>使用innobackupex增量备份</h3>
+<p>innobackupex 是个perl脚本,封装xtrabackup,会根据mysql服务器得版本选择xtrabackup得版本, innobackupex可以备份myisam和innodb表, 同时也会备份表定义文件(.frm).</p>
 <div class="highlight"><pre><span class="cp"># first setp full backup</span>
 <span class="n">BASE_DIR</span><span class="o">=/</span><span class="n">data</span><span class="o">/</span><span class="n">mysql_backup</span><span class="o">/</span><span class="err">`</span><span class="n">date</span> <span class="o">+</span><span class="s">&quot;%Y-%m-%d&quot;</span><span class="err">`</span>
 <span class="n">innobackupex</span> <span class="o">--</span><span class="n">defaults</span><span class="o">-</span><span class="n">file</span><span class="o">=/</span><span class="n">etc</span><span class="o">/</span><span class="n">mysql</span><span class="o">/</span><span class="n">my</span><span class="p">.</span><span class="n">cnf</span>  <span class="o">--</span><span class="n">user</span> <span class="n">root</span> <span class="o">--</span><span class="n">no</span><span class="o">-</span><span class="n">timestamp</span> <span class="o">--</span><span class="n">parallel</span><span class="o">=</span><span class="mi">2</span> <span class="err">$</span><span class="n">BASE_DIR</span><span class="o">/</span><span class="n">base</span>  <span class="err">#</span> <span class="n">base</span> <span class="n">dir</span> <span class="n">shouldn</span><span class="err">&#39;</span><span class="n">t</span> <span class="n">exists</span><span class="p">.</span>
@@ -99,8 +95,6 @@ innobackupex 是个perl脚本,封装xtrabackup,会根据mysql服务器得版本�
 </pre></div>
 
 
-</li>
-</ol>
 <p>refer:</p>
 <ul>
 <li><a href="http://www.percona.com/doc/percona-xtrabackup/2.2/xtrabackup_bin/incremental_backups.html">http://www.percona.com/doc/percona-xtrabackup/2.2/xtrabackup_bin/incremental_backups.html</a></li>
@@ -137,11 +131,13 @@ innobackupex 是个perl脚本,封装xtrabackup,会根据mysql服务器得版本�
             <li><a href="../../category/complexity.html">complexity</a></li>
             <li><a href="../../category/coroutine.html">coroutine</a></li>
             <li><a href="../../category/interview.html">interview</a></li>
+            <li><a href="../../category/learn-plan.html">learn-plan</a></li>
             <li><a href="../../category/misc.html">misc</a></li>
             <li><a href="../../category/mysql.html">mysql</a></li>
             <li><a href="../../category/python.html">python</a></li>
             <li><a href="../../category/security.html">security</a></li>
-            <li><a href="../../category/sort.html">sort</a></li>
+            <li><a href="../../category/str.html">str</a></li>
+            <li><a href="../../category/tcp-ip.html">tcp-ip</a></li>
             <li><a href="../../category/tree.html">tree</a></li>
             <li><a href="../../category/vim.html">vim</a></li>
    

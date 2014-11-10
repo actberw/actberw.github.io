@@ -68,7 +68,8 @@
 </ul>
 <p>当数据文件复制完成时，停止日志复制线程同时创建文件xtrabackup_checkpoints记录 LSN(log sequence number)信息.</p>
 <p>复制数据文件时每次读取1M大小(这个没法配置), 并检查每个page是否损坏.日志文件时每次512KB.</p>
-<p>innodb page(通常是16kb)包含一个日志序列号LSN, LSN是整个数据库的版本号, LSN的大小表示最近多久被修改过. 增量备份的原理就是复制LSN大于xtrabackup_checkpoints记录的最后LSN.有两种算法找到变动的page:</p>
+<p>innodb page(通常是16kb)包含一个日志序列号LSN, LSN是整个数据库的版本号, LSN的大小表示最近多久被修改过. 增量备份的原理就是复制LSN大于xtrabackup_checkpoints记录的最后LSN.</p>
+<p>有两种算法找到变动的page:</p>
 <ul>
 <li>读取所有的page比较LSN，mysql及Percona Server都支持 (数据库的大小影响备份的快慢)</li>
 <li>Percona Server 用bitmap实现了跟踪变化的innodb page 特性, 会快很多.</li>
@@ -97,8 +98,62 @@
 
 
             <article>
+                <a href="../posts/mysql/xtrabackup-install.html"><h3 class="article-title">xtrabackup安装及使用</h3></a>
+<h6 class="subheader" title="2014-08-10T20:00:00">Sun 10 August 2014
+</h6>
+
+
+<h3>安装</h3>
+<div class="highlight"><pre><span class="n">wget</span> <span class="n">http</span><span class="o">:</span><span class="c1">//www.percona.com/redir/downloads/XtraBackup/LATEST/deb/precise/x86_64/percona-xtrabackup_2.1.6-702-1.precise_amd64.deb</span>
+<span class="cp"># 可能需要安装依赖:libdbd-mysql-perl </span>
+<span class="n">dpkg</span> <span class="o">-</span><span class="n">i</span> <span class="p">.</span><span class="o">/</span><span class="n">percona</span><span class="o">-</span><span class="n">xtrabackup_2</span><span class="mf">.1.6</span><span class="o">-</span><span class="mi">702</span><span class="o">-</span><span class="mf">1.</span><span class="n">precise_amd64</span><span class="p">.</span><span class="n">deb</span>
+<span class="cp"># 安装完成后会产生四个命令行工具:innobackupex, xtrabackup, xbcrypt, xbstream</span>
+</pre></div>
+
+
+<h3>使用innobackupex增量备份</h3>
+<p>innobackupex 是个perl脚本,封装xtrabackup,会根据mysql服务器得版本选择xtrabackup得版本, innobackupex可以备份myisam和innodb表, 同时也会备份表定义文件(.frm).</p>
+<div class="highlight"><pre><span class="cp"># first setp full backup</span>
+<span class="n">BASE_DIR</span><span class="o">=/</span><span class="n">data</span><span class="o">/</span><span class="n">mysql_backup ...</span></pre></div><p class="subheader">Category: <a href="../category/mysql.html">mysql</a>
+
+    Tagged: 
+    <a href="../tag/mysql.html">mysql </a>
+    <a href="../tag/xtrabackup.html">xtrabackup </a>
+</p>
+
+
+
+                <a class="button radius secondary small right" href="../posts/mysql/xtrabackup-install.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="../posts/mysql/index.html"><h3 class="article-title">索引信息</h3></a>
+<h6 class="subheader" title="2014-07-20T20:44:00">Sun 20 July 2014
+</h6>
+
+
+<p>http://www.mysqlperformanceblog.com/2011/10/06/when-does-innodb-update-table-statistics-and-when-it-can-bite/</p><p class="subheader">Category: <a href="../category/mysql.html">mysql</a>
+
+    Tagged: 
+    <a href="../tag/mysql.html">mysql </a>
+</p>
+
+
+
+                <a class="button radius secondary small right" href="../posts/mysql/index.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
                 <a href="../posts/mysql/quote.html"><h3 class="article-title">mysql中的引号</h3></a>
-<h6 class="subheader" title="2014-08-10T20:44:00">Sun 10 August 2014
+<h6 class="subheader" title="2014-07-10T20:44:00">Thu 10 July 2014
 </h6>
 
 
@@ -121,43 +176,6 @@
 
 
                 <a class="button radius secondary small right" href="../posts/mysql/quote.html">Read More</a>
-                <hr  class="gradient"/>
-            </article>
-
-        
-
-
-            <article>
-                <a href="../posts/mysql/xtrabackup-install.html"><h3 class="article-title">xtrabackup安装及使用</h3></a>
-<h6 class="subheader" title="2014-06-23T00:00:00">Mon 23 June 2014
-</h6>
-
-
-<ol>
-<li>
-<p>安装</p>
-<div class="highlight"><pre><span class="n">wget</span> <span class="n">http</span><span class="o">:</span><span class="c1">//www.percona.com/redir/downloads/XtraBackup/LATEST/deb/precise/x86_64/percona-xtrabackup_2.1.6-702-1.precise_amd64.deb</span>
-<span class="cp"># 可能需要安装依赖:libdbd-mysql-perl </span>
-<span class="n">dpkg</span> <span class="o">-</span><span class="n">i</span> <span class="p">.</span><span class="o">/</span><span class="n">percona</span><span class="o">-</span><span class="n">xtrabackup_2</span><span class="mf">.1.6</span><span class="o">-</span><span class="mi">702</span><span class="o">-</span><span class="mf">1.</span><span class="n">precise_amd64</span><span class="p">.</span><span class="n">deb</span>
-<span class="cp"># 安装完成后会产生四个命令行工具:innobackupex, xtrabackup, xbcrypt, xbstream</span>
-</pre></div>
-
-
-</li>
-<li>
-<p>使用innobackupex增量备份<br />
-innobackupex 是个perl脚本,封装xtrabackup,会根据mysql服务器得版本选择xtrabackup得版本, innobackupex可以备份myisam和innodb表, 同时也会备份表定义文件(.frm).</p>
-<div class="highlight"><pre><span class="cp"># first setp full backup</span>
-<span class="n">BASE_DIR</span><span class="o">=/</span><span class="n">data</span><span class="o">/</span><span class="n">mysql_backup ...</span></pre></div></li></ol><p class="subheader">Category: <a href="../category/mysql.html">mysql</a>
-
-    Tagged: 
-    <a href="../tag/mysql.html">mysql </a>
-    <a href="../tag/xtrabackup.html">xtrabackup </a>
-</p>
-
-
-
-                <a class="button radius secondary small right" href="../posts/mysql/xtrabackup-install.html">Read More</a>
                 <hr  class="gradient"/>
             </article>
 
@@ -190,11 +208,13 @@ innobackupex 是个perl脚本,封装xtrabackup,会根据mysql服务器得版本�
             <li><a href="../category/complexity.html">complexity</a></li>
             <li><a href="../category/coroutine.html">coroutine</a></li>
             <li><a href="../category/interview.html">interview</a></li>
+            <li><a href="../category/learn-plan.html">learn-plan</a></li>
             <li><a href="../category/misc.html">misc</a></li>
             <li><a href="../category/mysql.html">mysql</a></li>
             <li><a href="../category/python.html">python</a></li>
             <li><a href="../category/security.html">security</a></li>
-            <li><a href="../category/sort.html">sort</a></li>
+            <li><a href="../category/str.html">str</a></li>
+            <li><a href="../category/tcp-ip.html">tcp-ip</a></li>
             <li><a href="../category/tree.html">tree</a></li>
             <li><a href="../category/vim.html">vim</a></li>
    

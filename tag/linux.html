@@ -56,6 +56,381 @@
         
 
             <article>
+                <a href="../posts/misc/signal.html"><h3 class="article-title">linux 信号</h3></a>
+<h6 class="subheader" title="2014-11-01T20:00:00">Sat 01 November 2014
+</h6>
+
+
+<p>可以 <code>man 7 signal</code> 查看详细文档.  </p>
+<h3>Signal Mask and Pending Signals</h3>
+<p>A signal may be blocked, which means that it is queued by the kernel and delivered until it is later unblocked.Between the time when it is generated and when it is delivered a signal is said to be pending.</p>
+<p>The SIG_SETMASK tells that the signals in set are to be blocked, and signals that are not present in the set are to be unblocked. </p>
+<h3>Reliable signals and Real-time signals</h3>
+<p>Linux  supports the standard signals(Reliable signals) and so called real-time signals specified by The POSIX specification. </p>
+<p>real-time signals are to be used by the programmer and have no predefined meaning. Two macros are available: SIGRTMIN and SIGRTMAX that tells the range of these signals. You can use one using SIGRTMIN+n where n is some number. Never hard code their numbers, real time signals are used by threading library (both LinuxThreads and NTPL), so they adjust SIGRTMIN at run time.</p>
+<p>Whats the difference between RT signals and standard signals? There are couple:</p>
+<ul>
+<li>More than one RT signal can be queued for the process if it has the signal blocked while someone sends it. In standard signals only one of a given type is queued, the rest is ignored.</li>
+<li>Order of delivery of RT signal is guaranteed to be the same as the sending order. PID and UID of sending process is written to si_pid and si_uid fields of siginfo_t.</li>
+</ul>
+<h3>Signal Dispositions</h3>
+<p>sigaction or signal</p>
+<h3>Synchronously Accepting a Signal</h3>
+<p>sigwaitinfo, sigtimedwait, and sigwait</p>
+<h3>Signal handled in multi-thread</h3>
+<p>UNIX allows individual threads to indicate which signals they are accepting and which they are ignoring. </p>
+<p>However the signal can only be delivered to one thread, which is generally the first thread that is accepting that particular signal. UNIX provides two separate system calls, kill( pid, signal ) and pthread_kill( tid, signal ), for delivering signals to processes or specific threads respectively. </p>
+<p>A process-directed signal may be delivered to any one of the threads that does not currently have the signal blocked. If more than one of the threads has the signal unblocked, then the kernel chooses an arbitrary thread to which to deliver the signal.</p>
+<p>refer:</p>
+<ul>
+<li>[0]<a href="http://www.ibm.com/developerworks/cn/linux/l-cn-signalsec/">http://www.ibm.com/developerworks/cn/linux/l-cn-signalsec/</a></li>
+</ul><p class="subheader">Category: <a href="../category/misc.html">misc</a>
+
+    Tagged: 
+    <a href="../tag/linux.html">linux </a>
+    <a href="../tag/signal.html">signal </a>
+    <a href="../tag/c.html">c </a>
+</p>
+
+
+
+            </article>
+
+
+                <hr  class="gradient"/>
+
+
+        
+
+
+            <article>
+                <a href="../posts/misc/thread.html"><h3 class="article-title">线程(thread)</h3></a>
+<h6 class="subheader" title="2014-10-28T00:00:00">Tue 28 October 2014
+</h6>
+
+
+<p>线程是操作系统调度的基本单位(thread is a basic unit of CPU utilization), 它被包含在进程之中, 线程提供了一种并行的方式, 可以利用多核cpu(kernel thread). 一个进程中可以并发多个线程. 同一进程中的多条线程将共享该进程中的资源，如text区, data区, 虚拟地址空间，文件描述符和信号处理, 但线程有自己的调用栈, 寄存器环境(包括pc register), 本地存储, signal mask等. 进程是操作系统分配资源的最小单元, 相对于进程线程有以下优势:</p>
+<ul>
+<li>创建速度快, 占用资源少</li>
+<li>线程间切换比进程间更快</li>
+<li>线程共享地址空间, 通讯更方便(straightforward)</li>
+</ul>
+<p><img alt="muiti thread process" src="/img/thread_processes.jpg" /></p>
+<p>线程有两种实现: kernel thread 和user thread.</p>
+<h3>kernel thread</h3>
+<p>通常说的内核线程有两种含义:</p>
+<ul>
+<li>运行在内核态daemon线程</li>
+<li>可以被内核调度的实体</li>
+</ul>
+<p>内核线程由内核管理创建, 调度 永远都运行在内核态，抢占式的调度, 内核线程只能之用大于PAGE_OFFSET ...</p><p class="subheader">Category: <a href="../category/misc.html">misc</a>
+
+    Tagged: 
+    <a href="../tag/linux.html">linux </a>
+    <a href="../tag/thread.html">thread </a>
+    <a href="../tag/user-thread.html">user thread </a>
+    <a href="../tag/kernel-thread.html">kernel thread </a>
+</p>
+
+
+
+                <a class="button radius secondary small right" href="../posts/misc/thread.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="../posts/misc/systemcall.html"><h3 class="article-title">系统调用(system call)</h3></a>
+<h6 class="subheader" title="2014-10-27T00:00:00">Mon 27 October 2014
+</h6>
+
+
+<p>System calls provide userland processes a way to request services from the kernel, services which are managed by operating system like storage, memory, network, process management etc. System calls provide an essential interface between a process and the operating system.Usually, system calls are not invoked directly, instead, most system ...</p><p class="subheader">Category: <a href="../category/misc.html">misc</a>
+
+    Tagged: 
+    <a href="../tag/linux.html">linux </a>
+    <a href="../tag/system-call.html">system call </a>
+</p>
+
+
+
+                <a class="button radius secondary small right" href="../posts/misc/systemcall.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="../posts/c/process-uid.html"><h3 class="article-title">进程用户ID</h3></a>
+<h6 class="subheader" title="2014-10-24T22:00:00">Fri 24 October 2014
+</h6>
+
+
+<p>每个进程有三种用户ID :</p>
+<ul>
+<li>实际用户ID(real user id, or ruid)或组</li>
+<li>有效用户ID(effective user id, or euid)或组</li>
+<li>保存用户ID(saved user id, or suid)或组</li>
+</ul>
+<h3>实际用户ID</h3>
+<p>实际用户ID即执行程序得用户ID, 是进程所有者ID. 实际用户ID有两方面的影响:</p>
+<ul>
+<li>发送信号的权限, 非特权用户进程只有信号发送进程的实际用户ID或有效用户ID等于信号接收进程的实际用户ID或保存的用户ID时才能发送信号.</li>
+<li>access函数做权限检测时会用到</li>
+</ul>
+<h3>有效用户ID</h3>
+<p>通常跟实际用户ID相同, 但当设置了设置用户ID(set-user-ID bit)时(参见<a href="/posts/misc/file-permission.html">文件权限</a>)，有效用户ID为文件所有者的ID. 有效用户ID通常用来:</p>
+<ul>
+<li>权限检测</li>
+<li>进程创建的文件的所有者</li>
+</ul>
+<h3>保存用户ID</h3>
+<p>保存用户ID常用来以很高权限(elevated privileges)运行的进程暂时要做一些低权限的操作(unprivileged), 以便进程以后可以再修改回原来的有效用户ID重新获得更高的权限(an unprivileged ...</p><p class="subheader">Category: <a href="../category/c.html">c</a>
+
+    Tagged: 
+    <a href="../tag/linux.html">linux </a>
+    <a href="../tag/setuid.html">setuid </a>
+    <a href="../tag/getuid.html">getuid </a>
+    <a href="../tag/setresuid.html">setresuid </a>
+</p>
+
+
+
+                <a class="button radius secondary small right" href="../posts/c/process-uid.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="../posts/misc/shebang.html"><h3 class="article-title">Linux上的Shebang符号(#!)</h3></a>
+<h6 class="subheader" title="2014-10-24T21:00:00">Fri 24 October 2014
+</h6>
+
+
+<p>shebang取自#(SHArp)和!(bang), 它是很多脚本文件中第一行的前两个字符, 用来告诉Unix系统要用shebang后面指定的解释器来解释该脚本, 同时把文件名和参数一起作为参数传递给制定的解释器。所以，在很多脚本中，第一行往往都是这么写的</p>
+<div class="highlight"><pre> <span class="c">#!/bin/bash</span>
+</pre></div>
+
+
+<p>shebang符号后的解释程序一定要是绝对路径.</p><p class="subheader">Category: <a href="../category/misc.html">misc</a>
+
+    Tagged: 
+    <a href="../tag/linux.html">linux </a>
+    <a href="../tag/shebang.html">shebang </a>
+</p>
+
+
+
+                <a class="button radius secondary small right" href="../posts/misc/shebang.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="../posts/misc/file-permission.html"><h3 class="article-title">linux 文件权限</h3></a>
+<h6 class="subheader" title="2014-10-04T19:00:00">Sat 04 October 2014
+</h6>
+
+
+<p><code>ls -al /</code>  显示结果第一栏表示文件的属性共有十个, 第一个代表这个文件类型是, 后面三个一组分别代表: 文件所有者权限(u), 文件所有者组权限(g), 其他用户权限(o).</p>
+<div class="highlight"><pre>    <span class="n">drwxrwxrwt</span>  <span class="mi">4</span> <span class="n">root</span> <span class="n">root</span>  <span class="mi">4096</span> <span class="n">Oct</span>  <span class="mi">4</span> <span class="mi">19</span><span class="o">:</span><span class="mo">00</span> <span class="n">tmp</span>
+</pre></div>
+
+
+<h3>文件类型</h3>
+<ul>
+<li>d 表示目录  </li>
+<li>- 表示文件  </li>
+<li>l 表示连结档(link file)；   </li>
+<li>b 表示装置文件里面的可供储存的接口设备；   </li>
+<li>c 表示装置文件里面的串行端口设备，例如键盘、鼠标。   </li>
+</ul>
+<h3>文件权限</h3>
+<table>
+<thead>
+<tr>
+<th>权限</th>
+<th>对文件</th>
+<th>对目录</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>r(4)</td>
+<td>read</td>
+<td>可以<code>ll</code></td>
+</tr>
+<tr>
+<td>w(2)</td>
+<td>write</td>
+<td>可以在目录下添加或删除文件</td>
+</tr>
+<tr>
+<td>x(1 ...</td></tr></tbody></table><p class="subheader">Category: <a href="../category/misc.html">misc</a>
+
+    Tagged: 
+    <a href="../tag/linux.html">linux </a>
+    <a href="../tag/chmod.html">chmod </a>
+    <a href="../tag/ls.html">ls </a>
+    <a href="../tag/setuid.html">setuid </a>
+    <a href="../tag/chmod.html">chmod </a>
+    <a href="../tag/sticky.html">sticky </a>
+</p>
+
+
+
+                <a class="button radius secondary small right" href="../posts/misc/file-permission.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="../posts/misc/debian-sourcelist.html"><h3 class="article-title">debian 源</h3></a>
+<h6 class="subheader" title="2014-09-23T15:00:00">Tue 23 September 2014
+</h6>
+
+
+<h3>/etc/apt/sources.list 中源格式</h3>
+<div class="highlight"><pre><span class="c"># format  </span>
+<span class="k">deb</span> <span class="s">http://site.example.com/debian</span> <span class="kp">distribution</span> <span class="kp">component1</span>
+<span class="c"># example  </span>
+<span class="k">deb-src</span> <span class="s">http://ftp.us.debian.org/debian/</span> <span class="kp">wheezy</span> <span class="kp">main</span>
+</pre></div>
+
+
+<ul>
+<li>第一部分(deb or deb-src)表示文档类型, deb表示预编译得二进制包, deb-src表示源码包.  </li>
+<li>第二部分是镜像url.   </li>
+<li>第三部分表示debian发型版本号, 可以是release code名(squeeze, wheezy)或者是release class (oldstable, stable, testing, unstable)    </li>
+<li>第四部分包许可类型:   <ul>
+<li>main 本身是自由软件，且所有直接依赖的包也都是自由软件。  </li>
+<li>contrib 本身是自由软件，但直接依赖的包中有某个是非自由软件 ...</li></ul></li></ul><p class="subheader">Category: <a href="../category/misc.html">misc</a>
+
+    Tagged: 
+    <a href="../tag/debian.html">debian </a>
+    <a href="../tag/linux.html">linux </a>
+    <a href="../tag/apt.html">apt </a>
+    <a href="../tag/sourcelist.html">sourcelist </a>
+</p>
+
+
+
+                <a class="button radius secondary small right" href="../posts/misc/debian-sourcelist.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="../posts/misc/tls.html"><h3 class="article-title">线程局部存储(thread local storage)</h3></a>
+<h6 class="subheader" title="2014-09-22T00:00:00">Mon 22 September 2014
+</h6>
+
+
+<p>refer:</p>
+<ul>
+<li>http://www.akkadia.org/drepper/tls.pdf</li>
+<li>http://stackoverflow.com/questions/6611346/amd64-fs-gs-registers-in-linux</li>
+</ul><p class="subheader">Category: <a href="../category/misc.html">misc</a>
+
+    Tagged: 
+    <a href="../tag/tls.html">tls </a>
+    <a href="../tag/thread.html">thread </a>
+    <a href="../tag/linux.html">linux </a>
+</p>
+
+
+
+                <a class="button radius secondary small right" href="../posts/misc/tls.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="../posts/misc/orphan-process-and-zombie-process.html"><h3 class="article-title">linux 僵尸(zombie)进程和孤儿(orphan)进程</h3></a>
+<h6 class="subheader" title="2014-09-12T00:00:00">Fri 12 September 2014
+</h6>
+
+
+<h3>Zombie Processes</h3>
+<p>In Unix and Linux systems, the zombie (or defunct) process is a process that has completed execution but still has an entry in the process table, it is a process in the <a href="http://en.wikipedia.org/wiki/Process_state">Terminated state</a>. A zombie process remains in the operating system and does nothing until the parent ...</p><p class="subheader">Category: <a href="../category/misc.html">misc</a>
+
+    Tagged: 
+    <a href="../tag/linux.html">linux </a>
+    <a href="../tag/zombie.html">zombie </a>
+    <a href="../tag/orphan.html">orphan </a>
+    <a href="../tag/process.html">process </a>
+</p>
+
+
+
+                <a class="button radius secondary small right" href="../posts/misc/orphan-process-and-zombie-process.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="../posts/c/daemon.html"><h3 class="article-title">daemon进程c实现</h3></a>
+<h6 class="subheader" title="2014-09-11T00:00:00">Thu 11 September 2014
+</h6>
+
+
+<h3>守护进程(daemon process)特点</h3>
+<ul>
+<li>PPID 为 1</li>
+<li>控制终端(TTY, Teletypes) 为"?"</li>
+<li>守护进程必须与其运行前的环境隔离开来，包括未关闭的文件描述符，控制终端，会话，工作目录，以及umask等。这些都是从父进程继承过来的。</li>
+</ul>
+<h3>创建守护进程的步骤</h3>
+<ul>
+<li>fork创建子进程, 父进程退出</li>
+<li>调用setsid() 创建新会话</li>
+<li>再次fork，父进程退出</li>
+<li>将当前工作目录改为根目录</li>
+<li>设定uamsk值为0</li>
+<li>关闭不必要的文件描述符</li>
+<li>打开/dev/null，dup2(0, 1, 2)</li>
+</ul>
+<h3>代码示例</h3>
+<div class="highlight"><pre><span class="cp"># include &lt;unistd.h&gt;</span>
+
+<span class="kt">int</span> <span class="nf">daemonize</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kt">int</span>  <span class="n">fd</span><span class="p">;</span>
+
+    <span class="k">switch</span> <span class="p">(</span><span class="n">fork</span><span class="p">())</span> <span class="p">{</span>
+    <span class="k">case</span> <span class="o">-</span><span class="mi">1</span>:
+        <span class="c1">//log_error(NGX_LOG_EMERG ...</span></pre></div><p class="subheader">Category: <a href="../category/c.html">c</a>
+
+    Tagged: 
+    <a href="../tag/linux.html">linux </a>
+    <a href="../tag/daemon.html">daemon </a>
+    <a href="../tag/c.html">c </a>
+</p>
+
+
+
+                <a class="button radius secondary small right" href="../posts/c/daemon.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
                 <a href="../posts/misc/hdd.html"><h3 class="article-title">硬盘(hard disk drive)构造</h3></a>
 <h6 class="subheader" title="2014-08-06T21:44:18">Wed 06 August 2014
 </h6>
@@ -75,11 +450,9 @@
 
 
 
-            </article>
-
-
+                <a class="button radius secondary small right" href="../posts/misc/hdd.html">Read More</a>
                 <hr  class="gradient"/>
-
+            </article>
 
         
 
@@ -90,8 +463,9 @@
 </h6>
 
 
-<p>该命令用来设置限制新文件权限的掩码, 默认是022, umask 命令允许你设定文件创建时的缺省模式，对应每一类用户(文件属主、同组用户、其他用户)存在一个相应的umask值中的数字。对于文件来说，这一数字的最 大值分别是6。系统不允许你在创建一个文本文件时就赋予它执行权限，必须在创建后用chmod命令增加这一权限。目录则允许设置执行权限，这样针对目录来 说，umask中各个数字最大可以到7。</p>
-<p>所以对于默认的(022) 文件的权限是:644(-rw-r--r--),  目录是:755(drwxr-xr-x)</p><p class="subheader">Category: <a href="../category/misc.html">misc</a>
+<p>该命令用来设置限制新文件权限的掩码, 默认是022, umask 命令允许你设定文件创建时的缺省模式，对应每一类用户(文件属主、同组用户、其他用户)存在一个相应的umask值中的数字。对于文件来说，这一数字的最 大值分别是6。系统不允许你在创建一个文本文件时就赋予它执行权限，必须在创建后用chmod命令增加这一权限。目录则允许设置执行权限，这样针对目录来 说，umask中各个数字最大可以到7。
+C = P &amp; (~Q) , C: final file's permission, P: requested permission, Q: mask 
+所以对于默认的(022) 文件的权限是:644(-rw-r--r--),  目录是:755(drwxr-xr-x)</p><p class="subheader">Category: <a href="../category/misc.html">misc</a>
 
     Tagged: 
     <a href="../tag/linux.html">linux </a>
@@ -101,6 +475,37 @@
 
 
                 <a class="button radius secondary small right" href="../posts/misc/umask.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="../posts/misc/latency-number.html"><h3 class="article-title">Latency number</h3></a>
+<h6 class="subheader" title="2014-06-10T00:00:00">Tue 10 June 2014
+</h6>
+
+
+<div class="highlight"><pre><span class="gh">Latency Comparison Numbers</span>
+<span class="gh">--------------------------</span>
+L1 cache reference                            0.5 ns
+Branch mispredict                             5   ns
+L2 cache reference                            7   ns             14x L1 cache
+Mutex lock/unlock                            25   ns
+Main memory reference                       100   ns             20x L2 cache, 200x L1 cache
+Compress 1K bytes with Zippy              3,000   ns
+Send 1K bytes over 1 ...</pre></div><p class="subheader">Category: <a href="../category/misc.html">misc</a>
+
+    Tagged: 
+    <a href="../tag/linux.html">linux </a>
+    <a href="../tag/c.html">c </a>
+    <a href="../tag/latency.html">latency </a>
+</p>
+
+
+
+                <a class="button radius secondary small right" href="../posts/misc/latency-number.html">Read More</a>
                 <hr  class="gradient"/>
             </article>
 
@@ -133,11 +538,13 @@
             <li><a href="../category/complexity.html">complexity</a></li>
             <li><a href="../category/coroutine.html">coroutine</a></li>
             <li><a href="../category/interview.html">interview</a></li>
+            <li><a href="../category/learn-plan.html">learn-plan</a></li>
             <li><a href="../category/misc.html">misc</a></li>
             <li><a href="../category/mysql.html">mysql</a></li>
             <li><a href="../category/python.html">python</a></li>
             <li><a href="../category/security.html">security</a></li>
-            <li><a href="../category/sort.html">sort</a></li>
+            <li><a href="../category/str.html">str</a></li>
+            <li><a href="../category/tcp-ip.html">tcp-ip</a></li>
             <li><a href="../category/tree.html">tree</a></li>
             <li><a href="../category/vim.html">vim</a></li>
    

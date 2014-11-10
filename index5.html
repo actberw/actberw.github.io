@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8" />
+    <!-- Set the viewport width to device width for mobile -->
+    <meta name="viewport" content="width=device-width" />
+
+    <title>记录一些工作中的笔记</title>
+
+    <link rel="stylesheet" href="./theme/css/normalize.css" />
+    <link rel="stylesheet" href="./theme/css/foundation.min.css" />
+    <link rel="stylesheet" href="./theme/css/style.css" />
+    <link rel="stylesheet" href="./theme/css/pygments.css" />	
+    <script src="./theme/js/vendor/custom.modernizr.js"></script>
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        "HTML-CSS": {
+      styles: {
+        ".MathJax .mo, .MathJax .mi": {color: "black ! important"}}
+          },
+            tex2jax: {inlineMath: [['$','$'], ['\\\\(','\\\\)']],processEscapes: true}
+      });
+    </script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script></script>
+</head>
+
+<body>
+
+<!-- Nav Bar -->
+<nav>
+<div class="top-bar">
+<div class="row">
+    <div class="large-9 large-centered columns">
+	    <h1><a href=".">记录一些工作中的笔记</a></h1>
+    </div>
+</div>
+</div>
+
+<!-- Show menu items and pages -->
+<div class="row">
+<div class="large-9 columns">
+    <ul class="button-group navigation">
+
+    </ul>
+</div>
+</div>
+</nav>
+<!-- End Nav -->
+
+
+<!-- Main Page Content and Sidebar -->
+<div class="row">
+
+    <!-- Main Blog Content -->
+    <div class="large-9 columns">
+        
+        
+
+
+            <article>
+                <a href="./posts/misc/regex.html"><h3 class="article-title">linux shell 正则表达式(BREs,EREs,PREs)差异比较</h3></a>
+<h6 class="subheader" title="2014-08-06T21:44:18">Wed 06 August 2014
+</h6>
+
+
+<p class="subheader">Category: <a href="./category/misc.html">misc</a>
+
+</p>
+
+
+
+                <a class="button radius secondary small right" href="./posts/misc/regex.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="./posts/misc/scope.html"><h3 class="article-title">Lexical and Dynamic Scoping</h3></a>
+<h6 class="subheader" title="2014-08-06T21:44:18">Wed 06 August 2014
+</h6>
+
+
+<p class="subheader">Category: <a href="./category/misc.html">misc</a>
+
+</p>
+
+
+
+                <a class="button radius secondary small right" href="./posts/misc/scope.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="./posts/tree/traverse.html"><h3 class="article-title">树的遍历</h3></a>
+<h6 class="subheader" title="2014-08-06T21:44:18">Wed 06 August 2014
+</h6>
+
+
+<p>http://biaobiaoqi.me/blog/2013/04/27/travsal-binary-tree/</p><p class="subheader">Category: <a href="./category/tree.html">tree</a>
+
+</p>
+
+
+
+                <a class="button radius secondary small right" href="./posts/tree/traverse.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="./posts/tree/tree.html"><h3 class="article-title">树</h3></a>
+<h6 class="subheader" title="2014-08-06T21:44:18">Wed 06 August 2014
+</h6>
+
+
+<ol>
+<li>树的种类:<ul>
+<li>无序树</li>
+<li>有序树<ul>
+<li>二叉树<ul>
+<li>完全二叉树</li>
+<li>满二叉树</li>
+<li>自平衡二叉查找树(avl, red-black)</li>
+</ul>
+</li>
+<li>霍夫曼树</li>
+<li>B树(B+, B*)</li>
+<li>trie树(后缀树)</li>
+<li>lsm树</li>
+<li>COLA</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol><p class="subheader">Category: <a href="./category/tree.html">tree</a>
+
+</p>
+
+
+
+                <a class="button radius secondary small right" href="./posts/tree/tree.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="./posts/c/operator-precedence.html"><h3 class="article-title">c运算符优先级</h3></a>
+<h6 class="subheader" title="2014-08-06T00:00:00">Wed 06 August 2014
+</h6>
+
+
+<p>refer:</p>
+<ul>
+<li><a href="http://www.difranco.net/compsci/C_Operator_Precedence_Table.htm">http://www.difranco.net/compsci/C_Operator_Precedence_Table.htm</a></li>
+</ul><p class="subheader">Category: <a href="./category/c.html">c</a>
+
+    Tagged: 
+    <a href="./tag/c.html">c </a>
+</p>
+
+
+
+                <a class="button radius secondary small right" href="./posts/c/operator-precedence.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="./posts/c/c-compile-process.html"><h3 class="article-title">c编译编译过程</h3></a>
+<h6 class="subheader" title="2014-08-05T00:00:00">Tue 05 August 2014
+</h6>
+
+
+<p>总共包含四步:</p>
+<ul>
+<li>预处理(Pre-Processing) (宏定义指令, 条件编译指令, 头文件)</li>
+<li>编译(Compiling)</li>
+<li>汇编(Assembling)</li>
+<li>链接(Linking)<div class="highlight"><pre>   <span class="n">pre</span><span class="o">-</span><span class="n">processing</span>     <span class="n">compiling</span>          <span class="n">assembling</span>         <span class="n">linking</span>  
+<span class="p">.</span><span class="n">c</span> <span class="o">--------------&gt;</span> <span class="p">.</span><span class="n">i</span> <span class="o">--------------&gt;</span> <span class="p">.</span><span class="n">s</span> <span class="o">--------------&gt;</span> <span class="p">.</span><span class="n">o</span> <span class="o">------------&gt;</span> <span class="n">binary</span>  
+   <span class="p">(</span><span class="n">cpp</span> <span class="o">/</span> <span class="n">gcc</span> <span class="o">-</span><span class="n">E</span><span class="p">)</span>     <span class="p">(</span><span class="n">cc</span> <span class="o">/</span> <span class="n">gcc</span> <span class="o">-</span><span class="n">S</span> <span class="p">)</span>     <span class="p">(</span><span class="n">as</span> <span class="o">/</span> <span class="n">gcc</span> <span class="o">-</span><span class="n">c</span><span class="p">)</span>      <span class="p">(</span><span class="n">gcc</span> <span class="o">/</span> <span class="n">ld</span><span class="p">)</span>
+</pre></div>
+
+
+</li>
+</ul><p class="subheader">Category: <a href="./category/c.html">c</a>
+
+    Tagged: 
+    <a href="./tag/c.html">c </a>
+    <a href="./tag/compile.html">compile </a>
+</p>
+
+
+
+                <a class="button radius secondary small right" href="./posts/c/c-compile-process.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="./posts/mysql/index.html"><h3 class="article-title">索引信息</h3></a>
+<h6 class="subheader" title="2014-07-20T20:44:00">Sun 20 July 2014
+</h6>
+
+
+<p>http://www.mysqlperformanceblog.com/2011/10/06/when-does-innodb-update-table-statistics-and-when-it-can-bite/</p><p class="subheader">Category: <a href="./category/mysql.html">mysql</a>
+
+    Tagged: 
+    <a href="./tag/mysql.html">mysql </a>
+</p>
+
+
+
+                <a class="button radius secondary small right" href="./posts/mysql/index.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="./posts/mysql/transation.html"><h3 class="article-title">mysql innodb 事务</h3></a>
+<h6 class="subheader" title="2014-07-15T20:44:00">Tue 15 July 2014
+</h6>
+
+
+<p class="subheader">Category: <a href="./category/mysql.html">mysql</a>
+
+</p>
+
+
+
+                <a class="button radius secondary small right" href="./posts/mysql/transation.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="./posts/mysql/quote.html"><h3 class="article-title">mysql中的引号</h3></a>
+<h6 class="subheader" title="2014-07-10T20:44:00">Thu 10 July 2014
+</h6>
+
+
+<p>mysql字符串指用单引号(‘'’)或双引号(‘"’)引起来的字符序列。例如：</p>
+<p>'a string'</p>
+<p>"another string"</p>
+<p>如果SQL服务器模式启用了ANSI_QUOTES，可以只用单引号引用字符串。用双引号引用的字符串被解释为一个识别符。</p>
+<p>refer:</p>
+<ul>
+<li><a href="http://dev.mysql.com/doc/refman/5.6/en/string-literals.html">http://dev.mysql.com/doc/refman/5.6/en/string-literals.html</a></li>
+<li><a href="http://dev.mysql.com/doc/refman/5.6/en/sql-mode.html#sqlmode_ansi_quotes">http://dev.mysql.com/doc/refman/5.6/en/sql-mode.html#sqlmode_ansi_quotes</a></li>
+<li><a href="http://segmentfault.com/q/1010000000236690">http://segmentfault.com/q/1010000000236690</a></li>
+</ul><p class="subheader">Category: <a href="./category/mysql.html">mysql</a>
+
+    Tagged: 
+    <a href="./tag/mysql.html">mysql </a>
+    <a href="./tag/quote.html">quote </a>
+</p>
+
+
+
+                <a class="button radius secondary small right" href="./posts/mysql/quote.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="./posts/algorithm/prime-number.html"><h3 class="article-title">素数算法</h3></a>
+<h6 class="subheader" title="2014-06-15T19:00:00">Sun 15 June 2014
+</h6>
+
+
+<h3>原始算法</h3>
+<p>素数的定义: 除了能被1和它本身整除而不能被其他任何数整除的数。根据素数定义 只需要用2到n-1去除n，如果都除不尽，则n是素数，否则，只要其中有一个数能整除则n不是素数。</p>
+<div class="highlight"><pre><span class="kt">bool</span> <span class="nf">is_primer</span><span class="p">(</span><span class="kt">int</span> <span class="n">num</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">num</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">num</span> <span class="o">%</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span> <span class="cm">/*若整除则为假，否则为真*/</span>
+            <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="nb">true</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<h3>从2到sqrt(N)的整数是否整除N</h3>
+<div class="highlight"><pre><span class="kt">bool</span> <span class="nf">is_primer</span><span class="p">(</span><span class="kt">int</span> <span class="n">num</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span> <span class="n">i</span> <span class="o">*</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">num</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">num</span> <span class="o">%</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span> <span class="cm">/*若整除则为假 ...</span></pre></div><p class="subheader">Category: <a href="./category/algorithm.html">algorithm</a>
+
+    Tagged: 
+    <a href="./tag/algorithm.html">algorithm </a>
+    <a href="./tag/prime-number.html">prime number </a>
+</p>
+
+
+
+                <a class="button radius secondary small right" href="./posts/algorithm/prime-number.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="./posts/adt/stack-and-queue.html"><h3 class="article-title">栈和队列</h3></a>
+<h6 class="subheader" title="2014-06-13T19:00:00">Fri 13 June 2014
+</h6>
+
+
+<p>应用:
+- 中缀表达式转后缀表达式
+- 表达式(后缀)求值</p>
+<p>refer:</p>
+<ul>
+<li><a href="http://blog.jobbole.com/79267/">http://blog.jobbole.com/79267/</a></li>
+<li><a href="http://blog.jobbole.com/52367/">http://blog.jobbole.com/52367/</a></li>
+</ul><p class="subheader">Category: <a href="./category/adt.html">adt</a>
+
+    Tagged: 
+    <a href="./tag/algorithm.html">algorithm </a>
+    <a href="./tag/data-structure.html">data structure </a>
+    <a href="./tag/stack.html">stack </a>
+    <a href="./tag/queue.html">queue </a>
+</p>
+
+
+
+                <a class="button radius secondary small right" href="./posts/adt/stack-and-queue.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="./posts/algorithm/parity.html"><h3 class="article-title">奇偶检验</h3></a>
+<h6 class="subheader" title="2014-06-13T18:30:00">Fri 13 June 2014
+</h6>
+
+
+<p>奇偶校验位是一个表示给定位数的二进制数中1的个数是奇数还是偶数的二进制数。奇偶校验位是最简单的错误检测码。</p>
+<p>奇偶校验位有两种类型：偶校验位与奇校验位。如果一组给定数据位中1的个数是奇数，那么偶校验位就置为1反之则为0，从而使得总的1的个数是偶数。如果给定一组数据位中1的个数是偶数，那么奇校验位就置为1反之为0，使得总的1的个数是奇数。偶校验实际上是循环冗余校验的一个特例，通过多项式x + 1得到1位CRC。</p>
+<p>如何判断给定位数的二进制数中1的个数是奇数还是偶数的二进制数(参见<a href="/posts/algorithm/binary-bit.html">整数位的操作</a>), n为待检查得数字。</p>
+<div class="highlight"><pre><span class="cm">/* Function to get parity of number n. It returns 1</span>
+<span class="cm"> * if n has odd parity, and returns 0 if n has even</span>
+<span class="cm"> * parity</span>
+<span class="cm"> */</span>
+
+<span class="c1">//解法1</span>
+<span class="n">bool</span> <span class="n">get_parity</span><span class="p">(</span><span class="k">unsigned</span> <span class="k">int</span> <span class="n">n</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">bool</span> <span class="n">parity</span> <span class="o">=</span> <span class="mh">0</span><span class="p">;</span>
+    <span class="k">while ...</span></pre></div><p class="subheader">Category: <a href="./category/algorithm.html">algorithm</a>
+
+    Tagged: 
+    <a href="./tag/algorithm.html">algorithm </a>
+</p>
+
+
+
+                <a class="button radius secondary small right" href="./posts/algorithm/parity.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="./posts/adt/link-list.html"><h3 class="article-title">链表</h3></a>
+<h6 class="subheader" title="2014-06-12T19:00:00">Thu 12 June 2014
+</h6>
+
+
+<ol>
+<li>
+<p>定义
+链表是一组数据项的集合, 其中每个数据项是节点的一部分，每个节点包含指向下一个节点的链接. 对比数组链表的优缺点如下:可以高效的重排数据项例如插入节点的复杂度为O(1)，但是不能快速的访问任意的数据项，只能沿着链表一个一个节点的访问.</p>
+<ul>
+<li>
+<p>优点</p>
+<ul>
+<li>链表是动态数据结构，可以按需分配内存</li>
+<li>删除和增加节点复杂度为O(1)</li>
+</ul>
+</li>
+<li>
+<p>缺点</p>
+<ul>
+<li>因为额外的指针域需要更多的内存 </li>
+<li>只能从头节点顺序的访问</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>分类</p>
+<ul>
+<li>单链表(Singly linked list)<br />
+它包含两个域，一个信息域和一个指针域。这个链接指向列表中的下一个节点，而最后一个节点则指向一个空值。</li>
+<li>双向链表(Doubly linked list)<br />
+每个节点有两个连接：一个指向前一个节点，（当此“连接”为第一个“连接”时，指向空值或者空列表）；而另一个指向下一个节点，（当此“连接”为最后一个“连接”时，指向空值或者空列表）</li>
+<li>循环链表(Circular list)<br />
+在一个 循环链表中 ...</li></ul></li></ol><p class="subheader">Category: <a href="./category/adt.html">adt</a>
+
+    Tagged: 
+    <a href="./tag/algorithm.html">algorithm </a>
+    <a href="./tag/data-structure.html">data structure </a>
+</p>
+
+
+
+                <a class="button radius secondary small right" href="./posts/adt/link-list.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="./posts/algorithm/matrix.html"><h3 class="article-title">矩阵乘法优化</h3></a>
+<h6 class="subheader" title="2014-06-12T12:00:00">Thu 12 June 2014
+</h6>
+
+
+<ul>
+<li><a href="http://zh.wikipedia.org/wiki/%E7%9F%A9%E9%98%B5%E6%8C%87%E6%95%B0">http://zh.wikipedia.org/wiki/%E7%9F%A9%E9%98%B5%E6%8C%87%E6%95%B0</a></li>
+<li><a href="http://www.zhihu.com/question/19706331">http://www.zhihu.com/question/19706331</a></li>
+<li><a href="http://www.ituring.com.cn/article/17978">http://www.ituring.com.cn/article/17978</a></li>
+<li><a href="http://www.zhihu.com/question/22854639">http://www.zhihu.com/question/22854639</a></li>
+</ul><p class="subheader">Category: <a href="./category/algorithm.html">algorithm</a>
+
+    Tagged: 
+    <a href="./tag/algorithm.html">algorithm </a>
+    <a href="./tag/matrix.html">matrix </a>
+</p>
+
+
+
+                <a class="button radius secondary small right" href="./posts/algorithm/matrix.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="./posts/algorithm/random.html"><h3 class="article-title">随机数及检验</h3></a>
+<h6 class="subheader" title="2014-06-12T00:00:00">Thu 12 June 2014
+</h6>
+
+
+<h3>随机数算法</h3>
+<ul>
+<li>取中法</li>
+<li>线性同余法(Linear congruential generator)(参见参考[7])<br />
+ $N_{i+1} = aN_{i} + C$ (mod m), 其中其中a为乘子，C为增量，m为模. 产生的随机序列$R_n = N_i / m$.</li>
+<li>移位法</li>
+<li>梅森旋转算法</li>
+</ul>
+<h3>检验</h3>
+<ul>
+<li>参数检验</li>
+<li>均匀性检验</li>
+<li>独立性检验</li>
+</ul>
+<p>refer:</p>
+<ul>
+<li>[1]<a href="http://blog.csdn.net/zmazon/article/details/17383521">http://blog.csdn.net/zmazon/article/details/17383521</a></li>
+<li>[2]<a href="http://wenku.baidu.com/view/0295fdd7b14e852458fb574e.html">http://wenku.baidu.com/view/0295fdd7b14e852458fb574e.html</a></li>
+<li>[3]<a href="http://wenku.baidu.com/view/bec3a060ddccda38376bafe4.html?from=related">http://wenku ...</a></li></ul><p class="subheader">Category: <a href="./category/algorithm.html">algorithm</a>
+
+    Tagged: 
+    <a href="./tag/algorithm.html">algorithm </a>
+    <a href="./tag/random.html">random </a>
+</p>
+
+
+
+                <a class="button radius secondary small right" href="./posts/algorithm/random.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+            <!-- /#posts-list -->
+<div class="pagination-centered">
+<h6 class="subheader">Page 5 of 7</h6>
+
+<p>
+            <a href="./index4.html">&laquo; Prev</a>
+
+        <a href="./index6.html">Next &raquo;</a>
+</p>
+</div>
+
+    </div>
+    <!-- End Main Content -->
+
+    <!-- Sidebar -->
+    <aside class="large-3 columns">
+        <h5 class="sidebar-title">Site</h5>
+        <ul class="side-nav">
+            <li><a href="./archives.html">Archives</a>
+            <li><a href="./tags.html">Tags</a>
+        </ul>
+
+		
+        <h5 class="sidebar-title">Categories</h5>
+        <ul class="side-nav">
+            <li><a href="./category/adt.html">adt</a></li>
+            <li><a href="./category/algorithm.html">algorithm</a></li>
+            <li><a href="./category/c.html">c</a></li>
+            <li><a href="./category/complexity.html">complexity</a></li>
+            <li><a href="./category/coroutine.html">coroutine</a></li>
+            <li><a href="./category/interview.html">interview</a></li>
+            <li><a href="./category/learn-plan.html">learn-plan</a></li>
+            <li><a href="./category/misc.html">misc</a></li>
+            <li><a href="./category/mysql.html">mysql</a></li>
+            <li><a href="./category/python.html">python</a></li>
+            <li><a href="./category/security.html">security</a></li>
+            <li><a href="./category/str.html">str</a></li>
+            <li><a href="./category/tcp-ip.html">tcp-ip</a></li>
+            <li><a href="./category/tree.html">tree</a></li>
+            <li><a href="./category/vim.html">vim</a></li>
+   
+        </ul>
+
+        <h5 class="sidebar-title">Links</h5>
+        <ul class="side-nav">
+            <li><a href="https://github.com/actberw">github</a></li>
+        </ul>
+		
+        <h5 class="sidebar-title">Social</h5>
+        <ul class="side-nav">
+            <li><a href="http://weibo.com/u/1950796544">weibo</a></li>
+        </ul>
+
+    </aside> <!-- End Sidebar -->
+
+</div> <!-- End Main Content and Sidebar -->
+
+
+<!-- Footer -->
+<footer class="row">
+    <div class="large-12 columns">
+        <hr />
+        <div class="row">
+            <div class="large-6 columns">
+              <!--                  <p>记录一些工作中的笔记 by actberw</p> -->
+            </div>
+            </div>
+    </div>
+</footer>

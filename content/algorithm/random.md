@@ -1,17 +1,19 @@
 Title:随机数及检验
 Tags:algorithm, random
 Date: 2014-06-12
-1. 随机数算法
-    - 取中法
-    - 线性同余法(Linear congruential generator)(参见参考[7])  
-    $N_{i+1} = aN_{i} + C$ (mod m), 其中其中a为乘子，C为增量，m为模. 产生的随机序列$R_n = N_i / m$.
-    - 移位法
-    - 梅森旋转算法
 
-2. 检验
-    - 参数检验
-    - 均匀性检验
-    - 独立性检验
+### 随机数算法
+
+ - 取中法
+ - 线性同余法(Linear congruential generator)(参见参考[7])  
+ $N_{i+1} = aN_{i} + C$ (mod m), 其中其中a为乘子，C为增量，m为模. 产生的随机序列$R_n = N_i / m$.
+ - 移位法
+ - 梅森旋转算法
+
+### 检验
+ - 参数检验
+ - 均匀性检验
+ - 独立性检验
 
 refer:
 

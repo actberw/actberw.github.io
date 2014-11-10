@@ -11,7 +11,9 @@ xtrabackup备份主要做两件事情:
 
 复制数据文件时每次读取1M大小(这个没法配置), 并检查每个page是否损坏.日志文件时每次512KB.
 
-innodb page(通常是16kb)包含一个日志序列号LSN, LSN是整个数据库的版本号, LSN的大小表示最近多久被修改过. 增量备份的原理就是复制LSN大于xtrabackup_checkpoints记录的最后LSN.有两种算法找到变动的page:
+innodb page(通常是16kb)包含一个日志序列号LSN, LSN是整个数据库的版本号, LSN的大小表示最近多久被修改过. 增量备份的原理就是复制LSN大于xtrabackup_checkpoints记录的最后LSN.
+
+有两种算法找到变动的page:
 
  - 读取所有的page比较LSN，mysql及Percona Server都支持 (数据库的大小影响备份的快慢)
  - Percona Server 用bitmap实现了跟踪变化的innodb page 特性, 会快很多.

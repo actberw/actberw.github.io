@@ -58,4 +58,5 @@ Date: 2014-06-07 16:00:00
 
 refer:
 
+- [http://www.geeksforgeeks.org/analysis-of-algorithms-set-4-analysis-of-loops/](http://www.geeksforgeeks.org/analysis-of-algorithms-set-4-analysis-of-loops/)
 - [http://www.acmerblog.com/analysis-of-loops-5069.html](http://www.acmerblog.com/analysis-of-loops-5069.html)

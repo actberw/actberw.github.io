@@ -1,5 +1,5 @@
 Title: 链表
-Tags: data structure
+Tags: algorithm, data structure
 Date: 2014-06-12 19:00:00
 
 1. 定义
@@ -134,6 +134,9 @@ Date: 2014-06-12 19:00:00
                     }
                     return c;
                 }
+
+
+Floyd 环查找算法
 
 http://m.blog.csdn.net/blog/sangni007/8218552
 http://bluefish.blog.51cto.com/214870/68462

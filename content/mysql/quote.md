@@ -1,6 +1,6 @@
 Title: mysql中的引号
-Date: 2014-08-10 20:44:00
 Tags: mysql, quote
+Date: 2014-07-10 20:44:00
 mysql字符串指用单引号(‘'’)或双引号(‘"’)引起来的字符序列。例如：
 
 'a string'

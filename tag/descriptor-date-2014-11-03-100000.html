@@ -57,11 +57,11 @@
 
             <article>
                 <a href="../posts/python/descriptor.html"><h3 class="article-title">python 描述符</h3></a>
-<h6 class="subheader" title="2014-11-03T23:46:59">Mon 03 November 2014
+<h6 class="subheader" title="2014-11-10T19:43:08">Mon 10 November 2014
 </h6>
 
 
-<p>描述符就是对象的一个绑定了行为的特性(attribute with "binding behavior"), 对特性的操作内部转化为相应方法的调用. 默认的特性访问实际是操作(get, set, delete)的对象的__dict__特性(参见<a href="/posts/python/magic-object.html"><strong>dict</strong></a>),但特性访问时如果查找出来的对象实现了任意的描述符方法, python就会调用描述符的方法而不是默认的行为.</p>
+<p>描述符就是对象的一个绑定了行为的特性(attribute with "binding behavior"), 对特性的操作内部转化为相应方法的调用. 默认的特性访问实际是操作(get, set, delete)的对象的<a href="/posts/python/magic-object.html"><strong>dict</strong></a>特性,但特性访问时如果查找出来的对象实现了任意的描述符方法, python就会调用描述符的方法而不是默认的行为.</p>
 <p>描述符是一个强大的通用的协议, 也是属性, 方法, 静态方法, 动态方法, super()背后的实现机制. python2.2中引入的新式类也是通过描述符实现的. 描述符简化了底层c代码, 为python程序提供了灵活的工具组.</p>
 <h3>descriptor protocal</h3>
 <div class="highlight"><pre><span class="n">descr</span><span class="p">.</span><span class="n">__get__</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">obj</span><span class="p">,</span> <span class="n">type</span><span class="o">=</span><span class="n">None</span><span class="p">)</span> <span class="o">--&gt;</span> <span class="n">value</span>

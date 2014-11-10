@@ -10,17 +10,118 @@
     <link rel="stylesheet" href="../theme/css/foundation.min.css" />
     <link rel="stylesheet" href="../theme/css/style.css" />
     <link rel="stylesheet" href="../theme/css/pygments.css" />	
+    <link rel="stylesheet" type="text/css" href="../theme/css/jqcloud.css" />
     <script src="../theme/js/vendor/custom.modernizr.js"></script>
     <script type="text/x-mathjax-config">
-      MathJax.Hub.Config({
-        "HTML-CSS": {
-      styles: {
-        ".MathJax .mo, .MathJax .mi": {color: "black ! important"}}
-          },
-            tex2jax: {inlineMath: [['$','$'], ['\\\\(','\\\\)']],processEscapes: true}
-      });
+        MathJax.Hub.Config({
+          "HTML-CSS": {
+        styles: {
+          ".MathJax .mo, .MathJax .mi": {color: "black ! important"}}
+            },
+              tex2jax: {inlineMath: [['$','$'], ['\\\\(','\\\\)']],processEscapes: true}
+        });
     </script>
-    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script type="text/javascript" src="../theme/js/jqcloud-1.0.4.min.js"></script>
+    
+    <script type="text/javascript">
+	var word_list = [
+        {text: "gdt", weight: 0.0125, link: {href: "/tag/gdt.html"}},
+        {text: "pelican", weight: 0.0125, link: {href: "/tag/pelican.html"}},
+        {text: "random", weight: 0.05, link: {href: "/tag/random.html"}},
+        {text: "zmap", weight: 0.0125, link: {href: "/tag/zmap.html"}},
+        {text: "algorithm analysis", weight: 0.05, link: {href: "/tag/algorithm-analysis.html"}},
+        {text: "unicode", weight: 0.0125, link: {href: "/tag/unicode.html"}},
+        {text: "mysql", weight: 0.05, link: {href: "/tag/mysql.html"}},
+        {text: "ext4", weight: 0.0125, link: {href: "/tag/ext4.html"}},
+        {text: "umask", weight: 0.0125, link: {href: "/tag/umask.html"}},
+        {text: "nmap", weight: 0.0125, link: {href: "/tag/nmap.html"}},
+        {text: "ls", weight: 0.0125, link: {href: "/tag/ls.html"}},
+        {text: "triangle", weight: 0.0125, link: {href: "/tag/triangle.html"}},
+        {text: "object model", weight: 0.0125, link: {href: "/tag/object-model.html"}},
+        {text: "python", weight: 0.1375, link: {href: "/tag/python.html"}},
+        {text: "risc", weight: 0.0125, link: {href: "/tag/risc.html"}},
+        {text: "apt", weight: 0.0125, link: {href: "/tag/apt.html"}},
+        {text: "underscore", weight: 0.0125, link: {href: "/tag/underscore.html"}},
+        {text: "bit", weight: 0.0125, link: {href: "/tag/bit.html"}},
+        {text: "daemon", weight: 0.0125, link: {href: "/tag/daemon.html"}},
+        {text: "signal", weight: 0.0125, link: {href: "/tag/signal.html"}},
+        {text: "real mode", weight: 0.025, link: {href: "/tag/real-mode.html"}},
+        {text: "binary search", weight: 0.0125, link: {href: "/tag/binary-search.html"}},
+        {text: "ldt", weight: 0.0125, link: {href: "/tag/ldt.html"}},
+        {text: "orphan", weight: 0.0125, link: {href: "/tag/orphan.html"}},
+        {text: "prime number", weight: 0.0125, link: {href: "/tag/prime-number.html"}},
+        {text: "xtrabackup", weight: 0.025, link: {href: "/tag/xtrabackup.html"}},
+        {text: "function call", weight: 0.0125, link: {href: "/tag/function-call.html"}},
+        {text: "arm", weight: 0.0125, link: {href: "/tag/arm.html"}},
+        {text: "matrix", weight: 0.0125, link: {href: "/tag/matrix.html"}},
+        {text: "cpu ring", weight: 0.0125, link: {href: "/tag/cpu-ring.html"}},
+        {text: "metaclass", weight: 0.0125, link: {href: "/tag/metaclass.html"}},
+        {text: "method", weight: 0.0125, link: {href: "/tag/method.html"}},
+        {text: "assembly", weight: 0.025, link: {href: "/tag/assembly.html"}},
+        {text: "stack frame", weight: 0.0125, link: {href: "/tag/stack-frame.html"}},
+        {text: "zombie", weight: 0.0125, link: {href: "/tag/zombie.html"}},
+        {text: "protect mode", weight: 0.0125, link: {href: "/tag/protect-mode.html"}},
+        {text: "zbr", weight: 0.0125, link: {href: "/tag/zbr.html"}},
+        {text: "system call", weight: 0.0125, link: {href: "/tag/system-call.html"}},
+        {text: "tcp/ip", weight: 0.0125, link: {href: "/tag/tcpip.html"}},
+        {text: "tls", weight: 0.0125, link: {href: "/tag/tls.html"}},
+        {text: "c", weight: 0.125, link: {href: "/tag/c.html"}},
+        {text: "kernel thread", weight: 0.0125, link: {href: "/tag/kernel-thread.html"}},
+        {text: "thread", weight: 0.025, link: {href: "/tag/thread.html"}},
+        {text: "queue", weight: 0.0125, link: {href: "/tag/queue.html"}},
+        {text: "data structure", weight: 0.0375, link: {href: "/tag/data-structure.html"}},
+        {text: "setuid", weight: 0.025, link: {href: "/tag/setuid.html"}},
+        {text: "shuffle", weight: 0.0125, link: {href: "/tag/shuffle.html"}},
+        {text: "encoding", weight: 0.0125, link: {href: "/tag/encoding.html"}},
+        {text: "c/c++", weight: 0.0125, link: {href: "/tag/cc.html"}},
+        {text: "float", weight: 0.0125, link: {href: "/tag/float.html"}},
+        {text: "chmod", weight: 0.025, link: {href: "/tag/chmod.html"}},
+        {text: "vim", weight: 0.0125, link: {href: "/tag/vim.html"}},
+        {text: "sourcelist", weight: 0.0125, link: {href: "/tag/sourcelist.html"}},
+        {text: "linux", weight: 0.175, link: {href: "/tag/linux.html"}},
+        {text: "ring", weight: 0.0125, link: {href: "/tag/ring.html"}},
+        {text: "callstack", weight: 0.0125, link: {href: "/tag/callstack.html"}},
+        {text: "debian", weight: 0.0125, link: {href: "/tag/debian.html"}},
+        {text: "type", weight: 0.0125, link: {href: "/tag/type.html"}},
+        {text: "sort", weight: 0.0125, link: {href: "/tag/sort.html"}},
+        {text: "masscan", weight: 0.0125, link: {href: "/tag/masscan.html"}},
+        {text: "btrfs", weight: 0.0125, link: {href: "/tag/btrfs.html"}},
+        {text: "gas", weight: 0.0125, link: {href: "/tag/gas.html"}},
+        {text: "user thread", weight: 0.0125, link: {href: "/tag/user-thread.html"}},
+        {text: "c3", weight: 0.0125, link: {href: "/tag/c3.html"}},
+        {text: "compile", weight: 0.0125, link: {href: "/tag/compile.html"}},
+        {text: "descriptor", weight: 0.0125, link: {href: "/tag/descriptor.html"}},
+        {text: "hdd", weight: 0.0125, link: {href: "/tag/hdd.html"}},
+        {text: "setresuid", weight: 0.0125, link: {href: "/tag/setresuid.html"}},
+        {text: "str", weight: 0.025, link: {href: "/tag/str.html"}},
+        {text: "cisc", weight: 0.0125, link: {href: "/tag/cisc.html"}},
+        {text: "a20", weight: 0.0125, link: {href: "/tag/a20.html"}},
+        {text: "shebang", weight: 0.0125, link: {href: "/tag/shebang.html"}},
+        {text: "process", weight: 0.0125, link: {href: "/tag/process.html"}},
+        {text: "sticky", weight: 0.0125, link: {href: "/tag/sticky.html"}},
+        {text: "__init__", weight: 0.0125, link: {href: "/tag/__init__.html"}},
+        {text: "latency", weight: 0.0125, link: {href: "/tag/latency.html"}},
+        {text: "gcd", weight: 0.0125, link: {href: "/tag/gcd.html"}},
+        {text: "utf-8", weight: 0.0125, link: {href: "/tag/utf-8.html"}},
+        {text: "fs", weight: 0.0125, link: {href: "/tag/fs.html"}},
+        {text: "x86", weight: 0.025, link: {href: "/tag/x86.html"}},
+        {text: "quote", weight: 0.0125, link: {href: "/tag/quote.html"}},
+        {text: "class", weight: 0.0125, link: {href: "/tag/class.html"}},
+        {text: "mangling", weight: 0.0125, link: {href: "/tag/mangling.html"}},
+        {text: "stack", weight: 0.0125, link: {href: "/tag/stack.html"}},
+        {text: "getuid", weight: 0.0125, link: {href: "/tag/getuid.html"}},
+        {text: "algorithm", weight: 0.275, link: {href: "/tag/algorithm.html"}},
+        {text: "line join", weight: 0.0125, link: {href: "/tag/line-join.html"}},
+        {text: "register", weight: 0.0125, link: {href: "/tag/register.html"}},
+        {text: "mro", weight: 0.0125, link: {href: "/tag/mro.html"}},
+        ];
+        $(function() {
+            $("#tag-cloud").jQCloud(word_list);
+        });
+    </script>
+
 </head>
 
 <body>
@@ -56,38 +157,29 @@
         
 
             <article>
-                <a href="../posts/python/descriptor.html"><h3 class="article-title">python 描述符</h3></a>
-<h6 class="subheader" title="2014-11-03T23:46:59">Mon 03 November 2014
+                <a href="../posts/python/special-method-lookup.html"><h3 class="article-title">特殊方法的查找</h3></a>
+<h6 class="subheader" title="2014-11-03T21:00:00">Mon 03 November 2014
 </h6>
 
 
-<p>描述符就是对象的一个绑定了行为的特性(attribute with "binding behavior"), 对特性的操作内部转化为相应方法的调用. 默认的特性访问实际是操作(get, set, delete)的对象的__dict__特性(参见<a href="/posts/python/magic-object.html"><strong>dict</strong></a>),但特性访问时如果查找出来的对象实现了任意的描述符方法, python就会调用描述符的方法而不是默认的行为.</p>
-<p>描述符是一个强大的通用的协议, 也是属性, 方法, 静态方法, 动态方法, super()背后的实现机制. python2.2中引入的新式类也是通过描述符实现的. 描述符简化了底层c代码, 为python程序提供了灵活的工具组.</p>
-<h3>descriptor protocal</h3>
-<div class="highlight"><pre><span class="n">descr</span><span class="p">.</span><span class="n">__get__</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">obj</span><span class="p">,</span> <span class="n">type</span><span class="o">=</span><span class="n">None</span><span class="p">)</span> <span class="o">--&gt;</span> <span class="n">value</span>
-<span class="n">descr</span><span class="p">.</span><span class="n">__set__</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">obj</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span> <span class="o">--&gt;</span> <span class="n">None</span>
-<span class="n">descr</span><span class="p">.</span><span class="n">__delete__</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">obj</span><span class="p">)</span> <span class="o">--&gt;</span> <span class="n">None</span>
+<p>For old-style classes, special methods are always looked up in exactly the same way as any other method or attribute. This is the case regardless of whether the method is being looked up explicitly as in <code>x.__getitem__(i)</code> or implicitly as in <code>x[i]</code>.</p>
+<p>For new-style classes, implicit invocations of special methods are only guaranteed to work correctly if defined on an object’s <em>type</em>, not in the object’s instance dictionary.</p>
+<div class="highlight"><pre><span class="n">class</span> <span class="n">A</span><span class="p">(</span><span class="n">object</span><span class="p">)</span><span class="o">:</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="mi">1</span>
 </pre></div>
 
 
-<p>定义了以上三个任意的方法的对象就是描述符.如果一个对象只定义了_<em>get_</em>(), 被称为非数据描述符(non-data descriptor)(通常用于方法), 如果同时定义了_<em>get__和__set_</em>()被称为是 数据描述符(data descriptor). </p>
-<p>要创建一个只读描述符, 同时定义_<em>get__和__set_</em>, _<em>set_</em> 只需要抛出一个AttributeError异常即可.</p>
-<h3>调用描述符</h3>
-<p>描述符的访问可以直接调用它的方法<code>type(object).__dict__['descr'].__get__(obj)</code>, 但是通常是通过访问特性的方式自动进行调用<code>obj.descr</code>.  对于obj.descr的访问方式, 遵循<a href="/posts/python/magic-object.html">特性查找顺序的</a>, 具体的调用方式取决与obj是实例还是类(新式类). </p>
-<p>obj是实例, 则在object._<em>getattribute_</em>()中把<code>obj.descr</code> into <code>type(obj).__dict__['descr'].__get__(obj, type(obj))</code></p>
-<p>obj是类, 则在type._<em>getattribute_</em>()中把<code>obj.descr</code> into <code>obj.__dict__['destr'].__get__(None, obj)</code>, 参见<a href="/posts/python/special-method-lookup.html">特殊方法的查找</a>.</p>
-<p>对于上面的处理方式可以看出: _<em>get_</em>()的第一个参数要么是owner的实例, 要么是None. 描述符必须定义为class特性, 如果定义为实例特性, python不会自动调用_<em>get_</em>() 和 _<em>set_</em>() 方法.</p>
-<p>对描述符赋值<code>obj.descr = 100</code>, 转化为_<em>set_</em>()的调用<code>type(obj).__dict__['descr'].__set__(obj, 100)</code>, 第一个参数是句点前的实例, 第二个参数是要赋值的值.
-同样的<code>del obj.descr</code>则调用__delete__()方法.</p>
+<p>对于上面定义的类A, <code>A.n</code> 实际上调用的是<code>type.__getattribute__</code>, <code>A().n</code>实际调用的是<code>object.__getattribute__</code>(参见<a href="/posts/python/magic-object.html">特性的搜索顺序</a>).</p>
+<p>Implicit special method lookup generally also bypasses the _<em>getattribute_</em>() method even of the object’s metaclass.Bypassing the _<em>getattribute_</em>() machinery in this fashion provides significant scope for speed optimisations within the interpreter, at the cost of some flexibility in the handling of special methods</p>
 <p>refer:</p>
 <ul>
-<li>[0]<a href="http://nbviewer.ipython.org/gist/ChrisBeaumont/5758381/descriptor_writeup.ipynb">http://nbviewer.ipython.org/gist/ChrisBeaumont/5758381/descriptor_writeup.ipynb</a></li>
-<li>[1]<a href="https://docs.python.org/2/howto/descriptor.html">https://docs.python.org/2/howto/descriptor.html</a></li>
+<li>[0]<a href="https://docs.python.org/2/reference/datamodel.html#special-method-lookup-for-new-style-classes">https://docs.python.org/2/reference/datamodel.html#special-method-lookup-for-new-style-classes</a></li>
+<li>[1]<a href="http://stackoverflow.com/questions/24150894/what-is-the-difference-between-type-getattribute-and-object-getattribute">http://stackoverflow.com/questions/24150894/what-is-the-difference-between-type-getattribute-and-object-getattribute</a></li>
 </ul><p class="subheader">Category: <a href="../category/python.html">python</a>
 
     Tagged: 
     <a href="../tag/python.html">python </a>
-    <a href="../tag/descriptor-date-2014-11-03-100000.html">descriptor Date: 2014-11-03 10:00:00 </a>
+    <a href="../tag/method.html">method </a>
 </p>
 
 
@@ -102,22 +194,30 @@
 
 
             <article>
-                <a href="../posts/python/special-method-lookup.html"><h3 class="article-title">特殊方法的查找</h3></a>
-<h6 class="subheader" title="2014-11-03T21:00:00">Mon 03 November 2014
+                <a href="../posts/python/descriptor.html"><h3 class="article-title">python 描述符</h3></a>
+<h6 class="subheader" title="2014-11-03T10:00:00">Mon 03 November 2014
 </h6>
 
 
-<p>For old-style classes, special methods are always looked up in exactly the same way as any other method or attribute. This is the case regardless of whether the method is being looked up explicitly as in <code>x.__getitem__(i)</code> or implicitly as in <code>x[i]</code>.</p>
-<p>For new-style classes, implicit invocations ...</p><p class="subheader">Category: <a href="../category/python.html">python</a>
+<p>描述符就是对象的一个绑定了行为的特性(attribute with "binding behavior"), 对特性的操作内部转化为相应方法的调用. 默认的特性访问实际是操作(get, set, delete)的对象的 <a href="/posts/python/magic-object.html">__dict__</a> 特性,但特性访问时如果查找出来的对象实现了任意的描述符方法, python就会调用描述符的方法而不是默认的行为.</p>
+<p>描述符是一个强大的通用的协议, 也是属性, 方法, 静态方法, 动态方法, super()背后的实现机制. python2.2中引入的新式类也是通过描述符实现的. 描述符简化了底层c代码, 为python程序提供了灵活的工具组.</p>
+<h3>descriptor protocal</h3>
+<div class="highlight"><pre><span class="n">descr</span><span class="p">.</span><span class="n">__get__</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">obj</span><span class="p">,</span> <span class="n">type</span><span class="o">=</span><span class="n">None</span><span class="p">)</span> <span class="o">--&gt;</span> <span class="n">value</span>
+<span class="n">descr</span><span class="p">.</span><span class="n">__set__</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">obj</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span> <span class="o">--&gt;</span> <span class="n">None</span>
+<span class="n">descr</span><span class="p">.</span><span class="n">__delete__</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">obj</span><span class="p">)</span> <span class="o">--&gt;</span> <span class="n">None</span>
+</pre></div>
+
+
+<p>定义了以上三个任意的方法的对象就是描述符.如果一个对象只定义了 __get__(), 被称为非数据描述符 ...</p><p class="subheader">Category: <a href="../category/python.html">python</a>
 
     Tagged: 
     <a href="../tag/python.html">python </a>
-    <a href="../tag/method.html">method </a>
+    <a href="../tag/descriptor.html">descriptor </a>
 </p>
 
 
 
-                <a class="button radius secondary small right" href="../posts/python/special-method-lookup.html">Read More</a>
+                <a class="button radius secondary small right" href="../posts/python/descriptor.html">Read More</a>
                 <hr  class="gradient"/>
             </article>
 
@@ -446,11 +546,14 @@
 
     <!-- Sidebar -->
     <aside class="large-3 columns">
-        <h5 class="sidebar-title">Site</h5>
+    <!-- <h5 class="sidebar-title">Site</h5>
         <ul class="side-nav">
             <li><a href="../archives.html">Archives</a>
             <li><a href="../tags.html">Tags</a>
-        </ul>
+    </ul> -->
+
+        <h5 class="sidebar-title">Tags</h5>
+	<div id="tag-cloud" style="with: 25%; height: 245px;"></div>
 
 		
         <h5 class="sidebar-title">Categories</h5>

@@ -10,17 +10,32 @@
     <link rel="stylesheet" href="{{ SITEURL }}/theme/css/foundation.min.css" />
     <link rel="stylesheet" href="{{ SITEURL }}/theme/css/style.css" />
     <link rel="stylesheet" href="{{ SITEURL }}/theme/css/pygments.css" />	
+    <link rel="stylesheet" type="text/css" href="{{ SITEURL }}/theme/css/jqcloud.css" />
     <script src="{{ SITEURL }}/theme/js/vendor/custom.modernizr.js"></script>
     <script type="text/x-mathjax-config">
-      MathJax.Hub.Config({
-        "HTML-CSS": {
-      styles: {
-        ".MathJax .mo, .MathJax .mi": {color: "black ! important"}}
-          },
-            tex2jax: {inlineMath: [['$','$'], ['\\\\(','\\\\)']],processEscapes: true}
-      });
+        MathJax.Hub.Config({
+          "HTML-CSS": {
+        styles: {
+          ".MathJax .mo, .MathJax .mi": {color: "black ! important"}}
+            },
+              tex2jax: {inlineMath: [['$','$'], ['\\\\(','\\\\)']],processEscapes: true}
+        });
     </script>
-    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script type="text/javascript" src="{{ SITEURL }}/theme/js/jqcloud-1.0.4.min.js"></script>
+    
+    <script type="text/javascript">
+	var word_list = [
+	{% for tag, articles in tags %}
+        {text: "{{tag}}", weight: {{articles|length / 80}}, link: {href: "/{{tag.url}}"}},
+	{% endfor %}
+        ];
+        $(function() {
+            $("#tag-cloud").jQCloud(word_list);
+        });
+    </script>
+
 </head>
 
 <body>
@@ -66,17 +81,14 @@
 
     <!-- Sidebar -->
     <aside class="large-3 columns">
-        <h5 class="sidebar-title">Site</h5>
+    <!-- <h5 class="sidebar-title">Site</h5>
         <ul class="side-nav">
             <li><a href="{{ SITEURL }}/archives.html">Archives</a>
             <li><a href="{{ SITEURL }}/tags.html">Tags</a>
-            {% if FEED_RSS %}
-            <li><a href="{{ FEED_DOMAIN }}/{{ FEED_ATOM }}" rel="alternate">Atom feed</a></li>
-            {% endif %}
-            {% if FEED_RSS %}
-            <li><a href="{{ FEED_DOMAIN }}/{{ FEED_RSS }}" rel="alternate">RSS feed</a></li>
-            {% endif %}
-        </ul>
+    </ul> -->
+
+        <h5 class="sidebar-title">Tags</h5>
+	<div id="tag-cloud" style="with: 25%; height: 245px;"></div>
 
         {% if categories %}		
         <h5 class="sidebar-title">Categories</h5>

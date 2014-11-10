@@ -16,8 +16,12 @@ ARTICLE_SAVE_AS = 'posts/{category}/{slug}.html'
 FILENAME_METADATA = '(?P<slug>.*)'
 
 DEFAULT_LANG = u'cn'
-DISPLAY_PAGES_ON_MENU = False
 STATIC_PATHS = ['img']
+DISPLAY_PAGES_ON_MENU = False
+
+# tag cloud
+TAG_CLOUD_STEPS = 4
+TAG_CLOUD_MAX_ITEMS = 100
 
 # Feed generation is usually not desired when developing
 FEED_ALL_ATOM = None

@@ -42,7 +42,7 @@
         {text: "object model", weight: 0.0125, link: {href: "/tag/object-model.html"}},
         {text: "python", weight: 0.1375, link: {href: "/tag/python.html"}},
         {text: "risc", weight: 0.0125, link: {href: "/tag/risc.html"}},
-        {text: "apt", weight: 0.0125, link: {href: "/tag/apt.html"}},
+        {text: "chmod", weight: 0.025, link: {href: "/tag/chmod.html"}},
         {text: "underscore", weight: 0.0125, link: {href: "/tag/underscore.html"}},
         {text: "bit", weight: 0.0125, link: {href: "/tag/bit.html"}},
         {text: "daemon", weight: 0.0125, link: {href: "/tag/daemon.html"}},
@@ -67,7 +67,7 @@
         {text: "system call", weight: 0.0125, link: {href: "/tag/system-call.html"}},
         {text: "tcp/ip", weight: 0.0125, link: {href: "/tag/tcpip.html"}},
         {text: "tls", weight: 0.0125, link: {href: "/tag/tls.html"}},
-        {text: "c", weight: 0.125, link: {href: "/tag/c.html"}},
+        {text: "c", weight: 0.15, link: {href: "/tag/c.html"}},
         {text: "kernel thread", weight: 0.0125, link: {href: "/tag/kernel-thread.html"}},
         {text: "thread", weight: 0.025, link: {href: "/tag/thread.html"}},
         {text: "queue", weight: 0.0125, link: {href: "/tag/queue.html"}},
@@ -77,10 +77,10 @@
         {text: "encoding", weight: 0.0125, link: {href: "/tag/encoding.html"}},
         {text: "c/c++", weight: 0.0125, link: {href: "/tag/cc.html"}},
         {text: "float", weight: 0.0125, link: {href: "/tag/float.html"}},
-        {text: "chmod", weight: 0.025, link: {href: "/tag/chmod.html"}},
+        {text: "apt", weight: 0.0125, link: {href: "/tag/apt.html"}},
         {text: "vim", weight: 0.0125, link: {href: "/tag/vim.html"}},
         {text: "sourcelist", weight: 0.0125, link: {href: "/tag/sourcelist.html"}},
-        {text: "linux", weight: 0.175, link: {href: "/tag/linux.html"}},
+        {text: "linux", weight: 0.1875, link: {href: "/tag/linux.html"}},
         {text: "ring", weight: 0.0125, link: {href: "/tag/ring.html"}},
         {text: "callstack", weight: 0.0125, link: {href: "/tag/callstack.html"}},
         {text: "debian", weight: 0.0125, link: {href: "/tag/debian.html"}},
@@ -91,6 +91,7 @@
         {text: "gas", weight: 0.0125, link: {href: "/tag/gas.html"}},
         {text: "user thread", weight: 0.0125, link: {href: "/tag/user-thread.html"}},
         {text: "c3", weight: 0.0125, link: {href: "/tag/c3.html"}},
+        {text: "stty", weight: 0.0125, link: {href: "/tag/stty.html"}},
         {text: "compile", weight: 0.0125, link: {href: "/tag/compile.html"}},
         {text: "descriptor", weight: 0.0125, link: {href: "/tag/descriptor.html"}},
         {text: "hdd", weight: 0.0125, link: {href: "/tag/hdd.html"}},
@@ -112,6 +113,7 @@
         {text: "mangling", weight: 0.0125, link: {href: "/tag/mangling.html"}},
         {text: "stack", weight: 0.0125, link: {href: "/tag/stack.html"}},
         {text: "getuid", weight: 0.0125, link: {href: "/tag/getuid.html"}},
+        {text: "eof", weight: 0.0125, link: {href: "/tag/eof.html"}},
         {text: "algorithm", weight: 0.275, link: {href: "/tag/algorithm.html"}},
         {text: "line join", weight: 0.0125, link: {href: "/tag/line-join.html"}},
         {text: "register", weight: 0.0125, link: {href: "/tag/register.html"}},
@@ -154,30 +156,6 @@
     <!-- Main Blog Content -->
     <div class="large-9 columns">
         
-        
-
-
-            <article>
-                <a href="./posts/python/magic-object.html"><h3 class="article-title">python magic object</h3></a>
-<h6 class="subheader" title="2014-11-03T10:00:00">Mon 03 November 2014
-</h6>
-
-
-<h3>__dict__</h3>
-<p>The default behavior for attribute access is to get, set, or delete the attribute from an object’s dictionary. For instance, a.x has a lookup chain starting with <code>a.__dict__['x']</code>, then <code>type(a).__dict__['x']</code>, and continuing through the base classes of type(a) excluding metaclasses. </p>
-<h3>Customizing ...</h3><p class="subheader">Category: <a href="./category/python.html">python</a>
-
-    Tagged: 
-    <a href="./tag/python.html">python </a>
-    <a href="./tag/__init__.html">__init__ </a>
-</p>
-
-
-
-                <a class="button radius secondary small right" href="./posts/python/magic-object.html">Read More</a>
-                <hr  class="gradient"/>
-            </article>
-
         
 
 
@@ -631,6 +609,33 @@ http://www.360doc.com/content/12/0329/14/9470897_198942451.shtml</p><p class="su
 
 
                 <a class="button radius secondary small right" href="./posts/misc/debian-sourcelist.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="./posts/misc/linker-and-loader.html"><h3 class="article-title">链接器(linker)和加载器(loader)</h3></a>
+<h6 class="subheader" title="2014-09-22T22:57:04">Mon 22 September 2014
+</h6>
+
+
+<h4>refer:</h4>
+<ul>
+<li>http://www.linuxjournal.com/article/6463</li>
+<li>http://www.linuxjournaldigital.com/linuxjournal/201109#pg77</li>
+<li>http://en.wikipedia.org/wiki/Relocation_(computing)</li>
+<li>http://read.pudn.com/downloads56/ebook/196880/lnl_7_coly.pdf</li>
+<li>http://www.yeolar.com/note/2012/03/20/linux-linking/</li>
+<li>http://www.cnblogs.com/zhanjl/p/3273014.html</li>
+<li>http://blog.csdn ...</li></ul><p class="subheader">Category: <a href="./category/misc.html">misc</a>
+
+</p>
+
+
+
+                <a class="button radius secondary small right" href="./posts/misc/linker-and-loader.html">Read More</a>
                 <hr  class="gradient"/>
             </article>
 

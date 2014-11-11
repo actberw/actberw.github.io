@@ -42,7 +42,7 @@
         {text: "object model", weight: 0.0125, link: {href: "/tag/object-model.html"}},
         {text: "python", weight: 0.1375, link: {href: "/tag/python.html"}},
         {text: "risc", weight: 0.0125, link: {href: "/tag/risc.html"}},
-        {text: "apt", weight: 0.0125, link: {href: "/tag/apt.html"}},
+        {text: "chmod", weight: 0.025, link: {href: "/tag/chmod.html"}},
         {text: "underscore", weight: 0.0125, link: {href: "/tag/underscore.html"}},
         {text: "bit", weight: 0.0125, link: {href: "/tag/bit.html"}},
         {text: "daemon", weight: 0.0125, link: {href: "/tag/daemon.html"}},
@@ -67,7 +67,7 @@
         {text: "system call", weight: 0.0125, link: {href: "/tag/system-call.html"}},
         {text: "tcp/ip", weight: 0.0125, link: {href: "/tag/tcpip.html"}},
         {text: "tls", weight: 0.0125, link: {href: "/tag/tls.html"}},
-        {text: "c", weight: 0.125, link: {href: "/tag/c.html"}},
+        {text: "c", weight: 0.15, link: {href: "/tag/c.html"}},
         {text: "kernel thread", weight: 0.0125, link: {href: "/tag/kernel-thread.html"}},
         {text: "thread", weight: 0.025, link: {href: "/tag/thread.html"}},
         {text: "queue", weight: 0.0125, link: {href: "/tag/queue.html"}},
@@ -77,10 +77,10 @@
         {text: "encoding", weight: 0.0125, link: {href: "/tag/encoding.html"}},
         {text: "c/c++", weight: 0.0125, link: {href: "/tag/cc.html"}},
         {text: "float", weight: 0.0125, link: {href: "/tag/float.html"}},
-        {text: "chmod", weight: 0.025, link: {href: "/tag/chmod.html"}},
+        {text: "apt", weight: 0.0125, link: {href: "/tag/apt.html"}},
         {text: "vim", weight: 0.0125, link: {href: "/tag/vim.html"}},
         {text: "sourcelist", weight: 0.0125, link: {href: "/tag/sourcelist.html"}},
-        {text: "linux", weight: 0.175, link: {href: "/tag/linux.html"}},
+        {text: "linux", weight: 0.1875, link: {href: "/tag/linux.html"}},
         {text: "ring", weight: 0.0125, link: {href: "/tag/ring.html"}},
         {text: "callstack", weight: 0.0125, link: {href: "/tag/callstack.html"}},
         {text: "debian", weight: 0.0125, link: {href: "/tag/debian.html"}},
@@ -91,6 +91,7 @@
         {text: "gas", weight: 0.0125, link: {href: "/tag/gas.html"}},
         {text: "user thread", weight: 0.0125, link: {href: "/tag/user-thread.html"}},
         {text: "c3", weight: 0.0125, link: {href: "/tag/c3.html"}},
+        {text: "stty", weight: 0.0125, link: {href: "/tag/stty.html"}},
         {text: "compile", weight: 0.0125, link: {href: "/tag/compile.html"}},
         {text: "descriptor", weight: 0.0125, link: {href: "/tag/descriptor.html"}},
         {text: "hdd", weight: 0.0125, link: {href: "/tag/hdd.html"}},
@@ -112,6 +113,7 @@
         {text: "mangling", weight: 0.0125, link: {href: "/tag/mangling.html"}},
         {text: "stack", weight: 0.0125, link: {href: "/tag/stack.html"}},
         {text: "getuid", weight: 0.0125, link: {href: "/tag/getuid.html"}},
+        {text: "eof", weight: 0.0125, link: {href: "/tag/eof.html"}},
         {text: "algorithm", weight: 0.275, link: {href: "/tag/algorithm.html"}},
         {text: "line join", weight: 0.0125, link: {href: "/tag/line-join.html"}},
         {text: "register", weight: 0.0125, link: {href: "/tag/register.html"}},
@@ -159,13 +161,54 @@
         title="Permalink to EOF是什么">EOF是什么</a></h3>
     </header>
 
-<h6 class="subheader" title="2014-11-09T23:11:47">Sun 09 November 2014
+<h6 class="subheader" title="2014-09-20T00:00:00">Sat 20 September 2014
 </h6>
 
 
-    <p>http://www.ruanyifeng.com/blog/2011/11/eof.html</p>
+    <h3>EOF</h3>
+<p>EOF 是end of file的缩写, 表示"文字流"（stream）的结尾. 这里的"文字流"，可以是文件(file), 也可以是标准输入(stdin). 写从终端读取数据的程序时经常会用EOF判断输入结束, 例如:</p>
+<div class="highlight"><pre><span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kt">int</span> <span class="n">c</span><span class="p">;</span>
+    <span class="k">while</span> <span class="p">((</span><span class="n">c</span> <span class="o">=</span> <span class="n">getc</span><span class="p">())</span> <span class="o">!=</span> <span class="n">EOF</span><span class="p">)</span> <span class="p">{</span>
+     <span class="err">　　</span><span class="n">putchar</span> <span class="p">(</span><span class="n">c</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<p>这里的EOF是一个定义在头文件stdio.h的常量，一般等于-1.</p>
+<div class="highlight"><pre><span class="c"># define EOF (-1)</span>
+</pre></div>
+
+
+<p><code>man getc</code> 中说 <em>getc() return the character read as an unsigned char cast to an int or  EOF  on  end  of file or error.</em>  就是说在文件结束, 或者发生错误的时候返回EOF.  所以这里的EOF用来标示(indicate)要么文件结束了, 要么发生了错误, 并不是一个特殊的符号. 同时为了确定是否真的是文件结束了c提供了一个 <code>feof()</code> 函数了来检测.</p>
+<h3>^D(ctrl + d)</h3>
+<p>运行上面的程序如果想结束输入 Linux 中在新的一行的开头按下 <code>^D</code> 就代表EOF(如果在一行的中间按下 <code>Ctrl-D</code>，则表示输出"标准输入"的缓存区，所以这时必须按两次<code>^D</code>), 这里的 <code>^D</code> 是特殊控制符, 表示标准输入结束.</p>
+<div class="highlight"><pre><span class="err">$</span> <span class="nx">stty</span> <span class="na">-a</span>
+<span class="n">intr</span> <span class="o">=</span> <span class="p">^</span><span class="nx">C</span><span class="p">;</span> <span class="n">quit</span> <span class="o">=</span> <span class="p">^</span><span class="o">\</span><span class="p">;</span> <span class="n">erase</span> <span class="o">=</span> <span class="p">^</span><span class="o">?</span><span class="p">;</span> <span class="n">kill</span> <span class="o">=</span> <span class="p">^</span><span class="nx">U</span><span class="p">;</span> <span class="n">eof</span> <span class="o">=</span> <span class="p">^</span><span class="nb">D</span><span class="p">;</span> <span class="n">eol</span> <span class="o">=</span> <span class="nx">M</span><span class="o">-</span><span class="p">^</span><span class="o">?</span><span class="p">;</span> <span class="n">eol2</span> <span class="o">=</span> <span class="nx">M</span><span class="o">-</span><span class="p">^</span><span class="o">?</span><span class="p">;</span> <span class="n">swtch</span> <span class="o">=</span> <span class="o">&lt;</span><span class="nx">undef</span><span class="o">&gt;</span><span class="p">;</span> <span class="n">start</span> <span class="o">=</span> <span class="p">^</span><span class="nx">Q</span><span class="p">;</span> <span class="n">stop</span> <span class="o">=</span> <span class="p">^</span><span class="nb">S</span><span class="p">;</span>
+<span class="n">susp</span> <span class="o">=</span> <span class="p">^</span><span class="nb">Z</span><span class="p">;</span> <span class="n">rprnt</span> <span class="o">=</span> <span class="p">^</span><span class="nb">R</span><span class="p">;</span> <span class="n">werase</span> <span class="o">=</span> <span class="p">^</span><span class="nx">W</span><span class="p">;</span> <span class="n">lnext</span> <span class="o">=</span> <span class="p">^</span><span class="nx">V</span><span class="p">;</span> <span class="n">flush</span> <span class="o">=</span> <span class="p">^</span><span class="nx">O</span><span class="p">;</span> <span class="k">min</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">time</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="na">-parenb</span> <span class="na">-parodd</span> <span class="nx">cs8</span> <span class="na">-hupcl</span> <span class="na">-cstopb</span> <span class="nx">cread</span> <span class="na">-clocal</span> <span class="na">-crtscts</span>
+<span class="na">-ignbrk</span> <span class="na">-brkint</span> <span class="na">-ignpar</span> <span class="na">-parmrk</span> <span class="na">-inpck</span> <span class="na">-istrip</span> <span class="na">-inlcr</span> <span class="na">-igncr</span> <span class="nx">icrnl</span> <span class="nx">ixon</span> <span class="na">-ixoff</span> <span class="na">-iuclc</span> <span class="nx">ixany</span> <span class="nx">imaxbel</span> <span class="na">-iutf8</span>
+<span class="nx">opost</span> <span class="na">-olcuc</span> <span class="na">-ocrnl</span> <span class="nx">onlcr</span> <span class="na">-onocr</span> <span class="na">-onlret</span> <span class="na">-ofill</span> <span class="na">-ofdel</span> <span class="nx">nl0</span> <span class="nx">cr0</span> <span class="nx">tab0</span> <span class="nx">bs0</span> <span class="nx">vt0</span> <span class="nx">ff0</span>
+<span class="nx">isig</span> <span class="nx">icanon</span> <span class="nx">iexten</span> <span class="nx">echo</span> <span class="nx">echoe</span> <span class="nx">echok</span> <span class="na">-echonl</span> <span class="na">-noflsh</span> <span class="na">-xcase</span> <span class="na">-tostop</span> <span class="na">-echoprt</span> <span class="nx">echoctl</span> <span class="nx">echoke</span>
+</pre></div>
+
+
+<p>如果在终端中真的想输入 <code>^D</code> 怎么办? 这时必须先按下 <code>Ctrl-V</code>, 然后就可以输入 <code>Ctrl-D</code>, 系统就不会认为这是EOF. <code>Ctrl-V</code> 表示按"字面含义"解读下一个输入, 要是想按"字面含义"输入Ctrl-V, 连续输入两次就行了.</p>
+<p>另外要跟 <code>Ctrl-C</code> 区分开来, <code>Ctrl-C</code> 是给进程发送 TERM 信号是要结束进程.</p>
+<p>refer:</p>
+<ul>
+<li><a href="http://www.ruanyifeng.com/blog/2011/11/eof.html">http://www.ruanyifeng.com/blog/2011/11/eof.html</a></li>
+<li><a href="http://unix.stackexchange.com/questions/110240/why-does-ctrl-d-eof-exit-the-shell">http://unix.stackexchange.com/questions/110240/why-does-ctrl-d-eof-exit-the-shell</a></li>
+</ul>
 <p class="subheader">Category: <a href="../../category/misc.html">misc</a>
 
+    Tagged: 
+    <a href="../../tag/linux.html">linux </a>
+    <a href="../../tag/c.html">c </a>
+    <a href="../../tag/eof.html">eof </a>
+    <a href="../../tag/stty.html">stty </a>
 </p>
 
 

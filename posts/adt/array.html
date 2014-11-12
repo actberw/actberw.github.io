@@ -4,7 +4,7 @@
     <!-- Set the viewport width to device width for mobile -->
     <meta name="viewport" content="width=device-width" />
 
-    <title>数组</title>
+    <title>数组 part-1</title>
 
     <link rel="stylesheet" href="../../theme/css/normalize.css" />
     <link rel="stylesheet" href="../../theme/css/foundation.min.css" />
@@ -54,7 +54,7 @@
         {text: "prime number", weight: 0.0125, link: {href: "/tag/prime-number.html"}},
         {text: "xtrabackup", weight: 0.025, link: {href: "/tag/xtrabackup.html"}},
         {text: "function call", weight: 0.0125, link: {href: "/tag/function-call.html"}},
-        {text: "arm", weight: 0.0125, link: {href: "/tag/arm.html"}},
+        {text: "ring", weight: 0.0125, link: {href: "/tag/ring.html"}},
         {text: "matrix", weight: 0.0125, link: {href: "/tag/matrix.html"}},
         {text: "cpu ring", weight: 0.0125, link: {href: "/tag/cpu-ring.html"}},
         {text: "metaclass", weight: 0.0125, link: {href: "/tag/metaclass.html"}},
@@ -67,11 +67,11 @@
         {text: "system call", weight: 0.0125, link: {href: "/tag/system-call.html"}},
         {text: "tcp/ip", weight: 0.0125, link: {href: "/tag/tcpip.html"}},
         {text: "tls", weight: 0.0125, link: {href: "/tag/tls.html"}},
-        {text: "c", weight: 0.15, link: {href: "/tag/c.html"}},
+        {text: "c", weight: 0.1625, link: {href: "/tag/c.html"}},
         {text: "kernel thread", weight: 0.0125, link: {href: "/tag/kernel-thread.html"}},
         {text: "thread", weight: 0.025, link: {href: "/tag/thread.html"}},
         {text: "queue", weight: 0.0125, link: {href: "/tag/queue.html"}},
-        {text: "data structure", weight: 0.0375, link: {href: "/tag/data-structure.html"}},
+        {text: "data structure", weight: 0.1, link: {href: "/tag/data-structure.html"}},
         {text: "setuid", weight: 0.025, link: {href: "/tag/setuid.html"}},
         {text: "shuffle", weight: 0.0125, link: {href: "/tag/shuffle.html"}},
         {text: "encoding", weight: 0.0125, link: {href: "/tag/encoding.html"}},
@@ -81,7 +81,7 @@
         {text: "vim", weight: 0.0125, link: {href: "/tag/vim.html"}},
         {text: "sourcelist", weight: 0.0125, link: {href: "/tag/sourcelist.html"}},
         {text: "linux", weight: 0.1875, link: {href: "/tag/linux.html"}},
-        {text: "ring", weight: 0.0125, link: {href: "/tag/ring.html"}},
+        {text: "array", weight: 0.0875, link: {href: "/tag/array.html"}},
         {text: "callstack", weight: 0.0125, link: {href: "/tag/callstack.html"}},
         {text: "debian", weight: 0.0125, link: {href: "/tag/debian.html"}},
         {text: "type", weight: 0.0125, link: {href: "/tag/type.html"}},
@@ -101,10 +101,12 @@
         {text: "a20", weight: 0.0125, link: {href: "/tag/a20.html"}},
         {text: "shebang", weight: 0.0125, link: {href: "/tag/shebang.html"}},
         {text: "process", weight: 0.0125, link: {href: "/tag/process.html"}},
+        {text: "poiner", weight: 0.0125, link: {href: "/tag/poiner.html"}},
         {text: "sticky", weight: 0.0125, link: {href: "/tag/sticky.html"}},
         {text: "__init__", weight: 0.0125, link: {href: "/tag/__init__.html"}},
         {text: "latency", weight: 0.0125, link: {href: "/tag/latency.html"}},
         {text: "gcd", weight: 0.0125, link: {href: "/tag/gcd.html"}},
+        {text: "arm", weight: 0.0125, link: {href: "/tag/arm.html"}},
         {text: "utf-8", weight: 0.0125, link: {href: "/tag/utf-8.html"}},
         {text: "fs", weight: 0.0125, link: {href: "/tag/fs.html"}},
         {text: "x86", weight: 0.025, link: {href: "/tag/x86.html"}},
@@ -114,7 +116,7 @@
         {text: "stack", weight: 0.0125, link: {href: "/tag/stack.html"}},
         {text: "getuid", weight: 0.0125, link: {href: "/tag/getuid.html"}},
         {text: "eof", weight: 0.0125, link: {href: "/tag/eof.html"}},
-        {text: "algorithm", weight: 0.275, link: {href: "/tag/algorithm.html"}},
+        {text: "algorithm", weight: 0.375, link: {href: "/tag/algorithm.html"}},
         {text: "line join", weight: 0.0125, link: {href: "/tag/line-join.html"}},
         {text: "register", weight: 0.0125, link: {href: "/tag/register.html"}},
         {text: "mro", weight: 0.0125, link: {href: "/tag/mro.html"}},
@@ -158,25 +160,45 @@
 <article>
     <header>
         <h3 class="article-title"><a href="../../posts/adt/array.html" rel="bookmark"
-        title="Permalink to 数组">数组</a></h3>
+        title="Permalink to 数组 part-1">数组 part-1</a></h3>
     </header>
 
 <h6 class="subheader" title="2014-06-11T15:00:00">Wed 11 June 2014
 </h6>
 
 
-    <p>数组把相同类型得数据按照固定有序得方式组织起来，使得存储空空间相邻，可以通过 <em>索引访问<code>a[i]</code></em>, 便于访问(O(1)), 但是不便于操作(O(n)). 索引必须保证是非负且小于数组大小.</p>
-<p>3.2 数组(array)  </p>
-<p>refer:</p>
-<ul>
-<li><a href="http://stackoverflow.com/questions/6127503/shuffle-array-in-c%5D">http://stackoverflow.com/questions/6127503/shuffle-array-in-c</a></li>
-<li><a href="https://www.biostars.org/p/63016/">https://www.biostars.org/p/63016/</a></li>
-</ul>
+    <p>数组把相同类型得数据按照固定有序得方式组织起来, 使得存储空空间相邻, 可以通过 <em>索引访问<code>a[i]</code></em>, 便于访问(O(1)), 但是不便于操作(O(n)). </p>
+<h3>数组(array)定义和初始化</h3>
+<div class="highlight"><pre><span class="c1">// 定义</span>
+<span class="k">int</span> <span class="n">array</span><span class="p">[</span><span class="n">length</span><span class="p">];</span>
+
+<span class="c1">// 定义和初始化 </span>
+<span class="k">int</span> <span class="n">array</span><span class="p">[</span><span class="mh">5</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="mh">1</span><span class="p">,</span> <span class="mh">2</span><span class="p">,</span> <span class="mh">3</span><span class="p">,</span> <span class="mh">4</span><span class="p">,</span> <span class="mh">5</span><span class="p">};</span>
+
+<span class="c1">// length也可以不指定</span>
+<span class="k">int</span> <span class="n">array</span><span class="p">[]</span> <span class="o">=</span> <span class="p">{</span><span class="mh">1</span><span class="p">,</span> <span class="mh">2</span><span class="p">,</span> <span class="mh">3</span><span class="p">,</span> <span class="mh">4</span><span class="p">,</span> <span class="mh">5</span><span class="p">};</span>
+</pre></div>
+
+
+<h3>数组(array)访问</h3>
+<p>数组元素可以通过索引访问, 索引必须保证是非负且小于数组大小. 数组名会产生一个指向数组首元素指针, 所以还可以通过指针访问.</p>
+<div class="highlight"><pre><span class="c1">// 索引访问</span>
+<span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+
+<span class="c1">// 指针访问</span>
+<span class="o">*</span><span class="p">(</span><span class="n">a</span> <span class="o">+</span> <span class="n">i</span><span class="p">)</span>
+</pre></div>
+
+
+<p>另外数组名指向组首元素地址, <code>&amp;a</code> 也指向组首元素地址, 但是意义不同参见<a href="/posts/c/point-vs-array.html">数组于指针的区别</a> </p>
+<h3>合并两个有序数组</h3>
+<p>类似归并排序, 参见<a href="/posts/adt/link-list.html">合并链表</a></p>
 <p class="subheader">Category: <a href="../../category/adt.html">adt</a>
 
     Tagged: 
     <a href="../../tag/algorithm.html">algorithm </a>
     <a href="../../tag/data-structure.html">data structure </a>
+    <a href="../../tag/array.html">array </a>
 </p>
 
 

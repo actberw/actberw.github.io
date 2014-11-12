@@ -1244,6 +1244,7 @@ If j &amp;gt; 1, return to step 2.&lt;/p&gt;
 &lt;li&gt;&lt;a href="http://blog.csdn.net/dwyane_mys/article/details/8053896"&gt;http://blog.csdn.net/dwyane_mys/article/details/8053896&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="http://en.wikipedia.org/wiki/Random_permutation"&gt;http://en.wikipedia.org/wiki/Random_permutation&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="http://blog.csdn.net/v_july_v/article/details/7329314"&gt;http://blog.csdn.net/v_july_v/article/details/7329314&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://stackoverflow.com/questions/6127503/shuffle-array-in-c%5D"&gt;http://stackoverflow.com/questions/6127503/shuffle-array-in-c%5D&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;</summary><category term="algorithm"></category><category term="random"></category><category term="shuffle"></category></entry><entry><title>整数位的操作</title><link href="http://actberw.github.io/posts/algorithm/binary-bit.html" rel="alternate"></link><updated>2014-09-04T00:00:00+08:00</updated><author><name>actberw</name></author><id>tag:actberw.github.io,2014-09-04:posts/algorithm/binary-bit.html</id><summary type="html">&lt;h3&gt;二进制表示1的个数&lt;/h3&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="cp"&gt;# 解法1&lt;/span&gt;
 &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="nf"&gt;count&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;v&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
@@ -1324,7 +1325,167 @@ If j &amp;gt; 1, return to step 2.&lt;/p&gt;
    &lt;span class="n"&gt;n&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;n&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="mi"&gt;31&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;n&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
 &lt;span class="p"&gt;}&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;</summary><category term="algorithm"></category><category term="bit"></category><category term="c"></category></entry><entry><title>asymmetric coroutine和symmetric coroutine</title><link href="http://actberw.github.io/posts/coroutine/asymmetric-vs-symmetric.html" rel="alternate"></link><updated>2014-09-01T00:00:00+08:00</updated><author><name>actberw</name></author><id>tag:actberw.github.io,2014-09-01:posts/coroutine/asymmetric-vs-symmetric.html</id><summary type="html">&lt;p&gt;http://blog.csdn.net/wzzfeitian/article/details/8832017
+&lt;/pre&gt;&lt;/div&gt;</summary><category term="algorithm"></category><category term="bit"></category><category term="c"></category></entry><entry><title>实现pow(x, n)函数</title><link href="http://actberw.github.io/posts/algorithm/pow.html" rel="alternate"></link><updated>2014-09-03T00:00:00+08:00</updated><author><name>actberw</name></author><id>tag:actberw.github.io,2014-09-03:posts/algorithm/pow.html</id><summary type="html">&lt;p&gt;http://www.programcreek.com/2012/12/leetcode-powx-n/
+http://fisherlei.blogspot.jp/2012/12/leetcode-powx-n.html&lt;/p&gt;</summary><category term="algorithm"></category></entry><entry><title>整数相关题目</title><link href="http://actberw.github.io/posts/algorithm/matched-integer.html" rel="alternate"></link><updated>2014-09-02T00:00:00+08:00</updated><author><name>actberw</name></author><id>tag:actberw.github.io,2014-09-02:posts/algorithm/matched-integer.html</id><summary type="html">&lt;h3&gt;符合条件的整数&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;p&gt;任意给定的正整数N, 求一个最小的正整数M, 使得N*M的十进制表示形式只含有1和0.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3&gt;满足条件的两个数&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;p&gt;输入一个数组和一个数字，在数组中查找两个数，使得它们的和正好是输入的那个数字。如果有多对数字的和等于输入的数字，输出任意一对即可.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="kt"&gt;void&lt;/span&gt; &lt;span class="nf"&gt;find&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;array&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;n&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;sum&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;j&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;left&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;right&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;n&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="k"&gt;while&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;left&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt; &lt;span class="n"&gt;right&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+        &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;array&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;left&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;array&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;right&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="n"&gt;sum&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+            &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;left&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;j&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;right&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+            &lt;span class="k"&gt;return&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+        &lt;span class="p"&gt;}&lt;/span&gt; &lt;span class="k"&gt;else&lt;/span&gt; &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;array&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;left&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;arry&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;right&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;sum&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+            &lt;span class="n"&gt;right&lt;/span&gt;&lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+        &lt;span class="p"&gt;}&lt;/span&gt; &lt;span class="k"&gt;else&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+            &lt;span class="n"&gt;left&lt;/span&gt; &lt;span class="o"&gt;++&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+        &lt;span class="p"&gt;}&lt;/span&gt;
+
+    &lt;span class="p"&gt;}&lt;/span&gt;
+    &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;j&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;扩展:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;如果将“两个数字”改为“三个数字”或“任意个数字”时，如何求解？ 参见refer[0].&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;refer:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;[0]&lt;a href="http://www.cnblogs.com/youxin/p/3367398.html"&gt;http://www.cnblogs.com/youxin/p/3367398.html&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;整数拆分&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;p&gt;输入两个整数 n 和 m，从数列1，2，3.......n 中 随意取几个数, 使其和等于 m ,要求将其中所有的可能组合列出来&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;这道题就是一道典型的动态规划问题了，思路和背包问题差不多，m就相当于背包能容纳的重量了，就是从右往左校验，通过m，以及m-n进行下一次, 也就是当前是f(m,n)那接下来就是进行f(m,n-1)和f(m-n,n-1)进行递归.  而终止条件是n&amp;lt;=0, 以及sum&amp;lt;0, sum=0时候说明正好找到.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="cp"&gt;#include &amp;lt;stdio.h&amp;gt;&lt;/span&gt;
+&lt;span class="cp"&gt;#define N 10&lt;/span&gt;
+&lt;span class="cm"&gt;/*&lt;/span&gt;
+&lt;span class="cm"&gt;    f(sum,n)= f(sum-n,n-1) + f(sum,n-1);&lt;/span&gt;
+&lt;span class="cm"&gt;*/&lt;/span&gt;
+
+&lt;span class="k"&gt;typedef&lt;/span&gt; &lt;span class="k"&gt;struct&lt;/span&gt; &lt;span class="n"&gt;stack&lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;array&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;N&lt;/span&gt;&lt;span class="p"&gt;];&lt;/span&gt;
+    &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;index&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt; &lt;span class="n"&gt;Stack&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+
+&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="nf"&gt;is_empty&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;Stack&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;q&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;q&lt;/span&gt;&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="n"&gt;index&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;=&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+
+&lt;span class="kt"&gt;void&lt;/span&gt; &lt;span class="nf"&gt;push&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;Stack&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;q&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;value&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="n"&gt;q&lt;/span&gt;&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="n"&gt;array&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;q&lt;/span&gt;&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="n"&gt;index&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;value&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="n"&gt;q&lt;/span&gt;&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="n"&gt;index&lt;/span&gt;&lt;span class="o"&gt;++&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+
+&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="nf"&gt;pop&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;Stack&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;q&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;is_empty&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;q&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+        &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+
+    &lt;span class="n"&gt;q&lt;/span&gt;&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="n"&gt;index&lt;/span&gt;&lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;q&lt;/span&gt;&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="n"&gt;array&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;q&lt;/span&gt;&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="n"&gt;index&lt;/span&gt;&lt;span class="p"&gt;];&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+
+&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="nf"&gt;print_stack&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;Stack&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;q&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt; &lt;span class="n"&gt;q&lt;/span&gt;&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="n"&gt;index&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="o"&gt;++&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+        &lt;span class="n"&gt;printf&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;%d &amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;q&lt;/span&gt;&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="n"&gt;array&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;]);&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt;
+    &lt;span class="n"&gt;printf&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+
+&lt;span class="kt"&gt;void&lt;/span&gt; &lt;span class="nf"&gt;find_factor&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;sum&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;n&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;Stack&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;q&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;sum&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+        &lt;span class="n"&gt;print_stack&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;q&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+        &lt;span class="k"&gt;return&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt;
+
+    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;n&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;=&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt; &lt;span class="o"&gt;||&lt;/span&gt; &lt;span class="n"&gt;sum&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+        &lt;span class="k"&gt;return&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="n"&gt;push&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;q&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;n&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+    &lt;span class="n"&gt;find_factor&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;sum&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="n"&gt;n&lt;/span&gt; &lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;n&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;q&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+    &lt;span class="n"&gt;pop&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;q&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+    &lt;span class="n"&gt;find_factor&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;sum&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;n&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;q&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+
+&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="nf"&gt;main&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;void&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;m&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;15&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;n&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;N&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="n"&gt;Stack&lt;/span&gt; &lt;span class="n"&gt;q&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{.&lt;/span&gt;&lt;span class="n"&gt;index&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;};&lt;/span&gt;
+    &lt;span class="n"&gt;find_factor&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;15&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;N&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&lt;/span&gt;&lt;span class="n"&gt;q&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;扩展:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;将N拆分成多个整数相加和的形式，求出所有的形式, 参见refer[1].&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;refer:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;[0]&lt;a href="http://blog.csdn.net/v_JULY_v/article/details/6419466"&gt;http://blog.csdn.net/v_JULY_v/article/details/6419466&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;[1]&lt;a href="http://m.blog.csdn.net/blog/sangni007/8521005"&gt;http://m.blog.csdn.net/blog/sangni007/8521005&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;反转整数&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="nf"&gt;reverse&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="c1"&gt;// c除法是向0方向取最接近精确值的整数, 不需要管正负&lt;/span&gt;
+    &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;ret&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="k"&gt;while&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+        &lt;span class="n"&gt;ret&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;ret&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="mi"&gt;10&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt; &lt;span class="o"&gt;%&lt;/span&gt; &lt;span class="mi"&gt;10&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+        &lt;span class="n"&gt;x&lt;/span&gt; &lt;span class="o"&gt;/=&lt;/span&gt; &lt;span class="mi"&gt;10&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt;
+
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;ret&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h3&gt;valid number&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Validate if a given string is numeric.&lt;/p&gt;
+&lt;p&gt;Some examples:
+"0" =&amp;gt; true
+" 0.1 " =&amp;gt; true
+"abc" =&amp;gt; false
+"1 a" =&amp;gt; false
+"2e10" =&amp;gt; true
+Note: It is intended for the problem statement to be ambiguous. You should gather all requirements up front before implementing one.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;refer:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="http://blog.csdn.net/kenden23/article/details/18696083"&gt;http://blog.csdn.net/kenden23/article/details/18696083&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;把字符串转换成数字&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="nf"&gt;atoi&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;char&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;str&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;flag&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;ret&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;str&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="nb"&gt;NULL&lt;/span&gt; &lt;span class="o"&gt;||&lt;/span&gt; &lt;span class="n"&gt;strlen&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;str&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+        &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+
+    &lt;span class="c1"&gt;// 判断符号&lt;/span&gt;
+    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;str&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="sc"&gt;&amp;#39;-&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+        &lt;span class="n"&gt;flag&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+        &lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="o"&gt;++&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt; &lt;span class="k"&gt;else&lt;/span&gt; &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;str&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="sc"&gt;&amp;#39;+&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+        &lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="o"&gt;++&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+
+    &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="p"&gt;(;&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt; &lt;span class="n"&gt;strlen&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;str&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="o"&gt;++&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+        &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="sc"&gt;&amp;#39;0&amp;#39;&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;=&lt;/span&gt; &lt;span class="n"&gt;str&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;=&lt;/span&gt; &lt;span class="sc"&gt;&amp;#39;9&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+        &lt;span class="err"&gt;¦&lt;/span&gt;   &lt;span class="n"&gt;ret&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;ret&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="mi"&gt;10&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;str&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="sc"&gt;&amp;#39;0&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt;
+
+    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;flag&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+        &lt;span class="n"&gt;ret&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;ret&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;ret&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;</summary><category term="algorithm"></category></entry><entry><title>asymmetric coroutine和symmetric coroutine</title><link href="http://actberw.github.io/posts/coroutine/asymmetric-vs-symmetric.html" rel="alternate"></link><updated>2014-09-01T00:00:00+08:00</updated><author><name>actberw</name></author><id>tag:actberw.github.io,2014-09-01:posts/coroutine/asymmetric-vs-symmetric.html</id><summary type="html">&lt;p&gt;http://blog.csdn.net/wzzfeitian/article/details/8832017
 http://www.crystalclearsoftware.com/soc/coroutine/coroutine/symmetric_coroutines.html
 https://blog.kghost.info/2011/12/20/abstract-control-2-stackful-coroutine/&lt;/p&gt;
 &lt;p&gt;https://blog.kghost.info/2011/11/15/abstract-control-1-stackless-coroutine/
@@ -1388,7 +1549,18 @@ http://www.geeksforgeeks.org/floating-point-representation-basics/&lt;/p&gt;
 &lt;h3&gt;浮点数的比较&lt;/h3&gt;
 &lt;p&gt;http://codereview.stackexchange.com/questions/6040/faster-comparison-to-infinity-in-python
 http://www.geeksforgeeks.org/comparison-float-value-c/
-http://www.cnblogs.com/FlyingBread/archive/2009/02/15/660206.html&lt;/p&gt;</summary><category term="c"></category><category term="float"></category></entry><entry><title>xtrbackup备份原理</title><link href="http://actberw.github.io/posts/mysql/xtrabackup.html" rel="alternate"></link><updated>2014-08-10T21:00:00+08:00</updated><author><name>actberw</name></author><id>tag:actberw.github.io,2014-08-10:posts/mysql/xtrabackup.html</id><summary type="html">&lt;p&gt;xtrabackup备份主要做两件事情:&lt;/p&gt;
+http://www.cnblogs.com/FlyingBread/archive/2009/02/15/660206.html&lt;/p&gt;</summary><category term="c"></category><category term="float"></category></entry><entry><title>最近点对和最远点对</title><link href="http://actberw.github.io/posts/algorithm/point-distance.html" rel="alternate"></link><updated>2014-08-13T00:00:00+08:00</updated><author><name>actberw</name></author><id>tag:actberw.github.io,2014-08-13:posts/algorithm/point-distance.html</id><summary type="html">&lt;h3&gt;最近点对&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;p&gt;在二维平面上的n个点中，如何快速的找出最近的一对点.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;见 &amp;lt;编程之美&amp;gt;
+已知集合S中有n个点，分治法的思想就是将S进行拆分，分为2部分求最近点对。算法每次选择一条垂线L，将S拆分左右两部分为SL和SR，L一般取点集S中所有点的中间点的x坐标来划分，这样可以保证SL和SR中的点数目各为n/2，
+依次找出这两部分中的最小点对距离：δL和δR，记SL和SR中最小点对距离δ = min(δL，δR)
+以L为中心，δ为半径划分一个长带，最小点对还有可能存在于SL和SR的交界处，如下图2左图中的虚线带，p点和q点分别位于SL和SR的虚线范围内，在这个范围内，p点和q点之间的距离才会小于δ，最小点对计算才有意义&lt;/p&gt;
+&lt;p&gt;http://sxnuwhui.blog.163.com/blog/static/137068373201264104915935/
+http://my.oschina.net/u/923087/blog/279281&lt;/p&gt;
+&lt;h3&gt;最远点对&lt;/h3&gt;
+&lt;p&gt;http://blog.csdn.net/hackbuteer1/article/details/7484746&lt;/p&gt;</summary><category term="algorithm"></category></entry><entry><title>xtrbackup备份原理</title><link href="http://actberw.github.io/posts/mysql/xtrabackup.html" rel="alternate"></link><updated>2014-08-10T21:00:00+08:00</updated><author><name>actberw</name></author><id>tag:actberw.github.io,2014-08-10:posts/mysql/xtrabackup.html</id><summary type="html">&lt;p&gt;xtrabackup备份主要做两件事情:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;后台启动一个日志复制线程监控innodb日志文件，发现变动时复制到xtrabackup_logfile&lt;/li&gt;
 &lt;li&gt;复制innodb数据文件, 并不是简单的复制，跟innodb同样的方式打开文件，打开数据字典( data dictionary)复制innodb page.&lt;/li&gt;
@@ -1482,7 +1654,33 @@ $S = \frac{1}{2}|\overrightarrow{AB}||\overrightarrow{AC}| * sign\angle{A} = \fr
 &lt;li&gt;yi'、yi"、yi(、yi[、yi{、yi&amp;lt; - 分别复制这些配对标点符号中的文本内容&lt;/li&gt;
 &lt;li&gt;vi'、vi"、vi(、vi[、vi{、vi&amp;lt; - 分别选中这些配对标点符号中的文本内容&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;另外如果把上面的i改成a可以连配对标点一起操作。&lt;/p&gt;</summary><category term="vim"></category></entry><entry><title>continuation</title><link href="http://actberw.github.io/posts/coroutine/continuation.html" rel="alternate"></link><updated>2014-08-06T21:44:18+08:00</updated><author><name>actberw</name></author><id>tag:actberw.github.io,2014-08-06:posts/coroutine/continuation.html</id><summary type="html"></summary></entry><entry><title>漏洞库</title><link href="http://actberw.github.io/posts/security/cve.html" rel="alternate"></link><updated>2014-08-06T21:44:18+08:00</updated><author><name>actberw</name></author><id>tag:actberw.github.io,2014-08-06:posts/security/cve.html</id><summary type="html"></summary></entry><entry><title>Exploit和shellcode简介</title><link href="http://actberw.github.io/posts/security/exploit.html" rel="alternate"></link><updated>2014-08-06T21:44:18+08:00</updated><author><name>actberw</name></author><id>tag:actberw.github.io,2014-08-06:posts/security/exploit.html</id><summary type="html">&lt;p&gt;refer:&lt;br /&gt;
+&lt;p&gt;另外如果把上面的i改成a可以连配对标点一起操作。&lt;/p&gt;</summary><category term="vim"></category></entry><entry><title>c数组与指针的区别</title><link href="http://actberw.github.io/posts/c/point-vs-array.html" rel="alternate"></link><updated>2014-08-07T00:00:00+08:00</updated><author><name>actberw</name></author><id>tag:actberw.github.io,2014-08-07:posts/c/point-vs-array.html</id><summary type="html">&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;指针是变量可以进行修改, 数组名不是变量不能进行修改&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="cp"&gt;# legal&lt;/span&gt;
+&lt;span class="n"&gt;ptr&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="n"&gt;ptr&lt;/span&gt;&lt;span class="o"&gt;++&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+
+&lt;span class="cp"&gt;# illegal&lt;/span&gt;
+&lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;ptr&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="o"&gt;++&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;数组传递给函数被转换为指针&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;When the array is the operand of a unary “&amp;amp;” operator (so &amp;amp;arr yields the address of the array, not the address of its first element; same address, different type).&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;When the array is the operand of a unary “sizeof” operator (so sizeof arr yields the size of the array, not the size of a pointer).&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;refer:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="http://eli.thegreenplace.net/2009/10/21/are-pointers-and-arrays-equivalent-in-c/"&gt;http://eli.thegreenplace.net/2009/10/21/are-pointers-and-arrays-equivalent-in-c/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://www.360doc.com/content/11/1031/23/1317564_160688964.shtml"&gt;http://www.360doc.com/content/11/1031/23/1317564_160688964.shtml&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</summary><category term="c"></category><category term="array"></category><category term="poiner"></category></entry><entry><title>continuation</title><link href="http://actberw.github.io/posts/coroutine/continuation.html" rel="alternate"></link><updated>2014-08-06T21:44:18+08:00</updated><author><name>actberw</name></author><id>tag:actberw.github.io,2014-08-06:posts/coroutine/continuation.html</id><summary type="html"></summary></entry><entry><title>漏洞库</title><link href="http://actberw.github.io/posts/security/cve.html" rel="alternate"></link><updated>2014-08-06T21:44:18+08:00</updated><author><name>actberw</name></author><id>tag:actberw.github.io,2014-08-06:posts/security/cve.html</id><summary type="html"></summary></entry><entry><title>Exploit和shellcode简介</title><link href="http://actberw.github.io/posts/security/exploit.html" rel="alternate"></link><updated>2014-08-06T21:44:18+08:00</updated><author><name>actberw</name></author><id>tag:actberw.github.io,2014-08-06:posts/security/exploit.html</id><summary type="html">&lt;p&gt;refer:&lt;br /&gt;
 - &lt;a href="http://badishi.com/on-vulnerabilities-exploits-and-shellcodes/"&gt;http://badishi.com/on-vulnerabilities-exploits-and-shellcodes/&lt;/a&gt;
 - &lt;a href="http://www.exploit-db.com/"&gt;http://www.exploit-db.com/&lt;/a&gt;
 - &lt;a href="http://www.clevcode.org/cve-2014-3153-exploit/"&gt;http://www.clevcode.org/cve-2014-3153-exploit/&lt;/a&gt;
@@ -1585,8 +1783,8 @@ Neutron 实质是一个定义良好的框架用来驱动 L2-L7 层不同的底�
 &lt;li&gt;&lt;a href="http://dev.mysql.com/doc/refman/5.6/en/string-literals.html"&gt;http://dev.mysql.com/doc/refman/5.6/en/string-literals.html&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="http://dev.mysql.com/doc/refman/5.6/en/sql-mode.html#sqlmode_ansi_quotes"&gt;http://dev.mysql.com/doc/refman/5.6/en/sql-mode.html#sqlmode_ansi_quotes&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="http://segmentfault.com/q/1010000000236690"&gt;http://segmentfault.com/q/1010000000236690&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</summary><category term="mysql"></category><category term="quote"></category></entry><entry><title>素数算法</title><link href="http://actberw.github.io/posts/algorithm/prime-number.html" rel="alternate"></link><updated>2014-06-15T19:00:00+08:00</updated><author><name>actberw</name></author><id>tag:actberw.github.io,2014-06-15:posts/algorithm/prime-number.html</id><summary type="html">&lt;h3&gt;原始算法&lt;/h3&gt;
-&lt;p&gt;素数的定义: 除了能被1和它本身整除而不能被其他任何数整除的数。根据素数定义 只需要用2到n-1去除n，如果都除不尽，则n是素数，否则，只要其中有一个数能整除则n不是素数。&lt;/p&gt;
+&lt;/ul&gt;</summary><category term="mysql"></category><category term="quote"></category></entry><entry><title>素数算法</title><link href="http://actberw.github.io/posts/algorithm/prime-number.html" rel="alternate"></link><updated>2014-06-15T19:00:00+08:00</updated><author><name>actberw</name></author><id>tag:actberw.github.io,2014-06-15:posts/algorithm/prime-number.html</id><summary type="html">&lt;p&gt;素数的定义: 除了能被1和它本身整除而不能被其他任何数整除的数。根据素数定义 只需要用2到n-1去除n，如果都除不尽，则n是素数，否则，只要其中有一个数能整除则n不是素数。&lt;/p&gt;
+&lt;h3&gt;原始算法&lt;/h3&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="kt"&gt;bool&lt;/span&gt; &lt;span class="nf"&gt;is_primer&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;num&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
     &lt;span class="k"&gt;for&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt; &lt;span class="n"&gt;num&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="o"&gt;++&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
         &lt;span class="k"&gt;if&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;num&lt;/span&gt; &lt;span class="o"&gt;%&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="cm"&gt;/*若整除则为假，否则为真*/&lt;/span&gt;
@@ -1635,7 +1833,7 @@ Neutron 实质是一个定义良好的框架用来驱动 L2-L7 层不同的底�
 &lt;/ul&gt;
 &lt;p&gt;埃拉托斯特尼筛法(参见[1]).&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;对于1到n全部整数, 逐个判断它们是否是素数, 找出一个非素数, 就把它挖掉, 最后剩下的就是素数。具体方法是： &amp;lt;1&amp;gt; 定义is_primer[i] = true; &amp;lt;2&amp;gt; 从2开始, 依次遍历整个is_primer(直到sqrt(N)), 如果is_primer[i]=true,则is_primer[i]=false i ∈ {n², n²+n, n²+2n, ..., limit}&lt;/p&gt;
+&lt;p&gt;对于1到n全部整数, 逐个判断它们是否是素数, 找出一个非素数, 就把它挖掉, 最后剩下的就是素数。具体方法是： &amp;lt;1&amp;gt; 定义primer[i] = true (primer也可以用bitmap存储); &amp;lt;2&amp;gt; 从2开始, 依次遍历整个primer(直到sqrt(N)), 如果primer[i]=true,则primer[j]=false j ∈ {n², n²+n, n²+2n, ..., limit}&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="cp"&gt;#define N 1000&lt;/span&gt;
 &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="nf"&gt;main&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
@@ -1879,8 +2077,34 @@ Neutron 实质是一个定义良好的框架用来驱动 L2-L7 层不同的底�
 &lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
-&lt;/ol&gt;
+&lt;li&gt;
 &lt;p&gt;Floyd 环查找算法&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;两链表相交问题&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;删除排序数组中重复的元素&lt;/p&gt;
+&lt;p&gt;public class Solution {
+    public ListNode deleteDuplicates(ListNode head) {
+        if(head == null || head.next == null)
+            return head;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;    &lt;span class="n"&gt;ListNode&lt;/span&gt; &lt;span class="n"&gt;p&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;head&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+
+    &lt;span class="k"&gt;while&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt; &lt;span class="n"&gt;p&lt;/span&gt;&lt;span class="o"&gt;!=&lt;/span&gt; &lt;span class="n"&gt;null&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class="n"&gt;p&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;next&lt;/span&gt; &lt;span class="o"&gt;!=&lt;/span&gt; &lt;span class="n"&gt;null&lt;/span&gt;&lt;span class="p"&gt;){&lt;/span&gt;
+        &lt;span class="k"&gt;if&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;p&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;val&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="n"&gt;p&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;next&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;val&lt;/span&gt;&lt;span class="p"&gt;){&lt;/span&gt;
+            &lt;span class="n"&gt;p&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;next&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;p&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;next&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;next&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+        &lt;span class="p"&gt;}&lt;/span&gt;&lt;span class="k"&gt;else&lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+            &lt;span class="n"&gt;p&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;p&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;next&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; 
+        &lt;span class="p"&gt;}&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt;
+
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;head&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;}&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
 &lt;p&gt;http://m.blog.csdn.net/blog/sangni007/8218552
 http://bluefish.blog.51cto.com/214870/68462&lt;/p&gt;
 &lt;p&gt;refer:&lt;/p&gt;
@@ -1918,7 +2142,18 @@ http://bluefish.blog.51cto.com/214870/68462&lt;/p&gt;
 &lt;li&gt;[7]&lt;a href="http://stackoverflow.com/questions/3932978/gcc-implementation-of-rand"&gt;http://stackoverflow.com/questions/3932978/gcc-implementation-of-rand&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;</summary><category term="algorithm"></category><category term="random"></category></entry><entry><title>umask 命令</title><link href="http://actberw.github.io/posts/misc/umask.html" rel="alternate"></link><updated>2014-06-11T23:00:00+08:00</updated><author><name>actberw</name></author><id>tag:actberw.github.io,2014-06-11:posts/misc/umask.html</id><summary type="html">&lt;p&gt;该命令用来设置限制新文件权限的掩码, 默认是022, umask 命令允许你设定文件创建时的缺省模式，对应每一类用户(文件属主、同组用户、其他用户)存在一个相应的umask值中的数字。对于文件来说，这一数字的最 大值分别是6。系统不允许你在创建一个文本文件时就赋予它执行权限，必须在创建后用chmod命令增加这一权限。目录则允许设置执行权限，这样针对目录来 说，umask中各个数字最大可以到7。
 C = P &amp;amp; (~Q) , C: final file's permission, P: requested permission, Q: mask 
-所以对于默认的(022) 文件的权限是:644(-rw-r--r--),  目录是:755(drwxr-xr-x)&lt;/p&gt;</summary><category term="linux"></category><category term="umask"></category></entry><entry><title>斐波纳契数列</title><link href="http://actberw.github.io/posts/algorithm/fibonacci.html" rel="alternate"></link><updated>2014-06-11T19:00:00+08:00</updated><author><name>actberw</name></author><id>tag:actberw.github.io,2014-06-11:posts/algorithm/fibonacci.html</id><summary type="html">&lt;blockquote&gt;
+所以对于默认的(022) 文件的权限是:644(-rw-r--r--),  目录是:755(drwxr-xr-x)&lt;/p&gt;</summary><category term="linux"></category><category term="umask"></category></entry><entry><title>数组 part-6</title><link href="http://actberw.github.io/posts/adt/array-part-6.html" rel="alternate"></link><updated>2014-06-11T20:00:00+08:00</updated><author><name>actberw</name></author><id>tag:actberw.github.io,2014-06-11:posts/adt/array-part-6.html</id><summary type="html">&lt;h3&gt;数组分割问题&lt;/h3&gt;
+&lt;p&gt;扩展:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;有两个序列a,b，大小都为n,序列元素的值任意整数，无序; 要求: 通过交换a,b中的元素，使序列a元素的和与序列b元素的和之间的差最小。&lt;/li&gt;
+&lt;/ul&gt;</summary><category term="algorithm"></category><category term="data structure"></category><category term="array"></category></entry><entry><title>数组 part-5</title><link href="http://actberw.github.io/posts/adt/array-part-5.html" rel="alternate"></link><updated>2014-06-11T19:00:00+08:00</updated><author><name>actberw</name></author><id>tag:actberw.github.io,2014-06-11:posts/adt/array-part-5.html</id><summary type="html">&lt;p&gt;子数组积， 和， 递增&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;从一列数中筛除尽可能少的数使得从左往右看，这些数是从小到大再从大到小的&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;refer:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="http://blog.csdn.net/v_JULY_v/article/details/6419466"&gt;http://blog.csdn.net/v_JULY_v/article/details/6419466&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</summary><category term="algorithm"></category><category term="data structure"></category><category term="array"></category></entry><entry><title>斐波纳契数列</title><link href="http://actberw.github.io/posts/algorithm/fibonacci.html" rel="alternate"></link><updated>2014-06-11T19:00:00+08:00</updated><author><name>actberw</name></author><id>tag:actberw.github.io,2014-06-11:posts/algorithm/fibonacci.html</id><summary type="html">&lt;blockquote&gt;
 &lt;p&gt;问题描述：Fibonacci数（Fibonacci Number）的定义是：$F_n = F_{n - 1} + F_{n - 2}$，并且$F_0$ = 0，$F_1$ = 1。对于任意指定的整数n（n ≥ 0），计算$F_n$的精确值，并分析算法的时间、空间复杂度。&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;有下面几种解法.&lt;/p&gt;
@@ -1970,13 +2205,130 @@ F_n = F_{n-1} + F_{n-2}&lt;br /&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href="http://www.gocalf.com/blog/calc-fibonacci.html"&gt;http://www.gocalf.com/blog/calc-fibonacci.html&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="http://061251008.blog.163.com/blog/static/240841720123157186395/"&gt;http://061251008.blog.163.com/blog/static/240841720123157186395/&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</summary><category term="algorithm"></category></entry><entry><title>数组</title><link href="http://actberw.github.io/posts/adt/array.html" rel="alternate"></link><updated>2014-06-11T15:00:00+08:00</updated><author><name>actberw</name></author><id>tag:actberw.github.io,2014-06-11:posts/adt/array.html</id><summary type="html">&lt;p&gt;数组把相同类型得数据按照固定有序得方式组织起来，使得存储空空间相邻，可以通过 &lt;em&gt;索引访问&lt;code&gt;a[i]&lt;/code&gt;&lt;/em&gt;, 便于访问(O(1)), 但是不便于操作(O(n)). 索引必须保证是非负且小于数组大小.&lt;/p&gt;
-&lt;p&gt;3.2 数组(array)  &lt;/p&gt;
+&lt;/ul&gt;</summary><category term="algorithm"></category></entry><entry><title>数组 part-4</title><link href="http://actberw.github.io/posts/adt/array-part-4.html" rel="alternate"></link><updated>2014-06-11T18:00:00+08:00</updated><author><name>actberw</name></author><id>tag:actberw.github.io,2014-06-11:posts/adt/array-part-4.html</id><summary type="html">&lt;h3&gt;数组最大值和最小值&lt;/h3&gt;
+&lt;p&gt;分治法, 在N个数中求min和max, 需要分别求出前后N/2的min和max, 然后比较取较小的min, 较大的max, 时间复杂度依然是O(1.5N).&lt;/p&gt;
+&lt;h3&gt;第K大数&lt;/h3&gt;
+&lt;p&gt;K次冒泡就可以找到第K大的数，时间复杂度为O(kn)。快排是对冒泡的改进，这里我们也可以使用快排进行算法改进。步骤如下:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;随机选择一个支点&lt;/li&gt;
+&lt;li&gt;将比支点大的数，放到数组左边；将比支点小的数放到数组右边；将支点放到中间(属于左部分)&lt;/li&gt;
+&lt;li&gt;设左部分的长度为L&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="err"&gt;当&lt;/span&gt;&lt;span class="n"&gt;K&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt; &lt;span class="n"&gt;L&lt;/span&gt;&lt;span class="err"&gt;时，递归地在左部分找第&lt;/span&gt;&lt;span class="n"&gt;K&lt;/span&gt;&lt;span class="err"&gt;大的数&lt;/span&gt;
+&lt;span class="err"&gt;当&lt;/span&gt;&lt;span class="n"&gt;K&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;L&lt;/span&gt;&lt;span class="err"&gt;时，递归地在有部分中找第&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;K&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="n"&gt;L&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="err"&gt;大的数&lt;/span&gt;
+&lt;span class="err"&gt;当&lt;/span&gt;&lt;span class="n"&gt;K&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;L&lt;/span&gt;&lt;span class="err"&gt;时，返回左右两部分的分割点（即原来的支点），就是要求的第&lt;/span&gt;&lt;span class="n"&gt;K&lt;/span&gt;&lt;span class="err"&gt;大的数&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;代码:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="nf"&gt;partion&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;array&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;l&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;r&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;tmp&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;array&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;l&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;l&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;j&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;r&lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="k"&gt;while&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+        &lt;span class="k"&gt;while&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;array&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="o"&gt;++&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;tmp&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+        &lt;span class="k"&gt;while&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;array&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="n"&gt;j&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt; &lt;span class="n"&gt;tmp&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;j&lt;/span&gt;&lt;span class="o"&gt;==&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="k"&gt;break&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+        &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;=&lt;/span&gt; &lt;span class="n"&gt;j&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="k"&gt;break&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+        &lt;span class="n"&gt;swap&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;array&lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;array&lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="n"&gt;j&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt;
+    &lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="n"&gt;swap&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;array&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;l&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;array&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+
+&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="nf"&gt;findk&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;array&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;l&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;r&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;k&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;llen&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="c1"&gt;// 左部分的长度为L&lt;/span&gt;
+    &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;pivot&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;partion&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;array&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;l&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;r&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+    &lt;span class="n"&gt;llen&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;pivot&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="n"&gt;l&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="c1"&gt;// !!&lt;/span&gt;
+    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;k&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;llen&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+        &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;findk&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;array&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;pivot&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;r&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;k&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="n"&gt;llen&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+    &lt;span class="k"&gt;else&lt;/span&gt; &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;k&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt; &lt;span class="n"&gt;llen&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+        &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;findk&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;array&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;l&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;pivot&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;k&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+    &lt;span class="k"&gt;else&lt;/span&gt;
+        &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;array&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;pivot&lt;/span&gt;&lt;span class="p"&gt;];&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
 &lt;p&gt;refer:&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href="http://stackoverflow.com/questions/6127503/shuffle-array-in-c%5D"&gt;http://stackoverflow.com/questions/6127503/shuffle-array-in-c&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://www.biostars.org/p/63016/"&gt;https://www.biostars.org/p/63016/&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</summary><category term="algorithm"></category><category term="data structure"></category></entry><entry><title>数据结构与算法汇总</title><link href="http://actberw.github.io/posts/algorithm/basic-data-structure.html" rel="alternate"></link><updated>2014-06-10T20:00:00+08:00</updated><author><name>actberw</name></author><id>tag:actberw.github.io,2014-06-10:posts/algorithm/basic-data-structure.html</id><summary type="html">&lt;h3&gt;常见数据结构&lt;/h3&gt;
+&lt;li&gt;&lt;a href="http://coolshell.cn/articles/8138.html"&gt;http://coolshell.cn/articles/8138.html&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://xfhnever.github.io/blog/2014/10/21/algorithm-findk/"&gt;http://xfhnever.github.io/blog/2014/10/21/algorithm-findk/&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;最大的K个数&lt;/h3&gt;
+&lt;p&gt;最简单的就是冒泡O(N * K), 也可以直接转化为求第K大数, 然后遍历数组打印所有比第K个数大的元素, 或者用求第K大数的快排方式.
+或者用最小堆.&lt;/p&gt;
+&lt;h3&gt;median of two sorted array&lt;/h3&gt;
+&lt;p&gt;利用类似merge(合并两个有序数组)的操作找到中位数，利用两个分别指向A和B数组头的指针去遍历数组，然后统计元素个数，直到找到中位数，此时算法复杂度为O(n). 或者参照第K大数&lt;/p&gt;
+&lt;p&gt;refer:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="http://blog.csdn.net/zxzxy1988/article/details/8587244"&gt;http://blog.csdn.net/zxzxy1988/article/details/8587244&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</summary><category term="algorithm"></category><category term="data structure"></category><category term="array"></category></entry><entry><title>数组 part-3</title><link href="http://actberw.github.io/posts/adt/array-part-3.html" rel="alternate"></link><updated>2014-06-11T17:00:00+08:00</updated><author><name>actberw</name></author><id>tag:actberw.github.io,2014-06-11:posts/adt/array-part-3.html</id><summary type="html">&lt;h3&gt;后缀数组(Suffix Array)&lt;/h3&gt;</summary><category term="algorithm"></category><category term="data structure"></category><category term="array"></category></entry><entry><title>数组 part-2</title><link href="http://actberw.github.io/posts/adt/array-part-2.html" rel="alternate"></link><updated>2014-06-11T16:00:00+08:00</updated><author><name>actberw</name></author><id>tag:actberw.github.io,2014-06-11:posts/adt/array-part-2.html</id><summary type="html">&lt;h3&gt;旋转排序数组(Rotated Sorted arrayrray )&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Suppose a sorted array is rotated at some pivot unknown to you beforehand (i.e., 0 1 2 4 5 6 7 might become 4 5 6 7 0 1 2).You are given a target value to search. If found in the array return its index, otherwise return -1.
+Search in Rotated Sorted Array, &lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;这道题目就是用二分查找的思路来解决, 中间用到了旋转数组的一些特性。以题目中的旋转数组为例, {3,4,5,1,2}, 我们可以有序数组经过旋转以后被分割为两段有序的数组, 比如此处被分为{3,4,5}{1,2}这样两个数组, 并且前半段数组中的数字肯定大于等于后半段的数组。我们找中间元素, 让其跟首尾元素素比较, 确定范围.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="nf"&gt;search&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;array&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;len&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;target&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;middle&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;left&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;right&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;len&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;len&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+
+    &lt;span class="k"&gt;while&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;left&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;=&lt;/span&gt; &lt;span class="n"&gt;right&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+        &lt;span class="n"&gt;middle&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;left&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;right&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="n"&gt;left&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+        &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;array&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;middle&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="n"&gt;target&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;middle&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+        &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;array&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;right&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="n"&gt;target&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;right&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+        &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;array&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;left&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="n"&gt;target&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;left&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+
+        &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;array&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;middle&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt; &lt;span class="n"&gt;array&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;right&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+            &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;array&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;middle&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt; &lt;span class="n"&gt;target&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class="n"&gt;target&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt; &lt;span class="n"&gt;array&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;right&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+                &lt;span class="n"&gt;left&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;middle&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+            &lt;span class="p"&gt;}&lt;/span&gt; &lt;span class="k"&gt;else&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt; 
+                &lt;span class="n"&gt;right&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;middle&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+            &lt;span class="p"&gt;}&lt;/span&gt;
+        &lt;span class="p"&gt;}&lt;/span&gt; &lt;span class="k"&gt;else&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+            &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;array&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;middle&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;target&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class="n"&gt;target&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;array&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;right&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+                &lt;span class="n"&gt;right&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;middle&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+            &lt;span class="p"&gt;}&lt;/span&gt; &lt;span class="k"&gt;else&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+                &lt;span class="n"&gt;left&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;middle&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+            &lt;span class="p"&gt;}&lt;/span&gt;
+        &lt;span class="p"&gt;}&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt;
+
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;扩展: 求最小值, 同样也是用二分查找, 参见refer[1].&lt;/p&gt;
+&lt;p&gt;refer:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;[0]&lt;a href="http://segmentfault.com/blog/code/1190000000457723"&gt;http://segmentfault.com/blog/code/1190000000457723&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;[1]&lt;a href="http://www.cnblogs.com/xwdreamer/archive/2012/05/07/2487520.html"&gt;http://www.cnblogs.com/xwdreamer/archive/2012/05/07/2487520.html&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</summary><category term="algorithm"></category><category term="data structure"></category><category term="array"></category></entry><entry><title>数组 part-1</title><link href="http://actberw.github.io/posts/adt/array.html" rel="alternate"></link><updated>2014-06-11T15:00:00+08:00</updated><author><name>actberw</name></author><id>tag:actberw.github.io,2014-06-11:posts/adt/array.html</id><summary type="html">&lt;p&gt;数组把相同类型得数据按照固定有序得方式组织起来, 使得存储空空间相邻, 可以通过 &lt;em&gt;索引访问&lt;code&gt;a[i]&lt;/code&gt;&lt;/em&gt;, 便于访问(O(1)), 但是不便于操作(O(n)). &lt;/p&gt;
+&lt;h3&gt;数组(array)定义和初始化&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c1"&gt;// 定义&lt;/span&gt;
+&lt;span class="k"&gt;int&lt;/span&gt; &lt;span class="n"&gt;array&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;length&lt;/span&gt;&lt;span class="p"&gt;];&lt;/span&gt;
+
+&lt;span class="c1"&gt;// 定义和初始化 &lt;/span&gt;
+&lt;span class="k"&gt;int&lt;/span&gt; &lt;span class="n"&gt;array&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mh"&gt;5&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="mh"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mh"&gt;2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mh"&gt;3&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mh"&gt;4&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mh"&gt;5&lt;/span&gt;&lt;span class="p"&gt;};&lt;/span&gt;
+
+&lt;span class="c1"&gt;// length也可以不指定&lt;/span&gt;
+&lt;span class="k"&gt;int&lt;/span&gt; &lt;span class="n"&gt;array&lt;/span&gt;&lt;span class="p"&gt;[]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="mh"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mh"&gt;2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mh"&gt;3&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mh"&gt;4&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mh"&gt;5&lt;/span&gt;&lt;span class="p"&gt;};&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h3&gt;数组(array)访问&lt;/h3&gt;
+&lt;p&gt;数组元素可以通过索引访问, 索引必须保证是非负且小于数组大小. 数组名会产生一个指向数组首元素指针, 所以还可以通过指针访问.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c1"&gt;// 索引访问&lt;/span&gt;
+&lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+
+&lt;span class="c1"&gt;// 指针访问&lt;/span&gt;
+&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;另外数组名指向组首元素地址, &lt;code&gt;&amp;amp;a&lt;/code&gt; 也指向组首元素地址, 但是意义不同参见&lt;a href="/posts/c/point-vs-array.html"&gt;数组于指针的区别&lt;/a&gt; &lt;/p&gt;
+&lt;h3&gt;合并两个有序数组&lt;/h3&gt;
+&lt;p&gt;类似归并排序, 参见&lt;a href="/posts/adt/link-list.html"&gt;合并链表&lt;/a&gt;&lt;/p&gt;</summary><category term="algorithm"></category><category term="data structure"></category><category term="array"></category></entry><entry><title>数据结构与算法汇总</title><link href="http://actberw.github.io/posts/algorithm/basic-data-structure.html" rel="alternate"></link><updated>2014-06-10T20:00:00+08:00</updated><author><name>actberw</name></author><id>tag:actberw.github.io,2014-06-10:posts/algorithm/basic-data-structure.html</id><summary type="html">&lt;h3&gt;常见数据结构&lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;线性: 数组(array), 链表(link list), 块状链表(数组+链表), 栈(stack), 队列(queue), hash表, 位图(bitmap)  &lt;/li&gt;
 &lt;li&gt;树(tree): 堆(大顶堆、小顶堆), 二叉排序/查找树, trie树, 后缀树, 后缀树组, B+/B-, AVL树, Treap, 红黑树, splay树, 线段树, 树状数组  &lt;/li&gt;

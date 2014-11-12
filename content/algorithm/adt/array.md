@@ -1,12 +1,31 @@
-Title: 数组
-Tags: algorithm, data structure 
+Title: 数组 part-1
+Tags: algorithm, data structure, array 
 Date: 2014-06-11 15:00:00
 
-数组把相同类型得数据按照固定有序得方式组织起来，使得存储空空间相邻，可以通过 *索引访问`a[i]`*, 便于访问(O(1)), 但是不便于操作(O(n)). 索引必须保证是非负且小于数组大小.
+数组把相同类型得数据按照固定有序得方式组织起来, 使得存储空空间相邻, 可以通过 *索引访问`a[i]`*, 便于访问(O(1)), 但是不便于操作(O(n)). 
 
-3.2 数组(array)  
+### 数组(array)定义和初始化 
 
-refer:
+    // 定义
+    int array[length];
 
- - [http://stackoverflow.com/questions/6127503/shuffle-array-in-c](http://stackoverflow.com/questions/6127503/shuffle-array-in-c%5D)
- - [https://www.biostars.org/p/63016/](https://www.biostars.org/p/63016/)
+    // 定义和初始化 
+    int array[5] = {1, 2, 3, 4, 5};
+
+    // length也可以不指定
+    int array[] = {1, 2, 3, 4, 5};
+
+### 数组(array)访问
+数组元素可以通过索引访问, 索引必须保证是非负且小于数组大小. 数组名会产生一个指向数组首元素指针, 所以还可以通过指针访问.
+
+    // 索引访问
+    a[i]
+
+    // 指针访问
+    *(a + i)
+
+另外数组名指向组首元素地址, `&a` 也指向组首元素地址, 但是意义不同参见[数组于指针的区别](/posts/c/point-vs-array.html) 
+
+### 合并两个有序数组
+类似归并排序, 参见[合并链表](/posts/adt/link-list.html)
+

@@ -25,4 +25,5 @@ refer:
 - [http://blog.csdn.net/dwyane_mys/article/details/8053896](http://blog.csdn.net/dwyane_mys/article/details/8053896)
 - [http://en.wikipedia.org/wiki/Random_permutation](http://en.wikipedia.org/wiki/Random_permutation)
 - [http://blog.csdn.net/v_july_v/article/details/7329314](http://blog.csdn.net/v_july_v/article/details/7329314)
+- [http://stackoverflow.com/questions/6127503/shuffle-array-in-c%5D](http://stackoverflow.com/questions/6127503/shuffle-array-in-c%5D)
 

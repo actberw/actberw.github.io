@@ -83,3 +83,23 @@ Hacker's Delight上的代码, 程序思想是二分查找.
        n = n - (x >> 31);
        return n;
     }
+
+### 判断二进制是否为回文数
+
+参见[十进制数是否为回文数](/posts/algorithm/palindrome-number.html), 二进制比较不能直接反转比较，因为反转后可能是个负数.
+
+    is_palindrome(int x) {
+        int a = x>>1, mask = 1;
+        while(a) {
+            mask <<= 1;
+            a >>= 1;
+        }
+        while (a) {     //能否用a判断?
+            if ((x & mask) ^ (x & 0x1) != 0x0) return 0;
+            x &=(~mask); //去高位
+            x >>= 1;     //去低位
+            mask >>= 2; 
+        }
+        return 1;
+    }
+

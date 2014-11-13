@@ -22,7 +22,7 @@
         });
     </script>
     <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script type="text/javascript" src="../theme/js/jquery.min.js"></script>
     <script type="text/javascript" src="../theme/js/jqcloud-1.0.4.min.js"></script>
     
     <script type="text/javascript">
@@ -67,7 +67,7 @@
         {text: "system call", weight: 0.0125, link: {href: "/tag/system-call.html"}},
         {text: "tcp/ip", weight: 0.0125, link: {href: "/tag/tcpip.html"}},
         {text: "tls", weight: 0.0125, link: {href: "/tag/tls.html"}},
-        {text: "c", weight: 0.1625, link: {href: "/tag/c.html"}},
+        {text: "c", weight: 0.175, link: {href: "/tag/c.html"}},
         {text: "kernel thread", weight: 0.0125, link: {href: "/tag/kernel-thread.html"}},
         {text: "thread", weight: 0.025, link: {href: "/tag/thread.html"}},
         {text: "queue", weight: 0.0125, link: {href: "/tag/queue.html"}},
@@ -116,7 +116,7 @@
         {text: "stack", weight: 0.0125, link: {href: "/tag/stack.html"}},
         {text: "getuid", weight: 0.0125, link: {href: "/tag/getuid.html"}},
         {text: "eof", weight: 0.0125, link: {href: "/tag/eof.html"}},
-        {text: "algorithm", weight: 0.375, link: {href: "/tag/algorithm.html"}},
+        {text: "algorithm", weight: 0.3875, link: {href: "/tag/algorithm.html"}},
         {text: "line join", weight: 0.0125, link: {href: "/tag/line-join.html"}},
         {text: "register", weight: 0.0125, link: {href: "/tag/register.html"}},
         {text: "mro", weight: 0.0125, link: {href: "/tag/mro.html"}},
@@ -158,43 +158,6 @@
     <!-- Main Blog Content -->
     <div class="large-9 columns">
         
-        
-
-
-            <article>
-                <a href="../posts/python/metaclass.html"><h3 class="article-title">python 元类</h3></a>
-<h6 class="subheader" title="2014-11-02T20:00:00">Sun 02 November 2014
-</h6>
-
-
-<p>元类就是用来创建类的“东西”, 类是其元类的实例(a class is an instance of its metaclass), type就是Python在背后用来创建所有类的元类(参见<a href="/posts/python/type.html">python type system</a>), 下面代码展示了type的基本用法.</p>
-<div class="highlight"><pre><span class="o">&gt;&gt;&gt;</span> <span class="n">MyClass</span> <span class="o">=</span> <span class="n">MetaClass</span><span class="p">()</span>
-
-<span class="o">&gt;&gt;&gt;</span> <span class="n">class</span> <span class="n">Foo</span><span class="p">(</span><span class="n">object</span><span class="p">)</span><span class="o">:</span> 
-        <span class="n">pass</span>
-
-<span class="o">&gt;&gt;&gt;</span> <span class="n">def</span> <span class="n">echo_bar</span><span class="p">(</span><span class="n">self</span><span class="p">)</span><span class="o">:</span>
-        <span class="n">print</span> <span class="n">self</span><span class="p">.</span><span class="n">bar</span>
-
-<span class="o">&gt;&gt;&gt;</span> <span class="n">FooChild</span> <span class="o">=</span> <span class="n">type</span><span class="p">(</span><span class="err">&#39;</span><span class="n">FooChild</span><span class="err">&#39;</span><span class="p">,</span> <span class="p">(</span><span class="n">Foo</span><span class="p">,),</span> <span class="p">{</span><span class="err">&#39;</span><span class="n">echo_bar</span><span class="err">&#39;</span><span class="o">:</span> <span class="n">echo_bar</span><span class="p">})</span> <span class="err">#</span> <span class="n">Foo</span> <span class="n">is</span> <span class="n">base</span> <span class="n">class</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="n">hasattr</span><span class="p">(</span><span class="n">Foo</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">echo_bar</span><span class="err">&#39;</span><span class="p">)</span>
-<span class="n">False</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="n">hasattr</span><span class="p">(</span><span class="n">FooChild</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">echo_bar</span><span class="err">&#39;</span><span class="p">)</span>
-<span class="n">True</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="n">my_foo</span> <span class="o">=</span> <span class="n">FooChild</span><span class="p">()</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="n">my_foo ...</span></pre></div><p class="subheader">Category: <a href="../category/python.html">python</a>
-
-    Tagged: 
-    <a href="../tag/python.html">python </a>
-    <a href="../tag/metaclass.html">metaclass </a>
-</p>
-
-
-
-                <a class="button radius secondary small right" href="../posts/python/metaclass.html">Read More</a>
-                <hr  class="gradient"/>
-            </article>
-
         
 
 
@@ -638,6 +601,33 @@ http://www.360doc.com/content/12/0329/14/9470897_198942451.shtml</p><p class="su
 
 
                 <a class="button radius secondary small right" href="../posts/misc/linker-and-loader.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="../posts/misc/tls.html"><h3 class="article-title">线程局部存储(thread local storage)</h3></a>
+<h6 class="subheader" title="2014-09-22T00:00:00">Mon 22 September 2014
+</h6>
+
+
+<p>refer:</p>
+<ul>
+<li>http://www.akkadia.org/drepper/tls.pdf</li>
+<li>http://stackoverflow.com/questions/6611346/amd64-fs-gs-registers-in-linux</li>
+</ul><p class="subheader">Category: <a href="../category/misc.html">misc</a>
+
+    Tagged: 
+    <a href="../tag/tls.html">tls </a>
+    <a href="../tag/thread.html">thread </a>
+    <a href="../tag/linux.html">linux </a>
+</p>
+
+
+
+                <a class="button radius secondary small right" href="../posts/misc/tls.html">Read More</a>
                 <hr  class="gradient"/>
             </article>
 

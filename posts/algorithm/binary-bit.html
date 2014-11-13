@@ -22,7 +22,7 @@
         });
     </script>
     <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script type="text/javascript" src="../../theme/js/jquery.min.js"></script>
     <script type="text/javascript" src="../../theme/js/jqcloud-1.0.4.min.js"></script>
     
     <script type="text/javascript">
@@ -67,7 +67,7 @@
         {text: "system call", weight: 0.0125, link: {href: "/tag/system-call.html"}},
         {text: "tcp/ip", weight: 0.0125, link: {href: "/tag/tcpip.html"}},
         {text: "tls", weight: 0.0125, link: {href: "/tag/tls.html"}},
-        {text: "c", weight: 0.1625, link: {href: "/tag/c.html"}},
+        {text: "c", weight: 0.175, link: {href: "/tag/c.html"}},
         {text: "kernel thread", weight: 0.0125, link: {href: "/tag/kernel-thread.html"}},
         {text: "thread", weight: 0.025, link: {href: "/tag/thread.html"}},
         {text: "queue", weight: 0.0125, link: {href: "/tag/queue.html"}},
@@ -116,7 +116,7 @@
         {text: "stack", weight: 0.0125, link: {href: "/tag/stack.html"}},
         {text: "getuid", weight: 0.0125, link: {href: "/tag/getuid.html"}},
         {text: "eof", weight: 0.0125, link: {href: "/tag/eof.html"}},
-        {text: "algorithm", weight: 0.375, link: {href: "/tag/algorithm.html"}},
+        {text: "algorithm", weight: 0.3875, link: {href: "/tag/algorithm.html"}},
         {text: "line join", weight: 0.0125, link: {href: "/tag/line-join.html"}},
         {text: "register", weight: 0.0125, link: {href: "/tag/register.html"}},
         {text: "mro", weight: 0.0125, link: {href: "/tag/mro.html"}},
@@ -246,6 +246,25 @@
    <span class="k">if</span> <span class="p">((</span><span class="n">x</span> <span class="o">&gt;&gt;</span> <span class="mi">30</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span><span class="n">n</span> <span class="o">=</span> <span class="n">n</span> <span class="o">+</span> <span class="mi">2</span><span class="p">;</span> <span class="n">x</span> <span class="o">=</span> <span class="n">x</span> <span class="o">&lt;&lt;</span> <span class="mi">2</span><span class="p">;}</span>
    <span class="n">n</span> <span class="o">=</span> <span class="n">n</span> <span class="o">-</span> <span class="p">(</span><span class="n">x</span> <span class="o">&gt;&gt;</span> <span class="mi">31</span><span class="p">);</span>
    <span class="k">return</span> <span class="n">n</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<h3>判断二进制是否为回文数</h3>
+<p>参见<a href="/posts/algorithm/palindrome-number.html">十进制数是否为回文数</a>, 二进制比较不能直接反转比较，因为反转后可能是个负数.</p>
+<div class="highlight"><pre><span class="n">is_palindrome</span><span class="p">(</span><span class="kt">int</span> <span class="n">x</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kt">int</span> <span class="n">a</span> <span class="o">=</span> <span class="n">x</span><span class="o">&gt;&gt;</span><span class="mi">1</span><span class="p">,</span> <span class="n">mask</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="k">while</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">mask</span> <span class="o">&lt;&lt;=</span> <span class="mi">1</span><span class="p">;</span>
+        <span class="n">a</span> <span class="o">&gt;&gt;=</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">while</span> <span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="p">{</span>     <span class="c1">//能否用a判断?</span>
+        <span class="k">if</span> <span class="p">((</span><span class="n">x</span> <span class="o">&amp;</span> <span class="n">mask</span><span class="p">)</span> <span class="o">^</span> <span class="p">(</span><span class="n">x</span> <span class="o">&amp;</span> <span class="mh">0x1</span><span class="p">)</span> <span class="o">!=</span> <span class="mh">0x0</span><span class="p">)</span> <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="n">x</span> <span class="o">&amp;=</span><span class="p">(</span><span class="o">~</span><span class="n">mask</span><span class="p">);</span> <span class="c1">//去高位</span>
+        <span class="n">x</span> <span class="o">&gt;&gt;=</span> <span class="mi">1</span><span class="p">;</span>     <span class="c1">//去低位</span>
+        <span class="n">mask</span> <span class="o">&gt;&gt;=</span> <span class="mi">2</span><span class="p">;</span> 
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="mi">1</span><span class="p">;</span>
 <span class="p">}</span>
 </pre></div>
 <p class="subheader">Category: <a href="../../category/algorithm.html">algorithm</a>

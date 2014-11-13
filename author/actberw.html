@@ -22,7 +22,7 @@
         });
     </script>
     <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script type="text/javascript" src="../theme/js/jquery.min.js"></script>
     <script type="text/javascript" src="../theme/js/jqcloud-1.0.4.min.js"></script>
     
     <script type="text/javascript">
@@ -67,7 +67,7 @@
         {text: "system call", weight: 0.0125, link: {href: "/tag/system-call.html"}},
         {text: "tcp/ip", weight: 0.0125, link: {href: "/tag/tcpip.html"}},
         {text: "tls", weight: 0.0125, link: {href: "/tag/tls.html"}},
-        {text: "c", weight: 0.1625, link: {href: "/tag/c.html"}},
+        {text: "c", weight: 0.175, link: {href: "/tag/c.html"}},
         {text: "kernel thread", weight: 0.0125, link: {href: "/tag/kernel-thread.html"}},
         {text: "thread", weight: 0.025, link: {href: "/tag/thread.html"}},
         {text: "queue", weight: 0.0125, link: {href: "/tag/queue.html"}},
@@ -116,7 +116,7 @@
         {text: "stack", weight: 0.0125, link: {href: "/tag/stack.html"}},
         {text: "getuid", weight: 0.0125, link: {href: "/tag/getuid.html"}},
         {text: "eof", weight: 0.0125, link: {href: "/tag/eof.html"}},
-        {text: "algorithm", weight: 0.375, link: {href: "/tag/algorithm.html"}},
+        {text: "algorithm", weight: 0.3875, link: {href: "/tag/algorithm.html"}},
         {text: "line join", weight: 0.0125, link: {href: "/tag/line-join.html"}},
         {text: "register", weight: 0.0125, link: {href: "/tag/register.html"}},
         {text: "mro", weight: 0.0125, link: {href: "/tag/mro.html"}},
@@ -179,27 +179,6 @@ http://www.geeksforgeeks.org/union-find-algorithm-set-2-union-by-rank/</p><p cla
 
                 <hr  class="gradient"/>
 
-
-        
-
-
-            <article>
-                <a href="../posts/algorithm/palindrome-number.html"><h3 class="article-title">回文数</h3></a>
-<h6 class="subheader" title="2014-11-10T14:27:02">Mon 10 November 2014
-</h6>
-
-
-<p>http://segmentfault.com/blog/code/1190000000453441
-http://zh.wikipedia.org/wiki/%E5%9B%9E%E6%96%87%E6%95%B0
-http://blog.csdn.net/cklsoft/article/details/40862037</p><p class="subheader">Category: <a href="../category/algorithm.html">algorithm</a>
-
-</p>
-
-
-
-                <a class="button radius secondary small right" href="../posts/algorithm/palindrome-number.html">Read More</a>
-                <hr  class="gradient"/>
-            </article>
 
         
 
@@ -537,6 +516,43 @@ http://blog.erratasec.com/2014/09/bash-shellshock-scan-of-internet.html#.VFTZ6PS
 
 
                 <a class="button radius secondary small right" href="../posts/python/magic-object.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="../posts/python/metaclass.html"><h3 class="article-title">python 元类</h3></a>
+<h6 class="subheader" title="2014-11-02T20:00:00">Sun 02 November 2014
+</h6>
+
+
+<p>元类就是用来创建类的“东西”, 类是其元类的实例(a class is an instance of its metaclass), type就是Python在背后用来创建所有类的元类(参见<a href="/posts/python/type.html">python type system</a>), 下面代码展示了type的基本用法.</p>
+<div class="highlight"><pre><span class="o">&gt;&gt;&gt;</span> <span class="n">MyClass</span> <span class="o">=</span> <span class="n">MetaClass</span><span class="p">()</span>
+
+<span class="o">&gt;&gt;&gt;</span> <span class="n">class</span> <span class="n">Foo</span><span class="p">(</span><span class="n">object</span><span class="p">)</span><span class="o">:</span> 
+        <span class="n">pass</span>
+
+<span class="o">&gt;&gt;&gt;</span> <span class="n">def</span> <span class="n">echo_bar</span><span class="p">(</span><span class="n">self</span><span class="p">)</span><span class="o">:</span>
+        <span class="n">print</span> <span class="n">self</span><span class="p">.</span><span class="n">bar</span>
+
+<span class="o">&gt;&gt;&gt;</span> <span class="n">FooChild</span> <span class="o">=</span> <span class="n">type</span><span class="p">(</span><span class="err">&#39;</span><span class="n">FooChild</span><span class="err">&#39;</span><span class="p">,</span> <span class="p">(</span><span class="n">Foo</span><span class="p">,),</span> <span class="p">{</span><span class="err">&#39;</span><span class="n">echo_bar</span><span class="err">&#39;</span><span class="o">:</span> <span class="n">echo_bar</span><span class="p">})</span> <span class="err">#</span> <span class="n">Foo</span> <span class="n">is</span> <span class="n">base</span> <span class="n">class</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">hasattr</span><span class="p">(</span><span class="n">Foo</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">echo_bar</span><span class="err">&#39;</span><span class="p">)</span>
+<span class="n">False</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">hasattr</span><span class="p">(</span><span class="n">FooChild</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">echo_bar</span><span class="err">&#39;</span><span class="p">)</span>
+<span class="n">True</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">my_foo</span> <span class="o">=</span> <span class="n">FooChild</span><span class="p">()</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">my_foo ...</span></pre></div><p class="subheader">Category: <a href="../category/python.html">python</a>
+
+    Tagged: 
+    <a href="../tag/python.html">python </a>
+    <a href="../tag/metaclass.html">metaclass </a>
+</p>
+
+
+
+                <a class="button radius secondary small right" href="../posts/python/metaclass.html">Read More</a>
                 <hr  class="gradient"/>
             </article>
 

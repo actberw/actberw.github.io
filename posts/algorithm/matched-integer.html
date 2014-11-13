@@ -22,7 +22,7 @@
         });
     </script>
     <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script type="text/javascript" src="../../theme/js/jquery.min.js"></script>
     <script type="text/javascript" src="../../theme/js/jqcloud-1.0.4.min.js"></script>
     
     <script type="text/javascript">
@@ -67,7 +67,7 @@
         {text: "system call", weight: 0.0125, link: {href: "/tag/system-call.html"}},
         {text: "tcp/ip", weight: 0.0125, link: {href: "/tag/tcpip.html"}},
         {text: "tls", weight: 0.0125, link: {href: "/tag/tls.html"}},
-        {text: "c", weight: 0.1625, link: {href: "/tag/c.html"}},
+        {text: "c", weight: 0.175, link: {href: "/tag/c.html"}},
         {text: "kernel thread", weight: 0.0125, link: {href: "/tag/kernel-thread.html"}},
         {text: "thread", weight: 0.025, link: {href: "/tag/thread.html"}},
         {text: "queue", weight: 0.0125, link: {href: "/tag/queue.html"}},
@@ -116,7 +116,7 @@
         {text: "stack", weight: 0.0125, link: {href: "/tag/stack.html"}},
         {text: "getuid", weight: 0.0125, link: {href: "/tag/getuid.html"}},
         {text: "eof", weight: 0.0125, link: {href: "/tag/eof.html"}},
-        {text: "algorithm", weight: 0.375, link: {href: "/tag/algorithm.html"}},
+        {text: "algorithm", weight: 0.3875, link: {href: "/tag/algorithm.html"}},
         {text: "line join", weight: 0.0125, link: {href: "/tag/line-join.html"}},
         {text: "register", weight: 0.0125, link: {href: "/tag/register.html"}},
         {text: "mro", weight: 0.0125, link: {href: "/tag/mro.html"}},
@@ -277,7 +277,7 @@
 </ul>
 <h3>反转整数</h3>
 <div class="highlight"><pre><span class="kt">int</span> <span class="nf">reverse</span><span class="p">(</span><span class="kt">int</span> <span class="n">x</span><span class="p">)</span> <span class="p">{</span>
-    <span class="c1">// c除法是向0方向取最接近精确值的整数, 不需要管正负</span>
+    <span class="c1">// c除法是向0方向取最接近精确值的整数, 不需要管正负, 这里没有考虑溢出情况.</span>
     <span class="kt">int</span> <span class="n">ret</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
     <span class="k">while</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="p">{</span>
         <span class="n">ret</span> <span class="o">=</span> <span class="n">ret</span> <span class="o">*</span> <span class="mi">10</span> <span class="o">+</span> <span class="n">x</span> <span class="o">%</span> <span class="mi">10</span><span class="p">;</span>
@@ -305,28 +305,48 @@ Note: It is intended for the problem statement to be ambiguous. You should gathe
 <li><a href="http://blog.csdn.net/kenden23/article/details/18696083">http://blog.csdn.net/kenden23/article/details/18696083</a></li>
 </ul>
 <h3>把字符串转换成数字</h3>
+<blockquote>
+<p>题目要求：
+如果前面有空格开头，忽略掉开头的所有空格
+如果发现没意义的字符，忽略之，并结束转换。即123ttyw -&gt; 123
+考虑负数额
+如果溢出，则返回相应的最大正数和最大负数。</p>
+</blockquote>
 <div class="highlight"><pre><span class="kt">int</span> <span class="nf">atoi</span><span class="p">(</span><span class="kt">char</span> <span class="o">*</span><span class="n">str</span><span class="p">)</span> <span class="p">{</span>
-    <span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">flag</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">ret</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">flag</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">ret</span><span class="p">,</span> <span class="n">dig</span><span class="p">;</span>
     <span class="k">if</span> <span class="p">(</span><span class="n">str</span> <span class="o">==</span> <span class="nb">NULL</span> <span class="o">||</span> <span class="n">strlen</span><span class="p">(</span><span class="n">str</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="p">)</span>
         <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-
+    <span class="k">while</span><span class="p">(</span><span class="n">i</span> <span class="o">&lt;</span> <span class="n">strlen</span><span class="p">(</span><span class="n">str</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="n">str</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="sc">&#39; &#39;</span><span class="p">)</span> <span class="n">i</span><span class="o">++</span><span class="p">;</span>
     <span class="c1">// 判断符号</span>
-    <span class="k">if</span> <span class="p">(</span><span class="n">str</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="sc">&#39;-&#39;</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">str</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="sc">&#39;-&#39;</span><span class="p">)</span> <span class="p">{</span>
         <span class="n">flag</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
         <span class="n">i</span><span class="o">++</span><span class="p">;</span>
-    <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">str</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="sc">&#39;+&#39;</span><span class="p">)</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">str</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="sc">&#39;+&#39;</span><span class="p">)</span>
         <span class="n">i</span><span class="o">++</span><span class="p">;</span>
 
-    <span class="k">for</span> <span class="p">(;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">strlen</span><span class="p">(</span><span class="n">str</span><span class="p">);</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
-        <span class="k">if</span> <span class="p">(</span><span class="sc">&#39;0&#39;</span> <span class="o">&lt;=</span> <span class="n">str</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="sc">&#39;9&#39;</span><span class="p">)</span>
-        <span class="err">¦</span>   <span class="n">ret</span> <span class="o">=</span> <span class="n">ret</span> <span class="o">*</span> <span class="mi">10</span> <span class="o">+</span> <span class="p">(</span><span class="n">str</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">-</span> <span class="sc">&#39;0&#39;</span><span class="p">);</span>
+    <span class="k">while</span> <span class="p">(</span><span class="n">i</span> <span class="o">&lt;</span> <span class="n">strlen</span><span class="p">(</span><span class="n">str</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="sc">&#39;0&#39;</span> <span class="o">&lt;=</span> <span class="n">str</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="sc">&#39;9&#39;</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">INT_MAX</span><span class="o">/</span><span class="mi">10</span> <span class="o">&gt;</span> <span class="n">ret</span><span class="p">)</span>
+        <span class="err">¦</span>   <span class="n">ret</span> <span class="o">=</span> <span class="n">ret</span> <span class="o">*</span> <span class="mi">10</span> 
+        <span class="k">else</span>
+            <span class="c1">// overflow</span>
+            <span class="k">return</span> <span class="n">flag</span> <span class="o">?</span> <span class="n">INT_MIN</span><span class="o">:</span> <span class="n">INT_MAX</span><span class="p">;</span>
+        <span class="n">dig</span> <span class="o">=</span> <span class="n">str</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">-</span> <span class="sc">&#39;0&#39;</span><span class="p">;</span>
+        <span class="k">if</span> <span class="p">((</span><span class="n">INT_MAX</span> <span class="o">-</span> <span class="n">ret</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">dig</span><span class="p">)</span>
+            <span class="n">ret</span> <span class="o">+=</span> <span class="n">dig</span><span class="p">;</span>
+        <span class="k">else</span>
+            <span class="c1">// overflow</span>
+            <span class="k">return</span> <span class="n">flag</span> <span class="o">?</span> <span class="n">INT_MIN</span><span class="o">:</span> <span class="n">INT_MAX</span><span class="p">;</span>
     <span class="p">}</span>
 
-    <span class="k">if</span> <span class="p">(</span><span class="n">flag</span><span class="p">)</span>
-        <span class="n">ret</span> <span class="o">=</span> <span class="o">-</span><span class="n">ret</span><span class="p">;</span>
-    <span class="k">return</span> <span class="n">ret</span><span class="p">;</span>
+    <span class="k">return</span> <span class="n">flag</span> <span class="o">?</span> <span class="o">-</span><span class="n">ret</span><span class="o">:</span> <span class="n">ret</span><span class="p">;</span>
 <span class="p">}</span>
 </pre></div>
+
+
+<p>refer:</p>
+<ul>
+<li><a href="http://segmentfault.com/blog/code/1190000000452052">http://segmentfault.com/blog/code/1190000000452052</a></li>
+</ul>
 <p class="subheader">Category: <a href="../../category/algorithm.html">algorithm</a>
 
     Tagged: 

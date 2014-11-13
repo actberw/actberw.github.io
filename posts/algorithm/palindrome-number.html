@@ -22,7 +22,7 @@
         });
     </script>
     <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script type="text/javascript" src="../../theme/js/jquery.min.js"></script>
     <script type="text/javascript" src="../../theme/js/jqcloud-1.0.4.min.js"></script>
     
     <script type="text/javascript">
@@ -67,7 +67,7 @@
         {text: "system call", weight: 0.0125, link: {href: "/tag/system-call.html"}},
         {text: "tcp/ip", weight: 0.0125, link: {href: "/tag/tcpip.html"}},
         {text: "tls", weight: 0.0125, link: {href: "/tag/tls.html"}},
-        {text: "c", weight: 0.1625, link: {href: "/tag/c.html"}},
+        {text: "c", weight: 0.175, link: {href: "/tag/c.html"}},
         {text: "kernel thread", weight: 0.0125, link: {href: "/tag/kernel-thread.html"}},
         {text: "thread", weight: 0.025, link: {href: "/tag/thread.html"}},
         {text: "queue", weight: 0.0125, link: {href: "/tag/queue.html"}},
@@ -116,7 +116,7 @@
         {text: "stack", weight: 0.0125, link: {href: "/tag/stack.html"}},
         {text: "getuid", weight: 0.0125, link: {href: "/tag/getuid.html"}},
         {text: "eof", weight: 0.0125, link: {href: "/tag/eof.html"}},
-        {text: "algorithm", weight: 0.375, link: {href: "/tag/algorithm.html"}},
+        {text: "algorithm", weight: 0.3875, link: {href: "/tag/algorithm.html"}},
         {text: "line join", weight: 0.0125, link: {href: "/tag/line-join.html"}},
         {text: "register", weight: 0.0125, link: {href: "/tag/register.html"}},
         {text: "mro", weight: 0.0125, link: {href: "/tag/mro.html"}},
@@ -163,15 +163,59 @@
         title="Permalink to 回文数">回文数</a></h3>
     </header>
 
-<h6 class="subheader" title="2014-11-10T14:27:02">Mon 10 November 2014
+<h6 class="subheader" title="2014-09-05T00:00:00">Fri 05 September 2014
 </h6>
 
 
-    <p>http://segmentfault.com/blog/code/1190000000453441
-http://zh.wikipedia.org/wiki/%E5%9B%9E%E6%96%87%E6%95%B0
-http://blog.csdn.net/cklsoft/article/details/40862037</p>
+    <blockquote>
+<p>Determine whether an integer is a palindrome. Do this without extra space</p>
+</blockquote>
+<p>可以直接将数字反转判断两个数是否相等,  但是可能带来一个问题就是反转的时候整数溢出.
+对于任意n位的数字，取n=5，数字95349为例</p>
+<div class="highlight"><pre><span class="mi">95349</span> <span class="o">%</span> <span class="mi">10</span> <span class="o">=&gt;</span> <span class="mi">9</span>
+<span class="mi">95349</span> <span class="o">/</span> <span class="mi">10000</span> <span class="o">=&gt;</span> <span class="mi">95349</span> <span class="o">/</span> <span class="mi">10</span><span class="o">^</span><span class="mi">4</span> <span class="o">=&gt;</span> <span class="mi">9</span>
+</pre></div>
+
+
+<p>可以看出我们可以通过模10来取其最低位，除10^(n-1)来取其最高位，将其最高位和最低位进行比较，便可以得出当前是否符合回文要求了, 比较完最高位和最低位后，如何除掉这两位呢？</p>
+<div class="highlight"><pre><span class="mi">95349</span> <span class="o">%</span> <span class="mi">1000</span> <span class="o">=&gt;</span> <span class="mi">95349</span> <span class="o">%</span> <span class="mi">10</span><span class="o">^</span><span class="mi">4</span> <span class="o">=</span> <span class="mi">5349</span>
+<span class="mi">95349</span> <span class="o">/</span> <span class="mi">10</span> <span class="o">=</span> <span class="mi">9534</span>
+</pre></div>
+
+
+<p>如此便能完成掐头去尾了.</p>
+<div class="highlight"><pre><span class="kt">int</span> <span class="nf">is_palindrome</span><span class="p">(</span><span class="kt">int</span> <span class="n">x</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kt">int</span> <span class="n">a</span> <span class="o">=</span> <span class="n">x</span><span class="p">,</span> <span class="n">h</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="n">a</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span> <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+
+    <span class="k">while</span> <span class="p">(</span><span class="n">a</span> <span class="o">/</span> <span class="n">h</span> <span class="o">&gt;=</span> <span class="mi">10</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">h</span> <span class="o">=</span> <span class="n">h</span> <span class="o">*</span> <span class="mi">10</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="k">while</span> <span class="p">(</span><span class="n">a</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">a</span> <span class="o">/</span> <span class="n">h</span> <span class="o">!=</span> <span class="n">a</span> <span class="o">%</span> <span class="mi">10</span><span class="p">)</span> <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="n">a</span> <span class="o">=</span> <span class="n">a</span> <span class="o">%</span> <span class="n">h</span><span class="p">;</span>  <span class="c1">// 去高位</span>
+        <span class="n">a</span> <span class="o">=</span> <span class="n">a</span> <span class="o">/</span> <span class="mi">10</span><span class="p">;</span> <span class="c1">// 去低位</span>
+        <span class="n">h</span> <span class="o">=</span> <span class="n">h</span> <span class="o">/</span> <span class="mi">100</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="k">return</span> <span class="mi">1</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<p>二进制的判断参见<a href="/posts/algorithm/binary-bit.html">二进制是否为回文数</a></p>
+<p>refer:</p>
+<ul>
+<li><a href="http://segmentfault.com/blog/code/1190000000453441">http://segmentfault.com/blog/code/1190000000453441</a></li>
+<li><a href="http://blog.csdn.net/cklsoft/article/details/40862037">http://blog.csdn.net/cklsoft/article/details/40862037</a></li>
+</ul>
 <p class="subheader">Category: <a href="../../category/algorithm.html">algorithm</a>
 
+    Tagged: 
+    <a href="../../tag/algorithm.html">algorithm </a>
+    <a href="../../tag/c.html">c </a>
 </p>
 
 

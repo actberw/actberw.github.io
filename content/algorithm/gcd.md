@@ -9,9 +9,9 @@ Date: 2014-09-06
 最简单的办法就是直接实现辗转相除法
 
     # O(log n)
-    int gcd(n,m)
+    int gcd(x,y)
     {
-        (!y)? x: gcd(y, x%y)
+        (!y)? x: gcd(y, x%y);
     }
 
 

@@ -67,7 +67,7 @@
         {text: "system call", weight: 0.0125, link: {href: "/tag/system-call.html"}},
         {text: "tcp/ip", weight: 0.0125, link: {href: "/tag/tcpip.html"}},
         {text: "tls", weight: 0.0125, link: {href: "/tag/tls.html"}},
-        {text: "c", weight: 0.175, link: {href: "/tag/c.html"}},
+        {text: "c", weight: 0.1875, link: {href: "/tag/c.html"}},
         {text: "kernel thread", weight: 0.0125, link: {href: "/tag/kernel-thread.html"}},
         {text: "thread", weight: 0.025, link: {href: "/tag/thread.html"}},
         {text: "queue", weight: 0.0125, link: {href: "/tag/queue.html"}},
@@ -116,7 +116,7 @@
         {text: "stack", weight: 0.0125, link: {href: "/tag/stack.html"}},
         {text: "getuid", weight: 0.0125, link: {href: "/tag/getuid.html"}},
         {text: "eof", weight: 0.0125, link: {href: "/tag/eof.html"}},
-        {text: "algorithm", weight: 0.3875, link: {href: "/tag/algorithm.html"}},
+        {text: "algorithm", weight: 0.4, link: {href: "/tag/algorithm.html"}},
         {text: "line join", weight: 0.0125, link: {href: "/tag/line-join.html"}},
         {text: "register", weight: 0.0125, link: {href: "/tag/register.html"}},
         {text: "mro", weight: 0.0125, link: {href: "/tag/mro.html"}},
@@ -158,6 +158,41 @@
     <!-- Main Blog Content -->
     <div class="large-9 columns">
         
+        
+
+
+            <article>
+                <a href="../posts/algorithm/design.html"><h3 class="article-title">算法设计范式(paradigm)</h3></a>
+<h6 class="subheader" title="2014-06-10T19:00:00">Tue 10 June 2014
+</h6>
+
+
+<h3>分治法(divide and conquer)</h3>
+<p>字面上的解释是“分而治之”, 就是把一个复杂的问题分成K个的相同或相似的子问题, 直到最后子问题可以简单的直接求解, 原问题的解即子问题的解的合并. 特征:</p>
+<ul>
+<li>该问题的规模缩小到一定的程度就可以容易地解决.</li>
+<li>该问题可以分解为若干个规模较小的相同问题, 即该问题具有最优子结构性质.</li>
+<li>利用该问题分解出的子问题的解可以合并为该问题的解</li>
+<li>该问题所分解出的各个子问题是相互独立的, 即子问题之间不包含公共的子子问题.</li>
+</ul>
+<p>第一条特征是绝大多数问题都可以满足的, 因为问题的计算复杂性一般是随着问题规模的增加而增加, 第二条特征是应用分治法的前提它也是大多数问题可以满足的, 此特征反映了递归思想的应用,
+    第三条特征是关键, 能否利用分治法完全取决于问题是否具有第三条特征, 如果具备了第一条和第二条特征, 而不具备第三条特征, 则可以考虑用贪心法或动态规划法, 第四条特征涉及到分治法的效率, 如果各子问题是不独立的则分治法要做许多不必要的工作, 重复地解公共的子问题, 此时虽然可用分治法, 但一般用动态规划法较好.</p>
+<h3>动态规划(dynamic programming)</h3>
+<p>动态规划常常适用于有重叠子问题[2]和最优子结构性质的问题, 动态规划法试图仅仅解决每个子问题一次, 从而减少计算量： 一旦某个给定子问题的解已经算出, 则将其记忆化存储, 以便下次需要同一个子问题解之时直接查表. </p>
+<h3>贪心算法(greedy algorithms)</h3>
+<h3>回溯法(backtrack)</h3>
+<p>回溯算法实际上一个类似枚举的搜索尝试过程, 主要是在搜索尝试过程中寻找问题的解, 当发现已不满足求解条件时, 就 ...</p><p class="subheader">Category: <a href="../category/algorithm.html">algorithm</a>
+
+    Tagged: 
+    <a href="../tag/algorithm.html">algorithm </a>
+</p>
+
+
+
+                <a class="button radius secondary small right" href="../posts/algorithm/design.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
         
 
 

@@ -67,7 +67,7 @@
         {text: "system call", weight: 0.0125, link: {href: "/tag/system-call.html"}},
         {text: "tcp/ip", weight: 0.0125, link: {href: "/tag/tcpip.html"}},
         {text: "tls", weight: 0.0125, link: {href: "/tag/tls.html"}},
-        {text: "c", weight: 0.175, link: {href: "/tag/c.html"}},
+        {text: "c", weight: 0.1875, link: {href: "/tag/c.html"}},
         {text: "kernel thread", weight: 0.0125, link: {href: "/tag/kernel-thread.html"}},
         {text: "thread", weight: 0.025, link: {href: "/tag/thread.html"}},
         {text: "queue", weight: 0.0125, link: {href: "/tag/queue.html"}},
@@ -116,7 +116,7 @@
         {text: "stack", weight: 0.0125, link: {href: "/tag/stack.html"}},
         {text: "getuid", weight: 0.0125, link: {href: "/tag/getuid.html"}},
         {text: "eof", weight: 0.0125, link: {href: "/tag/eof.html"}},
-        {text: "algorithm", weight: 0.3875, link: {href: "/tag/algorithm.html"}},
+        {text: "algorithm", weight: 0.4, link: {href: "/tag/algorithm.html"}},
         {text: "line join", weight: 0.0125, link: {href: "/tag/line-join.html"}},
         {text: "register", weight: 0.0125, link: {href: "/tag/register.html"}},
         {text: "mro", weight: 0.0125, link: {href: "/tag/mro.html"}},
@@ -161,12 +161,81 @@
         
 
             <article>
-                <a href="../posts/algorithm/matrix.html"><h3 class="article-title">矩阵乘法优化</h3></a>
+                <a href="../posts/algorithm/matrix.html"><h3 class="article-title">矩阵</h3></a>
 <h6 class="subheader" title="2014-06-12T12:00:00">Thu 12 June 2014
 </h6>
 
 
+<h3>Search in a row wise and column wise sorted matrix</h3>
+<blockquote>
+<p>Given an n x n matrix, where every row and column is sorted in increasing order. Given a number x, how to decide whether this x is in the matrix. The designed algorithm should have linear time complexity.</p>
+</blockquote>
+<p>Solution:
+- Start with top right element
+- Loop: compare this element e with x
+    - if they are equal then return its position
+    - e &lt; x then move it to down (if out of bound of matrix then break return false)
+    - e &gt; x then move it to left (if out of bound of matrix then break return false)
+    - repeat..</p>
+<p>代码:</p>
+<div class="highlight"><pre><span class="kt">int</span> <span class="nf">search</span><span class="p">(</span><span class="kt">int</span> <span class="n">mat</span><span class="p">[</span><span class="mi">4</span><span class="p">][</span><span class="mi">4</span><span class="p">],</span> <span class="kt">int</span> <span class="n">n</span><span class="p">,</span> <span class="kt">int</span> <span class="n">x</span><span class="p">)</span>
+<span class="p">{</span>
+   <span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">j</span> <span class="o">=</span> <span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">;</span>  <span class="c1">//set indexes for top right element</span>
+   <span class="k">while</span> <span class="p">(</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">n</span> <span class="o">&amp;&amp;</span> <span class="n">j</span> <span class="o">&gt;=</span> <span class="mi">0</span> <span class="p">)</span>
+   <span class="p">{</span>
+      <span class="k">if</span> <span class="p">(</span> <span class="n">mat</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">==</span> <span class="n">x</span> <span class="p">)</span>
+      <span class="p">{</span>
+         <span class="n">printf</span><span class="p">(</span><span class="s">&quot;</span><span class="se">\n</span><span class="s"> Found at %d, %d&quot;</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">);</span>
+         <span class="k">return</span> <span class="mi">1</span><span class="p">;</span>
+      <span class="p">}</span>
+      <span class="k">if</span> <span class="p">(</span> <span class="n">mat</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">x</span> <span class="p">)</span>
+        <span class="n">j</span><span class="o">--</span><span class="p">;</span>
+      <span class="k">else</span> <span class="c1">//  if mat[i][j] &lt; x</span>
+        <span class="n">i</span><span class="o">++</span><span class="p">;</span>
+   <span class="p">}</span>
+
+   <span class="n">printf</span><span class="p">(</span><span class="s">&quot;</span><span class="se">\n</span><span class="s"> Element not found&quot;</span><span class="p">);</span>
+   <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>  <span class="c1">// if ( i==n || j== -1 )</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<h3>子数组之和得最大值</h3>
+<p>可以转化为一维得求<a href="/posts/adt/array-part-5.html">最大值</a>, 把a,c 行之间相同列看成整体.</p>
+<h3>求一个矩阵中最大的二维矩阵(元素和最大)</h3>
+<blockquote>
+<p>如
+1 2 0 3 4
+2 3 4 5 1
+1 1 5 3 0
+中最大的是:
+4 5
+5 3
+要求:(1)写出算法;(2)分析时间复杂度;(3)用C写出关键代码</p>
+</blockquote>
+<div class="highlight"><pre><span class="kt">int</span> <span class="nf">max_submatrix</span><span class="p">(</span><span class="kt">int</span> <span class="o">**</span><span class="n">array</span><span class="p">,</span> <span class="kt">int</span> <span class="n">n</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kt">int</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">sum</span><span class="p">,</span> <span class="n">max_sum</span><span class="p">,</span> <span class="n">last_sum</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+    <span class="k">for</span> <span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">last_sum</span> <span class="o">=</span> <span class="n">array</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">array</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">];</span>
+        <span class="k">for</span> <span class="p">(</span><span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="n">j</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">sum</span> <span class="o">=</span> <span class="n">last_sum</span><span class="p">;</span>    <span class="c1">// sum = array[i][j] + array[i+1][j] + array[i][j+1] + array[i+1][j+1]; </span>
+                               <span class="c1">// 用last_sum 减少一次加法多了两次赋值</span>
+            <span class="n">last_sum</span> <span class="o">=</span> <span class="n">array</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">array</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">][</span><span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">];</span>
+            <span class="n">sum</span> <span class="o">+=</span> <span class="n">last_sum</span><span class="p">;</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">sum</span> <span class="o">&gt;</span> <span class="n">max_sum</span><span class="p">)</span>
+                <span class="n">max_sum</span> <span class="o">=</span> <span class="n">sum</span><span class="p">;</span>
+        <span class="p">}</span> 
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="n">max_sum</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<p>refer:</p>
 <ul>
+<li><a href="http://www.geeksforgeeks.org/search-in-row-wise-and-column-wise-sorted-matrix/">http://www.geeksforgeeks.org/search-in-row-wise-and-column-wise-sorted-matrix/</a></li>
+<li><a href="http://leetcode.com/2010/10/searching-2d-sorted-matrix-part-ii.html">http://leetcode.com/2010/10/searching-2d-sorted-matrix-part-ii.html</a></li>
+<li><a href="http://www.geeksforgeeks.org/dynamic-programming-set-27-max-sum-rectangle-in-a-2d-matrix/">http://www.geeksforgeeks.org/dynamic-programming-set-27-max-sum-rectangle-in-a-2d-matrix/</a></li>
 <li><a href="http://zh.wikipedia.org/wiki/%E7%9F%A9%E9%98%B5%E6%8C%87%E6%95%B0">http://zh.wikipedia.org/wiki/%E7%9F%A9%E9%98%B5%E6%8C%87%E6%95%B0</a></li>
 <li><a href="http://www.zhihu.com/question/19706331">http://www.zhihu.com/question/19706331</a></li>
 <li><a href="http://www.ituring.com.cn/article/17978">http://www.ituring.com.cn/article/17978</a></li>

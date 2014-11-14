@@ -67,7 +67,7 @@
         {text: "system call", weight: 0.0125, link: {href: "/tag/system-call.html"}},
         {text: "tcp/ip", weight: 0.0125, link: {href: "/tag/tcpip.html"}},
         {text: "tls", weight: 0.0125, link: {href: "/tag/tls.html"}},
-        {text: "c", weight: 0.175, link: {href: "/tag/c.html"}},
+        {text: "c", weight: 0.1875, link: {href: "/tag/c.html"}},
         {text: "kernel thread", weight: 0.0125, link: {href: "/tag/kernel-thread.html"}},
         {text: "thread", weight: 0.025, link: {href: "/tag/thread.html"}},
         {text: "queue", weight: 0.0125, link: {href: "/tag/queue.html"}},
@@ -116,7 +116,7 @@
         {text: "stack", weight: 0.0125, link: {href: "/tag/stack.html"}},
         {text: "getuid", weight: 0.0125, link: {href: "/tag/getuid.html"}},
         {text: "eof", weight: 0.0125, link: {href: "/tag/eof.html"}},
-        {text: "algorithm", weight: 0.3875, link: {href: "/tag/algorithm.html"}},
+        {text: "algorithm", weight: 0.4, link: {href: "/tag/algorithm.html"}},
         {text: "line join", weight: 0.0125, link: {href: "/tag/line-join.html"}},
         {text: "register", weight: 0.0125, link: {href: "/tag/register.html"}},
         {text: "mro", weight: 0.0125, link: {href: "/tag/mro.html"}},
@@ -212,13 +212,58 @@
 
 
             <article>
+                <a href="../posts/algorithm/divide-multiply.html"><h3 class="article-title">divide 和  multiply</h3></a>
+<h6 class="subheader" title="2014-09-04T00:00:00">Thu 04 September 2014
+</h6>
+
+
+<h3>divide</h3>
+<blockquote>
+<p>Divide two integers without using multiplication, division and mod operator.</p>
+</blockquote>
+<p>最直观的方法是，用被除数逐个的减去除数，直到被除数小于0。这样做会超时。那么如果每次不仅仅减去1个除数，计算速度就会增加，但是题目不能使用乘法，因此不能减去k<em>除数，我们可以对除数进行左移位操作，这样每次相当于减去2^k个除数，如何确定k呢，只要使 $2^k$</em>除数 &lt;=  当前被除数 &lt; $2^{k+1}$*除数.</p>
+<div class="highlight"><pre><span class="kt">int</span> <span class="nf">divide</span><span class="p">(</span><span class="kt">int</span> <span class="n">x</span><span class="p">,</span> <span class="kt">int</span> <span class="n">y</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kt">int</span> <span class="n">i</span><span class="p">,</span> <span class="n">ret</span><span class="p">;</span>
+    <span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">;</span> <span class="c1">//用unsigned 因为-INT_MIN 溢出问题(结果还是INT_MIN ...</span></pre></div><p class="subheader">Category: <a href="../category/algorithm.html">algorithm</a>
+
+    Tagged: 
+    <a href="../tag/algorithm.html">algorithm </a>
+    <a href="../tag/c.html">c </a>
+</p>
+
+
+
+                <a class="button radius secondary small right" href="../posts/algorithm/divide-multiply.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
                 <a href="../posts/algorithm/pow.html"><h3 class="article-title">实现pow(x, n)函数</h3></a>
 <h6 class="subheader" title="2014-09-03T00:00:00">Wed 03 September 2014
 </h6>
 
 
-<p>http://www.programcreek.com/2012/12/leetcode-powx-n/
-http://fisherlei.blogspot.jp/2012/12/leetcode-powx-n.html</p><p class="subheader">Category: <a href="../category/algorithm.html">algorithm</a>
+<blockquote>
+<p>implement pow(x, n)</p>
+</blockquote>
+<p>用二分法先求出n/2次方, 然后求n次方, 嵌套一次函数调用避免复杂的指数正负判断.</p>
+<div class="highlight"><pre><span class="kt">double</span> <span class="nf">power</span><span class="p">(</span><span class="kt">double</span> <span class="n">x</span><span class="p">,</span> <span class="kt">int</span> <span class="n">n</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kt">double</span> <span class="n">v</span><span class="p">;</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">n</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="k">return</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="n">v</span> <span class="o">=</span> <span class="n">power</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">n</span><span class="o">/</span><span class="mi">2</span><span class="p">);</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="n">n</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">v</span> <span class="o">*</span> <span class="n">v</span><span class="p">;</span>
+    <span class="k">else</span>
+        <span class="k">return</span> <span class="n">v</span> <span class="o">*</span> <span class="n">v</span> <span class="o">*</span> <span class="n">x</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">double</span> <span class="nf">_pow</span><span class="p">(</span><span class="kt">double</span> <span class="n">x</span><span class="p">,</span> <span class="kt">int</span> <span class="n">n</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">x</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="k">return ...</span></pre></div><p class="subheader">Category: <a href="../category/algorithm.html">algorithm</a>
 
     Tagged: 
     <a href="../tag/algorithm.html">algorithm </a>
@@ -613,25 +658,6 @@ $S = \sqrt{p(p-a)(p-b)(p-c)}$, 其中$p=\frac{a + b+ c}{2}$</p>
 
 
                 <a class="button radius secondary small right" href="../posts/coroutine/continuation.html">Read More</a>
-                <hr  class="gradient"/>
-            </article>
-
-        
-
-
-            <article>
-                <a href="../posts/security/cve.html"><h3 class="article-title">漏洞库</h3></a>
-<h6 class="subheader" title="2014-08-06T21:44:18">Wed 06 August 2014
-</h6>
-
-
-<p class="subheader">Category: <a href="../category/security.html">security</a>
-
-</p>
-
-
-
-                <a class="button radius secondary small right" href="../posts/security/cve.html">Read More</a>
                 <hr  class="gradient"/>
             </article>
 

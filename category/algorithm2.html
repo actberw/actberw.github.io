@@ -67,7 +67,7 @@
         {text: "system call", weight: 0.0125, link: {href: "/tag/system-call.html"}},
         {text: "tcp/ip", weight: 0.0125, link: {href: "/tag/tcpip.html"}},
         {text: "tls", weight: 0.0125, link: {href: "/tag/tls.html"}},
-        {text: "c", weight: 0.175, link: {href: "/tag/c.html"}},
+        {text: "c", weight: 0.1875, link: {href: "/tag/c.html"}},
         {text: "kernel thread", weight: 0.0125, link: {href: "/tag/kernel-thread.html"}},
         {text: "thread", weight: 0.025, link: {href: "/tag/thread.html"}},
         {text: "queue", weight: 0.0125, link: {href: "/tag/queue.html"}},
@@ -116,7 +116,7 @@
         {text: "stack", weight: 0.0125, link: {href: "/tag/stack.html"}},
         {text: "getuid", weight: 0.0125, link: {href: "/tag/getuid.html"}},
         {text: "eof", weight: 0.0125, link: {href: "/tag/eof.html"}},
-        {text: "algorithm", weight: 0.3875, link: {href: "/tag/algorithm.html"}},
+        {text: "algorithm", weight: 0.4, link: {href: "/tag/algorithm.html"}},
         {text: "line join", weight: 0.0125, link: {href: "/tag/line-join.html"}},
         {text: "register", weight: 0.0125, link: {href: "/tag/register.html"}},
         {text: "mro", weight: 0.0125, link: {href: "/tag/mro.html"}},
@@ -158,6 +158,41 @@
     <!-- Main Blog Content -->
     <div class="large-9 columns">
         
+        
+
+
+            <article>
+                <a href="../posts/algorithm/triangle.html"><h3 class="article-title">三角形的面积</h3></a>
+<h6 class="subheader" title="2014-08-10T20:00:00">Sun 10 August 2014
+</h6>
+
+
+<h3>已知三边(a, b, c)求三角形面积.</h3>
+<p>海伦公式:
+假设三角形三边分别为(a, b, c), 则三角形的面积<br />
+$S = \sqrt{p(p-a)(p-b)(p-c)}$, 其中$p=\frac{a + b+ c}{2}$</p>
+<div class="highlight"><pre><span class="kt">float</span> <span class="nf">space</span><span class="p">(</span><span class="kt">float</span> <span class="n">a</span><span class="p">,</span> <span class="kt">float</span> <span class="n">b</span><span class="p">,</span> <span class="kt">float</span> <span class="n">c</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kt">int</span> <span class="n">p</span><span class="p">;</span>
+    <span class="n">p</span> <span class="o">=</span> <span class="p">(</span><span class="n">a</span> <span class="o">+</span> <span class="n">b</span> <span class="o">+</span> <span class="n">c</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span><span class="p">;</span>
+    <span class="k">return</span> <span class="n">sqrt</span><span class="p">(</span><span class="n">p</span> <span class="o">*</span> <span class="p">(</span><span class="n">p</span> <span class="o">-</span> <span class="n">a</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">p</span> <span class="o">-</span> <span class="n">b</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">p</span> <span class="o">-</span> <span class="n">c</span><span class="p">));</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<h3>已知平面三点的坐标求三角形的面积</h3>
+<p>利用向量叉乘 ...</p><p class="subheader">Category: <a href="../category/algorithm.html">algorithm</a>
+
+    Tagged: 
+    <a href="../tag/algorithm.html">algorithm </a>
+    <a href="../tag/triangle.html">triangle </a>
+</p>
+
+
+
+                <a class="button radius secondary small right" href="../posts/algorithm/triangle.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
         
 
 
@@ -233,17 +268,17 @@
 
 
             <article>
-                <a href="../posts/algorithm/matrix.html"><h3 class="article-title">矩阵乘法优化</h3></a>
+                <a href="../posts/algorithm/matrix.html"><h3 class="article-title">矩阵</h3></a>
 <h6 class="subheader" title="2014-06-12T12:00:00">Thu 12 June 2014
 </h6>
 
 
-<ul>
-<li><a href="http://zh.wikipedia.org/wiki/%E7%9F%A9%E9%98%B5%E6%8C%87%E6%95%B0">http://zh.wikipedia.org/wiki/%E7%9F%A9%E9%98%B5%E6%8C%87%E6%95%B0</a></li>
-<li><a href="http://www.zhihu.com/question/19706331">http://www.zhihu.com/question/19706331</a></li>
-<li><a href="http://www.ituring.com.cn/article/17978">http://www.ituring.com.cn/article/17978</a></li>
-<li><a href="http://www.zhihu.com/question/22854639">http://www.zhihu.com/question/22854639</a></li>
-</ul><p class="subheader">Category: <a href="../category/algorithm.html">algorithm</a>
+<h3>Search in a row wise and column wise sorted matrix</h3>
+<blockquote>
+<p>Given an n x n matrix, where every row and column is sorted in increasing order. Given a number x, how to decide whether this x is in the matrix. The designed algorithm should have linear time complexity.</p>
+</blockquote>
+<p>Solution:
+- Start ...</p><p class="subheader">Category: <a href="../category/algorithm.html">algorithm</a>
 
     Tagged: 
     <a href="../tag/algorithm.html">algorithm </a>

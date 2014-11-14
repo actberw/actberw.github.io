@@ -67,7 +67,7 @@
         {text: "system call", weight: 0.0125, link: {href: "/tag/system-call.html"}},
         {text: "tcp/ip", weight: 0.0125, link: {href: "/tag/tcpip.html"}},
         {text: "tls", weight: 0.0125, link: {href: "/tag/tls.html"}},
-        {text: "c", weight: 0.175, link: {href: "/tag/c.html"}},
+        {text: "c", weight: 0.1875, link: {href: "/tag/c.html"}},
         {text: "kernel thread", weight: 0.0125, link: {href: "/tag/kernel-thread.html"}},
         {text: "thread", weight: 0.025, link: {href: "/tag/thread.html"}},
         {text: "queue", weight: 0.0125, link: {href: "/tag/queue.html"}},
@@ -116,7 +116,7 @@
         {text: "stack", weight: 0.0125, link: {href: "/tag/stack.html"}},
         {text: "getuid", weight: 0.0125, link: {href: "/tag/getuid.html"}},
         {text: "eof", weight: 0.0125, link: {href: "/tag/eof.html"}},
-        {text: "algorithm", weight: 0.3875, link: {href: "/tag/algorithm.html"}},
+        {text: "algorithm", weight: 0.4, link: {href: "/tag/algorithm.html"}},
         {text: "line join", weight: 0.0125, link: {href: "/tag/line-join.html"}},
         {text: "register", weight: 0.0125, link: {href: "/tag/register.html"}},
         {text: "mro", weight: 0.0125, link: {href: "/tag/mro.html"}},
@@ -158,6 +158,25 @@
     <!-- Main Blog Content -->
     <div class="large-9 columns">
         
+        
+
+
+            <article>
+                <a href="./posts/security/cve.html"><h3 class="article-title">漏洞库</h3></a>
+<h6 class="subheader" title="2014-08-06T21:44:18">Wed 06 August 2014
+</h6>
+
+
+<p class="subheader">Category: <a href="./category/security.html">security</a>
+
+</p>
+
+
+
+                <a class="button radius secondary small right" href="./posts/security/cve.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
         
 
 
@@ -525,44 +544,6 @@
 
 
                 <a class="button radius secondary small right" href="./posts/mysql/quote.html">Read More</a>
-                <hr  class="gradient"/>
-            </article>
-
-        
-
-
-            <article>
-                <a href="./posts/algorithm/prime-number.html"><h3 class="article-title">素数算法</h3></a>
-<h6 class="subheader" title="2014-06-15T19:00:00">Sun 15 June 2014
-</h6>
-
-
-<p>素数的定义: 除了能被1和它本身整除而不能被其他任何数整除的数。根据素数定义 只需要用2到n-1去除n，如果都除不尽，则n是素数，否则，只要其中有一个数能整除则n不是素数。</p>
-<h3>原始算法</h3>
-<div class="highlight"><pre><span class="kt">bool</span> <span class="nf">is_primer</span><span class="p">(</span><span class="kt">int</span> <span class="n">num</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">num</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
-        <span class="k">if</span><span class="p">(</span><span class="n">num</span> <span class="o">%</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span> <span class="cm">/*若整除则为假，否则为真*/</span>
-            <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
-        <span class="p">}</span>
-    <span class="p">}</span>
-    <span class="k">return</span> <span class="nb">true</span><span class="p">;</span>
-<span class="p">}</span>
-</pre></div>
-
-
-<h3>从2到sqrt(N)的整数是否整除N</h3>
-<div class="highlight"><pre><span class="kt">bool</span> <span class="nf">is_primer</span><span class="p">(</span><span class="kt">int</span> <span class="n">num</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span> <span class="n">i</span> <span class="o">*</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">num</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
-        <span class="k">if</span><span class="p">(</span><span class="n">num</span> <span class="o">%</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span> <span class="cm">/*若整除则为假 ...</span></pre></div><p class="subheader">Category: <a href="./category/algorithm.html">algorithm</a>
-
-    Tagged: 
-    <a href="./tag/algorithm.html">algorithm </a>
-    <a href="./tag/prime-number.html">prime number </a>
-</p>
-
-
-
-                <a class="button radius secondary small right" href="./posts/algorithm/prime-number.html">Read More</a>
                 <hr  class="gradient"/>
             </article>
 

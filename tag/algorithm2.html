@@ -67,7 +67,7 @@
         {text: "system call", weight: 0.0125, link: {href: "/tag/system-call.html"}},
         {text: "tcp/ip", weight: 0.0125, link: {href: "/tag/tcpip.html"}},
         {text: "tls", weight: 0.0125, link: {href: "/tag/tls.html"}},
-        {text: "c", weight: 0.175, link: {href: "/tag/c.html"}},
+        {text: "c", weight: 0.1875, link: {href: "/tag/c.html"}},
         {text: "kernel thread", weight: 0.0125, link: {href: "/tag/kernel-thread.html"}},
         {text: "thread", weight: 0.025, link: {href: "/tag/thread.html"}},
         {text: "queue", weight: 0.0125, link: {href: "/tag/queue.html"}},
@@ -116,7 +116,7 @@
         {text: "stack", weight: 0.0125, link: {href: "/tag/stack.html"}},
         {text: "getuid", weight: 0.0125, link: {href: "/tag/getuid.html"}},
         {text: "eof", weight: 0.0125, link: {href: "/tag/eof.html"}},
-        {text: "algorithm", weight: 0.3875, link: {href: "/tag/algorithm.html"}},
+        {text: "algorithm", weight: 0.4, link: {href: "/tag/algorithm.html"}},
         {text: "line join", weight: 0.0125, link: {href: "/tag/line-join.html"}},
         {text: "register", weight: 0.0125, link: {href: "/tag/register.html"}},
         {text: "mro", weight: 0.0125, link: {href: "/tag/mro.html"}},
@@ -158,6 +158,44 @@
     <!-- Main Blog Content -->
     <div class="large-9 columns">
         
+        
+
+
+            <article>
+                <a href="../posts/algorithm/prime-number.html"><h3 class="article-title">素数算法</h3></a>
+<h6 class="subheader" title="2014-06-15T19:00:00">Sun 15 June 2014
+</h6>
+
+
+<p>素数的定义: 除了能被1和它本身整除而不能被其他任何数整除的数。根据素数定义 只需要用2到n-1去除n，如果都除不尽，则n是素数，否则，只要其中有一个数能整除则n不是素数。</p>
+<h3>原始算法</h3>
+<div class="highlight"><pre><span class="kt">bool</span> <span class="nf">is_primer</span><span class="p">(</span><span class="kt">int</span> <span class="n">num</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">num</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">num</span> <span class="o">%</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span> <span class="cm">/*若整除则为假，否则为真*/</span>
+            <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="nb">true</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<h3>从2到sqrt(N)的整数是否整除N</h3>
+<div class="highlight"><pre><span class="kt">bool</span> <span class="nf">is_primer</span><span class="p">(</span><span class="kt">int</span> <span class="n">num</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span> <span class="n">i</span> <span class="o">*</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">num</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">num</span> <span class="o">%</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span> <span class="cm">/*若整除则为假 ...</span></pre></div><p class="subheader">Category: <a href="../category/algorithm.html">algorithm</a>
+
+    Tagged: 
+    <a href="../tag/algorithm.html">algorithm </a>
+    <a href="../tag/prime-number.html">prime number </a>
+</p>
+
+
+
+                <a class="button radius secondary small right" href="../posts/algorithm/prime-number.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
         
 
 
@@ -277,17 +315,17 @@
 
 
             <article>
-                <a href="../posts/algorithm/matrix.html"><h3 class="article-title">矩阵乘法优化</h3></a>
+                <a href="../posts/algorithm/matrix.html"><h3 class="article-title">矩阵</h3></a>
 <h6 class="subheader" title="2014-06-12T12:00:00">Thu 12 June 2014
 </h6>
 
 
-<ul>
-<li><a href="http://zh.wikipedia.org/wiki/%E7%9F%A9%E9%98%B5%E6%8C%87%E6%95%B0">http://zh.wikipedia.org/wiki/%E7%9F%A9%E9%98%B5%E6%8C%87%E6%95%B0</a></li>
-<li><a href="http://www.zhihu.com/question/19706331">http://www.zhihu.com/question/19706331</a></li>
-<li><a href="http://www.ituring.com.cn/article/17978">http://www.ituring.com.cn/article/17978</a></li>
-<li><a href="http://www.zhihu.com/question/22854639">http://www.zhihu.com/question/22854639</a></li>
-</ul><p class="subheader">Category: <a href="../category/algorithm.html">algorithm</a>
+<h3>Search in a row wise and column wise sorted matrix</h3>
+<blockquote>
+<p>Given an n x n matrix, where every row and column is sorted in increasing order. Given a number x, how to decide whether this x is in the matrix. The designed algorithm should have linear time complexity.</p>
+</blockquote>
+<p>Solution:
+- Start ...</p><p class="subheader">Category: <a href="../category/algorithm.html">algorithm</a>
 
     Tagged: 
     <a href="../tag/algorithm.html">algorithm </a>
@@ -376,14 +414,20 @@
 </h6>
 
 
-<p>子数组积， 和， 递增</p>
+<h3>子数组之和最大值</h3>
+<p>设最大的一段数组为(A[i], ..., A[j]), 跟A[0]的关系是:</p>
 <ul>
-<li>从一列数中筛除尽可能少的数使得从左往右看，这些数是从小到大再从大到小的</li>
+<li>i=j=0 元素A[0]本身是最大和</li>
+<li>0=i&lt;j 从A[0]开始的最大和</li>
+<li>0&lt;i  跟A[0] 没有关系</li>
 </ul>
-<p>refer:</p>
-<ul>
-<li><a href="http://blog.csdn.net/v_JULY_v/article/details/6419466">http://blog.csdn.net/v_JULY_v/article/details/6419466</a></li>
-</ul><p class="subheader">Category: <a href="../category/adt.html">adt</a>
+<p>通过动态规划来解决.</p>
+<div class="highlight"><pre><span class="kt">int</span> <span class="nf">max</span><span class="p">(</span><span class="kt">int</span> <span class="n">x</span><span class="p">,</span> <span class="kt">int</span> <span class="n">y</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="n">x</span> <span class="o">&gt;</span> <span class="n">y</span> <span class="o">?</span> <span class="n">x</span> <span class="o">:</span> <span class="n">y</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="nf">find_max_sum</span><span class="p">(</span><span class="kt">int</span> <span class="o">*</span><span class="n">array</span><span class="p">,</span> <span class="kt">int</span> <span class="n">n</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kt">int</span> <span class="n">max_curr</span><span class="p">,</span> <span class="n">max_sum</span><span class="p">,</span> <span class="n">i</span><span class="p">;</span> <span class="c1">//max_curr 就是上面的 ...</span></pre></div><p class="subheader">Category: <a href="../category/adt.html">adt</a>
 
     Tagged: 
     <a href="../tag/algorithm.html">algorithm </a>
@@ -622,41 +666,6 @@
 
 
                 <a class="button radius secondary small right" href="../posts/algorithm/design.html">Read More</a>
-                <hr  class="gradient"/>
-            </article>
-
-        
-
-
-            <article>
-                <a href="../posts/interview/complexity-interview.html"><h3 class="article-title">算法的复杂度面试题目</h3></a>
-<h6 class="subheader" title="2014-06-07T19:00:00">Sat 07 June 2014
-</h6>
-
-
-<ol>
-<li>
-<blockquote>
-<p>简述：实现一个函数，对一个正整数n，算得到1需要的最少操作次数：
-如果n为偶数，将其处以2；如果n为奇数，可以加1或减1；一直处理下去。
-要求：实现函数（实现尽可能高效）int func(unsigned int n)；n为输入，返回最小的运算次数。</p>
-</blockquote>
-</li>
-</ol>
-<p>refer:</p>
-<ul>
-<li><a href="http://zhiqiang.org/blog/science/computer-science/complexity-of-recursive-algorithm.html">http://zhiqiang.org/blog/science/computer-science/complexity-of-recursive-algorithm.html</a></li>
-<li><a href="http://geeksquiz.com/algorithms/analysis-of-algorithms/">http://geeksquiz.com/algorithms/analysis-of-algorithms/</a></li>
-</ul><p class="subheader">Category: <a href="../category/interview.html">interview</a>
-
-    Tagged: 
-    <a href="../tag/algorithm.html">algorithm </a>
-    <a href="../tag/algorithm-analysis.html">algorithm analysis </a>
-</p>
-
-
-
-                <a class="button radius secondary small right" href="../posts/interview/complexity-interview.html">Read More</a>
                 <hr  class="gradient"/>
             </article>
 

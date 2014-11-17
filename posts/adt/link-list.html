@@ -70,8 +70,8 @@
         {text: "c", weight: 0.1875, link: {href: "/tag/c.html"}},
         {text: "kernel thread", weight: 0.0125, link: {href: "/tag/kernel-thread.html"}},
         {text: "thread", weight: 0.025, link: {href: "/tag/thread.html"}},
-        {text: "queue", weight: 0.0125, link: {href: "/tag/queue.html"}},
-        {text: "data structure", weight: 0.1, link: {href: "/tag/data-structure.html"}},
+        {text: "queue", weight: 0.0375, link: {href: "/tag/queue.html"}},
+        {text: "data structure", weight: 0.1375, link: {href: "/tag/data-structure.html"}},
         {text: "setuid", weight: 0.025, link: {href: "/tag/setuid.html"}},
         {text: "shuffle", weight: 0.0125, link: {href: "/tag/shuffle.html"}},
         {text: "encoding", weight: 0.0125, link: {href: "/tag/encoding.html"}},
@@ -113,10 +113,10 @@
         {text: "quote", weight: 0.0125, link: {href: "/tag/quote.html"}},
         {text: "class", weight: 0.0125, link: {href: "/tag/class.html"}},
         {text: "mangling", weight: 0.0125, link: {href: "/tag/mangling.html"}},
-        {text: "stack", weight: 0.0125, link: {href: "/tag/stack.html"}},
+        {text: "stack", weight: 0.0375, link: {href: "/tag/stack.html"}},
         {text: "getuid", weight: 0.0125, link: {href: "/tag/getuid.html"}},
         {text: "eof", weight: 0.0125, link: {href: "/tag/eof.html"}},
-        {text: "algorithm", weight: 0.4, link: {href: "/tag/algorithm.html"}},
+        {text: "algorithm", weight: 0.4375, link: {href: "/tag/algorithm.html"}},
         {text: "line join", weight: 0.0125, link: {href: "/tag/line-join.html"}},
         {text: "register", weight: 0.0125, link: {href: "/tag/register.html"}},
         {text: "mro", weight: 0.0125, link: {href: "/tag/mro.html"}},
@@ -167,10 +167,7 @@
 </h6>
 
 
-    <ol>
-<li>
-<p>定义
-链表是一组数据项的集合, 其中每个数据项是节点的一部分，每个节点包含指向下一个节点的链接. 对比数组链表的优缺点如下:可以高效的重排数据项例如插入节点的复杂度为O(1)，但是不能快速的访问任意的数据项，只能沿着链表一个一个节点的访问.</p>
+    <p>链表是一组数据项的集合, 其中每个数据项是节点的一部分，每个节点包含指向下一个节点的链接. 对比数组链表的优缺点如下:可以高效的重排数据项例如插入节点的复杂度为O(1)，但是不能快速的访问任意的数据项，只能沿着链表一个一个节点的访问.</p>
 <ul>
 <li>
 <p>优点</p>
@@ -187,9 +184,7 @@
 </ul>
 </li>
 </ul>
-</li>
-<li>
-<p>分类</p>
+<h3>分类</h3>
 <ul>
 <li>单链表(Singly linked list)<br />
 它包含两个域，一个信息域和一个指针域。这个链接指向列表中的下一个节点，而最后一个节点则指向一个空值。</li>
@@ -198,13 +193,11 @@
 <li>循环链表(Circular list)<br />
 在一个 循环链表中, 首节点和末节点被连接在一起。这种方式在单向和双向链表中皆可实现。</li>
 </ul>
-</li>
-<li>
-<p>基本操作</p>
+<h3>基本操作</h3>
 <ul>
 <li>
 <p>插入(在指定元素之前插入新结点)</p>
-<div class="highlight"><pre> <span class="kt">void</span> <span class="nf">insert_afteri</span><span class="p">(</span><span class="n">link</span> <span class="n">head</span><span class="p">,</span> <span class="kt">int</span> <span class="n">i</span><span class="p">,</span> <span class="kt">item_t</span> <span class="n">x</span><span class="p">)</span> <span class="p">{</span><span class="c1">//第i个元素之后插入, i从0开始</span>
+<div class="highlight"><pre> <span class="kt">void</span> <span class="nf">insert_afteri</span><span class="p">(</span><span class="n">link</span> <span class="n">head</span><span class="p">,</span> <span class="kt">int</span> <span class="n">i</span><span class="p">,</span> <span class="kt">item_t</span> <span class="n">x</span><span class="p">)</span> <span class="p">{</span><span class="c1">//第i个元素之后插入</span>
      <span class="c1">//判断第i个节点是否存在</span>
      <span class="n">link</span> <span class="n">p</span> <span class="o">=</span> <span class="n">head</span><span class="p">,</span> <span class="n">pnode</span><span class="p">;</span>
      <span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
@@ -274,103 +267,6 @@
 
 </li>
 </ul>
-</li>
-<li>
-<p>扩展问题  </p>
-<ul>
-<li>
-<p>Merge the two sorted link list in O(n) time and O(1) space  </p>
-<ul>
-<li>
-<p>非递归实现，分析:分别用指针p1，p2来遍历两个链表，如果当前p1指向的数据小于p2指向的数据，则将p1指向的结点归入合并后的链表中，否则，将p2指向的结点归入合并后的链表中。如果有一个链表遍历结束，则把未结束的链表连接到合并后的链表尾部。</p>
-<div class="highlight"><pre><span class="n">link</span> <span class="nf">merge_link</span><span class="p">(</span><span class="n">link</span> <span class="n">a</span><span class="p">,</span> <span class="n">link</span> <span class="n">b</span><span class="p">)</span> <span class="p">{</span><span class="c1">//非递归实现</span>
-    <span class="n">link</span> <span class="n">c</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">,</span> <span class="n">p1</span> <span class="o">=</span> <span class="n">a</span><span class="p">,</span> <span class="n">p2</span> <span class="o">=</span> <span class="n">b</span><span class="p">,</span> <span class="n">tmp</span><span class="p">;</span>
-    <span class="k">if</span> <span class="p">(</span><span class="n">p1</span><span class="o">-&gt;</span><span class="n">item</span> <span class="o">&lt;</span> <span class="n">p2</span><span class="o">-&gt;</span><span class="n">item</span><span class="p">)</span> <span class="p">{</span><span class="c1">//初始化c</span>
-        <span class="n">c</span> <span class="o">=</span> <span class="n">p1</span><span class="p">;</span>
-        <span class="n">p1</span> <span class="o">=</span> <span class="n">p1</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
-    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-        <span class="n">c</span> <span class="o">=</span> <span class="n">p2</span><span class="p">;</span>
-        <span class="n">p2</span> <span class="o">=</span> <span class="n">p2</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
-    <span class="p">}</span>
-    <span class="n">tmp</span> <span class="o">=</span> <span class="n">c</span><span class="p">;</span>
-    <span class="k">while</span> <span class="p">(</span><span class="n">p1</span> <span class="o">!=</span> <span class="nb">NULL</span> <span class="o">&amp;&amp;</span> <span class="n">p2</span> <span class="o">!=</span> <span class="nb">NULL</span><span class="p">)</span> <span class="p">{</span>
-        <span class="k">if</span> <span class="p">(</span><span class="n">p1</span><span class="o">-&gt;</span><span class="n">item</span> <span class="o">&lt;</span> <span class="n">p2</span><span class="o">-&gt;</span><span class="n">item</span><span class="p">)</span> <span class="p">{</span>
-        <span class="err">¦</span>   <span class="n">tmp</span><span class="o">-&gt;</span><span class="n">next</span> <span class="o">=</span> <span class="n">p1</span><span class="p">;</span>
-        <span class="err">¦</span>   <span class="n">p1</span> <span class="o">=</span> <span class="n">p1</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
-        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-        <span class="err">¦</span>   <span class="n">tmp</span><span class="o">-&gt;</span><span class="n">next</span> <span class="o">=</span> <span class="n">p2</span><span class="p">;</span>
-        <span class="err">¦</span>   <span class="n">p2</span> <span class="o">=</span> <span class="n">p2</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
-        <span class="p">}</span>
-        <span class="n">tmp</span> <span class="o">=</span> <span class="n">tmp</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
-    <span class="p">}</span>
-
-    <span class="k">if</span> <span class="p">(</span><span class="n">p1</span> <span class="o">!=</span> <span class="nb">NULL</span><span class="p">)</span> <span class="p">{</span>
-        <span class="n">tmp</span><span class="o">-&gt;</span><span class="n">next</span> <span class="o">=</span> <span class="n">p1</span><span class="p">;</span>
-    <span class="p">}</span>
-
-    <span class="k">if</span> <span class="p">(</span><span class="n">p2</span> <span class="o">!=</span> <span class="nb">NULL</span><span class="p">)</span> <span class="p">{</span>
-        <span class="n">tmp</span><span class="o">-&gt;</span><span class="n">next</span> <span class="o">=</span> <span class="n">p2</span><span class="p">;</span>
-    <span class="p">}</span>
-
-    <span class="k">return</span> <span class="n">c</span><span class="p">;</span>
-<span class="p">}</span>
-</pre></div>
-
-
-</li>
-<li>
-<p>递归实现</p>
-<div class="highlight"><pre><span class="n">link</span> <span class="nf">merge_link2</span><span class="p">(</span><span class="n">link</span> <span class="n">a</span><span class="p">,</span> <span class="n">linkb</span><span class="p">)</span> <span class="p">{</span><span class="c1">//递归实现，但是不满足空间复杂度O(1)要求</span>
-    <span class="n">link</span> <span class="n">c</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
-    <span class="k">if</span> <span class="p">(</span><span class="n">a</span> <span class="o">==</span> <span class="nb">NULL</span><span class="p">)</span> <span class="k">return</span> <span class="n">b</span><span class="p">;</span>
-    <span class="k">if</span> <span class="p">(</span><span class="n">b</span> <span class="o">==</span> <span class="nb">NULL</span><span class="p">)</span> <span class="k">return</span> <span class="n">a</span><span class="p">;</span>
-    <span class="k">if</span> <span class="p">(</span><span class="n">a</span><span class="o">-&gt;</span><span class="n">item</span> <span class="o">&lt;</span> <span class="n">b</span><span class="o">-&gt;</span><span class="n">item</span><span class="p">)</span> <span class="p">{</span>
-        <span class="n">c</span> <span class="o">=</span> <span class="n">a</span><span class="p">;</span>
-        <span class="n">c</span><span class="o">-&gt;</span><span class="n">next</span> <span class="o">=</span> <span class="n">merge_link2</span><span class="p">(</span><span class="n">a</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">,</span> <span class="n">b</span><span class="p">);</span>
-    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-        <span class="n">c</span> <span class="o">=</span> <span class="n">b</span><span class="p">;</span>
-        <span class="n">c</span><span class="o">-&gt;</span><span class="n">next</span> <span class="o">=</span> <span class="n">merge_link2</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">);</span>
-    <span class="p">}</span>
-    <span class="k">return</span> <span class="n">c</span><span class="p">;</span>
-<span class="p">}</span>
-</pre></div>
-
-
-</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>
-<p>Floyd 环查找算法</p>
-</li>
-<li>两链表相交问题</li>
-<li>
-<p>删除排序数组中重复的元素</p>
-<p>public class Solution {
-    public ListNode deleteDuplicates(ListNode head) {
-        if(head == null || head.next == null)
-            return head;</p>
-<div class="highlight"><pre>    <span class="n">ListNode</span> <span class="n">p</span> <span class="o">=</span> <span class="n">head</span><span class="p">;</span>
-
-    <span class="k">while</span><span class="p">(</span> <span class="n">p</span><span class="o">!=</span> <span class="n">null</span> <span class="o">&amp;&amp;</span> <span class="n">p</span><span class="p">.</span><span class="n">next</span> <span class="o">!=</span> <span class="n">null</span><span class="p">){</span>
-        <span class="k">if</span><span class="p">(</span><span class="n">p</span><span class="p">.</span><span class="n">val</span> <span class="o">==</span> <span class="n">p</span><span class="p">.</span><span class="n">next</span><span class="p">.</span><span class="n">val</span><span class="p">){</span>
-            <span class="n">p</span><span class="p">.</span><span class="n">next</span> <span class="o">=</span> <span class="n">p</span><span class="p">.</span><span class="n">next</span><span class="p">.</span><span class="n">next</span><span class="p">;</span>
-        <span class="p">}</span><span class="k">else</span><span class="p">{</span>
-            <span class="n">p</span> <span class="o">=</span> <span class="n">p</span><span class="p">.</span><span class="n">next</span><span class="p">;</span> 
-        <span class="p">}</span>
-    <span class="p">}</span>
-
-    <span class="k">return</span> <span class="n">head</span><span class="p">;</span>
-<span class="p">}</span>
-</pre></div>
-
-
-<p>}</p>
-</li>
-</ol>
-<p>http://m.blog.csdn.net/blog/sangni007/8218552
-http://bluefish.blog.51cto.com/214870/68462</p>
 <p>refer:</p>
 <ul>
 <li><a href="http://blog.csdn.net/dxdxsmy/article/details/7346326">http://blog.csdn.net/dxdxsmy/article/details/7346326</a></li>

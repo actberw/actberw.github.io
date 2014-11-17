@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8" />
+    <!-- Set the viewport width to device width for mobile -->
+    <meta name="viewport" content="width=device-width" />
+
+    <title>单链表常见问题</title>
+
+    <link rel="stylesheet" href="../../theme/css/normalize.css" />
+    <link rel="stylesheet" href="../../theme/css/foundation.min.css" />
+    <link rel="stylesheet" href="../../theme/css/style.css" />
+    <link rel="stylesheet" href="../../theme/css/pygments.css" />	
+    <link rel="stylesheet" type="text/css" href="../../theme/css/jqcloud.css" />
+    <script src="../../theme/js/vendor/custom.modernizr.js"></script>
+    <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+          "HTML-CSS": {
+        styles: {
+          ".MathJax .mo, .MathJax .mi": {color: "black ! important"}}
+            },
+              tex2jax: {inlineMath: [['$','$'], ['\\\\(','\\\\)']],processEscapes: true}
+        });
+    </script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../../theme/js/jquery.min.js"></script>
+    <script type="text/javascript" src="../../theme/js/jqcloud-1.0.4.min.js"></script>
+    
+    <script type="text/javascript">
+	var word_list = [
+        {text: "gdt", weight: 0.0125, link: {href: "/tag/gdt.html"}},
+        {text: "pelican", weight: 0.0125, link: {href: "/tag/pelican.html"}},
+        {text: "random", weight: 0.05, link: {href: "/tag/random.html"}},
+        {text: "zmap", weight: 0.0125, link: {href: "/tag/zmap.html"}},
+        {text: "algorithm analysis", weight: 0.05, link: {href: "/tag/algorithm-analysis.html"}},
+        {text: "unicode", weight: 0.0125, link: {href: "/tag/unicode.html"}},
+        {text: "mysql", weight: 0.05, link: {href: "/tag/mysql.html"}},
+        {text: "ext4", weight: 0.0125, link: {href: "/tag/ext4.html"}},
+        {text: "umask", weight: 0.0125, link: {href: "/tag/umask.html"}},
+        {text: "nmap", weight: 0.0125, link: {href: "/tag/nmap.html"}},
+        {text: "ls", weight: 0.0125, link: {href: "/tag/ls.html"}},
+        {text: "triangle", weight: 0.0125, link: {href: "/tag/triangle.html"}},
+        {text: "object model", weight: 0.0125, link: {href: "/tag/object-model.html"}},
+        {text: "python", weight: 0.1375, link: {href: "/tag/python.html"}},
+        {text: "risc", weight: 0.0125, link: {href: "/tag/risc.html"}},
+        {text: "chmod", weight: 0.025, link: {href: "/tag/chmod.html"}},
+        {text: "underscore", weight: 0.0125, link: {href: "/tag/underscore.html"}},
+        {text: "bit", weight: 0.0125, link: {href: "/tag/bit.html"}},
+        {text: "daemon", weight: 0.0125, link: {href: "/tag/daemon.html"}},
+        {text: "signal", weight: 0.0125, link: {href: "/tag/signal.html"}},
+        {text: "real mode", weight: 0.025, link: {href: "/tag/real-mode.html"}},
+        {text: "binary search", weight: 0.0125, link: {href: "/tag/binary-search.html"}},
+        {text: "ldt", weight: 0.0125, link: {href: "/tag/ldt.html"}},
+        {text: "orphan", weight: 0.0125, link: {href: "/tag/orphan.html"}},
+        {text: "prime number", weight: 0.0125, link: {href: "/tag/prime-number.html"}},
+        {text: "xtrabackup", weight: 0.025, link: {href: "/tag/xtrabackup.html"}},
+        {text: "function call", weight: 0.0125, link: {href: "/tag/function-call.html"}},
+        {text: "ring", weight: 0.0125, link: {href: "/tag/ring.html"}},
+        {text: "matrix", weight: 0.0125, link: {href: "/tag/matrix.html"}},
+        {text: "cpu ring", weight: 0.0125, link: {href: "/tag/cpu-ring.html"}},
+        {text: "metaclass", weight: 0.0125, link: {href: "/tag/metaclass.html"}},
+        {text: "method", weight: 0.0125, link: {href: "/tag/method.html"}},
+        {text: "assembly", weight: 0.025, link: {href: "/tag/assembly.html"}},
+        {text: "stack frame", weight: 0.0125, link: {href: "/tag/stack-frame.html"}},
+        {text: "zombie", weight: 0.0125, link: {href: "/tag/zombie.html"}},
+        {text: "protect mode", weight: 0.0125, link: {href: "/tag/protect-mode.html"}},
+        {text: "zbr", weight: 0.0125, link: {href: "/tag/zbr.html"}},
+        {text: "system call", weight: 0.0125, link: {href: "/tag/system-call.html"}},
+        {text: "tcp/ip", weight: 0.0125, link: {href: "/tag/tcpip.html"}},
+        {text: "tls", weight: 0.0125, link: {href: "/tag/tls.html"}},
+        {text: "c", weight: 0.1875, link: {href: "/tag/c.html"}},
+        {text: "kernel thread", weight: 0.0125, link: {href: "/tag/kernel-thread.html"}},
+        {text: "thread", weight: 0.025, link: {href: "/tag/thread.html"}},
+        {text: "queue", weight: 0.0375, link: {href: "/tag/queue.html"}},
+        {text: "data structure", weight: 0.1375, link: {href: "/tag/data-structure.html"}},
+        {text: "setuid", weight: 0.025, link: {href: "/tag/setuid.html"}},
+        {text: "shuffle", weight: 0.0125, link: {href: "/tag/shuffle.html"}},
+        {text: "encoding", weight: 0.0125, link: {href: "/tag/encoding.html"}},
+        {text: "c/c++", weight: 0.0125, link: {href: "/tag/cc.html"}},
+        {text: "float", weight: 0.0125, link: {href: "/tag/float.html"}},
+        {text: "apt", weight: 0.0125, link: {href: "/tag/apt.html"}},
+        {text: "vim", weight: 0.0125, link: {href: "/tag/vim.html"}},
+        {text: "sourcelist", weight: 0.0125, link: {href: "/tag/sourcelist.html"}},
+        {text: "linux", weight: 0.1875, link: {href: "/tag/linux.html"}},
+        {text: "array", weight: 0.0875, link: {href: "/tag/array.html"}},
+        {text: "callstack", weight: 0.0125, link: {href: "/tag/callstack.html"}},
+        {text: "debian", weight: 0.0125, link: {href: "/tag/debian.html"}},
+        {text: "type", weight: 0.0125, link: {href: "/tag/type.html"}},
+        {text: "sort", weight: 0.0125, link: {href: "/tag/sort.html"}},
+        {text: "masscan", weight: 0.0125, link: {href: "/tag/masscan.html"}},
+        {text: "btrfs", weight: 0.0125, link: {href: "/tag/btrfs.html"}},
+        {text: "gas", weight: 0.0125, link: {href: "/tag/gas.html"}},
+        {text: "user thread", weight: 0.0125, link: {href: "/tag/user-thread.html"}},
+        {text: "c3", weight: 0.0125, link: {href: "/tag/c3.html"}},
+        {text: "stty", weight: 0.0125, link: {href: "/tag/stty.html"}},
+        {text: "compile", weight: 0.0125, link: {href: "/tag/compile.html"}},
+        {text: "descriptor", weight: 0.0125, link: {href: "/tag/descriptor.html"}},
+        {text: "hdd", weight: 0.0125, link: {href: "/tag/hdd.html"}},
+        {text: "setresuid", weight: 0.0125, link: {href: "/tag/setresuid.html"}},
+        {text: "str", weight: 0.025, link: {href: "/tag/str.html"}},
+        {text: "cisc", weight: 0.0125, link: {href: "/tag/cisc.html"}},
+        {text: "a20", weight: 0.0125, link: {href: "/tag/a20.html"}},
+        {text: "shebang", weight: 0.0125, link: {href: "/tag/shebang.html"}},
+        {text: "process", weight: 0.0125, link: {href: "/tag/process.html"}},
+        {text: "poiner", weight: 0.0125, link: {href: "/tag/poiner.html"}},
+        {text: "sticky", weight: 0.0125, link: {href: "/tag/sticky.html"}},
+        {text: "__init__", weight: 0.0125, link: {href: "/tag/__init__.html"}},
+        {text: "latency", weight: 0.0125, link: {href: "/tag/latency.html"}},
+        {text: "gcd", weight: 0.0125, link: {href: "/tag/gcd.html"}},
+        {text: "arm", weight: 0.0125, link: {href: "/tag/arm.html"}},
+        {text: "utf-8", weight: 0.0125, link: {href: "/tag/utf-8.html"}},
+        {text: "fs", weight: 0.0125, link: {href: "/tag/fs.html"}},
+        {text: "x86", weight: 0.025, link: {href: "/tag/x86.html"}},
+        {text: "quote", weight: 0.0125, link: {href: "/tag/quote.html"}},
+        {text: "class", weight: 0.0125, link: {href: "/tag/class.html"}},
+        {text: "mangling", weight: 0.0125, link: {href: "/tag/mangling.html"}},
+        {text: "stack", weight: 0.0375, link: {href: "/tag/stack.html"}},
+        {text: "getuid", weight: 0.0125, link: {href: "/tag/getuid.html"}},
+        {text: "eof", weight: 0.0125, link: {href: "/tag/eof.html"}},
+        {text: "algorithm", weight: 0.4375, link: {href: "/tag/algorithm.html"}},
+        {text: "line join", weight: 0.0125, link: {href: "/tag/line-join.html"}},
+        {text: "register", weight: 0.0125, link: {href: "/tag/register.html"}},
+        {text: "mro", weight: 0.0125, link: {href: "/tag/mro.html"}},
+        ];
+        $(function() {
+            $("#tag-cloud").jQCloud(word_list);
+        });
+    </script>
+
+</head>
+
+<body>
+
+<!-- Nav Bar -->
+<nav>
+<div class="top-bar">
+<div class="row">
+    <div class="large-9 large-centered columns">
+	    <h1><a href="../..">记录一些工作中的笔记</a></h1>
+    </div>
+</div>
+</div>
+
+<!-- Show menu items and pages -->
+<div class="row">
+<div class="large-9 columns">
+    <ul class="button-group navigation">
+
+    </ul>
+</div>
+</div>
+</nav>
+<!-- End Nav -->
+
+
+<!-- Main Page Content and Sidebar -->
+<div class="row">
+
+    <!-- Main Blog Content -->
+    <div class="large-9 columns">
+<article>
+    <header>
+        <h3 class="article-title"><a href="../../posts/adt/link-list-part-2.html" rel="bookmark"
+        title="Permalink to 单链表常见问题">单链表常见问题</a></h3>
+    </header>
+
+<h6 class="subheader" title="2014-06-12T20:00:00">Thu 12 June 2014
+</h6>
+
+
+    <h3>访问</h3>
+<blockquote>
+<ol>
+<li>找出单链表的倒数第K个元素(仅允许遍历一遍链表)</li>
+<li>找出单链表的中间元素</li>
+</ol>
+</blockquote>
+<p>对于#1 龟兔算法(快慢指针). fast, slow两个指针, fast先前进到第K个位置, 然后两个指针同步向后移, 知道fast到达末尾(fast-&gt;next == NULL).</p>
+<p>对于#2 同样是龟兔算法(快慢指针), fast, slow两个指针, fast移动速度是slow 的两倍.</p>
+<h3>有环</h3>
+<blockquote>
+<ol>
+<li>判断单链表是否有环(Floyd 环查找算法)</li>
+<li>如何知道环的长度</li>
+<li>如何找到换入口</li>
+<li>求带环链表的长度</li>
+<li>如何将有环的链表变成单链表</li>
+</ol>
+</blockquote>
+<p><img alt="有环链表" src="/img/link-cycle.jpg" /></p>
+<p>对于#1 定义fast, slow两个指针, fast移动速度是slow 得两倍, 如果fast == low 则有环, 否则无环.</p>
+<div class="highlight"><pre><span class="kt">int</span> <span class="nf">has_cycle</span><span class="p">(</span><span class="n">link</span> <span class="o">*</span><span class="n">a</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">link</span> <span class="n">fast</span><span class="p">,</span> <span class="n">slow</span><span class="p">;</span>
+    <span class="n">fast</span> <span class="o">=</span> <span class="n">slow</span> <span class="o">=</span> <span class="n">a</span><span class="p">;</span>
+    <span class="k">while</span> <span class="p">(</span><span class="n">fast</span> <span class="o">!=</span> <span class="nb">NULL</span> <span class="o">&amp;&amp;</span> <span class="n">fast</span><span class="o">-&gt;</span><span class="n">next</span> <span class="o">!=</span> <span class="nb">NULL</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">slow</span> <span class="o">=</span> <span class="n">slow</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
+        <span class="n">fast</span> <span class="o">=</span> <span class="n">fast</span><span class="o">-&gt;</span><span class="n">next</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">fast</span> <span class="o">==</span> <span class="n">slow</span><span class="p">)</span>
+            <span class="k">return</span> <span class="mi">1</span> <span class="c1">// 有环</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<p>对于#2 有两种解法: 第一次相遇后，让fast停着不走了，slow继续走，记录到下次相遇时循环了几次; 或者第一次相遇时slow走过的距离：a+b，fast走过的距离：a+b+c+b。 因为fast的速度是slow的两倍，所以fast走的距离是slow的两倍，有 2(a+b) = a+b+c+b，可以得到a=c（这个结论很重要！）。 我们发现L=b+c=a+b，也就是说，从一开始到二者第一次相遇，循环的次数就等于环的长度。</p>
+<p>对于#3 我们已经得到了结论a=c，那么让两个指针分别从X和Z开始走，每次走一步，那么正好会在Y相遇！也就是环的第一个节点。</p>
+<p>对于#4 知道了环长度和环入口, 两段长度加起来就是.</p>
+<p>对于#5 将Y之前得next = NULL</p>
+<h3>相交</h3>
+<blockquote>
+<ol>
+<li>如何知道两个单链表（无环）是否相交?</li>
+<li>如果两个单链表（无环）相交,如何知道它们相交的第一个节点是什么?</li>
+<li>如何知道两个单链表（有环）是否相交？</li>
+<li>如果两个单链表（有环）相交，如何知道它们相交的第一个节点是什么？</li>
+</ol>
+</blockquote>
+<p>对于#1 判断两链表最后一个节点是否相同，如果相交，则尾节点肯定是同一节点. 或者将链表A的尾节点指向链表B(人为构环)，如果B链表有环，则两个链表相交，此时从链表B的头指针往下遍历，如果能够回到B，则说明相交.</p>
+<p>对于#2 依然是快慢指针, 首先先取得两个链表A和B的长度len(A)和len(B), 沿着A和B链表中较长的链表遍历，使用指针追赶的方法, 设定两个指针fast、slow。fast先出发前进(lengthMax-lengthMin)步（即是二者的长度之差）使fast和slow指针到相交点的距离相等,之后两个链表同时前进，每次一步，相遇的第一点即为两个链表相交的第一个点</p>
+<p>对于#3 求出A的环入口，判断其是否在B链表上，如果在，则相交。
+对于#4 两个有环链表相交是指这个环属于两个链表共有, 所以跟无环相交处理方式相同.</p>
+<h3>合并</h3>
+<blockquote>
+<p>Merge the two sorted link list in O(n) time and O(1) space  </p>
+</blockquote>
+<div class="highlight"><pre>   <span class="o">-</span> <span class="err">非递归实现，分析</span><span class="o">:</span><span class="err">分别用指针</span><span class="n">p1</span><span class="err">，</span><span class="n">p2</span><span class="err">来遍历两个链表，如果当前</span><span class="n">p1</span><span class="err">指向的数据小于</span><span class="n">p2</span><span class="err">指向的数据，则将</span><span class="n">p1</span><span class="err">指向的结点归入合并后的链表中，否则，将</span><span class="n">p2</span><span class="err">指向的结点归入合并后的链表中。如果有一个链表遍历结束，则把未结束的链表连接到合并后的链表尾部。</span>
+
+            <span class="n">link</span> <span class="n">merge_link</span><span class="p">(</span><span class="n">link</span> <span class="n">a</span><span class="p">,</span> <span class="n">link</span> <span class="n">b</span><span class="p">)</span> <span class="p">{</span><span class="c1">//非递归实现</span>
+                <span class="n">link</span> <span class="n">c</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">,</span> <span class="n">p1</span> <span class="o">=</span> <span class="n">a</span><span class="p">,</span> <span class="n">p2</span> <span class="o">=</span> <span class="n">b</span><span class="p">,</span> <span class="n">tmp</span><span class="p">;</span>
+                <span class="k">if</span> <span class="p">(</span><span class="n">p1</span><span class="o">-&gt;</span><span class="n">item</span> <span class="o">&lt;</span> <span class="n">p2</span><span class="o">-&gt;</span><span class="n">item</span><span class="p">)</span> <span class="p">{</span><span class="c1">//初始化c</span>
+                    <span class="n">c</span> <span class="o">=</span> <span class="n">p1</span><span class="p">;</span>
+                    <span class="n">p1</span> <span class="o">=</span> <span class="n">p1</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
+                <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+                    <span class="n">c</span> <span class="o">=</span> <span class="n">p2</span><span class="p">;</span>
+                    <span class="n">p2</span> <span class="o">=</span> <span class="n">p2</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
+                <span class="p">}</span>
+                <span class="n">tmp</span> <span class="o">=</span> <span class="n">c</span><span class="p">;</span>
+                <span class="k">while</span> <span class="p">(</span><span class="n">p1</span> <span class="o">!=</span> <span class="nb">NULL</span> <span class="o">&amp;&amp;</span> <span class="n">p2</span> <span class="o">!=</span> <span class="nb">NULL</span><span class="p">)</span> <span class="p">{</span>
+                    <span class="k">if</span> <span class="p">(</span><span class="n">p1</span><span class="o">-&gt;</span><span class="n">item</span> <span class="o">&lt;</span> <span class="n">p2</span><span class="o">-&gt;</span><span class="n">item</span><span class="p">)</span> <span class="p">{</span>
+                    <span class="err">¦</span>   <span class="n">tmp</span><span class="o">-&gt;</span><span class="n">next</span> <span class="o">=</span> <span class="n">p1</span><span class="p">;</span>
+                    <span class="err">¦</span>   <span class="n">p1</span> <span class="o">=</span> <span class="n">p1</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
+                    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+                    <span class="err">¦</span>   <span class="n">tmp</span><span class="o">-&gt;</span><span class="n">next</span> <span class="o">=</span> <span class="n">p2</span><span class="p">;</span>
+                    <span class="err">¦</span>   <span class="n">p2</span> <span class="o">=</span> <span class="n">p2</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
+                    <span class="p">}</span>
+                    <span class="n">tmp</span> <span class="o">=</span> <span class="n">tmp</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
+                <span class="p">}</span>
+
+                <span class="k">if</span> <span class="p">(</span><span class="n">p1</span> <span class="o">!=</span> <span class="nb">NULL</span><span class="p">)</span> <span class="p">{</span>
+                    <span class="n">tmp</span><span class="o">-&gt;</span><span class="n">next</span> <span class="o">=</span> <span class="n">p1</span><span class="p">;</span>
+                <span class="p">}</span>
+
+                <span class="k">if</span> <span class="p">(</span><span class="n">p2</span> <span class="o">!=</span> <span class="nb">NULL</span><span class="p">)</span> <span class="p">{</span>
+                    <span class="n">tmp</span><span class="o">-&gt;</span><span class="n">next</span> <span class="o">=</span> <span class="n">p2</span><span class="p">;</span>
+                <span class="p">}</span>
+
+                <span class="k">return</span> <span class="n">c</span><span class="p">;</span>
+            <span class="p">}</span>
+
+    <span class="o">-</span> <span class="err">递归实现</span>
+
+            <span class="n">link</span> <span class="n">merge_link2</span><span class="p">(</span><span class="n">link</span> <span class="n">a</span><span class="p">,</span> <span class="n">linkb</span><span class="p">)</span> <span class="p">{</span><span class="c1">//递归实现，但是不满足空间复杂度O(1)要求</span>
+                <span class="n">link</span> <span class="n">c</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+                <span class="k">if</span> <span class="p">(</span><span class="n">a</span> <span class="o">==</span> <span class="nb">NULL</span><span class="p">)</span> <span class="k">return</span> <span class="n">b</span><span class="p">;</span>
+                <span class="k">if</span> <span class="p">(</span><span class="n">b</span> <span class="o">==</span> <span class="nb">NULL</span><span class="p">)</span> <span class="k">return</span> <span class="n">a</span><span class="p">;</span>
+                <span class="k">if</span> <span class="p">(</span><span class="n">a</span><span class="o">-&gt;</span><span class="n">item</span> <span class="o">&lt;</span> <span class="n">b</span><span class="o">-&gt;</span><span class="n">item</span><span class="p">)</span> <span class="p">{</span>
+                    <span class="n">c</span> <span class="o">=</span> <span class="n">a</span><span class="p">;</span>
+                    <span class="n">c</span><span class="o">-&gt;</span><span class="n">next</span> <span class="o">=</span> <span class="n">merge_link2</span><span class="p">(</span><span class="n">a</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">,</span> <span class="n">b</span><span class="p">);</span>
+                <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+                    <span class="n">c</span> <span class="o">=</span> <span class="n">b</span><span class="p">;</span>
+                    <span class="n">c</span><span class="o">-&gt;</span><span class="n">next</span> <span class="o">=</span> <span class="n">merge_link2</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">);</span>
+                <span class="p">}</span>
+                <span class="k">return</span> <span class="n">c</span><span class="p">;</span>
+            <span class="p">}</span>
+</pre></div>
+
+
+<h3>复制</h3>
+<blockquote>
+<p>You are given a Double Link List with one pointer of each node pointing to the next node just like in a single link list. The second pointer however CAN point to any node in the list and not just the previous node. Now write a program in O(n) time to duplicate this list. That is, write a program which will create a copy of this list.</p>
+</blockquote>
+<p><img alt="链表复制" src="/img/link-list-copy.jpg" /></p>
+<p>第一次遍历将要复制的链表A’ B’ C’ D’插入员链表中，然后再一次遍历复制random指针：A-&gt;next-&gt;random=A-&gt;random-&gt;next;
+恢复很简单：A-&gt;next=A-&gt;next-&gt;next;A’-next=A’-&gt;next-&gt;next;</p>
+<h3>删除</h3>
+<blockquote>
+<p>删除排序数组中重复的元素</p>
+</blockquote>
+<div class="highlight"><pre><span class="n">public</span> <span class="n">class</span> <span class="n">Solution</span> <span class="p">{</span>
+    <span class="n">public</span> <span class="n">ListNode</span> <span class="n">deleteDuplicates</span><span class="p">(</span><span class="n">ListNode</span> <span class="n">head</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">head</span> <span class="o">==</span> <span class="n">null</span> <span class="o">||</span> <span class="n">head</span><span class="p">.</span><span class="n">next</span> <span class="o">==</span> <span class="n">null</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">head</span><span class="p">;</span>
+
+        <span class="n">ListNode</span> <span class="n">p</span> <span class="o">=</span> <span class="n">head</span><span class="p">;</span>
+
+        <span class="k">while</span><span class="p">(</span> <span class="n">p</span><span class="o">!=</span> <span class="n">null</span> <span class="o">&amp;&amp;</span> <span class="n">p</span><span class="p">.</span><span class="n">next</span> <span class="o">!=</span> <span class="n">null</span><span class="p">){</span>
+            <span class="k">if</span><span class="p">(</span><span class="n">p</span><span class="p">.</span><span class="n">val</span> <span class="o">==</span> <span class="n">p</span><span class="p">.</span><span class="n">next</span><span class="p">.</span><span class="n">val</span><span class="p">)</span>
+                <span class="n">p</span><span class="p">.</span><span class="n">next</span> <span class="o">=</span> <span class="n">p</span><span class="p">.</span><span class="n">next</span><span class="p">.</span><span class="n">next</span><span class="p">;</span>
+            <span class="n">p</span> <span class="o">=</span> <span class="n">p</span><span class="p">.</span><span class="n">next</span><span class="p">;</span> 
+        <span class="p">}</span>
+
+        <span class="k">return</span> <span class="n">head</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<h3>相加(add two numbers)</h3>
+<blockquote>
+<p>You are given two linked lists representing two non-negative numbers. The digits are stored in reverse order and each of their nodes contain a single digit. Add the two numbers and return it as a linked list.</p>
+<p>Input: (2 -&gt; 4 -&gt; 3) + (5 -&gt; 6 -&gt; 4)
+Output: 7 -&gt; 0 -&gt; 8</p>
+</blockquote>
+<p>This is a simple problem. It can be solved by doing the following:</p>
+<ul>
+<li>Use a flag to mark if previous sum is &gt;= 10</li>
+<li>Handle the situation that one list is longer than the other</li>
+<li>Correctly move the 3 pointers p1, p2 and p3 which pointer to two input lists and one output list<div class="highlight"><pre><span class="n">link</span> <span class="nf">add_two_number</span><span class="p">(</span><span class="n">link</span> <span class="n">a</span><span class="p">,</span> <span class="n">link</span> <span class="n">b</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kt">int</span> <span class="n">carry</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="c1">//进位标示</span>
+    <span class="n">link</span> <span class="n">c</span><span class="p">;</span>
+    <span class="n">link</span> <span class="n">p1</span> <span class="o">=</span> <span class="n">a</span><span class="p">,</span> <span class="n">p2</span> <span class="o">=</span> <span class="n">b</span><span class="p">,</span> <span class="n">p3</span><span class="p">;</span>
+    <span class="n">c</span> <span class="o">=</span> <span class="n">new_node</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+    <span class="n">p3</span> <span class="o">=</span> <span class="n">c</span><span class="p">;</span>
+    <span class="k">while</span> <span class="p">(</span><span class="n">p1</span> <span class="o">!=</span> <span class="nb">NULL</span> <span class="o">||</span> <span class="n">p2</span> <span class="o">!=</span> <span class="nb">NULL</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// 对比合并</span>
+         <span class="k">if</span><span class="p">(</span><span class="n">p1</span> <span class="o">!=</span> <span class="nb">NULL</span><span class="p">)</span> <span class="p">{</span>
+             <span class="n">carry</span> <span class="o">+=</span> <span class="n">p1</span><span class="o">-&gt;</span><span class="n">value</span><span class="p">;</span>
+             <span class="n">p1</span> <span class="o">=</span> <span class="n">p1</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
+         <span class="p">}</span> 
+         <span class="k">if</span><span class="p">(</span><span class="n">p2</span> <span class="o">!=</span> <span class="nb">NULL</span><span class="p">)</span> <span class="p">{</span>
+             <span class="n">carry</span> <span class="o">+=</span> <span class="n">p2</span><span class="o">-&gt;</span><span class="n">value</span><span class="p">;</span>
+             <span class="n">p2</span> <span class="o">=</span> <span class="n">p2</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
+         <span class="p">}</span> 
+         <span class="n">p3</span><span class="o">-&gt;</span><span class="n">next</span> <span class="o">=</span> <span class="n">new_node</span><span class="p">(</span><span class="n">carry</span><span class="o">%</span><span class="mi">10</span><span class="p">);</span>
+         <span class="n">p3</span> <span class="o">=</span> <span class="n">p3</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
+         <span class="n">carry</span> <span class="o">/=</span> <span class="mi">10</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="n">carry</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span> 
+        <span class="n">p3</span><span class="o">-&gt;</span><span class="n">next</span> <span class="o">=</span> <span class="n">new_node</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+
+    <span class="k">return</span> <span class="n">c</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+
+
+</li>
+</ul>
+<p>refer:</p>
+<ul>
+<li>[0]<a href="http://vitrivs.blogspot.sg/2013/08/floydcycle-detection.html">http://vitrivs.blogspot.sg/2013/08/floydcycle-detection.html</a></li>
+<li>[1]<a href="http://m.blog.csdn.net/blog/sangni007/8218552">http://m.blog.csdn.net/blog/sangni007/8218552</a></li>
+<li>[2]<a href="http://www.cppblog.com/yuech/archive/2011/04/02/143318.html">http://www.cppblog.com/yuech/archive/2011/04/02/143318.html</a></li>
+<li>[3]<a href="http://www.geeksforgeeks.org/a-linked-list-with-next-and-arbit-pointer/">http://www.geeksforgeeks.org/a-linked-list-with-next-and-arbit-pointer/</a></li>
+</ul>
+<p class="subheader">Category: <a href="../../category/adt.html">adt</a>
+
+    Tagged: 
+    <a href="../../tag/algorithm.html">algorithm </a>
+    <a href="../../tag/data-structure.html">data structure </a>
+</p>
+
+
+
+
+</article>
+    </div>
+    <!-- End Main Content -->
+
+    <!-- Sidebar -->
+    <aside class="large-3 columns">
+    <!-- <h5 class="sidebar-title">Site</h5>
+        <ul class="side-nav">
+            <li><a href="../../archives.html">Archives</a>
+            <li><a href="../../tags.html">Tags</a>
+    </ul> -->
+
+        <h5 class="sidebar-title">Tags</h5>
+	<div id="tag-cloud" style="with: 25%; height: 245px;"></div>
+
+		
+        <h5 class="sidebar-title">Categories</h5>
+        <ul class="side-nav">
+            <li><a href="../../category/adt.html">adt</a></li>
+            <li><a href="../../category/algorithm.html">algorithm</a></li>
+            <li><a href="../../category/c.html">c</a></li>
+            <li><a href="../../category/complexity.html">complexity</a></li>
+            <li><a href="../../category/coroutine.html">coroutine</a></li>
+            <li><a href="../../category/interview.html">interview</a></li>
+            <li><a href="../../category/learn-plan.html">learn-plan</a></li>
+            <li><a href="../../category/misc.html">misc</a></li>
+            <li><a href="../../category/mysql.html">mysql</a></li>
+            <li><a href="../../category/python.html">python</a></li>
+            <li><a href="../../category/security.html">security</a></li>
+            <li><a href="../../category/str.html">str</a></li>
+            <li><a href="../../category/tcp-ip.html">tcp-ip</a></li>
+            <li><a href="../../category/tree.html">tree</a></li>
+            <li><a href="../../category/vim.html">vim</a></li>
+   
+        </ul>
+
+        <h5 class="sidebar-title">Links</h5>
+        <ul class="side-nav">
+            <li><a href="https://github.com/actberw">github</a></li>
+        </ul>
+		
+        <h5 class="sidebar-title">Social</h5>
+        <ul class="side-nav">
+            <li><a href="http://weibo.com/u/1950796544">weibo</a></li>
+        </ul>
+
+    </aside> <!-- End Sidebar -->
+
+</div> <!-- End Main Content and Sidebar -->
+
+
+<!-- Footer -->
+<footer class="row">
+    <div class="large-12 columns">
+        <hr />
+        <div class="row">
+            <div class="large-6 columns">
+              <!--                  <p>记录一些工作中的笔记 by actberw</p> -->
+            </div>
+            </div>
+    </div>
+</footer>

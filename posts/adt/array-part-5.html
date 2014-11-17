@@ -70,8 +70,8 @@
         {text: "c", weight: 0.1875, link: {href: "/tag/c.html"}},
         {text: "kernel thread", weight: 0.0125, link: {href: "/tag/kernel-thread.html"}},
         {text: "thread", weight: 0.025, link: {href: "/tag/thread.html"}},
-        {text: "queue", weight: 0.0125, link: {href: "/tag/queue.html"}},
-        {text: "data structure", weight: 0.1, link: {href: "/tag/data-structure.html"}},
+        {text: "queue", weight: 0.0375, link: {href: "/tag/queue.html"}},
+        {text: "data structure", weight: 0.1375, link: {href: "/tag/data-structure.html"}},
         {text: "setuid", weight: 0.025, link: {href: "/tag/setuid.html"}},
         {text: "shuffle", weight: 0.0125, link: {href: "/tag/shuffle.html"}},
         {text: "encoding", weight: 0.0125, link: {href: "/tag/encoding.html"}},
@@ -113,10 +113,10 @@
         {text: "quote", weight: 0.0125, link: {href: "/tag/quote.html"}},
         {text: "class", weight: 0.0125, link: {href: "/tag/class.html"}},
         {text: "mangling", weight: 0.0125, link: {href: "/tag/mangling.html"}},
-        {text: "stack", weight: 0.0125, link: {href: "/tag/stack.html"}},
+        {text: "stack", weight: 0.0375, link: {href: "/tag/stack.html"}},
         {text: "getuid", weight: 0.0125, link: {href: "/tag/getuid.html"}},
         {text: "eof", weight: 0.0125, link: {href: "/tag/eof.html"}},
-        {text: "algorithm", weight: 0.4, link: {href: "/tag/algorithm.html"}},
+        {text: "algorithm", weight: 0.4375, link: {href: "/tag/algorithm.html"}},
         {text: "line join", weight: 0.0125, link: {href: "/tag/line-join.html"}},
         {text: "register", weight: 0.0125, link: {href: "/tag/register.html"}},
         {text: "mro", weight: 0.0125, link: {href: "/tag/mro.html"}},
@@ -242,15 +242,54 @@
 
 
 <h3>最长递增子序列</h3>
+<p>可以用quicksort + LCS, ，因为LIS是单调递增的性质，所以任意一个LIS一定跟排序后的序列有LCS，并且就是LIS本身。
+扩展:</p>
 <ul>
 <li>从一列数中筛除尽可能少的数使得从左往右看，这些数是从小到大再从大到小的</li>
 </ul>
+<h3>Longest subarray with equal number of ones and zeros</h3>
+<blockquote>
+<p>Given an array containing only 0s and 1s, find the largest subarray which contain equal no of 0s and 1s. Expected time complexity is O(n).</p>
+</blockquote>
+<p>最简单得实现就是把0当-1, 计算从i 到j得sum, 如果sum ==0 , 比较size和max_size, 时间复杂度是$O(n^2)$.</p>
+<div class="highlight"><pre><span class="kt">int</span> <span class="nf">find_sub_array</span><span class="p">(</span><span class="kt">int</span> <span class="n">arr</span><span class="p">[],</span> <span class="kt">int</span> <span class="n">n</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kt">int</span> <span class="n">sum</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">max_size</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">startindex</span><span class="p">;</span>
+
+    <span class="c1">// Pick a starting point as i</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">sum</span> <span class="o">=</span> <span class="p">(</span><span class="n">arr</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span><span class="o">?</span> <span class="o">-</span><span class="mi">1</span> <span class="o">:</span> <span class="mi">1</span><span class="p">;</span>
+
+        <span class="c1">// Consider all subarrays starting from i</span>
+        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="n">j</span><span class="o">++</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="p">(</span><span class="n">arr</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span><span class="o">?</span> <span class="n">sum</span> <span class="o">+=</span> <span class="o">-</span><span class="mi">1</span><span class="o">:</span> <span class="n">sum</span> <span class="o">+=</span> <span class="mi">1</span><span class="p">;</span>
+
+            <span class="k">if</span><span class="p">(</span><span class="n">sum</span> <span class="o">==</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">max_size</span> <span class="o">&lt;</span> <span class="n">j</span><span class="o">-</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+            <span class="p">{</span>
+                <span class="n">max_size</span> <span class="o">=</span> <span class="n">j</span> <span class="o">-</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+                <span class="n">startindex</span> <span class="o">=</span> <span class="n">i</span><span class="p">;</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="k">if</span> <span class="p">(</span> <span class="n">max_size</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span> <span class="p">)</span>
+        <span class="n">printf</span><span class="p">(</span><span class="s">&quot;No such subarray&quot;</span><span class="p">);</span>
+    <span class="k">else</span>
+        <span class="n">printf</span><span class="p">(</span><span class="s">&quot;%d to %d&quot;</span><span class="p">,</span> <span class="n">startindex</span><span class="p">,</span> <span class="n">startindex</span><span class="o">+</span><span class="n">max_size</span><span class="o">-</span><span class="mi">1</span><span class="p">);</span>
+
+    <span class="k">return</span> <span class="n">max_size</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+
+
 <p>refer:</p>
 <ul>
 <li><a href="http://blog.csdn.net/v_JULY_v/article/details/6419466">http://blog.csdn.net/v_JULY_v/article/details/6419466</a></li>
 <li><a href="http://www.geeksforgeeks.org/largest-sum-contiguous-subarray/">http://www.geeksforgeeks.org/largest-sum-contiguous-subarray/</a></li>
 <li><a href="http://www.geeksforgeeks.org/maximum-product-subarray/">http://www.geeksforgeeks.org/maximum-product-subarray/</a></li>
 <li><a href="http://shepherdyuan.wordpress.com/2014/07/23/linkedin-maximum-sumproduct-subarray/">http://shepherdyuan.wordpress.com/2014/07/23/linkedin-maximum-sumproduct-subarray/</a></li>
+<li><a href="http://www.ahathinking.com/archives/117.html">http://www.ahathinking.com/archives/117.html</a></li>
 </ul>
 <p class="subheader">Category: <a href="../../category/adt.html">adt</a>
 

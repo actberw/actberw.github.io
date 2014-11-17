@@ -70,8 +70,8 @@
         {text: "c", weight: 0.1875, link: {href: "/tag/c.html"}},
         {text: "kernel thread", weight: 0.0125, link: {href: "/tag/kernel-thread.html"}},
         {text: "thread", weight: 0.025, link: {href: "/tag/thread.html"}},
-        {text: "queue", weight: 0.0125, link: {href: "/tag/queue.html"}},
-        {text: "data structure", weight: 0.1, link: {href: "/tag/data-structure.html"}},
+        {text: "queue", weight: 0.0375, link: {href: "/tag/queue.html"}},
+        {text: "data structure", weight: 0.1375, link: {href: "/tag/data-structure.html"}},
         {text: "setuid", weight: 0.025, link: {href: "/tag/setuid.html"}},
         {text: "shuffle", weight: 0.0125, link: {href: "/tag/shuffle.html"}},
         {text: "encoding", weight: 0.0125, link: {href: "/tag/encoding.html"}},
@@ -113,10 +113,10 @@
         {text: "quote", weight: 0.0125, link: {href: "/tag/quote.html"}},
         {text: "class", weight: 0.0125, link: {href: "/tag/class.html"}},
         {text: "mangling", weight: 0.0125, link: {href: "/tag/mangling.html"}},
-        {text: "stack", weight: 0.0125, link: {href: "/tag/stack.html"}},
+        {text: "stack", weight: 0.0375, link: {href: "/tag/stack.html"}},
         {text: "getuid", weight: 0.0125, link: {href: "/tag/getuid.html"}},
         {text: "eof", weight: 0.0125, link: {href: "/tag/eof.html"}},
-        {text: "algorithm", weight: 0.4, link: {href: "/tag/algorithm.html"}},
+        {text: "algorithm", weight: 0.4375, link: {href: "/tag/algorithm.html"}},
         {text: "line join", weight: 0.0125, link: {href: "/tag/line-join.html"}},
         {text: "register", weight: 0.0125, link: {href: "/tag/register.html"}},
         {text: "mro", weight: 0.0125, link: {href: "/tag/mro.html"}},
@@ -170,13 +170,17 @@
 <blockquote>
 <p>Given an n x n matrix, where every row and column is sorted in increasing order. Given a number x, how to decide whether this x is in the matrix. The designed algorithm should have linear time complexity.</p>
 </blockquote>
-<p>Solution:
-- Start with top right element
-- Loop: compare this element e with x
-    - if they are equal then return its position
-    - e &lt; x then move it to down (if out of bound of matrix then break return false)
-    - e &gt; x then move it to left (if out of bound of matrix then break return false)
-    - repeat..</p>
+<p>Solution:</p>
+<ul>
+<li>Start with top right element</li>
+<li>Loop: compare this element e with x<ul>
+<li>if they are equal then return its position</li>
+<li>e &lt; x then move it to down (if out of bound of matrix then break return false)</li>
+<li>e &gt; x then move it to left (if out of bound of matrix then break return false)</li>
+<li>repeat..</li>
+</ul>
+</li>
+</ul>
 <p>代码:</p>
 <div class="highlight"><pre><span class="kt">int</span> <span class="nf">search</span><span class="p">(</span><span class="kt">int</span> <span class="n">mat</span><span class="p">[</span><span class="mi">4</span><span class="p">][</span><span class="mi">4</span><span class="p">],</span> <span class="kt">int</span> <span class="n">n</span><span class="p">,</span> <span class="kt">int</span> <span class="n">x</span><span class="p">)</span>
 <span class="p">{</span>
@@ -231,15 +235,105 @@
 </pre></div>
 
 
+<h3>Maximum subarray with all 1’s.</h3>
+<p>可以利用求直方图最大长方形(largest rectangle in histogram)得问题求解.</p>
+<h3>Maximum size square sub-matrix with all 1s</h3>
+<p>用动态规划解决:</p>
+<p>Let the given binary matrix be M[R][C]. The idea of the algorithm is to construct an auxiliary size matrix S[][] in which each entry S[i][j] represents size of the square sub-matrix with all 1s including M[i][j] where M[i][j] is the rightmost and bottommost entry in sub-matrix.</p>
+<ul>
+<li>Construct a sum matrix S[R][C] for the given M[R][C].
+     a) Copy first row and first columns as it is from M[][] to S[][]
+     b) For other entries, use following expressions to construct S[][]
+         If M[i][j] is 1 then
+            S[i][j] = min(S[i][j-1], S[i-1][j], S[i-1][j-1]) + 1 //understand
+         Else /<em>If M[i][j] is 0</em>/
+            S[i][j] = 0</li>
+<li>Find the maximum entry in S[R][C]</li>
+<li>Using the value and coordinates of maximum entry in S[i], print 
+   sub-matrix of M[][]</li>
+</ul>
+<h3>four borders</h3>
+<blockquote>
+<p>Imagine you have a square matrix, where each cell is filled with either black or white. Design an algorithm to find the maximum subsquare such that all four borders are filled with black pixels. </p>
+</blockquote>
+<p>暴力法，从左到右，从上到下遍历格子，将它作为子正方形左上角的点。 固定了子正方形左上角的点，我们只需要知道边长，就能把子正方形确定下来。 我们按边长从大到小开始，去检查每一个子正方形的四条边是否都为黑色格子。 如果是，则记下当前最大的边长值。将子正方形左上角的点移动到下一行(即向下移动一格)， 进入下一轮循环。</p>
+<div class="highlight"><pre><span class="n">SubSquare</span> <span class="nf">FindSubSquare</span><span class="p">(</span><span class="kt">int</span> <span class="n">n</span><span class="p">){</span>
+    <span class="kt">int</span> <span class="n">max_size</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="c1">//最大边长</span>
+    <span class="kt">int</span> <span class="n">col</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="n">SubSquare</span> <span class="n">sq</span><span class="p">;</span>
+    <span class="k">while</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="n">col</span> <span class="o">&gt;</span> <span class="n">max_size</span><span class="p">){</span>
+        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">row</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">row</span><span class="o">&lt;</span><span class="n">n</span><span class="p">;</span> <span class="o">++</span><span class="n">row</span><span class="p">){</span>
+            <span class="kt">int</span> <span class="n">size</span> <span class="o">=</span> <span class="n">n</span> <span class="o">-</span> <span class="n">max</span><span class="p">(</span><span class="n">row</span><span class="p">,</span> <span class="n">col</span><span class="p">);</span>
+            <span class="k">while</span><span class="p">(</span><span class="n">size</span> <span class="o">&gt;</span> <span class="n">max_size</span><span class="p">){</span>
+                <span class="k">if</span><span class="p">(</span><span class="n">IsSquare</span><span class="p">(</span><span class="n">row</span><span class="p">,</span> <span class="n">col</span><span class="p">,</span> <span class="n">size</span><span class="p">)){</span>
+                    <span class="n">max_size</span> <span class="o">=</span> <span class="n">size</span><span class="p">;</span>
+                    <span class="n">sq</span><span class="p">.</span><span class="n">row</span> <span class="o">=</span> <span class="n">row</span><span class="p">;</span>
+                    <span class="n">sq</span><span class="p">.</span><span class="n">col</span> <span class="o">=</span> <span class="n">col</span><span class="p">;</span>
+                    <span class="n">sq</span><span class="p">.</span><span class="n">size</span> <span class="o">=</span> <span class="n">size</span><span class="p">;</span>
+                    <span class="k">break</span><span class="p">;</span>
+                <span class="p">}</span>
+                <span class="o">--</span><span class="n">size</span><span class="p">;</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+        <span class="o">++</span><span class="n">col</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="n">sq</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<h3>打印螺旋矩阵</h3>
+<p>我们可以直接根据螺旋的过程来实现打印，从第一个元素开始，向右走N步，然后转向下，需要走的步数则为N-1，然后转向右，需要走的步数依然为N-1,最后往上走，需要走N-2步。这样就螺旋的打印完了最外围一圈，接着是往里的一圈，又重复这样的过程。</p>
+<div class="highlight"><pre><span class="kt">void</span> <span class="nf">printMatrix</span><span class="p">(</span><span class="kt">int</span> <span class="o">**</span><span class="n">matrix</span><span class="p">,</span> <span class="kt">int</span> <span class="n">dimension</span><span class="p">){</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">matrix</span> <span class="o">==</span> <span class="nb">NULL</span> <span class="o">||</span> <span class="n">dimension</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="k">return</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">steps</span> <span class="o">=</span> <span class="n">dimension</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">circle</span> <span class="o">=</span> <span class="n">steps</span> <span class="o">&gt;&gt;</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">num</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">k</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="k">while</span><span class="p">(</span><span class="n">k</span> <span class="o">&lt;</span> <span class="n">circle</span><span class="p">){</span>
+        <span class="n">i</span> <span class="o">=</span> <span class="n">j</span> <span class="o">=</span> <span class="n">k</span><span class="p">;</span>
+        <span class="k">while</span><span class="p">(</span><span class="n">j</span> <span class="o">&lt;</span> <span class="n">steps</span><span class="p">){</span> <span class="c1">// fisrt print steps-j elements</span>
+            <span class="n">matrix</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="o">++</span><span class="p">]</span> <span class="o">=</span> <span class="n">num</span><span class="o">++</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="o">--</span><span class="n">j</span><span class="p">;</span>
+
+        <span class="k">while</span><span class="p">(</span><span class="n">i</span> <span class="o">&lt;</span> <span class="n">steps</span> <span class="o">-</span> <span class="mi">1</span><span class="p">){</span> <span class="c1">// 0,1,2,3</span>
+            <span class="n">matrix</span><span class="p">[</span><span class="o">++</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">num</span><span class="o">++</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="k">while</span><span class="p">(</span><span class="n">j</span> <span class="o">&gt;</span> <span class="n">k</span><span class="p">){</span>
+            <span class="n">matrix</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="o">--</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">num</span><span class="o">++</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="k">while</span><span class="p">(</span><span class="n">i</span> <span class="o">&gt;</span> <span class="n">k</span><span class="o">+</span><span class="mi">1</span><span class="p">){</span>
+            <span class="n">matrix</span><span class="p">[</span><span class="o">--</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">num</span><span class="o">++</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="o">++</span><span class="n">k</span><span class="p">;</span>
+        <span class="o">--</span><span class="n">steps</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">dimension</span> <span class="o">&amp;</span> <span class="mh">0x1</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="n">matrix</span><span class="p">[</span><span class="n">circle</span><span class="p">][</span><span class="n">circle</span><span class="p">]</span> <span class="o">=</span> <span class="n">num</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<h3>按顺序打印已排序得矩阵</h3>
+<blockquote>
+<p>Given an n x n matrix, where every row and column is sorted in non-decreasing order. Print all elements of matrix in sorted order.</p>
+</blockquote>
 <p>refer:</p>
 <ul>
 <li><a href="http://www.geeksforgeeks.org/search-in-row-wise-and-column-wise-sorted-matrix/">http://www.geeksforgeeks.org/search-in-row-wise-and-column-wise-sorted-matrix/</a></li>
 <li><a href="http://leetcode.com/2010/10/searching-2d-sorted-matrix-part-ii.html">http://leetcode.com/2010/10/searching-2d-sorted-matrix-part-ii.html</a></li>
 <li><a href="http://www.geeksforgeeks.org/dynamic-programming-set-27-max-sum-rectangle-in-a-2d-matrix/">http://www.geeksforgeeks.org/dynamic-programming-set-27-max-sum-rectangle-in-a-2d-matrix/</a></li>
+<li><a href="http://wansishuang.appspot.com/?p=38002">最大矩阵问题的一些变种</a></li>
 <li><a href="http://zh.wikipedia.org/wiki/%E7%9F%A9%E9%98%B5%E6%8C%87%E6%95%B0">http://zh.wikipedia.org/wiki/%E7%9F%A9%E9%98%B5%E6%8C%87%E6%95%B0</a></li>
 <li><a href="http://www.zhihu.com/question/19706331">http://www.zhihu.com/question/19706331</a></li>
 <li><a href="http://www.ituring.com.cn/article/17978">http://www.ituring.com.cn/article/17978</a></li>
 <li><a href="http://www.zhihu.com/question/22854639">http://www.zhihu.com/question/22854639</a></li>
+<li><a href="http://www.hawstein.com/posts/20.11.html">http://www.hawstein.com/posts/20.11.html</a></li>
+<li><a href="http://www.geeksforgeeks.org/print-elements-sorted-order-row-column-wise-sorted-matrix/">http://www.geeksforgeeks.org/print-elements-sorted-order-row-column-wise-sorted-matrix/</a></li>
+<li><a href="http://www.ituring.com.cn/article/51520">http://www.ituring.com.cn/article/51520</a></li>
 </ul><p class="subheader">Category: <a href="../category/algorithm.html">algorithm</a>
 
     Tagged: 

@@ -1458,6 +1458,7 @@ If j &amp;gt; 1, return to step 2.&lt;/p&gt;
 &lt;p&gt;refer:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href="http://www.programcreek.com/2012/12/leetcode-powx-n/"&gt;http://www.programcreek.com/2012/12/leetcode-powx-n/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://blog.jobbole.com/74468/"&gt;http://blog.jobbole.com/74468/&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">actberw</dc:creator><pubDate>Wed, 03 Sep 2014 00:00:00 +0800</pubDate><guid>tag:actberw.github.io,2014-09-03:posts/algorithm/pow.html</guid><category>algorithm</category></item><item><title>整数相关题目</title><link>http://actberw.github.io/posts/algorithm/matched-integer.html</link><description>&lt;h3&gt;符合条件的整数&lt;/h3&gt;
 &lt;blockquote&gt;
 &lt;p&gt;任意给定的正整数N, 求一个最小的正整数M, 使得N*M的十进制表示形式只含有1和0.&lt;/p&gt;
@@ -2010,13 +2011,193 @@ Neutron 实质是一个定义良好的框架用来驱动 L2-L7 层不同的底�
 &lt;li&gt;[2]&lt;a href="http://coolshell.cn/articles/3738.html"&gt;http://www.zhihu.com/question/19668324&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;[3]&lt;a href="http://www.zhihu.com/question/19668324"&gt;http://www.zhihu.com/question/19668324&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;[4]&lt;a href="http://program-think.blogspot.com/2011/12/prime-algorithm-1.html"&gt;http://program-think.blogspot.com/2011/12/prime-algorithm-1.html&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">actberw</dc:creator><pubDate>Sun, 15 Jun 2014 19:00:00 +0800</pubDate><guid>tag:actberw.github.io,2014-06-15:posts/algorithm/prime-number.html</guid><category>algorithm</category><category>prime number</category></item><item><title>栈和队列</title><link>http://actberw.github.io/posts/adt/stack-and-queue.html</link><description>&lt;p&gt;应用:
-- 中缀表达式转后缀表达式
-- 表达式(后缀)求值&lt;/p&gt;
+&lt;/ul&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">actberw</dc:creator><pubDate>Sun, 15 Jun 2014 19:00:00 +0800</pubDate><guid>tag:actberw.github.io,2014-06-15:posts/algorithm/prime-number.html</guid><category>algorithm</category><category>prime number</category></item><item><title>栈和队列 part 3</title><link>http://actberw.github.io/posts/adt/stack-and-queue-part-3.html</link><description>&lt;h3&gt;栈上实现min函数&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;p&gt;实现一个带Min函数的栈(Stack)，让其可以支持O(1)的Push，O(1)的Pop，O(1)的Top和O(1)的Min(返回整个Stack中的最小元素)。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;用两个Stack，其中Stack1保存原始数据。Stack2保存最小值更新序列。如对于数据4 5 3 1 2(最后边是栈顶)，Stack1的数据为[4,5,3,1,2]，Stack2的数据为[4,3,1]，Stack2的Top()一直保存的是Stack1中的最小元素。&lt;/p&gt;
+&lt;p&gt;Min(): 返回Stack2.Top()&lt;/p&gt;
+&lt;p&gt;Push(x)：首先在Stack1中Push(x)，然后比较Stack2的Top与x的大小，如果x更小则Push到Stack2中&lt;/p&gt;
+&lt;p&gt;Top(): 返回Stack1.Top()&lt;/p&gt;
+&lt;p&gt;Pop(): 从Stack1中Pop()出栈顶元素，与这个Stack2的Top()进行比较，如果相同，则Stack2中也Pop()出栈顶元素。对于处理存在相同数值元素的问题，可以在Stack2的每个数加一个计数器，计数器减到0则Pop()&lt;/p&gt;
+&lt;h3&gt;队列上实现min函数&lt;/h3&gt;
 &lt;p&gt;refer:&lt;/p&gt;
 &lt;ul&gt;
+&lt;li&gt;&lt;a href="http://www.ninechapter.com/problem/23/"&gt;http://www.ninechapter.com/problem/23/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://www.ninechapter.com/problem/50/"&gt;http://www.ninechapter.com/problem/50/&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">actberw</dc:creator><pubDate>Fri, 13 Jun 2014 21:00:00 +0800</pubDate><guid>tag:actberw.github.io,2014-06-13:posts/adt/stack-and-queue-part-3.html</guid><category>algorithm</category><category>data structure</category><category>stack</category><category>queue</category></item><item><title>栈和队列 part 2</title><link>http://actberw.github.io/posts/adt/stack-and-queue-part-2.html</link><description>&lt;h3&gt;递归反转stack&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;p&gt;You are not allowed to use loop constructs like while, for..etc, and you can only use the following ADT functions on Stack S:
+  isEmpty(S)
+  push(S)
+  pop(S)&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;The idea of the solution is to hold all values in Function Call Stack until the stack becomes empty. When the stack becomes empty, insert all held items one by one at the bottom of the stack.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="kt"&gt;void&lt;/span&gt; &lt;span class="nf"&gt;reverse&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;struct&lt;/span&gt; &lt;span class="n"&gt;sNode&lt;/span&gt;&lt;span class="o"&gt;**&lt;/span&gt; &lt;span class="n"&gt;top_ref&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+  &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;temp&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;   
+  &lt;span class="k"&gt;if&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="o"&gt;!&lt;/span&gt;&lt;span class="n"&gt;isEmpty&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;top_ref&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+
+    &lt;span class="n"&gt;temp&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;pop&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;top_ref&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;                        
+    &lt;span class="n"&gt;reverse&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;top_ref&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+    &lt;span class="n"&gt;insertAtBottom&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;top_ref&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;temp&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+  &lt;span class="p"&gt;}&lt;/span&gt;      
+&lt;span class="p"&gt;}&lt;/span&gt;
+
+&lt;span class="kt"&gt;void&lt;/span&gt; &lt;span class="nf"&gt;insertAtBottom&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;struct&lt;/span&gt; &lt;span class="n"&gt;sNode&lt;/span&gt;&lt;span class="o"&gt;**&lt;/span&gt; &lt;span class="n"&gt;top_ref&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;item&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+   &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;temp&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;  
+   &lt;span class="k"&gt;if&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;isEmpty&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;top_ref&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;  
+       &lt;span class="n"&gt;push&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;top_ref&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;item&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt; 
+   &lt;span class="p"&gt;}&lt;/span&gt;
+   &lt;span class="k"&gt;else&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+
+     &lt;span class="n"&gt;temp&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;pop&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;top_ref&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+     &lt;span class="n"&gt;insertAtBottom&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;top_ref&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;item&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+
+     &lt;span class="n"&gt;push&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;top_ref&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;temp&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+   &lt;span class="p"&gt;}&lt;/span&gt;             
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h3&gt;栈的push、pop序列&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;p&gt;输入两个整数序列。其中一个序列表示栈的push顺序，判断另一个序列有没有可能是对应的pop顺序。为了简单起见，我们假设push序列的任意两个整数都是不相等的。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3&gt;Implement Queue using Stacks&lt;/h3&gt;
+&lt;p&gt;有两种方法:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;By making put operation costly  &lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;put&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;q&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="n"&gt;While&lt;/span&gt; &lt;span class="n"&gt;stack1&lt;/span&gt; &lt;span class="n"&gt;is&lt;/span&gt; &lt;span class="n"&gt;not&lt;/span&gt; &lt;span class="n"&gt;empty&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;push&lt;/span&gt; &lt;span class="n"&gt;everything&lt;/span&gt; &lt;span class="n"&gt;from&lt;/span&gt; &lt;span class="n"&gt;satck1&lt;/span&gt; &lt;span class="n"&gt;to&lt;/span&gt; &lt;span class="n"&gt;stack2&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;
+&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="n"&gt;Push&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt; &lt;span class="n"&gt;to&lt;/span&gt; &lt;span class="n"&gt;stack1&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;assuming&lt;/span&gt; &lt;span class="n"&gt;size&lt;/span&gt; &lt;span class="n"&gt;of&lt;/span&gt; &lt;span class="n"&gt;stacks&lt;/span&gt; &lt;span class="n"&gt;is&lt;/span&gt; &lt;span class="n"&gt;unlimited&lt;/span&gt;&lt;span class="p"&gt;).&lt;/span&gt;
+&lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="n"&gt;Push&lt;/span&gt; &lt;span class="n"&gt;everything&lt;/span&gt; &lt;span class="n"&gt;back&lt;/span&gt; &lt;span class="n"&gt;to&lt;/span&gt; &lt;span class="n"&gt;stack1&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;
+&lt;span class="n"&gt;get&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;q&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="n"&gt;If&lt;/span&gt; &lt;span class="n"&gt;stack1&lt;/span&gt; &lt;span class="n"&gt;is&lt;/span&gt; &lt;span class="n"&gt;empty&lt;/span&gt; &lt;span class="n"&gt;then&lt;/span&gt; &lt;span class="n"&gt;error&lt;/span&gt;
+&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="n"&gt;Pop&lt;/span&gt; &lt;span class="n"&gt;an&lt;/span&gt; &lt;span class="n"&gt;item&lt;/span&gt; &lt;span class="n"&gt;from&lt;/span&gt; &lt;span class="n"&gt;stack1&lt;/span&gt; &lt;span class="n"&gt;and&lt;/span&gt; &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;it&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;By making get operation costly  &lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;put&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;q&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;  &lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+  &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="n"&gt;Push&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt; &lt;span class="n"&gt;to&lt;/span&gt; &lt;span class="n"&gt;stack1&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;assuming&lt;/span&gt; &lt;span class="n"&gt;size&lt;/span&gt; &lt;span class="n"&gt;of&lt;/span&gt; &lt;span class="n"&gt;stacks&lt;/span&gt; &lt;span class="n"&gt;is&lt;/span&gt; &lt;span class="n"&gt;unlimited&lt;/span&gt;&lt;span class="p"&gt;).&lt;/span&gt;
+&lt;span class="n"&gt;get&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;q&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+  &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="n"&gt;If&lt;/span&gt; &lt;span class="n"&gt;both&lt;/span&gt; &lt;span class="n"&gt;stacks&lt;/span&gt; &lt;span class="n"&gt;are&lt;/span&gt; &lt;span class="n"&gt;empty&lt;/span&gt; &lt;span class="n"&gt;then&lt;/span&gt; &lt;span class="n"&gt;error&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;
+  &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="n"&gt;If&lt;/span&gt; &lt;span class="n"&gt;stack2&lt;/span&gt; &lt;span class="n"&gt;is&lt;/span&gt; &lt;span class="n"&gt;empty&lt;/span&gt;
+       &lt;span class="n"&gt;While&lt;/span&gt; &lt;span class="n"&gt;stack1&lt;/span&gt; &lt;span class="n"&gt;is&lt;/span&gt; &lt;span class="n"&gt;not&lt;/span&gt; &lt;span class="n"&gt;empty&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;push&lt;/span&gt; &lt;span class="n"&gt;everything&lt;/span&gt; &lt;span class="n"&gt;from&lt;/span&gt; &lt;span class="n"&gt;satck1&lt;/span&gt; &lt;span class="n"&gt;to&lt;/span&gt; &lt;span class="n"&gt;stack2&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;
+  &lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="n"&gt;Pop&lt;/span&gt; &lt;span class="n"&gt;the&lt;/span&gt; &lt;span class="n"&gt;element&lt;/span&gt; &lt;span class="n"&gt;from&lt;/span&gt; &lt;span class="n"&gt;stack2&lt;/span&gt; &lt;span class="n"&gt;and&lt;/span&gt; &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;it&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Queue can also be implemented using one user stack and one Function Call Stack. &lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;put&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;q&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+  &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="n"&gt;Push&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt; &lt;span class="n"&gt;to&lt;/span&gt; &lt;span class="n"&gt;stack1&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;
+
+&lt;span class="n"&gt;get&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;q&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;
+  &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="n"&gt;If&lt;/span&gt; &lt;span class="n"&gt;stack1&lt;/span&gt; &lt;span class="n"&gt;is&lt;/span&gt; &lt;span class="n"&gt;empty&lt;/span&gt; &lt;span class="n"&gt;then&lt;/span&gt; &lt;span class="n"&gt;error&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;
+  &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="n"&gt;If&lt;/span&gt; &lt;span class="n"&gt;stack1&lt;/span&gt; &lt;span class="n"&gt;has&lt;/span&gt; &lt;span class="n"&gt;only&lt;/span&gt; &lt;span class="n"&gt;one&lt;/span&gt; &lt;span class="n"&gt;element&lt;/span&gt; &lt;span class="n"&gt;then&lt;/span&gt; &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;it&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;
+  &lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="n"&gt;Recursively&lt;/span&gt; &lt;span class="n"&gt;pop&lt;/span&gt; &lt;span class="n"&gt;everything&lt;/span&gt; &lt;span class="n"&gt;from&lt;/span&gt; &lt;span class="n"&gt;the&lt;/span&gt; &lt;span class="n"&gt;stack1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;store&lt;/span&gt; &lt;span class="n"&gt;the&lt;/span&gt; &lt;span class="n"&gt;popped&lt;/span&gt; &lt;span class="n"&gt;item&lt;/span&gt; &lt;span class="n"&gt;in&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="n"&gt;variable&lt;/span&gt; &lt;span class="n"&gt;res&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;  &lt;span class="n"&gt;push&lt;/span&gt; &lt;span class="n"&gt;the&lt;/span&gt; &lt;span class="n"&gt;res&lt;/span&gt; &lt;span class="n"&gt;back&lt;/span&gt; &lt;span class="n"&gt;to&lt;/span&gt; &lt;span class="n"&gt;stack1&lt;/span&gt; &lt;span class="n"&gt;and&lt;/span&gt; &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;res&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h3&gt;Implement Stack using Queues&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;p&gt;We are given a Queue data structure that supports standard operations like enqueue() and dequeue(). We need to implement a Stack data structure using only instances of Queue.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;同样是两种方法:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;By making push operation costly  &lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;push&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;s&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="c1"&gt;// x is the element to be pushed and s is stack&lt;/span&gt;
+  &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="n"&gt;Enqueue&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt; &lt;span class="n"&gt;to&lt;/span&gt; &lt;span class="n"&gt;q2&lt;/span&gt;
+  &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="n"&gt;One&lt;/span&gt; &lt;span class="n"&gt;by&lt;/span&gt; &lt;span class="n"&gt;one&lt;/span&gt; &lt;span class="n"&gt;dequeue&lt;/span&gt; &lt;span class="n"&gt;everything&lt;/span&gt; &lt;span class="n"&gt;from&lt;/span&gt; &lt;span class="n"&gt;q1&lt;/span&gt; &lt;span class="n"&gt;and&lt;/span&gt; &lt;span class="n"&gt;enqueue&lt;/span&gt; &lt;span class="n"&gt;to&lt;/span&gt; &lt;span class="n"&gt;q2&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;
+  &lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="n"&gt;Swap&lt;/span&gt; &lt;span class="n"&gt;the&lt;/span&gt; &lt;span class="n"&gt;names&lt;/span&gt; &lt;span class="n"&gt;of&lt;/span&gt; &lt;span class="n"&gt;q1&lt;/span&gt; &lt;span class="n"&gt;and&lt;/span&gt; &lt;span class="n"&gt;q2&lt;/span&gt; 
+&lt;span class="c1"&gt;// Swapping of names is done to avoid one more movement of all elements &lt;/span&gt;
+&lt;span class="c1"&gt;// from q2 to q1. &lt;/span&gt;
+&lt;span class="n"&gt;pop&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;s&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+  &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="n"&gt;Dequeue&lt;/span&gt; &lt;span class="n"&gt;an&lt;/span&gt; &lt;span class="n"&gt;item&lt;/span&gt; &lt;span class="n"&gt;from&lt;/span&gt; &lt;span class="n"&gt;q1&lt;/span&gt; &lt;span class="n"&gt;and&lt;/span&gt; &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;it&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;By making pop operation costly  &lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;push&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;s&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;  &lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+  &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="n"&gt;Enqueue&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt; &lt;span class="n"&gt;to&lt;/span&gt; &lt;span class="n"&gt;q1&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;assuming&lt;/span&gt; &lt;span class="n"&gt;size&lt;/span&gt; &lt;span class="n"&gt;of&lt;/span&gt; &lt;span class="n"&gt;q1&lt;/span&gt; &lt;span class="n"&gt;is&lt;/span&gt; &lt;span class="n"&gt;unlimited&lt;/span&gt;&lt;span class="p"&gt;).&lt;/span&gt;
+&lt;span class="n"&gt;pop&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;s&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;  
+  &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="n"&gt;One&lt;/span&gt; &lt;span class="n"&gt;by&lt;/span&gt; &lt;span class="n"&gt;one&lt;/span&gt; &lt;span class="n"&gt;dequeue&lt;/span&gt; &lt;span class="n"&gt;everything&lt;/span&gt; &lt;span class="n"&gt;except&lt;/span&gt; &lt;span class="n"&gt;the&lt;/span&gt; &lt;span class="n"&gt;last&lt;/span&gt; &lt;span class="n"&gt;element&lt;/span&gt; &lt;span class="n"&gt;from&lt;/span&gt; &lt;span class="n"&gt;q1&lt;/span&gt; &lt;span class="n"&gt;and&lt;/span&gt; &lt;span class="n"&gt;enqueue&lt;/span&gt; &lt;span class="n"&gt;to&lt;/span&gt; &lt;span class="n"&gt;q2&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;
+  &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="n"&gt;Dequeue&lt;/span&gt; &lt;span class="n"&gt;the&lt;/span&gt; &lt;span class="n"&gt;last&lt;/span&gt; &lt;span class="n"&gt;item&lt;/span&gt; &lt;span class="n"&gt;of&lt;/span&gt; &lt;span class="n"&gt;q1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;the&lt;/span&gt; &lt;span class="n"&gt;dequeued&lt;/span&gt; &lt;span class="n"&gt;item&lt;/span&gt; &lt;span class="n"&gt;is&lt;/span&gt; &lt;span class="n"&gt;result&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;store&lt;/span&gt; &lt;span class="n"&gt;it&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;
+  &lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="n"&gt;Swap&lt;/span&gt; &lt;span class="n"&gt;the&lt;/span&gt; &lt;span class="n"&gt;names&lt;/span&gt; &lt;span class="n"&gt;of&lt;/span&gt; &lt;span class="n"&gt;q1&lt;/span&gt; &lt;span class="n"&gt;and&lt;/span&gt; &lt;span class="n"&gt;q2&lt;/span&gt;
+  &lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="n"&gt;Return&lt;/span&gt; &lt;span class="n"&gt;the&lt;/span&gt; &lt;span class="n"&gt;item&lt;/span&gt; &lt;span class="n"&gt;stored&lt;/span&gt; &lt;span class="n"&gt;in&lt;/span&gt; &lt;span class="n"&gt;step&lt;/span&gt; &lt;span class="mf"&gt;2.&lt;/span&gt;
+&lt;span class="c1"&gt;// Swapping of names is done to avoid one more movement of all elements &lt;/span&gt;
+&lt;span class="c1"&gt;// from q2 to q1.&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;refer:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="http://www.geeksforgeeks.org/reverse-a-stack-using-recursion/"&gt;http://www.geeksforgeeks.org/reverse-a-stack-using-recursion/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://www.geeksforgeeks.org/queue-using-stacks/"&gt;http://www.geeksforgeeks.org/queue-using-stacks/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://www.geeksforgeeks.org/implement-stack-using-queue/"&gt;http://www.geeksforgeeks.org/implement-stack-using-queue/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://zhedahht.blog.163.com/blog/static/25411174200732102055385/"&gt;http://zhedahht.blog.163.com/blog/static/25411174200732102055385/&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">actberw</dc:creator><pubDate>Fri, 13 Jun 2014 20:00:00 +0800</pubDate><guid>tag:actberw.github.io,2014-06-13:posts/adt/stack-and-queue-part-2.html</guid><category>algorithm</category><category>data structure</category><category>stack</category><category>queue</category></item><item><title>栈和队列</title><link>http://actberw.github.io/posts/adt/stack-and-queue.html</link><description>&lt;h3&gt;栈&lt;/h3&gt;
+&lt;p&gt;stack是一组数据的存放方式，支持两种基本操作push 和 pop, 特点为LIFO，即后进先出（Last in, first out).&lt;/p&gt;
+&lt;h3&gt;栈的应用&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;中缀表达式转后缀表达式&lt;br /&gt;
+常用书写算术表达式使用的是中缀表达式(需要借助括号表达优先级)例如&lt;code&gt;5 + 9 * 3&lt;/code&gt;, 操作符在两个操作数之间, 对应的有前缀表达式和后缀表达式. 前缀和后缀表达式式不需要括号, 中缀转后缀表达式的过程就是:  &lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;如果遇到数字则直接输出&lt;/li&gt;
+&lt;li&gt;如果遇到括号左括号则忽略&lt;/li&gt;
+&lt;li&gt;如果遇到操作符则入栈 &lt;/li&gt;
+&lt;li&gt;如果遇到右括号则输出栈顶操作符&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;后缀转中缀的过程就是把两个操作数及后面跟着的一个操作符替换成相应的中缀表达即可, 可能需要加括号.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;表达式(后缀)求值&lt;br /&gt;
+借助于栈可以对任意的后缀表达式求值, 具体过程是:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;如果遇到的是数字则入栈&lt;/li&gt;
+&lt;li&gt;如果是操作符则弹出战中两个数字, 并把应用操作符的结果入栈&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;减法和乘法示例(伪代码).&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="nf"&gt;cal&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;char&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;array&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;n&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="n"&gt;stack_init&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;n&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+    &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt; &lt;span class="n"&gt;n&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="o"&gt;++&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+        &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;array&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="sc"&gt;&amp;#39;+&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+            &lt;span class="n"&gt;stack_push&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;stack_pop&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;stack_pop&lt;/span&gt;&lt;span class="p"&gt;());&lt;/span&gt;
+        &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;array&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="sc"&gt;&amp;#39;*&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+            &lt;span class="n"&gt;stack_push&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;stack_pop&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;stack_pop&lt;/span&gt;&lt;span class="p"&gt;());&lt;/span&gt;
+
+        &lt;span class="c1"&gt;// atoi 把字符转换成数字&lt;/span&gt;
+        &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;=&lt;/span&gt; &lt;span class="sc"&gt;&amp;#39;0&amp;#39;&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;=&lt;/span&gt; &lt;span class="sc"&gt;&amp;#39;9&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+            &lt;span class="n"&gt;stack_push&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+        &lt;span class="k"&gt;while&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;=&lt;/span&gt; &lt;span class="sc"&gt;&amp;#39;0&amp;#39;&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;=&lt;/span&gt; &lt;span class="sc"&gt;&amp;#39;9&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+            &lt;span class="n"&gt;stack_push&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;10&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;stack_pop&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;array&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="o"&gt;++&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="sc"&gt;&amp;#39;0&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;stack_pop&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3&gt;队列&lt;/h3&gt;
+&lt;p&gt;queue 是先进先出的数据结构(FIFO), 支持两种基本操作put和get.&lt;/p&gt;
+&lt;p&gt;refer:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="http://blog.jobbole.com/52367/"&gt;栈的三种含义&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="http://blog.jobbole.com/79267/"&gt;http://blog.jobbole.com/79267/&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="http://blog.jobbole.com/52367/"&gt;http://blog.jobbole.com/52367/&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">actberw</dc:creator><pubDate>Fri, 13 Jun 2014 19:00:00 +0800</pubDate><guid>tag:actberw.github.io,2014-06-13:posts/adt/stack-and-queue.html</guid><category>algorithm</category><category>data structure</category><category>stack</category><category>queue</category></item><item><title>奇偶检验</title><link>http://actberw.github.io/posts/algorithm/parity.html</link><description>&lt;p&gt;奇偶校验位是一个表示给定位数的二进制数中1的个数是奇数还是偶数的二进制数。奇偶校验位是最简单的错误检测码。&lt;/p&gt;
 &lt;p&gt;奇偶校验位有两种类型：偶校验位与奇校验位。如果一组给定数据位中1的个数是奇数，那么偶校验位就置为1反之则为0，从而使得总的1的个数是偶数。如果给定一组数据位中1的个数是偶数，那么奇校验位就置为1反之为0，使得总的1的个数是奇数。偶校验实际上是循环冗余校验的一个特例，通过多项式x + 1得到1位CRC。&lt;/p&gt;
 &lt;p&gt;如何判断给定位数的二进制数中1的个数是奇数还是偶数的二进制数(参见&lt;a href="/posts/algorithm/binary-bit.html"&gt;整数位的操作&lt;/a&gt;), n为待检查得数字。&lt;/p&gt;
@@ -2055,10 +2236,191 @@ Neutron 实质是一个定义良好的框架用来驱动 L2-L7 层不同的底�
 &lt;ul&gt;
 &lt;li&gt;&lt;a href="http://blog.csdn.net/u010993034/article/details/9316043"&gt;http://blog.csdn.net/u010993034/article/details/9316043&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="http://www.geeksforgeeks.org/write-a-c-program-to-find-the-parity-of-an-unsigned-integer/"&gt;http://www.geeksforgeeks.org/write-a-c-program-to-find-the-parity-of-an-unsigned-integer/&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">actberw</dc:creator><pubDate>Fri, 13 Jun 2014 18:30:00 +0800</pubDate><guid>tag:actberw.github.io,2014-06-13:posts/algorithm/parity.html</guid><category>algorithm</category></item><item><title>链表</title><link>http://actberw.github.io/posts/adt/link-list.html</link><description>&lt;ol&gt;
-&lt;li&gt;
-&lt;p&gt;定义
-链表是一组数据项的集合, 其中每个数据项是节点的一部分，每个节点包含指向下一个节点的链接. 对比数组链表的优缺点如下:可以高效的重排数据项例如插入节点的复杂度为O(1)，但是不能快速的访问任意的数据项，只能沿着链表一个一个节点的访问.&lt;/p&gt;
+&lt;/ul&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">actberw</dc:creator><pubDate>Fri, 13 Jun 2014 18:30:00 +0800</pubDate><guid>tag:actberw.github.io,2014-06-13:posts/algorithm/parity.html</guid><category>algorithm</category></item><item><title>单链表常见问题</title><link>http://actberw.github.io/posts/adt/link-list-part-2.html</link><description>&lt;h3&gt;访问&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;ol&gt;
+&lt;li&gt;找出单链表的倒数第K个元素(仅允许遍历一遍链表)&lt;/li&gt;
+&lt;li&gt;找出单链表的中间元素&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;对于#1 龟兔算法(快慢指针). fast, slow两个指针, fast先前进到第K个位置, 然后两个指针同步向后移, 知道fast到达末尾(fast-&amp;gt;next == NULL).&lt;/p&gt;
+&lt;p&gt;对于#2 同样是龟兔算法(快慢指针), fast, slow两个指针, fast移动速度是slow 的两倍.&lt;/p&gt;
+&lt;h3&gt;有环&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;ol&gt;
+&lt;li&gt;判断单链表是否有环(Floyd 环查找算法)&lt;/li&gt;
+&lt;li&gt;如何知道环的长度&lt;/li&gt;
+&lt;li&gt;如何找到换入口&lt;/li&gt;
+&lt;li&gt;求带环链表的长度&lt;/li&gt;
+&lt;li&gt;如何将有环的链表变成单链表&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;img alt="有环链表" src="/img/link-cycle.jpg" /&gt;&lt;/p&gt;
+&lt;p&gt;对于#1 定义fast, slow两个指针, fast移动速度是slow 得两倍, 如果fast == low 则有环, 否则无环.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="nf"&gt;has_cycle&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;link&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="n"&gt;link&lt;/span&gt; &lt;span class="n"&gt;fast&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;slow&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="n"&gt;fast&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;slow&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="k"&gt;while&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;fast&lt;/span&gt; &lt;span class="o"&gt;!=&lt;/span&gt; &lt;span class="nb"&gt;NULL&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class="n"&gt;fast&lt;/span&gt;&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="n"&gt;next&lt;/span&gt; &lt;span class="o"&gt;!=&lt;/span&gt; &lt;span class="nb"&gt;NULL&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+        &lt;span class="n"&gt;slow&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;slow&lt;/span&gt;&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="n"&gt;next&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+        &lt;span class="n"&gt;fast&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;fast&lt;/span&gt;&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="n"&gt;next&lt;/span&gt;&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="n"&gt;next&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+        &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;fast&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="n"&gt;slow&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+            &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt; &lt;span class="c1"&gt;// 有环&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;对于#2 有两种解法: 第一次相遇后，让fast停着不走了，slow继续走，记录到下次相遇时循环了几次; 或者第一次相遇时slow走过的距离：a+b，fast走过的距离：a+b+c+b。 因为fast的速度是slow的两倍，所以fast走的距离是slow的两倍，有 2(a+b) = a+b+c+b，可以得到a=c（这个结论很重要！）。 我们发现L=b+c=a+b，也就是说，从一开始到二者第一次相遇，循环的次数就等于环的长度。&lt;/p&gt;
+&lt;p&gt;对于#3 我们已经得到了结论a=c，那么让两个指针分别从X和Z开始走，每次走一步，那么正好会在Y相遇！也就是环的第一个节点。&lt;/p&gt;
+&lt;p&gt;对于#4 知道了环长度和环入口, 两段长度加起来就是.&lt;/p&gt;
+&lt;p&gt;对于#5 将Y之前得next = NULL&lt;/p&gt;
+&lt;h3&gt;相交&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;ol&gt;
+&lt;li&gt;如何知道两个单链表（无环）是否相交?&lt;/li&gt;
+&lt;li&gt;如果两个单链表（无环）相交,如何知道它们相交的第一个节点是什么?&lt;/li&gt;
+&lt;li&gt;如何知道两个单链表（有环）是否相交？&lt;/li&gt;
+&lt;li&gt;如果两个单链表（有环）相交，如何知道它们相交的第一个节点是什么？&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;对于#1 判断两链表最后一个节点是否相同，如果相交，则尾节点肯定是同一节点. 或者将链表A的尾节点指向链表B(人为构环)，如果B链表有环，则两个链表相交，此时从链表B的头指针往下遍历，如果能够回到B，则说明相交.&lt;/p&gt;
+&lt;p&gt;对于#2 依然是快慢指针, 首先先取得两个链表A和B的长度len(A)和len(B), 沿着A和B链表中较长的链表遍历，使用指针追赶的方法, 设定两个指针fast、slow。fast先出发前进(lengthMax-lengthMin)步（即是二者的长度之差）使fast和slow指针到相交点的距离相等,之后两个链表同时前进，每次一步，相遇的第一点即为两个链表相交的第一个点&lt;/p&gt;
+&lt;p&gt;对于#3 求出A的环入口，判断其是否在B链表上，如果在，则相交。
+对于#4 两个有环链表相交是指这个环属于两个链表共有, 所以跟无环相交处理方式相同.&lt;/p&gt;
+&lt;h3&gt;合并&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Merge the two sorted link list in O(n) time and O(1) space  &lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;   &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="err"&gt;非递归实现，分析&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="err"&gt;分别用指针&lt;/span&gt;&lt;span class="n"&gt;p1&lt;/span&gt;&lt;span class="err"&gt;，&lt;/span&gt;&lt;span class="n"&gt;p2&lt;/span&gt;&lt;span class="err"&gt;来遍历两个链表，如果当前&lt;/span&gt;&lt;span class="n"&gt;p1&lt;/span&gt;&lt;span class="err"&gt;指向的数据小于&lt;/span&gt;&lt;span class="n"&gt;p2&lt;/span&gt;&lt;span class="err"&gt;指向的数据，则将&lt;/span&gt;&lt;span class="n"&gt;p1&lt;/span&gt;&lt;span class="err"&gt;指向的结点归入合并后的链表中，否则，将&lt;/span&gt;&lt;span class="n"&gt;p2&lt;/span&gt;&lt;span class="err"&gt;指向的结点归入合并后的链表中。如果有一个链表遍历结束，则把未结束的链表连接到合并后的链表尾部。&lt;/span&gt;
+
+            &lt;span class="n"&gt;link&lt;/span&gt; &lt;span class="n"&gt;merge_link&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;link&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;link&lt;/span&gt; &lt;span class="n"&gt;b&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="c1"&gt;//非递归实现&lt;/span&gt;
+                &lt;span class="n"&gt;link&lt;/span&gt; &lt;span class="n"&gt;c&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;NULL&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;p1&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;p2&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;b&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;tmp&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+                &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;p1&lt;/span&gt;&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="n"&gt;item&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt; &lt;span class="n"&gt;p2&lt;/span&gt;&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="n"&gt;item&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="c1"&gt;//初始化c&lt;/span&gt;
+                    &lt;span class="n"&gt;c&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;p1&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+                    &lt;span class="n"&gt;p1&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;p1&lt;/span&gt;&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="n"&gt;next&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+                &lt;span class="p"&gt;}&lt;/span&gt; &lt;span class="k"&gt;else&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+                    &lt;span class="n"&gt;c&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;p2&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+                    &lt;span class="n"&gt;p2&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;p2&lt;/span&gt;&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="n"&gt;next&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+                &lt;span class="p"&gt;}&lt;/span&gt;
+                &lt;span class="n"&gt;tmp&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;c&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+                &lt;span class="k"&gt;while&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;p1&lt;/span&gt; &lt;span class="o"&gt;!=&lt;/span&gt; &lt;span class="nb"&gt;NULL&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class="n"&gt;p2&lt;/span&gt; &lt;span class="o"&gt;!=&lt;/span&gt; &lt;span class="nb"&gt;NULL&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+                    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;p1&lt;/span&gt;&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="n"&gt;item&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt; &lt;span class="n"&gt;p2&lt;/span&gt;&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="n"&gt;item&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+                    &lt;span class="err"&gt;¦&lt;/span&gt;   &lt;span class="n"&gt;tmp&lt;/span&gt;&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="n"&gt;next&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;p1&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+                    &lt;span class="err"&gt;¦&lt;/span&gt;   &lt;span class="n"&gt;p1&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;p1&lt;/span&gt;&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="n"&gt;next&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+                    &lt;span class="p"&gt;}&lt;/span&gt; &lt;span class="k"&gt;else&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+                    &lt;span class="err"&gt;¦&lt;/span&gt;   &lt;span class="n"&gt;tmp&lt;/span&gt;&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="n"&gt;next&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;p2&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+                    &lt;span class="err"&gt;¦&lt;/span&gt;   &lt;span class="n"&gt;p2&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;p2&lt;/span&gt;&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="n"&gt;next&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+                    &lt;span class="p"&gt;}&lt;/span&gt;
+                    &lt;span class="n"&gt;tmp&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;tmp&lt;/span&gt;&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="n"&gt;next&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+                &lt;span class="p"&gt;}&lt;/span&gt;
+
+                &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;p1&lt;/span&gt; &lt;span class="o"&gt;!=&lt;/span&gt; &lt;span class="nb"&gt;NULL&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+                    &lt;span class="n"&gt;tmp&lt;/span&gt;&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="n"&gt;next&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;p1&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+                &lt;span class="p"&gt;}&lt;/span&gt;
+
+                &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;p2&lt;/span&gt; &lt;span class="o"&gt;!=&lt;/span&gt; &lt;span class="nb"&gt;NULL&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+                    &lt;span class="n"&gt;tmp&lt;/span&gt;&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="n"&gt;next&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;p2&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+                &lt;span class="p"&gt;}&lt;/span&gt;
+
+                &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;c&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+            &lt;span class="p"&gt;}&lt;/span&gt;
+
+    &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="err"&gt;递归实现&lt;/span&gt;
+
+            &lt;span class="n"&gt;link&lt;/span&gt; &lt;span class="n"&gt;merge_link2&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;link&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;linkb&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="c1"&gt;//递归实现，但是不满足空间复杂度O(1)要求&lt;/span&gt;
+                &lt;span class="n"&gt;link&lt;/span&gt; &lt;span class="n"&gt;c&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;NULL&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+                &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="nb"&gt;NULL&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;b&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+                &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;b&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="nb"&gt;NULL&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+                &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="n"&gt;item&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt; &lt;span class="n"&gt;b&lt;/span&gt;&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="n"&gt;item&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+                    &lt;span class="n"&gt;c&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+                    &lt;span class="n"&gt;c&lt;/span&gt;&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="n"&gt;next&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;merge_link2&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="n"&gt;next&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;b&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+                &lt;span class="p"&gt;}&lt;/span&gt; &lt;span class="k"&gt;else&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+                    &lt;span class="n"&gt;c&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;b&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+                    &lt;span class="n"&gt;c&lt;/span&gt;&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="n"&gt;next&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;merge_link2&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;b&lt;/span&gt;&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="n"&gt;next&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+                &lt;span class="p"&gt;}&lt;/span&gt;
+                &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;c&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+            &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h3&gt;复制&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;p&gt;You are given a Double Link List with one pointer of each node pointing to the next node just like in a single link list. The second pointer however CAN point to any node in the list and not just the previous node. Now write a program in O(n) time to duplicate this list. That is, write a program which will create a copy of this list.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;img alt="链表复制" src="/img/link-list-copy.jpg" /&gt;&lt;/p&gt;
+&lt;p&gt;第一次遍历将要复制的链表A’ B’ C’ D’插入员链表中，然后再一次遍历复制random指针：A-&amp;gt;next-&amp;gt;random=A-&amp;gt;random-&amp;gt;next;
+恢复很简单：A-&amp;gt;next=A-&amp;gt;next-&amp;gt;next;A’-next=A’-&amp;gt;next-&amp;gt;next;&lt;/p&gt;
+&lt;h3&gt;删除&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;p&gt;删除排序数组中重复的元素&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;public&lt;/span&gt; &lt;span class="n"&gt;class&lt;/span&gt; &lt;span class="n"&gt;Solution&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="n"&gt;public&lt;/span&gt; &lt;span class="n"&gt;ListNode&lt;/span&gt; &lt;span class="n"&gt;deleteDuplicates&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;ListNode&lt;/span&gt; &lt;span class="n"&gt;head&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+        &lt;span class="k"&gt;if&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;head&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="n"&gt;null&lt;/span&gt; &lt;span class="o"&gt;||&lt;/span&gt; &lt;span class="n"&gt;head&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;next&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="n"&gt;null&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+            &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;head&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+
+        &lt;span class="n"&gt;ListNode&lt;/span&gt; &lt;span class="n"&gt;p&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;head&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+
+        &lt;span class="k"&gt;while&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt; &lt;span class="n"&gt;p&lt;/span&gt;&lt;span class="o"&gt;!=&lt;/span&gt; &lt;span class="n"&gt;null&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class="n"&gt;p&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;next&lt;/span&gt; &lt;span class="o"&gt;!=&lt;/span&gt; &lt;span class="n"&gt;null&lt;/span&gt;&lt;span class="p"&gt;){&lt;/span&gt;
+            &lt;span class="k"&gt;if&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;p&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;val&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="n"&gt;p&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;next&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;val&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+                &lt;span class="n"&gt;p&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;next&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;p&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;next&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;next&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+            &lt;span class="n"&gt;p&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;p&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;next&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; 
+        &lt;span class="p"&gt;}&lt;/span&gt;
+
+        &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;head&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h3&gt;相加(add two numbers)&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;p&gt;You are given two linked lists representing two non-negative numbers. The digits are stored in reverse order and each of their nodes contain a single digit. Add the two numbers and return it as a linked list.&lt;/p&gt;
+&lt;p&gt;Input: (2 -&amp;gt; 4 -&amp;gt; 3) + (5 -&amp;gt; 6 -&amp;gt; 4)
+Output: 7 -&amp;gt; 0 -&amp;gt; 8&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;This is a simple problem. It can be solved by doing the following:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Use a flag to mark if previous sum is &amp;gt;= 10&lt;/li&gt;
+&lt;li&gt;Handle the situation that one list is longer than the other&lt;/li&gt;
+&lt;li&gt;Correctly move the 3 pointers p1, p2 and p3 which pointer to two input lists and one output list&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;link&lt;/span&gt; &lt;span class="nf"&gt;add_two_number&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;link&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;link&lt;/span&gt; &lt;span class="n"&gt;b&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;carry&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="c1"&gt;//进位标示&lt;/span&gt;
+    &lt;span class="n"&gt;link&lt;/span&gt; &lt;span class="n"&gt;c&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="n"&gt;link&lt;/span&gt; &lt;span class="n"&gt;p1&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;p2&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;b&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;p3&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="n"&gt;c&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;new_node&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+    &lt;span class="n"&gt;p3&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;c&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="k"&gt;while&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;p1&lt;/span&gt; &lt;span class="o"&gt;!=&lt;/span&gt; &lt;span class="nb"&gt;NULL&lt;/span&gt; &lt;span class="o"&gt;||&lt;/span&gt; &lt;span class="n"&gt;p2&lt;/span&gt; &lt;span class="o"&gt;!=&lt;/span&gt; &lt;span class="nb"&gt;NULL&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="c1"&gt;// 对比合并&lt;/span&gt;
+         &lt;span class="k"&gt;if&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;p1&lt;/span&gt; &lt;span class="o"&gt;!=&lt;/span&gt; &lt;span class="nb"&gt;NULL&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+             &lt;span class="n"&gt;carry&lt;/span&gt; &lt;span class="o"&gt;+=&lt;/span&gt; &lt;span class="n"&gt;p1&lt;/span&gt;&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="n"&gt;value&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+             &lt;span class="n"&gt;p1&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;p1&lt;/span&gt;&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="n"&gt;next&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+         &lt;span class="p"&gt;}&lt;/span&gt; 
+         &lt;span class="k"&gt;if&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;p2&lt;/span&gt; &lt;span class="o"&gt;!=&lt;/span&gt; &lt;span class="nb"&gt;NULL&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+             &lt;span class="n"&gt;carry&lt;/span&gt; &lt;span class="o"&gt;+=&lt;/span&gt; &lt;span class="n"&gt;p2&lt;/span&gt;&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="n"&gt;value&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+             &lt;span class="n"&gt;p2&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;p2&lt;/span&gt;&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="n"&gt;next&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+         &lt;span class="p"&gt;}&lt;/span&gt; 
+         &lt;span class="n"&gt;p3&lt;/span&gt;&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="n"&gt;next&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;new_node&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;carry&lt;/span&gt;&lt;span class="o"&gt;%&lt;/span&gt;&lt;span class="mi"&gt;10&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+         &lt;span class="n"&gt;p3&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;p3&lt;/span&gt;&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="n"&gt;next&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+         &lt;span class="n"&gt;carry&lt;/span&gt; &lt;span class="o"&gt;/=&lt;/span&gt; &lt;span class="mi"&gt;10&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt;
+
+    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;carry&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; 
+        &lt;span class="n"&gt;p3&lt;/span&gt;&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="n"&gt;next&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;new_node&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;c&lt;/span&gt;&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="n"&gt;next&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;refer:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;[0]&lt;a href="http://vitrivs.blogspot.sg/2013/08/floydcycle-detection.html"&gt;http://vitrivs.blogspot.sg/2013/08/floydcycle-detection.html&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;[1]&lt;a href="http://m.blog.csdn.net/blog/sangni007/8218552"&gt;http://m.blog.csdn.net/blog/sangni007/8218552&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;[2]&lt;a href="http://www.cppblog.com/yuech/archive/2011/04/02/143318.html"&gt;http://www.cppblog.com/yuech/archive/2011/04/02/143318.html&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;[3]&lt;a href="http://www.geeksforgeeks.org/a-linked-list-with-next-and-arbit-pointer/"&gt;http://www.geeksforgeeks.org/a-linked-list-with-next-and-arbit-pointer/&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">actberw</dc:creator><pubDate>Thu, 12 Jun 2014 20:00:00 +0800</pubDate><guid>tag:actberw.github.io,2014-06-12:posts/adt/link-list-part-2.html</guid><category>algorithm</category><category>data structure</category></item><item><title>链表</title><link>http://actberw.github.io/posts/adt/link-list.html</link><description>&lt;p&gt;链表是一组数据项的集合, 其中每个数据项是节点的一部分，每个节点包含指向下一个节点的链接. 对比数组链表的优缺点如下:可以高效的重排数据项例如插入节点的复杂度为O(1)，但是不能快速的访问任意的数据项，只能沿着链表一个一个节点的访问.&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;
 &lt;p&gt;优点&lt;/p&gt;
@@ -2075,9 +2437,7 @@ Neutron 实质是一个定义良好的框架用来驱动 L2-L7 层不同的底�
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;分类&lt;/p&gt;
+&lt;h3&gt;分类&lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;单链表(Singly linked list)&lt;br /&gt;
 它包含两个域，一个信息域和一个指针域。这个链接指向列表中的下一个节点，而最后一个节点则指向一个空值。&lt;/li&gt;
@@ -2086,13 +2446,11 @@ Neutron 实质是一个定义良好的框架用来驱动 L2-L7 层不同的底�
 &lt;li&gt;循环链表(Circular list)&lt;br /&gt;
 在一个 循环链表中, 首节点和末节点被连接在一起。这种方式在单向和双向链表中皆可实现。&lt;/li&gt;
 &lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;基本操作&lt;/p&gt;
+&lt;h3&gt;基本操作&lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;
 &lt;p&gt;插入(在指定元素之前插入新结点)&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt; &lt;span class="kt"&gt;void&lt;/span&gt; &lt;span class="nf"&gt;insert_afteri&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;link&lt;/span&gt; &lt;span class="n"&gt;head&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kt"&gt;item_t&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="c1"&gt;//第i个元素之后插入, i从0开始&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt; &lt;span class="kt"&gt;void&lt;/span&gt; &lt;span class="nf"&gt;insert_afteri&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;link&lt;/span&gt; &lt;span class="n"&gt;head&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kt"&gt;item_t&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="c1"&gt;//第i个元素之后插入&lt;/span&gt;
      &lt;span class="c1"&gt;//判断第i个节点是否存在&lt;/span&gt;
      &lt;span class="n"&gt;link&lt;/span&gt; &lt;span class="n"&gt;p&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;head&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;pnode&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
      &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;j&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
@@ -2162,103 +2520,6 @@ Neutron 实质是一个定义良好的框架用来驱动 L2-L7 层不同的底�
 
 &lt;/li&gt;
 &lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;扩展问题  &lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;Merge the two sorted link list in O(n) time and O(1) space  &lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;非递归实现，分析:分别用指针p1，p2来遍历两个链表，如果当前p1指向的数据小于p2指向的数据，则将p1指向的结点归入合并后的链表中，否则，将p2指向的结点归入合并后的链表中。如果有一个链表遍历结束，则把未结束的链表连接到合并后的链表尾部。&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;link&lt;/span&gt; &lt;span class="nf"&gt;merge_link&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;link&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;link&lt;/span&gt; &lt;span class="n"&gt;b&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="c1"&gt;//非递归实现&lt;/span&gt;
-    &lt;span class="n"&gt;link&lt;/span&gt; &lt;span class="n"&gt;c&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;NULL&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;p1&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;p2&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;b&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;tmp&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;p1&lt;/span&gt;&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="n"&gt;item&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt; &lt;span class="n"&gt;p2&lt;/span&gt;&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="n"&gt;item&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="c1"&gt;//初始化c&lt;/span&gt;
-        &lt;span class="n"&gt;c&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;p1&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-        &lt;span class="n"&gt;p1&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;p1&lt;/span&gt;&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="n"&gt;next&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-    &lt;span class="p"&gt;}&lt;/span&gt; &lt;span class="k"&gt;else&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
-        &lt;span class="n"&gt;c&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;p2&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-        &lt;span class="n"&gt;p2&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;p2&lt;/span&gt;&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="n"&gt;next&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-    &lt;span class="p"&gt;}&lt;/span&gt;
-    &lt;span class="n"&gt;tmp&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;c&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-    &lt;span class="k"&gt;while&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;p1&lt;/span&gt; &lt;span class="o"&gt;!=&lt;/span&gt; &lt;span class="nb"&gt;NULL&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class="n"&gt;p2&lt;/span&gt; &lt;span class="o"&gt;!=&lt;/span&gt; &lt;span class="nb"&gt;NULL&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
-        &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;p1&lt;/span&gt;&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="n"&gt;item&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt; &lt;span class="n"&gt;p2&lt;/span&gt;&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="n"&gt;item&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
-        &lt;span class="err"&gt;¦&lt;/span&gt;   &lt;span class="n"&gt;tmp&lt;/span&gt;&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="n"&gt;next&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;p1&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-        &lt;span class="err"&gt;¦&lt;/span&gt;   &lt;span class="n"&gt;p1&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;p1&lt;/span&gt;&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="n"&gt;next&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-        &lt;span class="p"&gt;}&lt;/span&gt; &lt;span class="k"&gt;else&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
-        &lt;span class="err"&gt;¦&lt;/span&gt;   &lt;span class="n"&gt;tmp&lt;/span&gt;&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="n"&gt;next&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;p2&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-        &lt;span class="err"&gt;¦&lt;/span&gt;   &lt;span class="n"&gt;p2&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;p2&lt;/span&gt;&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="n"&gt;next&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-        &lt;span class="p"&gt;}&lt;/span&gt;
-        &lt;span class="n"&gt;tmp&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;tmp&lt;/span&gt;&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="n"&gt;next&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-    &lt;span class="p"&gt;}&lt;/span&gt;
-
-    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;p1&lt;/span&gt; &lt;span class="o"&gt;!=&lt;/span&gt; &lt;span class="nb"&gt;NULL&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
-        &lt;span class="n"&gt;tmp&lt;/span&gt;&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="n"&gt;next&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;p1&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-    &lt;span class="p"&gt;}&lt;/span&gt;
-
-    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;p2&lt;/span&gt; &lt;span class="o"&gt;!=&lt;/span&gt; &lt;span class="nb"&gt;NULL&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
-        &lt;span class="n"&gt;tmp&lt;/span&gt;&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="n"&gt;next&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;p2&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-    &lt;span class="p"&gt;}&lt;/span&gt;
-
-    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;c&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-&lt;span class="p"&gt;}&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;递归实现&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;link&lt;/span&gt; &lt;span class="nf"&gt;merge_link2&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;link&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;linkb&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="c1"&gt;//递归实现，但是不满足空间复杂度O(1)要求&lt;/span&gt;
-    &lt;span class="n"&gt;link&lt;/span&gt; &lt;span class="n"&gt;c&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;NULL&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="nb"&gt;NULL&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;b&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;b&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="nb"&gt;NULL&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="n"&gt;item&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt; &lt;span class="n"&gt;b&lt;/span&gt;&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="n"&gt;item&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
-        &lt;span class="n"&gt;c&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-        &lt;span class="n"&gt;c&lt;/span&gt;&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="n"&gt;next&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;merge_link2&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="n"&gt;next&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;b&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
-    &lt;span class="p"&gt;}&lt;/span&gt; &lt;span class="k"&gt;else&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
-        &lt;span class="n"&gt;c&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;b&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-        &lt;span class="n"&gt;c&lt;/span&gt;&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="n"&gt;next&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;merge_link2&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;b&lt;/span&gt;&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="n"&gt;next&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
-    &lt;span class="p"&gt;}&lt;/span&gt;
-    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;c&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-&lt;span class="p"&gt;}&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;Floyd 环查找算法&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;两链表相交问题&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;删除排序数组中重复的元素&lt;/p&gt;
-&lt;p&gt;public class Solution {
-    public ListNode deleteDuplicates(ListNode head) {
-        if(head == null || head.next == null)
-            return head;&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;    &lt;span class="n"&gt;ListNode&lt;/span&gt; &lt;span class="n"&gt;p&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;head&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-
-    &lt;span class="k"&gt;while&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt; &lt;span class="n"&gt;p&lt;/span&gt;&lt;span class="o"&gt;!=&lt;/span&gt; &lt;span class="n"&gt;null&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class="n"&gt;p&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;next&lt;/span&gt; &lt;span class="o"&gt;!=&lt;/span&gt; &lt;span class="n"&gt;null&lt;/span&gt;&lt;span class="p"&gt;){&lt;/span&gt;
-        &lt;span class="k"&gt;if&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;p&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;val&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="n"&gt;p&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;next&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;val&lt;/span&gt;&lt;span class="p"&gt;){&lt;/span&gt;
-            &lt;span class="n"&gt;p&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;next&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;p&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;next&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;next&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-        &lt;span class="p"&gt;}&lt;/span&gt;&lt;span class="k"&gt;else&lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
-            &lt;span class="n"&gt;p&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;p&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;next&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; 
-        &lt;span class="p"&gt;}&lt;/span&gt;
-    &lt;span class="p"&gt;}&lt;/span&gt;
-
-    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;head&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-&lt;span class="p"&gt;}&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-
-&lt;p&gt;}&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;http://m.blog.csdn.net/blog/sangni007/8218552
-http://bluefish.blog.51cto.com/214870/68462&lt;/p&gt;
 &lt;p&gt;refer:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href="http://blog.csdn.net/dxdxsmy/article/details/7346326"&gt;http://blog.csdn.net/dxdxsmy/article/details/7346326&lt;/a&gt;&lt;/li&gt;
@@ -2268,13 +2529,17 @@ http://bluefish.blog.51cto.com/214870/68462&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;Given an n x n matrix, where every row and column is sorted in increasing order. Given a number x, how to decide whether this x is in the matrix. The designed algorithm should have linear time complexity.&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;p&gt;Solution:
-- Start with top right element
-- Loop: compare this element e with x
-    - if they are equal then return its position
-    - e &amp;lt; x then move it to down (if out of bound of matrix then break return false)
-    - e &amp;gt; x then move it to left (if out of bound of matrix then break return false)
-    - repeat..&lt;/p&gt;
+&lt;p&gt;Solution:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Start with top right element&lt;/li&gt;
+&lt;li&gt;Loop: compare this element e with x&lt;ul&gt;
+&lt;li&gt;if they are equal then return its position&lt;/li&gt;
+&lt;li&gt;e &amp;lt; x then move it to down (if out of bound of matrix then break return false)&lt;/li&gt;
+&lt;li&gt;e &amp;gt; x then move it to left (if out of bound of matrix then break return false)&lt;/li&gt;
+&lt;li&gt;repeat..&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
 &lt;p&gt;代码:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="nf"&gt;search&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;mat&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;][&lt;/span&gt;&lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt; &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;n&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;span class="p"&gt;{&lt;/span&gt;
@@ -2329,15 +2594,105 @@ http://bluefish.blog.51cto.com/214870/68462&lt;/p&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
+&lt;h3&gt;Maximum subarray with all 1’s.&lt;/h3&gt;
+&lt;p&gt;可以利用求直方图最大长方形(largest rectangle in histogram)得问题求解.&lt;/p&gt;
+&lt;h3&gt;Maximum size square sub-matrix with all 1s&lt;/h3&gt;
+&lt;p&gt;用动态规划解决:&lt;/p&gt;
+&lt;p&gt;Let the given binary matrix be M[R][C]. The idea of the algorithm is to construct an auxiliary size matrix S[][] in which each entry S[i][j] represents size of the square sub-matrix with all 1s including M[i][j] where M[i][j] is the rightmost and bottommost entry in sub-matrix.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Construct a sum matrix S[R][C] for the given M[R][C].
+     a) Copy first row and first columns as it is from M[][] to S[][]
+     b) For other entries, use following expressions to construct S[][]
+         If M[i][j] is 1 then
+            S[i][j] = min(S[i][j-1], S[i-1][j], S[i-1][j-1]) + 1 //understand
+         Else /&lt;em&gt;If M[i][j] is 0&lt;/em&gt;/
+            S[i][j] = 0&lt;/li&gt;
+&lt;li&gt;Find the maximum entry in S[R][C]&lt;/li&gt;
+&lt;li&gt;Using the value and coordinates of maximum entry in S[i], print 
+   sub-matrix of M[][]&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;four borders&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Imagine you have a square matrix, where each cell is filled with either black or white. Design an algorithm to find the maximum subsquare such that all four borders are filled with black pixels. &lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;暴力法，从左到右，从上到下遍历格子，将它作为子正方形左上角的点。 固定了子正方形左上角的点，我们只需要知道边长，就能把子正方形确定下来。 我们按边长从大到小开始，去检查每一个子正方形的四条边是否都为黑色格子。 如果是，则记下当前最大的边长值。将子正方形左上角的点移动到下一行(即向下移动一格)， 进入下一轮循环。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;SubSquare&lt;/span&gt; &lt;span class="nf"&gt;FindSubSquare&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;n&lt;/span&gt;&lt;span class="p"&gt;){&lt;/span&gt;
+    &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;max_size&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="c1"&gt;//最大边长&lt;/span&gt;
+    &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;col&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="n"&gt;SubSquare&lt;/span&gt; &lt;span class="n"&gt;sq&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="k"&gt;while&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;n&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;col&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;max_size&lt;/span&gt;&lt;span class="p"&gt;){&lt;/span&gt;
+        &lt;span class="k"&gt;for&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;row&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="n"&gt;row&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;n&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="o"&gt;++&lt;/span&gt;&lt;span class="n"&gt;row&lt;/span&gt;&lt;span class="p"&gt;){&lt;/span&gt;
+            &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;size&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;n&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="n"&gt;max&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;row&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;col&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+            &lt;span class="k"&gt;while&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;size&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;max_size&lt;/span&gt;&lt;span class="p"&gt;){&lt;/span&gt;
+                &lt;span class="k"&gt;if&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;IsSquare&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;row&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;col&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;size&lt;/span&gt;&lt;span class="p"&gt;)){&lt;/span&gt;
+                    &lt;span class="n"&gt;max_size&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;size&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+                    &lt;span class="n"&gt;sq&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;row&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;row&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+                    &lt;span class="n"&gt;sq&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;col&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;col&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+                    &lt;span class="n"&gt;sq&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;size&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;size&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+                    &lt;span class="k"&gt;break&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+                &lt;span class="p"&gt;}&lt;/span&gt;
+                &lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="n"&gt;size&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+            &lt;span class="p"&gt;}&lt;/span&gt;
+        &lt;span class="p"&gt;}&lt;/span&gt;
+        &lt;span class="o"&gt;++&lt;/span&gt;&lt;span class="n"&gt;col&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;sq&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h3&gt;打印螺旋矩阵&lt;/h3&gt;
+&lt;p&gt;我们可以直接根据螺旋的过程来实现打印，从第一个元素开始，向右走N步，然后转向下，需要走的步数则为N-1，然后转向右，需要走的步数依然为N-1,最后往上走，需要走N-2步。这样就螺旋的打印完了最外围一圈，接着是往里的一圈，又重复这样的过程。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="kt"&gt;void&lt;/span&gt; &lt;span class="nf"&gt;printMatrix&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="o"&gt;**&lt;/span&gt;&lt;span class="n"&gt;matrix&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;dimension&lt;/span&gt;&lt;span class="p"&gt;){&lt;/span&gt;
+    &lt;span class="k"&gt;if&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;matrix&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="nb"&gt;NULL&lt;/span&gt; &lt;span class="o"&gt;||&lt;/span&gt; &lt;span class="n"&gt;dimension&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;=&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+        &lt;span class="k"&gt;return&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;j&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;steps&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;dimension&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;circle&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;steps&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;num&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;k&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="k"&gt;while&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;k&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt; &lt;span class="n"&gt;circle&lt;/span&gt;&lt;span class="p"&gt;){&lt;/span&gt;
+        &lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;j&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;k&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+        &lt;span class="k"&gt;while&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;j&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt; &lt;span class="n"&gt;steps&lt;/span&gt;&lt;span class="p"&gt;){&lt;/span&gt; &lt;span class="c1"&gt;// fisrt print steps-j elements&lt;/span&gt;
+            &lt;span class="n"&gt;matrix&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;][&lt;/span&gt;&lt;span class="n"&gt;j&lt;/span&gt;&lt;span class="o"&gt;++&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;num&lt;/span&gt;&lt;span class="o"&gt;++&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+        &lt;span class="p"&gt;}&lt;/span&gt;
+        &lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="n"&gt;j&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+
+        &lt;span class="k"&gt;while&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt; &lt;span class="n"&gt;steps&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;){&lt;/span&gt; &lt;span class="c1"&gt;// 0,1,2,3&lt;/span&gt;
+            &lt;span class="n"&gt;matrix&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="o"&gt;++&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;][&lt;/span&gt;&lt;span class="n"&gt;j&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;num&lt;/span&gt;&lt;span class="o"&gt;++&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+        &lt;span class="p"&gt;}&lt;/span&gt;
+
+        &lt;span class="k"&gt;while&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;j&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;k&lt;/span&gt;&lt;span class="p"&gt;){&lt;/span&gt;
+            &lt;span class="n"&gt;matrix&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;][&lt;/span&gt;&lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="n"&gt;j&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;num&lt;/span&gt;&lt;span class="o"&gt;++&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+        &lt;span class="p"&gt;}&lt;/span&gt;
+
+        &lt;span class="k"&gt;while&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;k&lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;){&lt;/span&gt;
+            &lt;span class="n"&gt;matrix&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;][&lt;/span&gt;&lt;span class="n"&gt;j&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;num&lt;/span&gt;&lt;span class="o"&gt;++&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+        &lt;span class="p"&gt;}&lt;/span&gt;
+        &lt;span class="o"&gt;++&lt;/span&gt;&lt;span class="n"&gt;k&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+        &lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="n"&gt;steps&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt;
+    &lt;span class="k"&gt;if&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;dimension&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&lt;/span&gt; &lt;span class="mh"&gt;0x1&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+        &lt;span class="n"&gt;matrix&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;circle&lt;/span&gt;&lt;span class="p"&gt;][&lt;/span&gt;&lt;span class="n"&gt;circle&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;num&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h3&gt;按顺序打印已排序得矩阵&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Given an n x n matrix, where every row and column is sorted in non-decreasing order. Print all elements of matrix in sorted order.&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;p&gt;refer:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href="http://www.geeksforgeeks.org/search-in-row-wise-and-column-wise-sorted-matrix/"&gt;http://www.geeksforgeeks.org/search-in-row-wise-and-column-wise-sorted-matrix/&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="http://leetcode.com/2010/10/searching-2d-sorted-matrix-part-ii.html"&gt;http://leetcode.com/2010/10/searching-2d-sorted-matrix-part-ii.html&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="http://www.geeksforgeeks.org/dynamic-programming-set-27-max-sum-rectangle-in-a-2d-matrix/"&gt;http://www.geeksforgeeks.org/dynamic-programming-set-27-max-sum-rectangle-in-a-2d-matrix/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://wansishuang.appspot.com/?p=38002"&gt;最大矩阵问题的一些变种&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="http://zh.wikipedia.org/wiki/%E7%9F%A9%E9%98%B5%E6%8C%87%E6%95%B0"&gt;http://zh.wikipedia.org/wiki/%E7%9F%A9%E9%98%B5%E6%8C%87%E6%95%B0&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="http://www.zhihu.com/question/19706331"&gt;http://www.zhihu.com/question/19706331&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="http://www.ituring.com.cn/article/17978"&gt;http://www.ituring.com.cn/article/17978&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="http://www.zhihu.com/question/22854639"&gt;http://www.zhihu.com/question/22854639&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://www.hawstein.com/posts/20.11.html"&gt;http://www.hawstein.com/posts/20.11.html&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://www.geeksforgeeks.org/print-elements-sorted-order-row-column-wise-sorted-matrix/"&gt;http://www.geeksforgeeks.org/print-elements-sorted-order-row-column-wise-sorted-matrix/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://www.ituring.com.cn/article/51520"&gt;http://www.ituring.com.cn/article/51520&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">actberw</dc:creator><pubDate>Thu, 12 Jun 2014 12:00:00 +0800</pubDate><guid>tag:actberw.github.io,2014-06-12:posts/algorithm/matrix.html</guid><category>algorithm</category><category>matrix</category></item><item><title>随机数及检验</title><link>http://actberw.github.io/posts/algorithm/random.html</link><description>&lt;h3&gt;随机数算法&lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;取中法&lt;/li&gt;
@@ -2442,15 +2797,54 @@ C = P &amp;amp; (~Q) , C: final file's permission, P: requested permission, Q: m
 
 
 &lt;h3&gt;最长递增子序列&lt;/h3&gt;
+&lt;p&gt;可以用quicksort + LCS, ，因为LIS是单调递增的性质，所以任意一个LIS一定跟排序后的序列有LCS，并且就是LIS本身。
+扩展:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;从一列数中筛除尽可能少的数使得从左往右看，这些数是从小到大再从大到小的&lt;/li&gt;
 &lt;/ul&gt;
+&lt;h3&gt;Longest subarray with equal number of ones and zeros&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Given an array containing only 0s and 1s, find the largest subarray which contain equal no of 0s and 1s. Expected time complexity is O(n).&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;最简单得实现就是把0当-1, 计算从i 到j得sum, 如果sum ==0 , 比较size和max_size, 时间复杂度是$O(n^2)$.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="nf"&gt;find_sub_array&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;arr&lt;/span&gt;&lt;span class="p"&gt;[],&lt;/span&gt; &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;n&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;sum&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;max_size&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;startindex&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+
+    &lt;span class="c1"&gt;// Pick a starting point as i&lt;/span&gt;
+    &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt; &lt;span class="n"&gt;n&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="o"&gt;++&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="p"&gt;{&lt;/span&gt;
+        &lt;span class="n"&gt;sum&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;arr&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;?&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+
+        &lt;span class="c1"&gt;// Consider all subarrays starting from i&lt;/span&gt;
+        &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;j&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="n"&gt;j&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt; &lt;span class="n"&gt;n&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="n"&gt;j&lt;/span&gt;&lt;span class="o"&gt;++&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+        &lt;span class="p"&gt;{&lt;/span&gt;
+            &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;arr&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;j&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;?&lt;/span&gt; &lt;span class="n"&gt;sum&lt;/span&gt; &lt;span class="o"&gt;+=&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;sum&lt;/span&gt; &lt;span class="o"&gt;+=&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+
+            &lt;span class="k"&gt;if&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;sum&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class="n"&gt;max_size&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt; &lt;span class="n"&gt;j&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+            &lt;span class="p"&gt;{&lt;/span&gt;
+                &lt;span class="n"&gt;max_size&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;j&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+                &lt;span class="n"&gt;startindex&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+            &lt;span class="p"&gt;}&lt;/span&gt;
+        &lt;span class="p"&gt;}&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt;
+    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt; &lt;span class="n"&gt;max_size&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt; &lt;span class="p"&gt;)&lt;/span&gt;
+        &lt;span class="n"&gt;printf&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;No such subarray&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+    &lt;span class="k"&gt;else&lt;/span&gt;
+        &lt;span class="n"&gt;printf&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;%d to %d&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;startindex&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;startindex&lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="n"&gt;max_size&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;max_size&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
 &lt;p&gt;refer:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href="http://blog.csdn.net/v_JULY_v/article/details/6419466"&gt;http://blog.csdn.net/v_JULY_v/article/details/6419466&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="http://www.geeksforgeeks.org/largest-sum-contiguous-subarray/"&gt;http://www.geeksforgeeks.org/largest-sum-contiguous-subarray/&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="http://www.geeksforgeeks.org/maximum-product-subarray/"&gt;http://www.geeksforgeeks.org/maximum-product-subarray/&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="http://shepherdyuan.wordpress.com/2014/07/23/linkedin-maximum-sumproduct-subarray/"&gt;http://shepherdyuan.wordpress.com/2014/07/23/linkedin-maximum-sumproduct-subarray/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://www.ahathinking.com/archives/117.html"&gt;http://www.ahathinking.com/archives/117.html&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">actberw</dc:creator><pubDate>Wed, 11 Jun 2014 19:00:00 +0800</pubDate><guid>tag:actberw.github.io,2014-06-11:posts/adt/array-part-5.html</guid><category>algorithm</category><category>data structure</category><category>array</category></item><item><title>斐波纳契数列</title><link>http://actberw.github.io/posts/algorithm/fibonacci.html</link><description>&lt;blockquote&gt;
 &lt;p&gt;问题描述：Fibonacci数（Fibonacci Number）的定义是：$F_n = F_{n - 1} + F_{n - 2}$，并且$F_0$ = 0，$F_1$ = 1。对于任意指定的整数n（n ≥ 0），计算$F_n$的精确值，并分析算法的时间、空间复杂度。&lt;/p&gt;
 &lt;/blockquote&gt;

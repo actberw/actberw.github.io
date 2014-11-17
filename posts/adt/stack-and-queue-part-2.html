@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8" />
+    <!-- Set the viewport width to device width for mobile -->
+    <meta name="viewport" content="width=device-width" />
+
+    <title>栈和队列 part 2</title>
+
+    <link rel="stylesheet" href="../../theme/css/normalize.css" />
+    <link rel="stylesheet" href="../../theme/css/foundation.min.css" />
+    <link rel="stylesheet" href="../../theme/css/style.css" />
+    <link rel="stylesheet" href="../../theme/css/pygments.css" />	
+    <link rel="stylesheet" type="text/css" href="../../theme/css/jqcloud.css" />
+    <script src="../../theme/js/vendor/custom.modernizr.js"></script>
+    <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+          "HTML-CSS": {
+        styles: {
+          ".MathJax .mo, .MathJax .mi": {color: "black ! important"}}
+            },
+              tex2jax: {inlineMath: [['$','$'], ['\\\\(','\\\\)']],processEscapes: true}
+        });
+    </script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../../theme/js/jquery.min.js"></script>
+    <script type="text/javascript" src="../../theme/js/jqcloud-1.0.4.min.js"></script>
+    
+    <script type="text/javascript">
+	var word_list = [
+        {text: "gdt", weight: 0.0125, link: {href: "/tag/gdt.html"}},
+        {text: "pelican", weight: 0.0125, link: {href: "/tag/pelican.html"}},
+        {text: "random", weight: 0.05, link: {href: "/tag/random.html"}},
+        {text: "zmap", weight: 0.0125, link: {href: "/tag/zmap.html"}},
+        {text: "algorithm analysis", weight: 0.05, link: {href: "/tag/algorithm-analysis.html"}},
+        {text: "unicode", weight: 0.0125, link: {href: "/tag/unicode.html"}},
+        {text: "mysql", weight: 0.05, link: {href: "/tag/mysql.html"}},
+        {text: "ext4", weight: 0.0125, link: {href: "/tag/ext4.html"}},
+        {text: "umask", weight: 0.0125, link: {href: "/tag/umask.html"}},
+        {text: "nmap", weight: 0.0125, link: {href: "/tag/nmap.html"}},
+        {text: "ls", weight: 0.0125, link: {href: "/tag/ls.html"}},
+        {text: "triangle", weight: 0.0125, link: {href: "/tag/triangle.html"}},
+        {text: "object model", weight: 0.0125, link: {href: "/tag/object-model.html"}},
+        {text: "python", weight: 0.1375, link: {href: "/tag/python.html"}},
+        {text: "risc", weight: 0.0125, link: {href: "/tag/risc.html"}},
+        {text: "chmod", weight: 0.025, link: {href: "/tag/chmod.html"}},
+        {text: "underscore", weight: 0.0125, link: {href: "/tag/underscore.html"}},
+        {text: "bit", weight: 0.0125, link: {href: "/tag/bit.html"}},
+        {text: "daemon", weight: 0.0125, link: {href: "/tag/daemon.html"}},
+        {text: "signal", weight: 0.0125, link: {href: "/tag/signal.html"}},
+        {text: "real mode", weight: 0.025, link: {href: "/tag/real-mode.html"}},
+        {text: "binary search", weight: 0.0125, link: {href: "/tag/binary-search.html"}},
+        {text: "ldt", weight: 0.0125, link: {href: "/tag/ldt.html"}},
+        {text: "orphan", weight: 0.0125, link: {href: "/tag/orphan.html"}},
+        {text: "prime number", weight: 0.0125, link: {href: "/tag/prime-number.html"}},
+        {text: "xtrabackup", weight: 0.025, link: {href: "/tag/xtrabackup.html"}},
+        {text: "function call", weight: 0.0125, link: {href: "/tag/function-call.html"}},
+        {text: "ring", weight: 0.0125, link: {href: "/tag/ring.html"}},
+        {text: "matrix", weight: 0.0125, link: {href: "/tag/matrix.html"}},
+        {text: "cpu ring", weight: 0.0125, link: {href: "/tag/cpu-ring.html"}},
+        {text: "metaclass", weight: 0.0125, link: {href: "/tag/metaclass.html"}},
+        {text: "method", weight: 0.0125, link: {href: "/tag/method.html"}},
+        {text: "assembly", weight: 0.025, link: {href: "/tag/assembly.html"}},
+        {text: "stack frame", weight: 0.0125, link: {href: "/tag/stack-frame.html"}},
+        {text: "zombie", weight: 0.0125, link: {href: "/tag/zombie.html"}},
+        {text: "protect mode", weight: 0.0125, link: {href: "/tag/protect-mode.html"}},
+        {text: "zbr", weight: 0.0125, link: {href: "/tag/zbr.html"}},
+        {text: "system call", weight: 0.0125, link: {href: "/tag/system-call.html"}},
+        {text: "tcp/ip", weight: 0.0125, link: {href: "/tag/tcpip.html"}},
+        {text: "tls", weight: 0.0125, link: {href: "/tag/tls.html"}},
+        {text: "c", weight: 0.1875, link: {href: "/tag/c.html"}},
+        {text: "kernel thread", weight: 0.0125, link: {href: "/tag/kernel-thread.html"}},
+        {text: "thread", weight: 0.025, link: {href: "/tag/thread.html"}},
+        {text: "queue", weight: 0.0375, link: {href: "/tag/queue.html"}},
+        {text: "data structure", weight: 0.1375, link: {href: "/tag/data-structure.html"}},
+        {text: "setuid", weight: 0.025, link: {href: "/tag/setuid.html"}},
+        {text: "shuffle", weight: 0.0125, link: {href: "/tag/shuffle.html"}},
+        {text: "encoding", weight: 0.0125, link: {href: "/tag/encoding.html"}},
+        {text: "c/c++", weight: 0.0125, link: {href: "/tag/cc.html"}},
+        {text: "float", weight: 0.0125, link: {href: "/tag/float.html"}},
+        {text: "apt", weight: 0.0125, link: {href: "/tag/apt.html"}},
+        {text: "vim", weight: 0.0125, link: {href: "/tag/vim.html"}},
+        {text: "sourcelist", weight: 0.0125, link: {href: "/tag/sourcelist.html"}},
+        {text: "linux", weight: 0.1875, link: {href: "/tag/linux.html"}},
+        {text: "array", weight: 0.0875, link: {href: "/tag/array.html"}},
+        {text: "callstack", weight: 0.0125, link: {href: "/tag/callstack.html"}},
+        {text: "debian", weight: 0.0125, link: {href: "/tag/debian.html"}},
+        {text: "type", weight: 0.0125, link: {href: "/tag/type.html"}},
+        {text: "sort", weight: 0.0125, link: {href: "/tag/sort.html"}},
+        {text: "masscan", weight: 0.0125, link: {href: "/tag/masscan.html"}},
+        {text: "btrfs", weight: 0.0125, link: {href: "/tag/btrfs.html"}},
+        {text: "gas", weight: 0.0125, link: {href: "/tag/gas.html"}},
+        {text: "user thread", weight: 0.0125, link: {href: "/tag/user-thread.html"}},
+        {text: "c3", weight: 0.0125, link: {href: "/tag/c3.html"}},
+        {text: "stty", weight: 0.0125, link: {href: "/tag/stty.html"}},
+        {text: "compile", weight: 0.0125, link: {href: "/tag/compile.html"}},
+        {text: "descriptor", weight: 0.0125, link: {href: "/tag/descriptor.html"}},
+        {text: "hdd", weight: 0.0125, link: {href: "/tag/hdd.html"}},
+        {text: "setresuid", weight: 0.0125, link: {href: "/tag/setresuid.html"}},
+        {text: "str", weight: 0.025, link: {href: "/tag/str.html"}},
+        {text: "cisc", weight: 0.0125, link: {href: "/tag/cisc.html"}},
+        {text: "a20", weight: 0.0125, link: {href: "/tag/a20.html"}},
+        {text: "shebang", weight: 0.0125, link: {href: "/tag/shebang.html"}},
+        {text: "process", weight: 0.0125, link: {href: "/tag/process.html"}},
+        {text: "poiner", weight: 0.0125, link: {href: "/tag/poiner.html"}},
+        {text: "sticky", weight: 0.0125, link: {href: "/tag/sticky.html"}},
+        {text: "__init__", weight: 0.0125, link: {href: "/tag/__init__.html"}},
+        {text: "latency", weight: 0.0125, link: {href: "/tag/latency.html"}},
+        {text: "gcd", weight: 0.0125, link: {href: "/tag/gcd.html"}},
+        {text: "arm", weight: 0.0125, link: {href: "/tag/arm.html"}},
+        {text: "utf-8", weight: 0.0125, link: {href: "/tag/utf-8.html"}},
+        {text: "fs", weight: 0.0125, link: {href: "/tag/fs.html"}},
+        {text: "x86", weight: 0.025, link: {href: "/tag/x86.html"}},
+        {text: "quote", weight: 0.0125, link: {href: "/tag/quote.html"}},
+        {text: "class", weight: 0.0125, link: {href: "/tag/class.html"}},
+        {text: "mangling", weight: 0.0125, link: {href: "/tag/mangling.html"}},
+        {text: "stack", weight: 0.0375, link: {href: "/tag/stack.html"}},
+        {text: "getuid", weight: 0.0125, link: {href: "/tag/getuid.html"}},
+        {text: "eof", weight: 0.0125, link: {href: "/tag/eof.html"}},
+        {text: "algorithm", weight: 0.4375, link: {href: "/tag/algorithm.html"}},
+        {text: "line join", weight: 0.0125, link: {href: "/tag/line-join.html"}},
+        {text: "register", weight: 0.0125, link: {href: "/tag/register.html"}},
+        {text: "mro", weight: 0.0125, link: {href: "/tag/mro.html"}},
+        ];
+        $(function() {
+            $("#tag-cloud").jQCloud(word_list);
+        });
+    </script>
+
+</head>
+
+<body>
+
+<!-- Nav Bar -->
+<nav>
+<div class="top-bar">
+<div class="row">
+    <div class="large-9 large-centered columns">
+	    <h1><a href="../..">记录一些工作中的笔记</a></h1>
+    </div>
+</div>
+</div>
+
+<!-- Show menu items and pages -->
+<div class="row">
+<div class="large-9 columns">
+    <ul class="button-group navigation">
+
+    </ul>
+</div>
+</div>
+</nav>
+<!-- End Nav -->
+
+
+<!-- Main Page Content and Sidebar -->
+<div class="row">
+
+    <!-- Main Blog Content -->
+    <div class="large-9 columns">
+<article>
+    <header>
+        <h3 class="article-title"><a href="../../posts/adt/stack-and-queue-part-2.html" rel="bookmark"
+        title="Permalink to 栈和队列 part 2">栈和队列 part 2</a></h3>
+    </header>
+
+<h6 class="subheader" title="2014-06-13T20:00:00">Fri 13 June 2014
+</h6>
+
+
+    <h3>递归反转stack</h3>
+<blockquote>
+<p>You are not allowed to use loop constructs like while, for..etc, and you can only use the following ADT functions on Stack S:
+  isEmpty(S)
+  push(S)
+  pop(S)</p>
+</blockquote>
+<p>The idea of the solution is to hold all values in Function Call Stack until the stack becomes empty. When the stack becomes empty, insert all held items one by one at the bottom of the stack.</p>
+<div class="highlight"><pre><span class="kt">void</span> <span class="nf">reverse</span><span class="p">(</span><span class="k">struct</span> <span class="n">sNode</span><span class="o">**</span> <span class="n">top_ref</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kt">int</span> <span class="n">temp</span><span class="p">;</span>   
+  <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">isEmpty</span><span class="p">(</span><span class="o">*</span><span class="n">top_ref</span><span class="p">))</span> <span class="p">{</span>
+
+    <span class="n">temp</span> <span class="o">=</span> <span class="n">pop</span><span class="p">(</span><span class="n">top_ref</span><span class="p">);</span>                        
+    <span class="n">reverse</span><span class="p">(</span><span class="n">top_ref</span><span class="p">);</span>
+    <span class="n">insertAtBottom</span><span class="p">(</span><span class="n">top_ref</span><span class="p">,</span> <span class="n">temp</span><span class="p">);</span>
+  <span class="p">}</span>      
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">insertAtBottom</span><span class="p">(</span><span class="k">struct</span> <span class="n">sNode</span><span class="o">**</span> <span class="n">top_ref</span><span class="p">,</span> <span class="kt">int</span> <span class="n">item</span><span class="p">)</span> <span class="p">{</span>
+   <span class="kt">int</span> <span class="n">temp</span><span class="p">;</span>  
+   <span class="k">if</span><span class="p">(</span><span class="n">isEmpty</span><span class="p">(</span><span class="o">*</span><span class="n">top_ref</span><span class="p">))</span> <span class="p">{</span>  
+       <span class="n">push</span><span class="p">(</span><span class="n">top_ref</span><span class="p">,</span> <span class="n">item</span><span class="p">);</span> 
+   <span class="p">}</span>
+   <span class="k">else</span> <span class="p">{</span>
+
+     <span class="n">temp</span> <span class="o">=</span> <span class="n">pop</span><span class="p">(</span><span class="n">top_ref</span><span class="p">);</span>
+     <span class="n">insertAtBottom</span><span class="p">(</span><span class="n">top_ref</span><span class="p">,</span> <span class="n">item</span><span class="p">);</span>
+
+     <span class="n">push</span><span class="p">(</span><span class="n">top_ref</span><span class="p">,</span> <span class="n">temp</span><span class="p">);</span>
+   <span class="p">}</span>             
+<span class="p">}</span>
+</pre></div>
+
+
+<h3>栈的push、pop序列</h3>
+<blockquote>
+<p>输入两个整数序列。其中一个序列表示栈的push顺序，判断另一个序列有没有可能是对应的pop顺序。为了简单起见，我们假设push序列的任意两个整数都是不相等的。</p>
+</blockquote>
+<h3>Implement Queue using Stacks</h3>
+<p>有两种方法:</p>
+<ul>
+<li>
+<p>By making put operation costly  </p>
+<div class="highlight"><pre><span class="n">put</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
+<span class="mi">1</span><span class="p">)</span> <span class="n">While</span> <span class="n">stack1</span> <span class="n">is</span> <span class="n">not</span> <span class="n">empty</span><span class="p">,</span> <span class="n">push</span> <span class="n">everything</span> <span class="n">from</span> <span class="n">satck1</span> <span class="n">to</span> <span class="n">stack2</span><span class="p">.</span>
+<span class="mi">2</span><span class="p">)</span> <span class="n">Push</span> <span class="n">x</span> <span class="n">to</span> <span class="n">stack1</span> <span class="p">(</span><span class="n">assuming</span> <span class="n">size</span> <span class="n">of</span> <span class="n">stacks</span> <span class="n">is</span> <span class="n">unlimited</span><span class="p">).</span>
+<span class="mi">3</span><span class="p">)</span> <span class="n">Push</span> <span class="n">everything</span> <span class="n">back</span> <span class="n">to</span> <span class="n">stack1</span><span class="p">.</span>
+<span class="n">get</span><span class="p">(</span><span class="n">q</span><span class="p">)</span>
+<span class="mi">1</span><span class="p">)</span> <span class="n">If</span> <span class="n">stack1</span> <span class="n">is</span> <span class="n">empty</span> <span class="n">then</span> <span class="n">error</span>
+<span class="mi">2</span><span class="p">)</span> <span class="n">Pop</span> <span class="n">an</span> <span class="n">item</span> <span class="n">from</span> <span class="n">stack1</span> <span class="n">and</span> <span class="k">return</span> <span class="n">it</span>
+</pre></div>
+
+
+</li>
+<li>
+<p>By making get operation costly  </p>
+<div class="highlight"><pre><span class="n">put</span><span class="p">(</span><span class="n">q</span><span class="p">,</span>  <span class="n">x</span><span class="p">)</span>
+  <span class="mi">1</span><span class="p">)</span> <span class="n">Push</span> <span class="n">x</span> <span class="n">to</span> <span class="n">stack1</span> <span class="p">(</span><span class="n">assuming</span> <span class="n">size</span> <span class="n">of</span> <span class="n">stacks</span> <span class="n">is</span> <span class="n">unlimited</span><span class="p">).</span>
+<span class="n">get</span><span class="p">(</span><span class="n">q</span><span class="p">)</span>
+  <span class="mi">1</span><span class="p">)</span> <span class="n">If</span> <span class="n">both</span> <span class="n">stacks</span> <span class="n">are</span> <span class="n">empty</span> <span class="n">then</span> <span class="n">error</span><span class="p">.</span>
+  <span class="mi">2</span><span class="p">)</span> <span class="n">If</span> <span class="n">stack2</span> <span class="n">is</span> <span class="n">empty</span>
+       <span class="n">While</span> <span class="n">stack1</span> <span class="n">is</span> <span class="n">not</span> <span class="n">empty</span><span class="p">,</span> <span class="n">push</span> <span class="n">everything</span> <span class="n">from</span> <span class="n">satck1</span> <span class="n">to</span> <span class="n">stack2</span><span class="p">.</span>
+  <span class="mi">3</span><span class="p">)</span> <span class="n">Pop</span> <span class="n">the</span> <span class="n">element</span> <span class="n">from</span> <span class="n">stack2</span> <span class="n">and</span> <span class="k">return</span> <span class="n">it</span><span class="p">.</span>
+</pre></div>
+
+
+</li>
+</ul>
+<p>Queue can also be implemented using one user stack and one Function Call Stack. </p>
+<div class="highlight"><pre><span class="n">put</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
+  <span class="mi">1</span><span class="p">)</span> <span class="n">Push</span> <span class="n">x</span> <span class="n">to</span> <span class="n">stack1</span><span class="p">.</span>
+
+<span class="n">get</span><span class="p">(</span><span class="n">q</span><span class="p">)</span><span class="o">:</span>
+  <span class="mi">1</span><span class="p">)</span> <span class="n">If</span> <span class="n">stack1</span> <span class="n">is</span> <span class="n">empty</span> <span class="n">then</span> <span class="n">error</span><span class="p">.</span>
+  <span class="mi">2</span><span class="p">)</span> <span class="n">If</span> <span class="n">stack1</span> <span class="n">has</span> <span class="n">only</span> <span class="n">one</span> <span class="n">element</span> <span class="n">then</span> <span class="k">return</span> <span class="n">it</span><span class="p">.</span>
+  <span class="mi">3</span><span class="p">)</span> <span class="n">Recursively</span> <span class="n">pop</span> <span class="n">everything</span> <span class="n">from</span> <span class="n">the</span> <span class="n">stack1</span><span class="p">,</span> <span class="n">store</span> <span class="n">the</span> <span class="n">popped</span> <span class="n">item</span> <span class="n">in</span> <span class="n">a</span> <span class="n">variable</span> <span class="n">res</span><span class="p">,</span>  <span class="n">push</span> <span class="n">the</span> <span class="n">res</span> <span class="n">back</span> <span class="n">to</span> <span class="n">stack1</span> <span class="n">and</span> <span class="k">return</span> <span class="n">res</span>
+</pre></div>
+
+
+<h3>Implement Stack using Queues</h3>
+<blockquote>
+<p>We are given a Queue data structure that supports standard operations like enqueue() and dequeue(). We need to implement a Stack data structure using only instances of Queue.</p>
+</blockquote>
+<p>同样是两种方法:</p>
+<ul>
+<li>
+<p>By making push operation costly  </p>
+<div class="highlight"><pre><span class="n">push</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span> <span class="c1">// x is the element to be pushed and s is stack</span>
+  <span class="mi">1</span><span class="p">)</span> <span class="n">Enqueue</span> <span class="n">x</span> <span class="n">to</span> <span class="n">q2</span>
+  <span class="mi">2</span><span class="p">)</span> <span class="n">One</span> <span class="n">by</span> <span class="n">one</span> <span class="n">dequeue</span> <span class="n">everything</span> <span class="n">from</span> <span class="n">q1</span> <span class="n">and</span> <span class="n">enqueue</span> <span class="n">to</span> <span class="n">q2</span><span class="p">.</span>
+  <span class="mi">3</span><span class="p">)</span> <span class="n">Swap</span> <span class="n">the</span> <span class="n">names</span> <span class="n">of</span> <span class="n">q1</span> <span class="n">and</span> <span class="n">q2</span> 
+<span class="c1">// Swapping of names is done to avoid one more movement of all elements </span>
+<span class="c1">// from q2 to q1. </span>
+<span class="n">pop</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+  <span class="mi">1</span><span class="p">)</span> <span class="n">Dequeue</span> <span class="n">an</span> <span class="n">item</span> <span class="n">from</span> <span class="n">q1</span> <span class="n">and</span> <span class="k">return</span> <span class="n">it</span><span class="p">.</span>
+</pre></div>
+
+
+</li>
+<li>
+<p>By making pop operation costly  </p>
+<div class="highlight"><pre><span class="n">push</span><span class="p">(</span><span class="n">s</span><span class="p">,</span>  <span class="n">x</span><span class="p">)</span>
+  <span class="mi">1</span><span class="p">)</span> <span class="n">Enqueue</span> <span class="n">x</span> <span class="n">to</span> <span class="n">q1</span> <span class="p">(</span><span class="n">assuming</span> <span class="n">size</span> <span class="n">of</span> <span class="n">q1</span> <span class="n">is</span> <span class="n">unlimited</span><span class="p">).</span>
+<span class="n">pop</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>  
+  <span class="mi">1</span><span class="p">)</span> <span class="n">One</span> <span class="n">by</span> <span class="n">one</span> <span class="n">dequeue</span> <span class="n">everything</span> <span class="n">except</span> <span class="n">the</span> <span class="n">last</span> <span class="n">element</span> <span class="n">from</span> <span class="n">q1</span> <span class="n">and</span> <span class="n">enqueue</span> <span class="n">to</span> <span class="n">q2</span><span class="p">.</span>
+  <span class="mi">2</span><span class="p">)</span> <span class="n">Dequeue</span> <span class="n">the</span> <span class="n">last</span> <span class="n">item</span> <span class="n">of</span> <span class="n">q1</span><span class="p">,</span> <span class="n">the</span> <span class="n">dequeued</span> <span class="n">item</span> <span class="n">is</span> <span class="n">result</span><span class="p">,</span> <span class="n">store</span> <span class="n">it</span><span class="p">.</span>
+  <span class="mi">3</span><span class="p">)</span> <span class="n">Swap</span> <span class="n">the</span> <span class="n">names</span> <span class="n">of</span> <span class="n">q1</span> <span class="n">and</span> <span class="n">q2</span>
+  <span class="mi">4</span><span class="p">)</span> <span class="n">Return</span> <span class="n">the</span> <span class="n">item</span> <span class="n">stored</span> <span class="n">in</span> <span class="n">step</span> <span class="mf">2.</span>
+<span class="c1">// Swapping of names is done to avoid one more movement of all elements </span>
+<span class="c1">// from q2 to q1.</span>
+</pre></div>
+
+
+</li>
+</ul>
+<p>refer:</p>
+<ul>
+<li><a href="http://www.geeksforgeeks.org/reverse-a-stack-using-recursion/">http://www.geeksforgeeks.org/reverse-a-stack-using-recursion/</a></li>
+<li><a href="http://www.geeksforgeeks.org/queue-using-stacks/">http://www.geeksforgeeks.org/queue-using-stacks/</a></li>
+<li><a href="http://www.geeksforgeeks.org/implement-stack-using-queue/">http://www.geeksforgeeks.org/implement-stack-using-queue/</a></li>
+<li><a href="http://zhedahht.blog.163.com/blog/static/25411174200732102055385/">http://zhedahht.blog.163.com/blog/static/25411174200732102055385/</a></li>
+</ul>
+<p class="subheader">Category: <a href="../../category/adt.html">adt</a>
+
+    Tagged: 
+    <a href="../../tag/algorithm.html">algorithm </a>
+    <a href="../../tag/data-structure.html">data structure </a>
+    <a href="../../tag/stack.html">stack </a>
+    <a href="../../tag/queue.html">queue </a>
+</p>
+
+
+
+
+</article>
+    </div>
+    <!-- End Main Content -->
+
+    <!-- Sidebar -->
+    <aside class="large-3 columns">
+    <!-- <h5 class="sidebar-title">Site</h5>
+        <ul class="side-nav">
+            <li><a href="../../archives.html">Archives</a>
+            <li><a href="../../tags.html">Tags</a>
+    </ul> -->
+
+        <h5 class="sidebar-title">Tags</h5>
+	<div id="tag-cloud" style="with: 25%; height: 245px;"></div>
+
+		
+        <h5 class="sidebar-title">Categories</h5>
+        <ul class="side-nav">
+            <li><a href="../../category/adt.html">adt</a></li>
+            <li><a href="../../category/algorithm.html">algorithm</a></li>
+            <li><a href="../../category/c.html">c</a></li>
+            <li><a href="../../category/complexity.html">complexity</a></li>
+            <li><a href="../../category/coroutine.html">coroutine</a></li>
+            <li><a href="../../category/interview.html">interview</a></li>
+            <li><a href="../../category/learn-plan.html">learn-plan</a></li>
+            <li><a href="../../category/misc.html">misc</a></li>
+            <li><a href="../../category/mysql.html">mysql</a></li>
+            <li><a href="../../category/python.html">python</a></li>
+            <li><a href="../../category/security.html">security</a></li>
+            <li><a href="../../category/str.html">str</a></li>
+            <li><a href="../../category/tcp-ip.html">tcp-ip</a></li>
+            <li><a href="../../category/tree.html">tree</a></li>
+            <li><a href="../../category/vim.html">vim</a></li>
+   
+        </ul>
+
+        <h5 class="sidebar-title">Links</h5>
+        <ul class="side-nav">
+            <li><a href="https://github.com/actberw">github</a></li>
+        </ul>
+		
+        <h5 class="sidebar-title">Social</h5>
+        <ul class="side-nav">
+            <li><a href="http://weibo.com/u/1950796544">weibo</a></li>
+        </ul>
+
+    </aside> <!-- End Sidebar -->
+
+</div> <!-- End Main Content and Sidebar -->
+
+
+<!-- Footer -->
+<footer class="row">
+    <div class="large-12 columns">
+        <hr />
+        <div class="row">
+            <div class="large-6 columns">
+              <!--                  <p>记录一些工作中的笔记 by actberw</p> -->
+            </div>
+            </div>
+    </div>
+</footer>

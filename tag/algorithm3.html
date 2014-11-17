@@ -70,8 +70,8 @@
         {text: "c", weight: 0.1875, link: {href: "/tag/c.html"}},
         {text: "kernel thread", weight: 0.0125, link: {href: "/tag/kernel-thread.html"}},
         {text: "thread", weight: 0.025, link: {href: "/tag/thread.html"}},
-        {text: "queue", weight: 0.0125, link: {href: "/tag/queue.html"}},
-        {text: "data structure", weight: 0.1, link: {href: "/tag/data-structure.html"}},
+        {text: "queue", weight: 0.0375, link: {href: "/tag/queue.html"}},
+        {text: "data structure", weight: 0.1375, link: {href: "/tag/data-structure.html"}},
         {text: "setuid", weight: 0.025, link: {href: "/tag/setuid.html"}},
         {text: "shuffle", weight: 0.0125, link: {href: "/tag/shuffle.html"}},
         {text: "encoding", weight: 0.0125, link: {href: "/tag/encoding.html"}},
@@ -113,10 +113,10 @@
         {text: "quote", weight: 0.0125, link: {href: "/tag/quote.html"}},
         {text: "class", weight: 0.0125, link: {href: "/tag/class.html"}},
         {text: "mangling", weight: 0.0125, link: {href: "/tag/mangling.html"}},
-        {text: "stack", weight: 0.0125, link: {href: "/tag/stack.html"}},
+        {text: "stack", weight: 0.0375, link: {href: "/tag/stack.html"}},
         {text: "getuid", weight: 0.0125, link: {href: "/tag/getuid.html"}},
         {text: "eof", weight: 0.0125, link: {href: "/tag/eof.html"}},
-        {text: "algorithm", weight: 0.4, link: {href: "/tag/algorithm.html"}},
+        {text: "algorithm", weight: 0.4375, link: {href: "/tag/algorithm.html"}},
         {text: "line join", weight: 0.0125, link: {href: "/tag/line-join.html"}},
         {text: "register", weight: 0.0125, link: {href: "/tag/register.html"}},
         {text: "mro", weight: 0.0125, link: {href: "/tag/mro.html"}},
@@ -158,6 +158,118 @@
     <!-- Main Blog Content -->
     <div class="large-9 columns">
         
+        
+
+
+            <article>
+                <a href="../posts/adt/array.html"><h3 class="article-title">数组 part-1</h3></a>
+<h6 class="subheader" title="2014-06-11T15:00:00">Wed 11 June 2014
+</h6>
+
+
+<p>数组把相同类型得数据按照固定有序得方式组织起来, 使得存储空空间相邻, 可以通过 <em>索引访问<code>a[i]</code></em>, 便于访问(O(1)), 但是不便于操作(O(n)). </p>
+<h3>数组(array)定义和初始化</h3>
+<div class="highlight"><pre><span class="c1">// 定义</span>
+<span class="k">int</span> <span class="n">array</span><span class="p">[</span><span class="n">length</span><span class="p">];</span>
+
+<span class="c1">// 定义和初始化 </span>
+<span class="k">int</span> <span class="n">array</span><span class="p">[</span><span class="mh">5</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="mh">1</span><span class="p">,</span> <span class="mh">2</span><span class="p">,</span> <span class="mh">3</span><span class="p">,</span> <span class="mh">4</span><span class="p">,</span> <span class="mh">5</span><span class="p">};</span>
+
+<span class="c1">// length也可以不指定</span>
+<span class="k">int</span> <span class="n">array</span><span class="p">[]</span> <span class="o">=</span> <span class="p">{</span><span class="mh">1</span><span class="p">,</span> <span class="mh">2</span><span class="p">,</span> <span class="mh">3</span><span class="p">,</span> <span class="mh">4</span><span class="p">,</span> <span class="mh">5</span><span class="p">};</span>
+</pre></div>
+
+
+<h3>数组(array)访问</h3>
+<p>数组元素可以通过索引访问, 索引必须保证是非负且小于数组大小. 数组名会产生一个指向数组首元素指针, 所以还可以通过指针访问.</p>
+<div class="highlight"><pre><span class="c1">// 索引访问</span>
+<span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+
+<span class="c1">// 指针访问</span>
+<span class="o">*</span><span class="p">(</span><span class="n">a</span> <span class="o">+</span> <span class="n">i</span><span class="p">)</span>
+</pre></div>
+
+
+<p>另外数组名指向组首元素地址 ...</p><p class="subheader">Category: <a href="../category/adt.html">adt</a>
+
+    Tagged: 
+    <a href="../tag/algorithm.html">algorithm </a>
+    <a href="../tag/data-structure.html">data structure </a>
+    <a href="../tag/array.html">array </a>
+</p>
+
+
+
+                <a class="button radius secondary small right" href="../posts/adt/array.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="../posts/algorithm/basic-data-structure.html"><h3 class="article-title">数据结构与算法汇总</h3></a>
+<h6 class="subheader" title="2014-06-10T20:00:00">Tue 10 June 2014
+</h6>
+
+
+<h3>常见数据结构</h3>
+<ul>
+<li>线性: 数组(array), 链表(link list), 块状链表(数组+链表), 栈(stack), 队列(queue), hash表, 位图(bitmap)  </li>
+<li>树(tree): 堆(大顶堆、小顶堆), 二叉排序/查找树, trie树, 后缀树, 后缀树组, B+/B-, AVL树, Treap, 红黑树, splay树, 线段树, 树状数组  </li>
+<li>图: 图(graph)  </li>
+<li>其它: 并查集  </li>
+</ul>
+<h3>常见算法</h3>
+<ul>
+<li>基本思想: 分治, 贪心,动态规划, 回溯</li>
+<li>排序算法: 冒泡, 插入, 选择 ...</li></ul><p class="subheader">Category: <a href="../category/algorithm.html">algorithm</a>
+
+    Tagged: 
+    <a href="../tag/algorithm.html">algorithm </a>
+</p>
+
+
+
+                <a class="button radius secondary small right" href="../posts/algorithm/basic-data-structure.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="../posts/algorithm/design.html"><h3 class="article-title">算法设计范式(paradigm)</h3></a>
+<h6 class="subheader" title="2014-06-10T19:00:00">Tue 10 June 2014
+</h6>
+
+
+<h3>分治法(divide and conquer)</h3>
+<p>字面上的解释是“分而治之”, 就是把一个复杂的问题分成K个的相同或相似的子问题, 直到最后子问题可以简单的直接求解, 原问题的解即子问题的解的合并. 特征:</p>
+<ul>
+<li>该问题的规模缩小到一定的程度就可以容易地解决.</li>
+<li>该问题可以分解为若干个规模较小的相同问题, 即该问题具有最优子结构性质.</li>
+<li>利用该问题分解出的子问题的解可以合并为该问题的解</li>
+<li>该问题所分解出的各个子问题是相互独立的, 即子问题之间不包含公共的子子问题.</li>
+</ul>
+<p>第一条特征是绝大多数问题都可以满足的, 因为问题的计算复杂性一般是随着问题规模的增加而增加, 第二条特征是应用分治法的前提它也是大多数问题可以满足的, 此特征反映了递归思想的应用,
+    第三条特征是关键, 能否利用分治法完全取决于问题是否具有第三条特征, 如果具备了第一条和第二条特征, 而不具备第三条特征, 则可以考虑用贪心法或动态规划法, 第四条特征涉及到分治法的效率, 如果各子问题是不独立的则分治法要做许多不必要的工作, 重复地解公共的子问题, 此时虽然可用分治法, 但一般用动态规划法较好.</p>
+<h3>动态规划(dynamic programming)</h3>
+<p>动态规划常常适用于有重叠子问题[2]和最优子结构性质的问题, 动态规划法试图仅仅解决每个子问题一次, 从而减少计算量： 一旦某个给定子问题的解已经算出, 则将其记忆化存储, 以便下次需要同一个子问题解之时直接查表. </p>
+<h3>贪心算法(greedy algorithms)</h3>
+<h3>回溯法(backtrack)</h3>
+<p>回溯算法实际上一个类似枚举的搜索尝试过程, 主要是在搜索尝试过程中寻找问题的解, 当发现已不满足求解条件时, 就 ...</p><p class="subheader">Category: <a href="../category/algorithm.html">algorithm</a>
+
+    Tagged: 
+    <a href="../tag/algorithm.html">algorithm </a>
+</p>
+
+
+
+                <a class="button radius secondary small right" href="../posts/algorithm/design.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
         
 
 

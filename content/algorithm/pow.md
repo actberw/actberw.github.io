@@ -24,3 +24,4 @@ Date: 2014-09-03
 refer:
 
 - [http://www.programcreek.com/2012/12/leetcode-powx-n/](http://www.programcreek.com/2012/12/leetcode-powx-n/)
+- [http://blog.jobbole.com/74468/](http://blog.jobbole.com/74468/)

@@ -103,3 +103,6 @@ Hacker's Delight上的代码, 程序思想是二分查找.
         return 1;
     }
 
+refer:
+
+- [http://en.wikipedia.org/wiki/Hamming_weight](http://en.wikipedia.org/wiki/Hamming_weight)

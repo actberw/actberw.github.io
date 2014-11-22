@@ -22,3 +22,5 @@ refer:
 - [http://dongxicheng.org/structure/structure-algorithm-summary/](http://dongxicheng.org/structure/structure-algorithm-summary/)
 - [http://www.douban.com/note/46700342/](http://www.douban.com/note/46700342/)
 - [常见算法的时间复杂度](http://bigocheatsheet.com/)
+- [编程面试的10大算法概念汇总](http://segmentfault.com/a/1190000000346418)
+- [常用数据结构](http://fuliang.iteye.com/blog/403605)

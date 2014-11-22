@@ -51,3 +51,4 @@ refer:
 
 - [栈的三种含义](http://blog.jobbole.com/52367/)
 - [http://blog.jobbole.com/79267/](http://blog.jobbole.com/79267/)
+- [http://www.acmerblog.com/article-stack-3971.html](http://www.acmerblog.com/article-stack-3971.html)

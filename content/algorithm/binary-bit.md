@@ -106,3 +106,4 @@ Hacker's Delight上的代码, 程序思想是二分查找.
 refer:
 
 - [http://en.wikipedia.org/wiki/Hamming_weight](http://en.wikipedia.org/wiki/Hamming_weight)
+- [http://leetcode.com/2011/08/reverse-bits.html](http://leetcode.com/2011/08/reverse-bits.html)

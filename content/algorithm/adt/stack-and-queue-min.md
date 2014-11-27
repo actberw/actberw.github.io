@@ -1,4 +1,4 @@
-Title: 栈和队列 part 3
+Title: 栈和队列min实现
 Tags: algorithm, data structure, stack, queue
 Date: 2014-06-13 21:00:00
 

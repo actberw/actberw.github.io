@@ -30,6 +30,42 @@ Date: 2014-11-07
 
 参见refer[3]
 
+### 把字符串转换成数字
+>题目要求：
+如果前面有空格开头，忽略掉开头的所有空格
+如果发现没意义的字符，忽略之，并结束转换。即123ttyw -> 123
+考虑负数额
+如果溢出，则返回相应的最大正数和最大负数。
+
+    int atoi(char *str) {
+        int i = 0, flag = 0, ret, dig;
+        if (str == NULL || strlen(str) < 1)
+            return 0;
+        while(i < strlen(str) && str[i] == ' ') i++;
+        // 判断符号
+        if (str[i] == '-') {
+            flag = 1;
+            i++;
+        } else if (str[i] == '+')
+            i++;
+
+        while (i < strlen(str) && '0' <= str[i] <= '9') {
+            if (INT_MAX/10 > ret)
+            ¦   ret = ret * 10 
+            else
+                // overflow
+                return flag ? INT_MIN: INT_MAX;
+            dig = str[i] - '0';
+            if ((INT_MAX - ret) > dig)
+                ret += dig;
+            else
+                // overflow
+                return flag ? INT_MIN: INT_MAX;
+        }
+
+        return flag ? -ret: ret;
+    }
+
 refer:
 
 - [0][http://zhedahht.blog.163.com/blog/static/25411174200722191722430/](http://zhedahht.blog.163.com/blog/static/25411174200722191722430/)

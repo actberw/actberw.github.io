@@ -67,6 +67,7 @@ Tags: algorithm, prime number
 
 ### 随机算法(参见[3])
 
+
 refer:
 
 - [1][http://dongxicheng.org/structure/prime/](http://dongxicheng.org/structure/prime/)

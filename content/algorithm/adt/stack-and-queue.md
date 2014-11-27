@@ -44,6 +44,8 @@ stack是一组数据的存放方式，支持两种基本操作push 和 pop, 特�
             return stack_pop();
         }
 
+3. 检测后缀表达式的合法性
+
 ### 队列
 queue 是先进先出的数据结构(FIFO), 支持两种基本操作put和get.
 
@@ -52,3 +54,5 @@ refer:
 - [栈的三种含义](http://blog.jobbole.com/52367/)
 - [http://blog.jobbole.com/79267/](http://blog.jobbole.com/79267/)
 - [http://www.acmerblog.com/article-stack-3971.html](http://www.acmerblog.com/article-stack-3971.html)
+- [http://www.cnblogs.com/unixfy/p/3234058.html](http://www.cnblogs.com/unixfy/p/3234058.html)
+- [http://www.cnblogs.com/unixfy/p/3229063.html](http://www.cnblogs.com/unixfy/p/3229063.html)

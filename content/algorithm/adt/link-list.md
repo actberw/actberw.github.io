@@ -62,27 +62,6 @@ Date: 2014-06-12 19:00:00
             }
         }
 
-- 反转
-
-        link reverse(link head) {//递归实现
-            if (head->next == NULL || head == NULL) {
-                return head;
-            }
-            link rp = reverse(head->next);
-            head->next->next = head;
-            head->next = NULL;
-            return rp;
-        } 
-
-        link reverse(link head) {//非递归实现
-            link prev=NULL, p, pn;
-            for (p=head;p !=NULL; p=pn) {
-                pn = p->next;
-                p->next = prev;
-                prev = p;
-            }
-            return prev;
-        }
 
 refer:
 

@@ -1,0 +1,139 @@
+Title: 求第K大数(或者前K大)
+Tags: algorithm, data structure, array 
+Date: 2014-06-11 18:00:00
+
+常用方法:
+
+- 排序, K次冒泡就可以找到第K大的数, 时间复杂度为O(kn), 最快的排序是快排和mergesort, 然后返回已排序数组的第k个数, 算法时间复杂度为O（nlogn）, 空间复杂度为O(1)。
+
+- 一个更好的方法是利用大/小根堆的性质：建立一个包含K个元素的最大堆, 将后续的N-K每个数与堆顶元素比较, 如果小于堆顶元素, 则将其替换堆顶元素并调整堆得结构维护最大堆的性质, 最后堆中包含有最小的K个元素, 从而堆顶元素就是第K小的数。建堆的时间为O(K), 每次调整最大堆结构时间为O(lgK), 从而总的时间复杂度为O(K + (N-K)lgK)。 注意：求第k小建大根堆, 求第k大建小根堆。
+
+- 类快速排序方法(双层桶划分), 时间复杂度为O(N).
+
+    - 随机选择一个支点
+    - 将比支点大的数, 放到数组左边；将比支点小的数放到数组右边；将支点放到中间(属于左部分)
+    - 设左部分的长度为L
+
+        当K < L时, 递归地在左部分找第K大的数
+        当K > L时, 递归地在有部分中找第(K - L)大的数
+        当K = L时, 返回左右两部分的分割点（即原来的支点）, 就是要求的第K大的数
+
+### 求第K大数
+
+    int partion(int *array, int l, int r) {
+        int tmp=array[l], i=l, j=r+1;
+        while (1) {
+            while (array[++i] > tmp);
+            while (array[--j] < tmp) if (j==i) break;
+            if (i >= j) break;
+            swap(array+i, array+j);
+        }
+        i--;
+        swap(array + l, array + i);
+        return i;
+    }
+
+    int findk(int *array, int l, int r, int k) {
+        int llen; // 左部分的长度为L
+        int pivot = partion(array, l, r);
+        llen = (pivot - l) + 1; // !!
+        if (k > llen)
+            return findk(array, pivot + 1, r, k - llen);
+        else if (k < llen)
+            return findk(array, l, pivot, k);
+        else
+            return array[pivot];
+    }
+
+
+### 最大的K个数(top K)
+最简单的就是冒泡O(N * K), 也可以直接转化为求第K大数, 然后遍历数组打印所有比第K个数大的元素, 或者用求第K大数的快排方式.
+或者用最小堆.
+
+
+### n个元素中的第2小元素 
+>证明：在最坏情况下，利用n+ceil(lg n)-2次比较，即可得到n个元素中的第2小元素。（提示：同时找最小元素）。ceil表示向上取整
+
+
+### k-th Smallest Element in the Union of Two Sorted Arrays
+三种方法:
+
+- 排序, Merge both arrays and the k-th smallest element could be accessed directly.
+- 跟合并数组一样两个指针, 时间复杂度为O(k)
+- 二分查找类似于find, 时间复杂度为O(lg m + lg n)
+
+二分查找分析:
+We try to approach this tricky problem by comparing middle elements of A and B, which we identify as Ai and Bj. If Ai is between Bj and Bj-1, we have just found the i+j+1 smallest element. Why? Therefore, if we choose i and j such that i+j = k-1, we are able to find the k-th smallest element. This is an important invariant that we must maintain for the correctness of this algorithm.
+
+Summarizing the above:
+
+    Maintaining the invariant
+    i + j = k – 1,
+    If Bj-1 < Ai < Bj, then Ai must be the k-th smallest,
+    or else if Ai-1 < Bj < Ai, then Bj must be the k-th smallest.
+
+If one of the above conditions are satisfied, we are done. If not, we will use i and j as the pivot index to subdivide the arrays. But how? Which portion should we discard? How about Ai and Bj itself?
+
+    int findKthSmallest(int A[], int m, int B[], int n, int k) {
+      assert(m >= 0); assert(n >= 0); assert(k > 0); assert(k <= m+n);
+      
+      int i = (int)((double)m / (m+n) * (k-1));
+      int j = (k-1) - i;
+     
+      assert(i >= 0); assert(j >= 0); assert(i <= m); assert(j <= n);
+      // invariant: i + j = k-1
+      // Note: A[-1] = -INF and A[m] = +INF to maintain invariant
+      int Ai_1 = ((i == 0) ? INT_MIN : A[i-1]);
+      int Bj_1 = ((j == 0) ? INT_MIN : B[j-1]);
+      int Ai   = ((i == m) ? INT_MAX : A[i]);
+      int Bj   = ((j == n) ? INT_MAX : B[j]);
+     
+      if (Bj_1 < Ai && Ai < Bj)
+        return Ai;
+      else if (Ai_1 < Bj && Bj < Ai)
+        return Bj;
+     
+      assert((Ai > Bj && Ai_1 > Bj) || 
+             (Ai < Bj && Ai < Bj_1));
+     
+      // if none of the cases above, then it is either:
+      if (Ai < Bj)
+        // exclude Ai and below portion
+        // exclude Bj and above portion
+        return findKthSmallest(A+i+1, m-i-1, B, j, k-i-1);
+      else /* Bj < Ai */
+        // exclude Ai and above portion
+        // exclude Bj and below portion
+        return findKthSmallest(A, i, B+j+1, n-j-1, k-j-1);
+    }
+
+Then compare the k/2-th smallest element in A(i.e. A[k/2-1]) and the k/2-th smallest element in B, 参照[中位数](/posts/algorithm/median.html)
+
+    double findKth(int a[], int m, int b[], int n, int k) {
+        //always assume that m is equal or smaller than n
+        if (m > n)
+            return findKth(b, n, a, m, k);
+        if (m == 0)
+            return b[k - 1];
+        if (k == 1)
+            return min(a[0], b[0]);
+        //divide k into two parts
+        int pa = min(k / 2, m), pb = k - pa;
+        if (a[pa - 1] < b[pb - 1])
+            return findKth(a + pa, m - pa, b, n, k - pa);
+        else if (a[pa - 1] > b[pb - 1])
+            return findKth(a, m, b + pb, n - pb, k - pb);
+        else
+            return a[pa - 1];
+    }
+
+refer:
+
+- [http://www.elvisyu.com/%E5%9C%A8%E6%95%B0%E7%BB%84%E4%B8%AD%E6%89%BE%E5%88%B0%E7%AC%ACk%E5%B0%8F%E5%A4%A7%E7%9A%84%E5%85%83%E7%B4%A0/](http://www.elvisyu.com/%E5%9C%A8%E6%95%B0%E7%BB%84%E4%B8%AD%E6%89%BE%E5%88%B0%E7%AC%ACk%E5%B0%8F%E5%A4%A7%E7%9A%84%E5%85%83%E7%B4%A0/)
+- [http://coolshell.cn/articles/8138.html](http://coolshell.cn/articles/8138.html)
+- [http://www.acmerblog.com/second-smallest-5768.html](http://www.acmerblog.com/second-smallest-5768.html)
+- [http://xfhnever.github.io/blog/2014/10/21/algorithm-findk/](http://xfhnever.github.io/blog/2014/10/21/algorithm-findk/)
+- [http://segmentfault.com/blog/cleverutd/1190000000510258](http://segmentfault.com/blog/cleverutd/1190000000510258)
+- [http://leetcode.com/2011/01/find-k-th-smallest-element-in-union-of.html](http://leetcode.com/2011/01/find-k-th-smallest-element-in-union-of.html)
+- [http://stackoverflow.com/questions/4607945/how-to-find-the-kth-smallest-element-in-the-union-of-two-sorted-arrays](http://stackoverflow.com/questions/4607945/how-to-find-the-kth-smallest-element-in-the-union-of-two-sorted-arrays)
+- [http://www.cnblogs.com/CathyGao/archive/2013/05/03/3055302.html](http://www.cnblogs.com/CathyGao/archive/2013/05/03/3055302.html)

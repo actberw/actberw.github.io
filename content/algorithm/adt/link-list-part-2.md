@@ -54,58 +54,6 @@ Date: 2014-06-12 20:00:00
 对于#3 求出A的环入口，判断其是否在B链表上，如果在，则相交。
 对于#4 两个有环链表相交是指这个环属于两个链表共有, 所以跟无环相交处理方式相同.
 
-### 合并
-> Merge the two sorted link list in O(n) time and O(1) space  
-
-       - 非递归实现，分析:分别用指针p1，p2来遍历两个链表，如果当前p1指向的数据小于p2指向的数据，则将p1指向的结点归入合并后的链表中，否则，将p2指向的结点归入合并后的链表中。如果有一个链表遍历结束，则把未结束的链表连接到合并后的链表尾部。
-
-                link merge_link(link a, link b) {//非递归实现
-                    link c = NULL, p1 = a, p2 = b, tmp;
-                    if (p1->item < p2->item) {//初始化c
-                        c = p1;
-                        p1 = p1->next;
-                    } else {
-                        c = p2;
-                        p2 = p2->next;
-                    }
-                    tmp = c;
-                    while (p1 != NULL && p2 != NULL) {
-                        if (p1->item < p2->item) {
-                        ¦   tmp->next = p1;
-                        ¦   p1 = p1->next;
-                        } else {
-                        ¦   tmp->next = p2;
-                        ¦   p2 = p2->next;
-                        }
-                        tmp = tmp->next;
-                    }
-
-                    if (p1 != NULL) {
-                        tmp->next = p1;
-                    }
-
-                    if (p2 != NULL) {
-                        tmp->next = p2;
-                    }
-
-                    return c;
-                }
-
-        - 递归实现
-
-                link merge_link2(link a, linkb) {//递归实现，但是不满足空间复杂度O(1)要求
-                    link c = NULL;
-                    if (a == NULL) return b;
-                    if (b == NULL) return a;
-                    if (a->item < b->item) {
-                        c = a;
-                        c->next = merge_link2(a->next, b);
-                    } else {
-                        c = b;
-                        c->next = merge_link2(a, b->next);
-                    }
-                    return c;
-                }
 
 ### 复制
 >You are given a Double Link List with one pointer of each node pointing to the next node just like in a single link list. The second pointer however CAN point to any node in the list and not just the previous node. Now write a program in O(n) time to duplicate this list. That is, write a program which will create a copy of this list.
@@ -167,11 +115,15 @@ This is a simple problem. It can be solved by doing the following:
                  carry /= 10;
             }
 
-            if (carry == 1) 
+            if (carry == 1)  // 因为都是单个数字所以和不可能大于10, 所以carry不可能大于1
                 p3->next = new_node(1);
 
             return c->next;
         }
+
+### 有序单链表转化为bst
+http://www.geeksforgeeks.org/sorted-linked-list-to-balanced-bst/
+http://www.acmerblog.com/convert-sorted-list-to-binary-search-tree-6124.html
 
 refer:
 

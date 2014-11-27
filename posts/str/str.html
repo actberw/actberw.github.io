@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8" />
+    <!-- Set the viewport width to device width for mobile -->
+    <meta name="viewport" content="width=device-width" />
+
+    <title>字符串相关题目</title>
+
+    <link rel="stylesheet" href="../../theme/css/normalize.css" />
+    <link rel="stylesheet" href="../../theme/css/foundation.min.css" />
+    <link rel="stylesheet" href="../../theme/css/style.css" />
+    <link rel="stylesheet" href="../../theme/css/pygments.css" />	
+    <link rel="stylesheet" type="text/css" href="../../theme/css/jqcloud.css" />
+    <script src="../../theme/js/vendor/custom.modernizr.js"></script>
+    <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+          "HTML-CSS": {
+        styles: {
+          ".MathJax .mo, .MathJax .mi": {color: "black ! important"}}
+            },
+              tex2jax: {inlineMath: [['$','$'], ['\\\\(','\\\\)']],processEscapes: true}
+        });
+    </script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../../theme/js/jquery.min.js"></script>
+    <script type="text/javascript" src="../../theme/js/jqcloud-1.0.4.min.js"></script>
+    
+    <script type="text/javascript">
+	var word_list = [
+        {text: "gdt", weight: 0.0125, link: {href: "/tag/gdt.html"}},
+        {text: "pelican", weight: 0.0125, link: {href: "/tag/pelican.html"}},
+        {text: "random", weight: 0.05, link: {href: "/tag/random.html"}},
+        {text: "zmap", weight: 0.0125, link: {href: "/tag/zmap.html"}},
+        {text: "algorithm analysis", weight: 0.05, link: {href: "/tag/algorithm-analysis.html"}},
+        {text: "unicode", weight: 0.0125, link: {href: "/tag/unicode.html"}},
+        {text: "mysql", weight: 0.05, link: {href: "/tag/mysql.html"}},
+        {text: "adt", weight: 0.0125, link: {href: "/tag/adt.html"}},
+        {text: "ext4", weight: 0.0125, link: {href: "/tag/ext4.html"}},
+        {text: "point", weight: 0.0125, link: {href: "/tag/point.html"}},
+        {text: "umask", weight: 0.0125, link: {href: "/tag/umask.html"}},
+        {text: "c/c++", weight: 0.0125, link: {href: "/tag/cc.html"}},
+        {text: "ls", weight: 0.0125, link: {href: "/tag/ls.html"}},
+        {text: "triangle", weight: 0.0125, link: {href: "/tag/triangle.html"}},
+        {text: "object model", weight: 0.0125, link: {href: "/tag/object-model.html"}},
+        {text: "combination", weight: 0.0125, link: {href: "/tag/combination.html"}},
+        {text: "python", weight: 0.1375, link: {href: "/tag/python.html"}},
+        {text: "risc", weight: 0.0125, link: {href: "/tag/risc.html"}},
+        {text: "chmod", weight: 0.025, link: {href: "/tag/chmod.html"}},
+        {text: "underscore", weight: 0.0125, link: {href: "/tag/underscore.html"}},
+        {text: "bit", weight: 0.0125, link: {href: "/tag/bit.html"}},
+        {text: "daemon", weight: 0.0125, link: {href: "/tag/daemon.html"}},
+        {text: "signal", weight: 0.0125, link: {href: "/tag/signal.html"}},
+        {text: "median", weight: 0.0125, link: {href: "/tag/median.html"}},
+        {text: "real mode", weight: 0.025, link: {href: "/tag/real-mode.html"}},
+        {text: "binary search", weight: 0.0125, link: {href: "/tag/binary-search.html"}},
+        {text: "3sum", weight: 0.0125, link: {href: "/tag/3sum.html"}},
+        {text: "ldt", weight: 0.0125, link: {href: "/tag/ldt.html"}},
+        {text: "orphan", weight: 0.0125, link: {href: "/tag/orphan.html"}},
+        {text: "prime number", weight: 0.025, link: {href: "/tag/prime-number.html"}},
+        {text: "xtrabackup", weight: 0.025, link: {href: "/tag/xtrabackup.html"}},
+        {text: "function call", weight: 0.0125, link: {href: "/tag/function-call.html"}},
+        {text: "assembly", weight: 0.025, link: {href: "/tag/assembly.html"}},
+        {text: "ring", weight: 0.0125, link: {href: "/tag/ring.html"}},
+        {text: "matrix", weight: 0.0125, link: {href: "/tag/matrix.html"}},
+        {text: "2sum", weight: 0.0125, link: {href: "/tag/2sum.html"}},
+        {text: "cpu ring", weight: 0.0125, link: {href: "/tag/cpu-ring.html"}},
+        {text: "metaclass", weight: 0.0125, link: {href: "/tag/metaclass.html"}},
+        {text: "method", weight: 0.0125, link: {href: "/tag/method.html"}},
+        {text: "hash", weight: 0.0125, link: {href: "/tag/hash.html"}},
+        {text: "stack frame", weight: 0.0125, link: {href: "/tag/stack-frame.html"}},
+        {text: "zombie", weight: 0.0125, link: {href: "/tag/zombie.html"}},
+        {text: "protect mode", weight: 0.0125, link: {href: "/tag/protect-mode.html"}},
+        {text: "zbr", weight: 0.0125, link: {href: "/tag/zbr.html"}},
+        {text: "system call", weight: 0.0125, link: {href: "/tag/system-call.html"}},
+        {text: "tcp/ip", weight: 0.0125, link: {href: "/tag/tcpip.html"}},
+        {text: "tls", weight: 0.0125, link: {href: "/tag/tls.html"}},
+        {text: "c", weight: 0.2125, link: {href: "/tag/c.html"}},
+        {text: "kernel thread", weight: 0.0125, link: {href: "/tag/kernel-thread.html"}},
+        {text: "thread", weight: 0.025, link: {href: "/tag/thread.html"}},
+        {text: "queue", weight: 0.0375, link: {href: "/tag/queue.html"}},
+        {text: "data structure", weight: 0.225, link: {href: "/tag/data-structure.html"}},
+        {text: "setuid", weight: 0.025, link: {href: "/tag/setuid.html"}},
+        {text: "shuffle", weight: 0.0125, link: {href: "/tag/shuffle.html"}},
+        {text: "encoding", weight: 0.0125, link: {href: "/tag/encoding.html"}},
+        {text: "nmap", weight: 0.0125, link: {href: "/tag/nmap.html"}},
+        {text: "float", weight: 0.0125, link: {href: "/tag/float.html"}},
+        {text: "apt", weight: 0.0125, link: {href: "/tag/apt.html"}},
+        {text: "vim", weight: 0.0125, link: {href: "/tag/vim.html"}},
+        {text: "sourcelist", weight: 0.0125, link: {href: "/tag/sourcelist.html"}},
+        {text: "linux", weight: 0.1875, link: {href: "/tag/linux.html"}},
+        {text: "array", weight: 0.125, link: {href: "/tag/array.html"}},
+        {text: "callstack", weight: 0.0125, link: {href: "/tag/callstack.html"}},
+        {text: "stack", weight: 0.05, link: {href: "/tag/stack.html"}},
+        {text: "type", weight: 0.0125, link: {href: "/tag/type.html"}},
+        {text: "sort", weight: 0.05, link: {href: "/tag/sort.html"}},
+        {text: "masscan", weight: 0.0125, link: {href: "/tag/masscan.html"}},
+        {text: "btrfs", weight: 0.0125, link: {href: "/tag/btrfs.html"}},
+        {text: "gas", weight: 0.0125, link: {href: "/tag/gas.html"}},
+        {text: "user thread", weight: 0.0125, link: {href: "/tag/user-thread.html"}},
+        {text: "heap", weight: 0.025, link: {href: "/tag/heap.html"}},
+        {text: "c3", weight: 0.0125, link: {href: "/tag/c3.html"}},
+        {text: "stty", weight: 0.0125, link: {href: "/tag/stty.html"}},
+        {text: "compile", weight: 0.0125, link: {href: "/tag/compile.html"}},
+        {text: "descriptor", weight: 0.0125, link: {href: "/tag/descriptor.html"}},
+        {text: "hdd", weight: 0.0125, link: {href: "/tag/hdd.html"}},
+        {text: "setresuid", weight: 0.0125, link: {href: "/tag/setresuid.html"}},
+        {text: "str", weight: 0.05, link: {href: "/tag/str.html"}},
+        {text: "cisc", weight: 0.0125, link: {href: "/tag/cisc.html"}},
+        {text: "a20", weight: 0.0125, link: {href: "/tag/a20.html"}},
+        {text: "shebang", weight: 0.0125, link: {href: "/tag/shebang.html"}},
+        {text: "process", weight: 0.0125, link: {href: "/tag/process.html"}},
+        {text: "ip", weight: 0.0125, link: {href: "/tag/ip.html"}},
+        {text: "poiner", weight: 0.0125, link: {href: "/tag/poiner.html"}},
+        {text: "sticky", weight: 0.0125, link: {href: "/tag/sticky.html"}},
+        {text: "__init__", weight: 0.0125, link: {href: "/tag/__init__.html"}},
+        {text: "latency", weight: 0.0125, link: {href: "/tag/latency.html"}},
+        {text: "gcd", weight: 0.0125, link: {href: "/tag/gcd.html"}},
+        {text: "manacher", weight: 0.0125, link: {href: "/tag/manacher.html"}},
+        {text: "sqrt", weight: 0.0125, link: {href: "/tag/sqrt.html"}},
+        {text: "arm", weight: 0.0125, link: {href: "/tag/arm.html"}},
+        {text: "utf-8", weight: 0.0125, link: {href: "/tag/utf-8.html"}},
+        {text: "fs", weight: 0.0125, link: {href: "/tag/fs.html"}},
+        {text: "x86", weight: 0.025, link: {href: "/tag/x86.html"}},
+        {text: "bst", weight: 0.0125, link: {href: "/tag/bst.html"}},
+        {text: "quote", weight: 0.0125, link: {href: "/tag/quote.html"}},
+        {text: "class", weight: 0.0125, link: {href: "/tag/class.html"}},
+        {text: "mangling", weight: 0.0125, link: {href: "/tag/mangling.html"}},
+        {text: "debian", weight: 0.0125, link: {href: "/tag/debian.html"}},
+        {text: "getuid", weight: 0.0125, link: {href: "/tag/getuid.html"}},
+        {text: "eof", weight: 0.0125, link: {href: "/tag/eof.html"}},
+        {text: "algorithm", weight: 0.7, link: {href: "/tag/algorithm.html"}},
+        {text: "line join", weight: 0.0125, link: {href: "/tag/line-join.html"}},
+        {text: "register", weight: 0.0125, link: {href: "/tag/register.html"}},
+        {text: "mro", weight: 0.0125, link: {href: "/tag/mro.html"}},
+        {text: "pown", weight: 0.0125, link: {href: "/tag/pown.html"}},
+        ];
+        $(function() {
+            $("#tag-cloud").jQCloud(word_list);
+        });
+    </script>
+
+</head>
+
+<body>
+
+<!-- Nav Bar -->
+<nav>
+<div class="top-bar">
+<div class="row">
+    <div class="large-9 large-centered columns">
+	    <h1><a href="../..">记录一些工作中的笔记</a></h1>
+    </div>
+</div>
+</div>
+
+<!-- Show menu items and pages -->
+<div class="row">
+<div class="large-9 columns">
+    <ul class="button-group navigation">
+
+    </ul>
+</div>
+</div>
+</nav>
+<!-- End Nav -->
+
+
+<!-- Main Page Content and Sidebar -->
+<div class="row">
+
+    <!-- Main Blog Content -->
+    <div class="large-9 columns">
+<article>
+    <header>
+        <h3 class="article-title"><a href="../../posts/str/str.html" rel="bookmark"
+        title="Permalink to 字符串相关题目">字符串相关题目</a></h3>
+    </header>
+
+<h6 class="subheader" title="2014-11-07T00:00:00">Fri 07 November 2014
+</h6>
+
+
+    <h3>第一个只出现一次的字符</h3>
+<p>创建一个长度为256的数组，每个字母根据其ASCII码值作为数组的下标对应数组的对应项，而数组中存储的是每个字符对应的次数。这样我们就创建了一个大小为256，以字符ASCII码为键值的哈希表。 我们第一遍扫描这个数组时，每碰到一个字符，在哈希表中找到对应的项并把出现的次数增加一次。这样在进行第二次扫描时，就能直接从哈希表中得到每个字符出现的次数了。 参见refer[0]</p>
+<h3>在字符串中删除特定的字符</h3>
+<blockquote>
+<p>输入They are students.”和”aeiou”，则删除之后的第一个字符串变成”Thy r stdnts.”。o</p>
+</blockquote>
+<p>分两部分操作: 删除一个字符和查找一个字符</p>
+<p>如何在字符串中删除一个字符: 由于字符串的内存分配方式是连续分配的。我们从字符串当中删除一个字符，需要把后面所有的字符往前移动一个字节的位置。但如果每次删除都需要移动字符串后面的字符的话，对于一个长度为n的字符串而言，删除一个字符的时间复杂度为O(n), 事实上，我们并不需要在每次删除一个字符的时候都去移动后面所有的字符。我们可以设想，当一个字符需要被删除的时候，我们把它所占的位置让它后面的字符来填补，也就相当于这个字符被删除了。在具体实现中，我们可以定义两个指针(pFast和pSlow)，初始的时候都指向第一字符的起始位置。当pFast指向的字符是需要删除的字符，则pFast直接跳过，指向下一个字符。如果pFast指向的字符是不需要删除的字符，那么把pFast指向的字符赋值给pSlow指向的字符，并且pFast和pStart同时向后移动指向下一个字符。这样，前面被pFast跳过的字符相当于被删除了。用这种方法，整个删除在O(n)时间内就可以完成。</p>
+<p>如何在一个字符串中查找一个字符: 对待删除得字符建一个hashtable</p>
+<h3>删除重复的字符</h3>
+<blockquote>
+<p>Design an algorithm and write code to remove the duplicate characters in a string without using any additional buffer. NOTE: One or two additional variables are fine. An extra copy of the array is not.</p>
+</blockquote>
+<p>解法1
+如果根本就不允许你再开一个数组，只能用额外的一到两个变量。那么，你可以依次访问 这个数组的每个元素，每访问一个，就将该元素到字符串结尾的元素中相同的元素去掉( 比如置为’\0′ 或 0).时间复杂度为O($n^2$)</p>
+<p>解法2</p>
+<p>如果可以开一个固定大小，与问题规模(即字符串长度)无关的数组，那么可以用一个数组来 表征每个字符的出现(假设是ASCII字符，则数组大小为256)，这样的话只需要遍历一遍字符 串即可，时间复杂度O(n)。</p>
+<p>解法3</p>
+<p>如果字符集更小一些，比如只是a-z，即字符串里只包含小写字母，那么使用一个int变量中 的每一位来表征每个字符的出现，一样可以在O(n)的时间里移除重复字符，而且还不需要额 外开一个数组。</p>
+<p>参见refer[3]</p>
+<h3>最长不重复子串 (Longest Substring Without Repeating Characters)</h3>
+<ul>
+<li>基本算法 使用Hash</li>
+<li>DP方案</li>
+<li>DP + Hash 方案</li>
+<li>DP + Hash 优化方案</li>
+</ul>
+<p>基本解法使用Hash</p>
+<p>要求子串中的字符不能重复，判重问题首先想到的就是hash，寻找满足要求的子串，最直接的方法就是遍历每个字符起始的子串，辅助hash，寻求最长的不重复子串，由于要遍历每个子串故复杂度为O(n^2)，n为字符串的长度，辅助的空间为常数hash[256]。代码如下</p>
+<div class="highlight"><pre><span class="kt">int</span> <span class="n">maxlen</span><span class="p">;</span>
+<span class="kt">int</span> <span class="n">maxindex</span><span class="p">;</span>
+<span class="kt">void</span> <span class="nf">output</span><span class="p">(</span><span class="kt">char</span> <span class="o">*</span> <span class="n">arr</span><span class="p">);</span>
+
+<span class="cm">/* LNRS 基本算法 hash */</span>
+<span class="kt">char</span> <span class="n">visit</span><span class="p">[</span><span class="mi">256</span><span class="p">];</span>
+
+<span class="kt">void</span> <span class="nf">LNRS_hash</span><span class="p">(</span><span class="kt">char</span> <span class="o">*</span> <span class="n">arr</span><span class="p">,</span> <span class="kt">int</span> <span class="n">size</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="kt">int</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">;</span>
+    <span class="k">for</span><span class="p">(</span><span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">size</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">memset</span><span class="p">(</span><span class="n">visit</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="k">sizeof</span> <span class="n">visit</span><span class="p">);</span> <span class="c1">// visit存储字符是否出现过</span>
+        <span class="n">visit</span><span class="p">[</span><span class="n">arr</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+        <span class="k">for</span><span class="p">(</span><span class="n">j</span> <span class="o">=</span> <span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">size</span><span class="p">;</span> <span class="o">++</span><span class="n">j</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="k">if</span><span class="p">(</span><span class="n">visit</span><span class="p">[</span><span class="n">arr</span><span class="p">[</span><span class="n">j</span><span class="p">]]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
+            <span class="p">{</span>
+                <span class="n">visit</span><span class="p">[</span><span class="n">arr</span><span class="p">[</span><span class="n">j</span><span class="p">]]</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+            <span class="p">}</span><span class="k">else</span>
+            <span class="p">{</span>
+                <span class="k">if</span><span class="p">(</span><span class="n">j</span><span class="o">-</span><span class="n">i</span> <span class="o">&gt;</span> <span class="n">maxlen</span><span class="p">)</span>
+                <span class="p">{</span>
+                    <span class="n">maxlen</span> <span class="o">=</span> <span class="n">j</span> <span class="o">-</span> <span class="n">i</span><span class="p">;</span>
+                    <span class="n">maxindex</span> <span class="o">=</span> <span class="n">i</span><span class="p">;</span>
+                <span class="p">}</span>
+                <span class="k">break</span><span class="p">;</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+        <span class="k">if</span><span class="p">((</span><span class="n">j</span> <span class="o">==</span> <span class="n">size</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="n">j</span><span class="o">-</span><span class="n">i</span> <span class="o">&gt;</span> <span class="n">maxlen</span><span class="p">))</span>
+        <span class="p">{</span>
+            <span class="n">maxlen</span> <span class="o">=</span> <span class="n">j</span> <span class="o">-</span> <span class="n">i</span><span class="p">;</span>
+            <span class="n">maxindex</span> <span class="o">=</span> <span class="n">i</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="n">output</span><span class="p">(</span><span class="n">arr</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<p>DP方案</p>
+<p>类似最长递增子序列.</p>
+<p>用数组dp, dp[i] 表示以字符串索引i字符结尾的最长不重复子串</p>
+<div class="highlight"><pre><span class="kt">int</span> <span class="n">dp</span><span class="p">[</span><span class="mi">30</span><span class="p">];</span>
+
+<span class="kt">void</span> <span class="nf">LNRS_dp</span><span class="p">(</span><span class="kt">char</span> <span class="o">*</span> <span class="n">arr</span><span class="p">,</span> <span class="kt">int</span> <span class="n">size</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kt">int</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">last_start</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>     <span class="c1">// 上一次最长子串的起始位置</span>
+    <span class="n">maxlen</span> <span class="o">=</span> <span class="n">maxindex</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+
+    <span class="n">dp</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="k">for</span><span class="p">(</span><span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">size</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">for</span><span class="p">(</span><span class="n">j</span> <span class="o">=</span> <span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">;</span> <span class="n">j</span> <span class="o">&gt;=</span> <span class="n">last_start</span><span class="p">;</span> <span class="o">--</span><span class="n">j</span><span class="p">)</span> <span class="c1">// 遍历到上一次最长子串起始位置</span>
+        <span class="p">{</span>
+            <span class="k">if</span><span class="p">(</span><span class="n">arr</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">==</span> <span class="n">arr</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+            <span class="p">{</span>
+                <span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">i</span> <span class="o">-</span> <span class="n">j</span><span class="p">;</span>
+                <span class="n">last_start</span> <span class="o">=</span> <span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">;</span> <span class="c1">// 更新last_start</span>
+                <span class="k">break</span><span class="p">;</span>
+            <span class="p">}</span><span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">j</span> <span class="o">==</span> <span class="n">last_start</span><span class="p">)</span> <span class="c1">// 无重复</span>
+            <span class="p">{</span>
+                <span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">maxlen</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">maxlen</span> <span class="o">=</span> <span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+            <span class="n">maxindex</span> <span class="o">=</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">maxlen</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="n">output</span><span class="p">(</span><span class="n">arr</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<p>DP + Hash 方案</p>
+<p>上面的DP方案是O(n^2)的，之所以是n^2，是因为“回头”去寻找重复元素的位置了，受启发于最初的Hash思路，我们可以用hash记录元素是否出现过，我们当然也可以用hash记录元素出现过的下标，既然这样，在DP方案中，我们何不hash记录重复元素的位置，这样就不必“回头”了，而时间复杂度必然降为O(N)，只不过需要一个辅助的常数空间visit[256]，典型的空间换时间。</p>
+<div class="highlight"><pre><span class="kt">void</span> <span class="nf">LNRS_dp_hash</span><span class="p">(</span><span class="kt">char</span> <span class="o">*</span> <span class="n">arr</span><span class="p">,</span> <span class="kt">int</span> <span class="n">size</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">memset</span><span class="p">(</span><span class="n">visit</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="k">sizeof</span> <span class="n">visit</span><span class="p">);</span>
+    <span class="n">memset</span><span class="p">(</span><span class="n">dp</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="k">sizeof</span> <span class="n">dp</span><span class="p">);</span>
+    <span class="n">maxlen</span> <span class="o">=</span> <span class="n">maxindex</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="n">dp</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="n">visit</span><span class="p">[</span><span class="n">arr</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="c1">// 这里的visit 存储最近重复的位置(索引)</span>
+    <span class="kt">int</span> <span class="n">last_start</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+
+    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">size</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">visit</span><span class="p">[</span><span class="n">arr</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+            <span class="n">visit</span><span class="p">[</span><span class="n">arr</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span> <span class="o">=</span> <span class="n">i</span><span class="p">;</span> <span class="cm">/* 记录字符下标 */</span>
+        <span class="p">}</span><span class="k">else</span>
+        <span class="p">{</span>
+            <span class="k">if</span><span class="p">(</span><span class="n">last_start</span> <span class="o">&lt;=</span> <span class="n">visit</span><span class="p">[</span><span class="n">arr</span><span class="p">[</span><span class="n">i</span><span class="p">]])</span>
+            <span class="p">{</span>
+                <span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">i</span> <span class="o">-</span> <span class="n">visit</span><span class="p">[</span><span class="n">arr</span><span class="p">[</span><span class="n">i</span><span class="p">]];</span>
+                <span class="n">last_start</span> <span class="o">=</span> <span class="n">visit</span><span class="p">[</span><span class="n">arr</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+                <span class="n">visit</span><span class="p">[</span><span class="n">arr</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span> <span class="o">=</span> <span class="n">i</span><span class="p">;</span> <span class="cm">/* 更新最近重复位置 */</span>
+            <span class="p">}</span><span class="k">else</span>
+            <span class="p">{</span>
+                <span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+                <span class="n">visit</span><span class="p">[</span><span class="n">arr</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span> <span class="o">=</span> <span class="n">i</span><span class="p">;</span> <span class="cm">/* 更新最近重复位置 */</span>
+            <span class="p">}</span>
+
+        <span class="p">}</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">maxlen</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">maxlen</span> <span class="o">=</span> <span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+            <span class="n">maxindex</span> <span class="o">=</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">maxlen</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="n">output</span><span class="p">(</span><span class="n">arr</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<p>DP + Hash 优化方案</p>
+<blockquote>
+<p>dp[i] = dp[i-1] + 1;</p>
+</blockquote>
+<p>dp[i-1]不就是更新dp[i]当前的最优解么？这与最大子数组和问题的优化几乎同出一辙，我们不需要O(n)的辅助空间去存储子问题的最优解，而只需O(1)的空间就可以了.</p>
+<div class="highlight"><pre><span class="cm">/* LNRS dp + hash 优化 */</span>
+<span class="k">void</span> <span class="n">LNRS_dp_hash_impro</span><span class="p">(</span><span class="n">char</span> <span class="o">*</span> <span class="n">arr</span><span class="p">,</span> <span class="k">int</span> <span class="n">size</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">memset</span><span class="p">(</span><span class="n">visit</span><span class="p">,</span> <span class="o">-</span><span class="mh">1</span><span class="p">,</span> <span class="n">sizeof</span> <span class="n">visit</span><span class="p">);</span>
+    <span class="n">maxlen</span> <span class="o">=</span> <span class="n">maxindex</span> <span class="o">=</span> <span class="mh">0</span><span class="p">;</span>
+    <span class="n">visit</span><span class="p">[</span><span class="n">arr</span><span class="p">[</span><span class="mh">0</span><span class="p">]]</span> <span class="o">=</span> <span class="mh">0</span><span class="p">;</span>
+    <span class="k">int</span> <span class="n">curlen</span> <span class="o">=</span> <span class="mh">1</span><span class="p">;</span>
+    <span class="k">int</span> <span class="n">last_start</span> <span class="o">=</span> <span class="mh">0</span><span class="p">;</span>
+
+    <span class="k">for</span><span class="p">(</span><span class="k">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mh">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">size</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">visit</span><span class="p">[</span><span class="n">arr</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span> <span class="o">==</span> <span class="o">-</span><span class="mh">1</span><span class="p">)</span> <span class="p">{</span>
+            <span class="o">++</span><span class="n">curlen</span><span class="p">;</span>
+            <span class="n">visit</span><span class="p">[</span><span class="n">arr</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span> <span class="o">=</span> <span class="n">i</span><span class="p">;</span> <span class="cm">/* 记录字符下标 */</span>
+        <span class="p">}</span><span class="k">else</span> <span class="p">{</span>
+            <span class="k">if</span><span class="p">(</span><span class="n">last_start</span> <span class="o">&lt;=</span> <span class="n">visit</span><span class="p">[</span><span class="n">arr</span><span class="p">[</span><span class="n">i</span><span class="p">]])</span> <span class="p">{</span>
+                <span class="n">curlen</span> <span class="o">=</span> <span class="n">i</span> <span class="o">-</span> <span class="n">visit</span><span class="p">[</span><span class="n">arr</span><span class="p">[</span><span class="n">i</span><span class="p">]];</span>
+                <span class="n">last_start</span> <span class="o">=</span> <span class="n">visit</span><span class="p">[</span><span class="n">arr</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span> <span class="o">+</span> <span class="mh">1</span><span class="p">;</span>
+                <span class="n">visit</span><span class="p">[</span><span class="n">arr</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span> <span class="o">=</span> <span class="n">i</span><span class="p">;</span> <span class="cm">/* 更新最近重复位置 */</span>
+            <span class="p">}</span><span class="k">else</span> <span class="p">{</span>
+                <span class="o">++</span><span class="n">curlen</span><span class="p">;</span>
+                <span class="n">visit</span><span class="p">[</span><span class="n">arr</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span> <span class="o">=</span> <span class="n">i</span><span class="p">;</span> <span class="cm">/* 更新最近重复位置 */</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">curlen</span> <span class="o">&gt;</span> <span class="n">maxlen</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">maxlen</span> <span class="o">=</span> <span class="n">curlen</span><span class="p">;</span>
+            <span class="n">maxindex</span> <span class="o">=</span> <span class="n">i</span> <span class="o">+</span> <span class="mh">1</span> <span class="o">-</span> <span class="n">maxlen</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="k">output</span><span class="p">(</span><span class="n">arr</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<h3>把字符串转换成数字</h3>
+<blockquote>
+<p>题目要求：
+如果前面有空格开头，忽略掉开头的所有空格
+如果发现没意义的字符，忽略之，并结束转换。即123ttyw -&gt; 123
+考虑负数额
+如果溢出，则返回相应的最大正数和最大负数。</p>
+</blockquote>
+<div class="highlight"><pre><span class="kt">int</span> <span class="nf">atoi</span><span class="p">(</span><span class="kt">char</span> <span class="o">*</span><span class="n">str</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">flag</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">ret</span><span class="p">,</span> <span class="n">dig</span><span class="p">;</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">str</span> <span class="o">==</span> <span class="nb">NULL</span> <span class="o">||</span> <span class="n">strlen</span><span class="p">(</span><span class="n">str</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="k">while</span><span class="p">(</span><span class="n">i</span> <span class="o">&lt;</span> <span class="n">strlen</span><span class="p">(</span><span class="n">str</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="n">str</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="sc">&#39; &#39;</span><span class="p">)</span> <span class="n">i</span><span class="o">++</span><span class="p">;</span>
+    <span class="c1">// 判断符号</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">str</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="sc">&#39;-&#39;</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">flag</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+        <span class="n">i</span><span class="o">++</span><span class="p">;</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">str</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="sc">&#39;+&#39;</span><span class="p">)</span>
+        <span class="n">i</span><span class="o">++</span><span class="p">;</span>
+
+    <span class="k">while</span> <span class="p">(</span><span class="n">i</span> <span class="o">&lt;</span> <span class="n">strlen</span><span class="p">(</span><span class="n">str</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="sc">&#39;0&#39;</span> <span class="o">&lt;=</span> <span class="n">str</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="sc">&#39;9&#39;</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">INT_MAX</span><span class="o">/</span><span class="mi">10</span> <span class="o">&gt;</span> <span class="n">ret</span><span class="p">)</span>
+        <span class="err">¦</span>   <span class="n">ret</span> <span class="o">=</span> <span class="n">ret</span> <span class="o">*</span> <span class="mi">10</span> 
+        <span class="k">else</span>
+            <span class="c1">// overflow</span>
+            <span class="k">return</span> <span class="n">flag</span> <span class="o">?</span> <span class="n">INT_MIN</span><span class="o">:</span> <span class="n">INT_MAX</span><span class="p">;</span>
+        <span class="n">dig</span> <span class="o">=</span> <span class="n">str</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">-</span> <span class="sc">&#39;0&#39;</span><span class="p">;</span>
+        <span class="k">if</span> <span class="p">((</span><span class="n">INT_MAX</span> <span class="o">-</span> <span class="n">ret</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">dig</span><span class="p">)</span>
+            <span class="n">ret</span> <span class="o">+=</span> <span class="n">dig</span><span class="p">;</span>
+        <span class="k">else</span>
+            <span class="c1">// overflow</span>
+            <span class="k">return</span> <span class="n">flag</span> <span class="o">?</span> <span class="n">INT_MIN</span><span class="o">:</span> <span class="n">INT_MAX</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="k">return</span> <span class="n">flag</span> <span class="o">?</span> <span class="o">-</span><span class="n">ret</span><span class="o">:</span> <span class="n">ret</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<h3>判断一个字符串中的字符是否都只出现一次</h3>
+<p>－排序然后看charArray[i] 是否与charArray[i+1]相等
+- 用bitmap, 一个int表示所有字符(26个)</p>
+<div class="highlight"><pre>    <span class="n">public</span> <span class="k">static</span> <span class="n">boolean</span> <span class="nf">isUniqueChars</span><span class="p">(</span><span class="n">String</span> <span class="n">str</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kt">int</span> <span class="n">checker</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">str</span><span class="p">.</span><span class="n">length</span><span class="p">();</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span> <span class="p">{</span>
+          <span class="kt">int</span> <span class="n">val</span> <span class="o">=</span> <span class="n">str</span><span class="p">.</span><span class="n">charAt</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="o">-</span> <span class="sc">&#39;a&#39;</span><span class="p">;</span>
+          <span class="k">if</span> <span class="p">((</span><span class="n">checker</span> <span class="o">&amp;</span> <span class="p">(</span><span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="n">val</span><span class="p">))</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span>
+            <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
+          <span class="n">checker</span> <span class="o">|=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="n">val</span><span class="p">);</span>
+        <span class="p">}</span>
+        <span class="k">return</span> <span class="nb">true</span><span class="p">;</span>
+    <span class="p">}</span>
+</pre></div>
+
+
+<p>refer:</p>
+<ul>
+<li>[0]<a href="http://zhedahht.blog.163.com/blog/static/25411174200722191722430/">http://zhedahht.blog.163.com/blog/static/25411174200722191722430/</a></li>
+<li>[1]<a href="http://m.blog.csdn.net/blog/sangni007/8155041">http://m.blog.csdn.net/blog/sangni007/8155041</a></li>
+<li>[2]<a href="http://zhedahht.blog.163.com/blog/static/25411174200801931426484/">http://zhedahht.blog.163.com/blog/static/25411174200801931426484/</a></li>
+<li>[3]<a href="http://www.acmerblog.com/remove-duplicate-character-5906.html">http://www.acmerblog.com/remove-duplicate-character-5906.html</a></li>
+<li>[4]<a href="http://www.ahathinking.com/archives/123.html">Longest Substring Without Repeating Characters</a></li>
+</ul>
+<p class="subheader">Category: <a href="../../category/str.html">str</a>
+
+    Tagged: 
+    <a href="../../tag/algorithm.html">algorithm </a>
+    <a href="../../tag/c.html">c </a>
+    <a href="../../tag/str.html">str </a>
+</p>
+
+
+
+
+</article>
+    </div>
+    <!-- End Main Content -->
+
+    <!-- Sidebar -->
+    <aside class="large-3 columns">
+    <!-- <h5 class="sidebar-title">Site</h5>
+        <ul class="side-nav">
+            <li><a href="../../archives.html">Archives</a>
+            <li><a href="../../tags.html">Tags</a>
+    </ul> -->
+
+        <h5 class="sidebar-title">Tags</h5>
+	<div id="tag-cloud" style="with: 25%; height: 245px;"></div>
+
+		
+        <h5 class="sidebar-title">Categories</h5>
+        <ul class="side-nav">
+            <li><a href="../../category/adt.html">adt</a></li>
+            <li><a href="../../category/algorithm.html">algorithm</a></li>
+            <li><a href="../../category/c.html">c</a></li>
+            <li><a href="../../category/complexity.html">complexity</a></li>
+            <li><a href="../../category/coroutine.html">coroutine</a></li>
+            <li><a href="../../category/interview.html">interview</a></li>
+            <li><a href="../../category/learn-plan.html">learn-plan</a></li>
+            <li><a href="../../category/misc.html">misc</a></li>
+            <li><a href="../../category/mysql.html">mysql</a></li>
+            <li><a href="../../category/python.html">python</a></li>
+            <li><a href="../../category/security.html">security</a></li>
+            <li><a href="../../category/sort.html">sort</a></li>
+            <li><a href="../../category/str.html">str</a></li>
+            <li><a href="../../category/tcp-ip.html">tcp-ip</a></li>
+            <li><a href="../../category/tree.html">tree</a></li>
+            <li><a href="../../category/vim.html">vim</a></li>
+   
+        </ul>
+
+        <h5 class="sidebar-title">Links</h5>
+        <ul class="side-nav">
+            <li><a href="https://github.com/actberw">github</a></li>
+        </ul>
+		
+        <h5 class="sidebar-title">Social</h5>
+        <ul class="side-nav">
+            <li><a href="http://weibo.com/u/1950796544">weibo</a></li>
+        </ul>
+
+    </aside> <!-- End Sidebar -->
+
+</div> <!-- End Main Content and Sidebar -->
+
+
+<!-- Footer -->
+<footer class="row">
+    <div class="large-12 columns">
+        <hr />
+        <div class="row">
+            <div class="large-6 columns">
+              <!--                  <p>记录一些工作中的笔记 by actberw</p> -->
+            </div>
+            </div>
+    </div>
+</footer>

@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8" />
+    <!-- Set the viewport width to device width for mobile -->
+    <meta name="viewport" content="width=device-width" />
+
+    <title>记录一些工作中的笔记 - 3sum</title>
+
+    <link rel="stylesheet" href="../theme/css/normalize.css" />
+    <link rel="stylesheet" href="../theme/css/foundation.min.css" />
+    <link rel="stylesheet" href="../theme/css/style.css" />
+    <link rel="stylesheet" href="../theme/css/pygments.css" />	
+    <link rel="stylesheet" type="text/css" href="../theme/css/jqcloud.css" />
+    <script src="../theme/js/vendor/custom.modernizr.js"></script>
+    <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+          "HTML-CSS": {
+        styles: {
+          ".MathJax .mo, .MathJax .mi": {color: "black ! important"}}
+            },
+              tex2jax: {inlineMath: [['$','$'], ['\\\\(','\\\\)']],processEscapes: true}
+        });
+    </script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../theme/js/jquery.min.js"></script>
+    <script type="text/javascript" src="../theme/js/jqcloud-1.0.4.min.js"></script>
+    
+    <script type="text/javascript">
+	var word_list = [
+        {text: "gdt", weight: 0.0125, link: {href: "/tag/gdt.html"}},
+        {text: "pelican", weight: 0.0125, link: {href: "/tag/pelican.html"}},
+        {text: "random", weight: 0.05, link: {href: "/tag/random.html"}},
+        {text: "zmap", weight: 0.0125, link: {href: "/tag/zmap.html"}},
+        {text: "algorithm analysis", weight: 0.05, link: {href: "/tag/algorithm-analysis.html"}},
+        {text: "unicode", weight: 0.0125, link: {href: "/tag/unicode.html"}},
+        {text: "mysql", weight: 0.05, link: {href: "/tag/mysql.html"}},
+        {text: "adt", weight: 0.0125, link: {href: "/tag/adt.html"}},
+        {text: "ext4", weight: 0.0125, link: {href: "/tag/ext4.html"}},
+        {text: "point", weight: 0.0125, link: {href: "/tag/point.html"}},
+        {text: "umask", weight: 0.0125, link: {href: "/tag/umask.html"}},
+        {text: "c/c++", weight: 0.0125, link: {href: "/tag/cc.html"}},
+        {text: "ls", weight: 0.0125, link: {href: "/tag/ls.html"}},
+        {text: "triangle", weight: 0.0125, link: {href: "/tag/triangle.html"}},
+        {text: "object model", weight: 0.0125, link: {href: "/tag/object-model.html"}},
+        {text: "combination", weight: 0.0125, link: {href: "/tag/combination.html"}},
+        {text: "python", weight: 0.1375, link: {href: "/tag/python.html"}},
+        {text: "risc", weight: 0.0125, link: {href: "/tag/risc.html"}},
+        {text: "chmod", weight: 0.025, link: {href: "/tag/chmod.html"}},
+        {text: "underscore", weight: 0.0125, link: {href: "/tag/underscore.html"}},
+        {text: "bit", weight: 0.0125, link: {href: "/tag/bit.html"}},
+        {text: "daemon", weight: 0.0125, link: {href: "/tag/daemon.html"}},
+        {text: "signal", weight: 0.0125, link: {href: "/tag/signal.html"}},
+        {text: "median", weight: 0.0125, link: {href: "/tag/median.html"}},
+        {text: "real mode", weight: 0.025, link: {href: "/tag/real-mode.html"}},
+        {text: "binary search", weight: 0.0125, link: {href: "/tag/binary-search.html"}},
+        {text: "3sum", weight: 0.0125, link: {href: "/tag/3sum.html"}},
+        {text: "ldt", weight: 0.0125, link: {href: "/tag/ldt.html"}},
+        {text: "orphan", weight: 0.0125, link: {href: "/tag/orphan.html"}},
+        {text: "prime number", weight: 0.025, link: {href: "/tag/prime-number.html"}},
+        {text: "xtrabackup", weight: 0.025, link: {href: "/tag/xtrabackup.html"}},
+        {text: "function call", weight: 0.0125, link: {href: "/tag/function-call.html"}},
+        {text: "assembly", weight: 0.025, link: {href: "/tag/assembly.html"}},
+        {text: "ring", weight: 0.0125, link: {href: "/tag/ring.html"}},
+        {text: "matrix", weight: 0.0125, link: {href: "/tag/matrix.html"}},
+        {text: "2sum", weight: 0.0125, link: {href: "/tag/2sum.html"}},
+        {text: "cpu ring", weight: 0.0125, link: {href: "/tag/cpu-ring.html"}},
+        {text: "metaclass", weight: 0.0125, link: {href: "/tag/metaclass.html"}},
+        {text: "method", weight: 0.0125, link: {href: "/tag/method.html"}},
+        {text: "hash", weight: 0.0125, link: {href: "/tag/hash.html"}},
+        {text: "stack frame", weight: 0.0125, link: {href: "/tag/stack-frame.html"}},
+        {text: "zombie", weight: 0.0125, link: {href: "/tag/zombie.html"}},
+        {text: "protect mode", weight: 0.0125, link: {href: "/tag/protect-mode.html"}},
+        {text: "zbr", weight: 0.0125, link: {href: "/tag/zbr.html"}},
+        {text: "system call", weight: 0.0125, link: {href: "/tag/system-call.html"}},
+        {text: "tcp/ip", weight: 0.0125, link: {href: "/tag/tcpip.html"}},
+        {text: "tls", weight: 0.0125, link: {href: "/tag/tls.html"}},
+        {text: "c", weight: 0.2125, link: {href: "/tag/c.html"}},
+        {text: "kernel thread", weight: 0.0125, link: {href: "/tag/kernel-thread.html"}},
+        {text: "thread", weight: 0.025, link: {href: "/tag/thread.html"}},
+        {text: "queue", weight: 0.0375, link: {href: "/tag/queue.html"}},
+        {text: "data structure", weight: 0.225, link: {href: "/tag/data-structure.html"}},
+        {text: "setuid", weight: 0.025, link: {href: "/tag/setuid.html"}},
+        {text: "shuffle", weight: 0.0125, link: {href: "/tag/shuffle.html"}},
+        {text: "encoding", weight: 0.0125, link: {href: "/tag/encoding.html"}},
+        {text: "nmap", weight: 0.0125, link: {href: "/tag/nmap.html"}},
+        {text: "float", weight: 0.0125, link: {href: "/tag/float.html"}},
+        {text: "apt", weight: 0.0125, link: {href: "/tag/apt.html"}},
+        {text: "vim", weight: 0.0125, link: {href: "/tag/vim.html"}},
+        {text: "sourcelist", weight: 0.0125, link: {href: "/tag/sourcelist.html"}},
+        {text: "linux", weight: 0.1875, link: {href: "/tag/linux.html"}},
+        {text: "array", weight: 0.125, link: {href: "/tag/array.html"}},
+        {text: "callstack", weight: 0.0125, link: {href: "/tag/callstack.html"}},
+        {text: "stack", weight: 0.05, link: {href: "/tag/stack.html"}},
+        {text: "type", weight: 0.0125, link: {href: "/tag/type.html"}},
+        {text: "sort", weight: 0.05, link: {href: "/tag/sort.html"}},
+        {text: "masscan", weight: 0.0125, link: {href: "/tag/masscan.html"}},
+        {text: "btrfs", weight: 0.0125, link: {href: "/tag/btrfs.html"}},
+        {text: "gas", weight: 0.0125, link: {href: "/tag/gas.html"}},
+        {text: "user thread", weight: 0.0125, link: {href: "/tag/user-thread.html"}},
+        {text: "heap", weight: 0.025, link: {href: "/tag/heap.html"}},
+        {text: "c3", weight: 0.0125, link: {href: "/tag/c3.html"}},
+        {text: "stty", weight: 0.0125, link: {href: "/tag/stty.html"}},
+        {text: "compile", weight: 0.0125, link: {href: "/tag/compile.html"}},
+        {text: "descriptor", weight: 0.0125, link: {href: "/tag/descriptor.html"}},
+        {text: "hdd", weight: 0.0125, link: {href: "/tag/hdd.html"}},
+        {text: "setresuid", weight: 0.0125, link: {href: "/tag/setresuid.html"}},
+        {text: "str", weight: 0.05, link: {href: "/tag/str.html"}},
+        {text: "cisc", weight: 0.0125, link: {href: "/tag/cisc.html"}},
+        {text: "a20", weight: 0.0125, link: {href: "/tag/a20.html"}},
+        {text: "shebang", weight: 0.0125, link: {href: "/tag/shebang.html"}},
+        {text: "process", weight: 0.0125, link: {href: "/tag/process.html"}},
+        {text: "ip", weight: 0.0125, link: {href: "/tag/ip.html"}},
+        {text: "poiner", weight: 0.0125, link: {href: "/tag/poiner.html"}},
+        {text: "sticky", weight: 0.0125, link: {href: "/tag/sticky.html"}},
+        {text: "__init__", weight: 0.0125, link: {href: "/tag/__init__.html"}},
+        {text: "latency", weight: 0.0125, link: {href: "/tag/latency.html"}},
+        {text: "gcd", weight: 0.0125, link: {href: "/tag/gcd.html"}},
+        {text: "manacher", weight: 0.0125, link: {href: "/tag/manacher.html"}},
+        {text: "sqrt", weight: 0.0125, link: {href: "/tag/sqrt.html"}},
+        {text: "arm", weight: 0.0125, link: {href: "/tag/arm.html"}},
+        {text: "utf-8", weight: 0.0125, link: {href: "/tag/utf-8.html"}},
+        {text: "fs", weight: 0.0125, link: {href: "/tag/fs.html"}},
+        {text: "x86", weight: 0.025, link: {href: "/tag/x86.html"}},
+        {text: "bst", weight: 0.0125, link: {href: "/tag/bst.html"}},
+        {text: "quote", weight: 0.0125, link: {href: "/tag/quote.html"}},
+        {text: "class", weight: 0.0125, link: {href: "/tag/class.html"}},
+        {text: "mangling", weight: 0.0125, link: {href: "/tag/mangling.html"}},
+        {text: "debian", weight: 0.0125, link: {href: "/tag/debian.html"}},
+        {text: "getuid", weight: 0.0125, link: {href: "/tag/getuid.html"}},
+        {text: "eof", weight: 0.0125, link: {href: "/tag/eof.html"}},
+        {text: "algorithm", weight: 0.7, link: {href: "/tag/algorithm.html"}},
+        {text: "line join", weight: 0.0125, link: {href: "/tag/line-join.html"}},
+        {text: "register", weight: 0.0125, link: {href: "/tag/register.html"}},
+        {text: "mro", weight: 0.0125, link: {href: "/tag/mro.html"}},
+        {text: "pown", weight: 0.0125, link: {href: "/tag/pown.html"}},
+        ];
+        $(function() {
+            $("#tag-cloud").jQCloud(word_list);
+        });
+    </script>
+
+</head>
+
+<body>
+
+<!-- Nav Bar -->
+<nav>
+<div class="top-bar">
+<div class="row">
+    <div class="large-9 large-centered columns">
+	    <h1><a href="..">记录一些工作中的笔记</a></h1>
+    </div>
+</div>
+</div>
+
+<!-- Show menu items and pages -->
+<div class="row">
+<div class="large-9 columns">
+    <ul class="button-group navigation">
+
+    </ul>
+</div>
+</div>
+</nav>
+<!-- End Nav -->
+
+
+<!-- Main Page Content and Sidebar -->
+<div class="row">
+
+    <!-- Main Blog Content -->
+    <div class="large-9 columns">
+        
+        
+
+            <article>
+                <a href="../posts/adt/array-ksum.html"><h3 class="article-title">K Sum 问题</h3></a>
+<h6 class="subheader" title="2014-08-03T00:00:00">Sun 03 August 2014
+</h6>
+
+
+<h3>Two Sum</h3>
+<blockquote>
+<p>Given an array of integers, find two numbers such that they add up to a specific target number.</p>
+<p>The function twoSum should return indices of the two numbers such that they add up to the target, where index1 must be less than index2. Please note that your returned answers (both index1 and index2) are not zero-based.</p>
+<p>You may assume that each input would have exactly one solution.</p>
+<p>Input: numbers={2, 7, 11, 15}, target=9</p>
+<p>Output: index1=1, index2=2</p>
+</blockquote>
+<p>两种解法:</p>
+<ul>
+<li>
+<p>排序, 然后用二分查找差值, 或者首位两个指针left, right, 如果array[left] + array[right] &gt; target 则 right--, array[left] + array[right] &lt; target 则left++, 等于则返回</p>
+</li>
+<li>
+<p>用hashMap</p>
+</li>
+</ul>
+<p>hashMap 的实现</p>
+<div class="highlight"><pre><span class="n">public</span> <span class="n">class</span> <span class="n">Solution</span> <span class="p">{</span>
+    <span class="n">public</span> <span class="kt">int</span><span class="p">[]</span> <span class="n">twoSum</span><span class="p">(</span><span class="kt">int</span><span class="p">[]</span> <span class="n">arr</span><span class="p">,</span> <span class="kt">int</span> <span class="n">target</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">HashMap</span><span class="o">&lt;</span><span class="n">Integer</span><span class="p">,</span> <span class="n">Integer</span><span class="o">&gt;</span> <span class="n">map</span> <span class="o">=</span> <span class="n">new</span> <span class="n">HashMap</span><span class="o">&lt;</span><span class="n">Integer</span><span class="p">,</span> <span class="n">Integer</span><span class="o">&gt;</span><span class="p">();</span>
+    <span class="kt">int</span><span class="p">[]</span> <span class="n">result</span> <span class="o">=</span> <span class="n">new</span> <span class="kt">int</span><span class="p">[</span><span class="mi">2</span><span class="p">];</span>
+
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">arr</span><span class="p">.</span><span class="n">length</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">map</span><span class="p">.</span><span class="n">containsKey</span><span class="p">(</span><span class="n">arr</span><span class="p">[</span><span class="n">i</span><span class="p">]))</span> <span class="p">{</span>
+            <span class="kt">int</span> <span class="n">index</span> <span class="o">=</span> <span class="n">map</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="n">arr</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
+            <span class="n">result</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">index</span><span class="o">+</span><span class="mi">1</span> <span class="p">;</span>
+            <span class="n">result</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">;</span>
+            <span class="k">break</span><span class="p">;</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+            <span class="n">map</span><span class="p">.</span><span class="n">put</span><span class="p">(</span><span class="n">target</span> <span class="o">-</span> <span class="n">arr</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">i</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="k">return</span> <span class="n">result</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<h3>three sum</h3>
+<blockquote>
+<p>Given an array S of n integers, are there elements a, b, c in S such that a + b + c = 0? Find all unique triplets in the array which gives the sum of zero.</p>
+<p>For example, given array S = {-1 0 1 2 -1 -4},</p>
+<p>A solution set is:
+    (-1, 0, 1)
+    (-1, -1, 2)</p>
+</blockquote>
+<p>Note:<br />
+Elements in a triplet (a,b,c) must be in non-descending order. (ie, a ≤ b ≤ c)
+The solution set must not contain duplicate triplets.</p>
+<p>To avoid duplicate, we can take advantage of sorted arrays, i.e., move pointers by &gt;1 to use same element only once.</p>
+<p>这里不是要求返回索引而是元素值, 所以可以进行排序处理.</p>
+<div class="highlight"><pre><span class="nx">ArrayList</span><span class="o">&lt;</span><span class="nx">ArrayList</span><span class="o">&lt;</span><span class="kt">Integer</span><span class="o">&gt;&gt;</span> <span class="nx">threeSum</span><span class="p">(</span><span class="nx">int</span><span class="err">[</span><span class="cp">]</span> arr) {
+    ArrayList<span class="nt">&lt;ArrayList</span><span class="err">&lt;</span><span class="na">Integer</span><span class="nt">&gt;</span>&gt; result = new ArrayList<span class="nt">&lt;ArrayList</span><span class="err">&lt;</span><span class="na">Integer</span><span class="nt">&gt;</span>&gt;();
+    Arrays.sort(arr);
+    for (int i = 0; i <span class="nt">&lt; arr</span><span class="err">.</span><span class="na">length</span> <span class="na">-</span> <span class="na">2</span><span class="err">;</span> <span class="na">i</span><span class="err">++)</span> <span class="err">{</span>
+
+            <span class="na">if</span><span class="err">(</span><span class="na">i</span> <span class="nt">&gt;</span> 0 <span class="err">&amp;&amp;</span> arr<span class="cp">[</span><span class="nx">i</span><span class="cp">]</span> == num<span class="cp">[</span><span class="nx">i</span><span class="o">-</span><span class="mi">1</span><span class="cp">]</span>) continue; // avoid duplicate solutions
+            int two_sum = 0 - arr<span class="cp">[</span><span class="nx">i</span><span class="cp">]</span>;
+            int l = i + 1;
+            int r = num.length - 1;
+
+            while (l <span class="nt">&lt; r</span><span class="err">)</span> <span class="err">{</span>
+                <span class="na">if</span> <span class="err">(</span><span class="na">arr</span><span class="cp">[</span><span class="nx">l</span><span class="cp">]</span> <span class="err">+</span> <span class="na">arr</span><span class="cp">[</span><span class="nb">r</span><span class="cp">]</span><span class="na"> =</span><span class="s">=</span> <span class="na">two_sum</span><span class="err">)</span> <span class="err">{</span>
+                    <span class="na">ArrayList</span><span class="err">&lt;</span><span class="na">Integer</span><span class="nt">&gt;</span> temp = new ArrayList<span class="nt">&lt;Integer&gt;</span>();
+                    temp.add(num<span class="cp">[</span><span class="nx">i</span><span class="cp">]</span>);
+                    temp.add(num<span class="cp">[</span><span class="nx">l</span><span class="cp">]</span>);
+                    temp.add(num<span class="cp">[</span><span class="nb">r</span><span class="cp">]</span>);
+
+                    result.add(temp);
+                    l++;
+                    r--;
+
+                } else if (num<span class="cp">[</span><span class="nx">l</span><span class="cp">]</span> + num<span class="cp">[</span><span class="nb">r</span><span class="cp">]</span> <span class="nt">&lt; two</span><span class="na">_sum</span><span class="err">)</span> <span class="err">{</span>
+                    <span class="na">l</span><span class="err">++;</span>
+                <span class="err">}</span> <span class="na">else</span> <span class="err">{</span>
+                    <span class="na">r--</span><span class="err">;</span>
+                <span class="err">}</span>
+            <span class="err">}</span>
+
+        <span class="err">}</span>
+    <span class="err">}</span>
+
+<span class="err">}</span>
+</pre></div>
+
+
+<h3>three Sum Closest</h3>
+<blockquote>
+<p>Given an array S of n integers, find three integers in S such that the sum is closest to a given number, target. Return the sum of the three integers. You may assume that each input would have exactly one solution. For example, given array S = {-1 2 1 -4}, and target = 1. The sum that is closest to the target is 2. (-1 + 2 + 1 = 2).</p>
+</blockquote>
+<p>This problem is similar with 3 Sum. This kind of problem can be solve by using similar approach, i.e., two pointers from both left and right.</p>
+<div class="highlight"><pre><span class="n">public</span> <span class="n">class</span> <span class="n">Solution</span> <span class="p">{</span>
+    <span class="n">public</span> <span class="kt">int</span> <span class="n">threeSumClosest</span><span class="p">(</span><span class="kt">int</span><span class="p">[]</span> <span class="n">arr</span><span class="p">,</span> <span class="kt">int</span> <span class="n">target</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kt">int</span> <span class="n">min</span> <span class="o">=</span> <span class="n">Integer</span><span class="p">.</span><span class="n">MAX_VALUE</span><span class="p">;</span>
+        <span class="kt">int</span> <span class="n">result</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+
+        <span class="n">Arrays</span><span class="p">.</span><span class="n">sort</span><span class="p">(</span><span class="n">arr</span><span class="p">);</span>
+
+        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">arr</span><span class="p">.</span><span class="n">length</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+            <span class="kt">int</span> <span class="n">l</span> <span class="o">=</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+            <span class="kt">int</span> <span class="n">r</span> <span class="o">=</span> <span class="n">arr</span><span class="p">.</span><span class="n">length</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span>
+            <span class="k">while</span> <span class="p">(</span><span class="n">l</span> <span class="o">&lt;</span> <span class="n">r</span><span class="p">)</span> <span class="p">{</span>
+                <span class="kt">int</span> <span class="n">sum</span> <span class="o">=</span> <span class="n">arr</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="n">arr</span><span class="p">[</span><span class="n">l</span><span class="p">]</span> <span class="o">+</span> <span class="n">arr</span><span class="p">[</span><span class="n">r</span><span class="p">];</span>
+                <span class="kt">int</span> <span class="n">diff</span> <span class="o">=</span> <span class="n">Math</span><span class="p">.</span><span class="n">abs</span><span class="p">(</span><span class="n">sum</span> <span class="o">-</span> <span class="n">target</span><span class="p">);</span>
+                <span class="k">if</span> <span class="p">(</span><span class="n">diff</span> <span class="o">&lt;</span> <span class="n">min</span><span class="p">)</span> <span class="p">{</span>
+                    <span class="n">min</span> <span class="o">=</span> <span class="n">diff</span><span class="p">;</span>
+                    <span class="n">result</span> <span class="o">=</span> <span class="n">sum</span><span class="p">;</span>
+                <span class="p">}</span>
+                <span class="k">if</span> <span class="p">(</span><span class="n">sum</span> <span class="o">&lt;=</span> <span class="n">target</span><span class="p">)</span> <span class="p">{</span>
+                    <span class="n">l</span><span class="o">++</span><span class="p">;</span>
+                <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+                    <span class="n">r</span><span class="o">--</span><span class="p">;</span>
+                <span class="p">}</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+
+        <span class="k">return</span> <span class="n">result</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<h3>four sum</h3>
+<blockquote>
+<p>Given an array S of n integers, are there elements a, b, c, and d in S such that a + b + c + d = target? Find all unique quadruplets in the array which gives the sum of target.
+  For example, given array S = {1 0 -1 0 -2 2}, and target = 0.</p>
+<p>A solution set is:
+    (-1,  0, 0, 1)
+    (-2, -1, 1, 2)
+    (-2,  0, 0, 2)</p>
+</blockquote>
+<p>A typical k-sum problem. Time is N to the poser of (k-1).</p>
+<div class="highlight"><pre><span class="k">public</span> <span class="nf">ArrayList</span><span class="o">&lt;</span><span class="nx">ArrayList</span><span class="o">&lt;</span><span class="kt">Integer</span><span class="o">&gt;&gt;</span> <span class="nx">fourSum</span><span class="p">(</span><span class="nx">int</span><span class="err">[</span><span class="cp">]</span> arr, int target) {
+    Arrays.sort(arr);
+
+    HashSet<span class="nt">&lt;ArrayList</span><span class="err">&lt;</span><span class="na">Integer</span><span class="nt">&gt;</span>&gt; hashSet = new HashSet<span class="nt">&lt;ArrayList</span><span class="err">&lt;</span><span class="na">Integer</span><span class="nt">&gt;</span>&gt;();
+    ArrayList<span class="nt">&lt;ArrayList</span><span class="err">&lt;</span><span class="na">Integer</span><span class="nt">&gt;</span>&gt; result = new ArrayList<span class="nt">&lt;ArrayList</span><span class="err">&lt;</span><span class="na">Integer</span><span class="nt">&gt;</span>&gt;();
+
+    for (int i = 0; i <span class="nt">&lt; arr</span><span class="err">.</span><span class="na">length</span><span class="err">;</span> <span class="na">i</span><span class="err">++)</span> <span class="err">{</span>
+
+        <span class="na">if</span><span class="err">(</span><span class="na">i</span> <span class="nt">&gt;</span> 0 <span class="err">&amp;&amp;</span> arr<span class="cp">[</span><span class="nx">i</span><span class="cp">]</span> == arr<span class="cp">[</span><span class="nx">i</span><span class="o">-</span><span class="mi">1</span><span class="cp">]</span>) continue; // avoid first element duplicate
+
+        for (int j = i + 1; j <span class="nt">&lt; arr</span><span class="err">.</span><span class="na">length</span><span class="err">;</span> <span class="na">j</span><span class="err">++)</span> <span class="err">{</span>
+
+            <span class="na">if</span><span class="err">(</span><span class="na">j</span> <span class="nt">&gt;</span> i+1 <span class="err">&amp;&amp;</span> arr<span class="cp">[</span><span class="nx">j</span><span class="cp">]</span> == arr<span class="cp">[</span><span class="nx">j</span><span class="o">-</span><span class="mi">1</span><span class="cp">]</span>)continue; // avoid second element duplicate
+
+            int l = j + 1;
+            int r = arr.length - 1;
+
+            while (l <span class="nt">&lt; r</span><span class="err">)</span> <span class="err">{</span>
+                <span class="na">int</span> <span class="na">sum =</span><span class="err"> </span><span class="s">arr</span><span class="cp">[</span><span class="nx">i</span><span class="cp">]</span> <span class="err">+</span> <span class="na">arr</span><span class="cp">[</span><span class="nx">j</span><span class="cp">]</span> <span class="err">+</span> <span class="na">arr</span><span class="cp">[</span><span class="nx">k</span><span class="cp">]</span> <span class="err">+</span> <span class="na">arr</span><span class="cp">[</span><span class="nx">l</span><span class="cp">]</span><span class="err">;</span>
+
+                <span class="na">if</span> <span class="err">(</span><span class="na">sum</span> <span class="nt">&gt;</span> target) {
+                    r--;
+                } else if (sum <span class="nt">&lt; target</span><span class="err">)</span> <span class="err">{</span>
+                    <span class="na">l</span><span class="err">++;</span>
+                <span class="err">}</span> <span class="na">else</span> <span class="na">if</span> <span class="err">(</span><span class="na">sum =</span><span class="s">=</span> <span class="na">target</span><span class="err">)</span> <span class="err">{</span>
+                    <span class="na">ArrayList</span><span class="err">&lt;</span><span class="na">Integer</span><span class="nt">&gt;</span> temp = new ArrayList<span class="nt">&lt;Integer&gt;</span>();
+                    temp.add(arr<span class="cp">[</span><span class="nx">i</span><span class="cp">]</span>);
+                    temp.add(arr<span class="cp">[</span><span class="nx">j</span><span class="cp">]</span>);
+                    temp.add(arr<span class="cp">[</span><span class="nx">k</span><span class="cp">]</span>);
+                    temp.add(arr<span class="cp">[</span><span class="nx">l</span><span class="cp">]</span>);
+
+                    /*if (!hashSet.contains(temp)) {
+                    //    hashSet.add(temp);
+                    result.add(temp);
+                    //}
+
+                    l++;
+                    r--;
+                }
+            }
+        }
+    }
+
+    return result;
+}
+</pre></div>
+
+
+<h3>k sum</h3>
+<p>K Sum problem in recursive way is just to reduce K sum problem to K – 1 sum Problem, and then to K – 2 Sum problem … Finally it would be reduced to the basic case 2sum problem.</p>
+<div class="highlight"><pre><span class="nx">vector</span><span class="o">&lt;</span> <span class="nx">vector</span><span class="o">&lt;</span><span class="nx">int</span><span class="o">&gt;</span> <span class="o">&gt;</span> <span class="nx">KSum</span><span class="p">(</span><span class="nx">vector</span><span class="o">&lt;</span><span class="nx">int</span><span class="o">&gt;</span> <span class="o">&amp;</span><span class="nx">arr</span><span class="p">,</span> <span class="nx">int</span> <span class="nx">K</span><span class="p">,</span> <span class="nx">int</span> <span class="nb">target</span><span class="p">,</span> <span class="nx">int</span> <span class="nx">p</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">vector</span><span class="o">&lt;</span> <span class="nx">vector</span><span class="o">&lt;</span><span class="nx">int</span><span class="o">&gt;</span> <span class="o">&gt;</span> <span class="nx">vecResults</span><span class="p">;</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">K</span> <span class="o">==</span> <span class="mi">2</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// base case</span>
+            <span class="nx">vector</span><span class="o">&lt;</span><span class="nx">int</span><span class="o">&gt;</span> <span class="nx">tuple</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+            <span class="nx">int</span> <span class="n">l</span> <span class="o">=</span> <span class="nx">p</span><span class="p">,</span> <span class="n">r</span> <span class="o">=</span> <span class="nx">arr.size</span><span class="p">()</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span>
+            <span class="k">while</span> <span class="p">(</span><span class="nx">l</span> <span class="o">&lt;</span> <span class="nb">r</span><span class="p">)</span> <span class="p">{</span>
+                <span class="k">if</span> <span class="p">(</span><span class="nx">l</span> <span class="o">&gt;</span> <span class="nx">p</span> <span class="o">&amp;&amp;</span> <span class="nx">arr</span><span class="err">[</span><span class="nx">l</span><span class="cp">]</span> == arr<span class="cp">[</span><span class="nx">l</span> <span class="o">-</span> <span class="mi">1</span><span class="cp">]</span>) {
+                    ++l;
+                    continue;
+                }
+                int sum = arr<span class="cp">[</span><span class="nx">l</span><span class="cp">]</span> + arr<span class="cp">[</span><span class="nb">r</span><span class="cp">]</span>;
+                if (sum == target) {
+                    tuple<span class="cp">[</span><span class="mi">0</span><span class="cp">]</span> = arr<span class="cp">[</span><span class="nx">l</span><span class="o">++</span><span class="cp">]</span>;
+                    tuple<span class="cp">[</span><span class="mi">1</span><span class="cp">]</span> = arr<span class="cp">[</span><span class="nb">r</span><span class="o">--</span><span class="cp">]</span>;
+                    vecResults.push_back(tuple);
+                }
+                else if (sum &gt; target) {
+                    --r;
+                }
+                else {
+                    ++l;
+                }
+            }
+            return vecResults;
+        }
+        // K &gt; 2
+        for (int i = p; i <span class="nt">&lt; arr</span><span class="err">.</span><span class="na">size</span><span class="err">();</span> <span class="err">++</span><span class="na">l</span><span class="err">)</span> <span class="err">{</span>
+            <span class="na">if</span> <span class="err">(</span><span class="na">l</span> <span class="nt">&gt;</span> p <span class="err">&amp;&amp;</span> arr<span class="cp">[</span><span class="nx">i</span><span class="cp">]</span> == arr<span class="cp">[</span><span class="nx">i</span> <span class="o">-</span> <span class="mi">1</span><span class="cp">]</span>) continue;
+            vector<span class="nt">&lt; vector</span><span class="err">&lt;</span><span class="na">int</span><span class="nt">&gt;</span> &gt; K1Sum = KSum(arr, K - 1, target - arr<span class="cp">[</span><span class="nx">l</span><span class="cp">]</span>, i + 1);
+            for (auto it = K1Sum.begin(); it != K1Sum.end(); ++it) {
+                vector<span class="nt">&lt;int&gt;</span> tuple;
+                tuple.push_back(arr<span class="cp">[</span><span class="nx">l</span><span class="cp">]</span>);
+                tuple.insert(tuple.end(), it-&gt;begin(), it-&gt;end());
+                vecResults.push_back(tuple);
+            }
+        }
+        return vecResults;
+    }
+</pre></div>
+
+
+<p>refer:</p>
+<ul>
+<li><a href="http://www.programcreek.com/2012/12/leetcode-solution-of-two-sum-in-java/">http://www.programcreek.com/2012/12/leetcode-solution-of-two-sum-in-java/</a></li>
+<li><a href="http://segmentfault.com/blog/code/1190000000450743">http://segmentfault.com/blog/code/1190000000450743</a></li>
+<li><a href="http://www.programcreek.com/2012/12/leetcode-3sum/">http://www.programcreek.com/2012/12/leetcode-3sum/</a></li>
+<li><a href="http://www.programcreek.com/2012/12/leetcode-3sum/">http://www.programcreek.com/2012/12/leetcode-3sum/</a></li>
+<li><a href="http://www.cnblogs.com/tenosdoit/p/3649607.html">http://www.cnblogs.com/tenosdoit/p/3649607.html</a></li>
+<li><a href="http://www.programcreek.com/2013/02/leetcode-3sum-closest-java/">http://www.programcreek.com/2013/02/leetcode-3sum-closest-java/</a></li>
+<li><a href="http://www.programcreek.com/2013/02/leetcode-4sum-java/">http://www.programcreek.com/2013/02/leetcode-4sum-java/</a></li>
+<li><a href="http://tech-wonderland.net/blog/summary-of-ksum-problems.html">k sum problem</a></li>
+</ul><p class="subheader">Category: <a href="../category/adt.html">adt</a>
+
+    Tagged: 
+    <a href="../tag/algorithm.html">algorithm </a>
+    <a href="../tag/2sum.html">2sum </a>
+    <a href="../tag/3sum.html">3sum </a>
+</p>
+
+
+
+            </article>
+
+<div class="pagination-centered">
+<h6 class="subheader">Page 1 of 1</h6>
+
+<p>
+
+</p>
+</div>
+
+
+
+            <!-- /#posts-list -->
+
+    </div>
+    <!-- End Main Content -->
+
+    <!-- Sidebar -->
+    <aside class="large-3 columns">
+    <!-- <h5 class="sidebar-title">Site</h5>
+        <ul class="side-nav">
+            <li><a href="../archives.html">Archives</a>
+            <li><a href="../tags.html">Tags</a>
+    </ul> -->
+
+        <h5 class="sidebar-title">Tags</h5>
+	<div id="tag-cloud" style="with: 25%; height: 245px;"></div>
+
+		
+        <h5 class="sidebar-title">Categories</h5>
+        <ul class="side-nav">
+            <li><a href="../category/adt.html">adt</a></li>
+            <li><a href="../category/algorithm.html">algorithm</a></li>
+            <li><a href="../category/c.html">c</a></li>
+            <li><a href="../category/complexity.html">complexity</a></li>
+            <li><a href="../category/coroutine.html">coroutine</a></li>
+            <li><a href="../category/interview.html">interview</a></li>
+            <li><a href="../category/learn-plan.html">learn-plan</a></li>
+            <li><a href="../category/misc.html">misc</a></li>
+            <li><a href="../category/mysql.html">mysql</a></li>
+            <li><a href="../category/python.html">python</a></li>
+            <li><a href="../category/security.html">security</a></li>
+            <li><a href="../category/sort.html">sort</a></li>
+            <li><a href="../category/str.html">str</a></li>
+            <li><a href="../category/tcp-ip.html">tcp-ip</a></li>
+            <li><a href="../category/tree.html">tree</a></li>
+            <li><a href="../category/vim.html">vim</a></li>
+   
+        </ul>
+
+        <h5 class="sidebar-title">Links</h5>
+        <ul class="side-nav">
+            <li><a href="https://github.com/actberw">github</a></li>
+        </ul>
+		
+        <h5 class="sidebar-title">Social</h5>
+        <ul class="side-nav">
+            <li><a href="http://weibo.com/u/1950796544">weibo</a></li>
+        </ul>
+
+    </aside> <!-- End Sidebar -->
+
+</div> <!-- End Main Content and Sidebar -->
+
+
+<!-- Footer -->
+<footer class="row">
+    <div class="large-12 columns">
+        <hr />
+        <div class="row">
+            <div class="large-6 columns">
+              <!--                  <p>记录一些工作中的笔记 by actberw</p> -->
+            </div>
+            </div>
+    </div>
+</footer>

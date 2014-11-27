@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8" />
+    <!-- Set the viewport width to device width for mobile -->
+    <meta name="viewport" content="width=device-width" />
+
+    <title>中位数</title>
+
+    <link rel="stylesheet" href="../../theme/css/normalize.css" />
+    <link rel="stylesheet" href="../../theme/css/foundation.min.css" />
+    <link rel="stylesheet" href="../../theme/css/style.css" />
+    <link rel="stylesheet" href="../../theme/css/pygments.css" />	
+    <link rel="stylesheet" type="text/css" href="../../theme/css/jqcloud.css" />
+    <script src="../../theme/js/vendor/custom.modernizr.js"></script>
+    <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+          "HTML-CSS": {
+        styles: {
+          ".MathJax .mo, .MathJax .mi": {color: "black ! important"}}
+            },
+              tex2jax: {inlineMath: [['$','$'], ['\\\\(','\\\\)']],processEscapes: true}
+        });
+    </script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../../theme/js/jquery.min.js"></script>
+    <script type="text/javascript" src="../../theme/js/jqcloud-1.0.4.min.js"></script>
+    
+    <script type="text/javascript">
+	var word_list = [
+        {text: "gdt", weight: 0.0125, link: {href: "/tag/gdt.html"}},
+        {text: "pelican", weight: 0.0125, link: {href: "/tag/pelican.html"}},
+        {text: "random", weight: 0.05, link: {href: "/tag/random.html"}},
+        {text: "zmap", weight: 0.0125, link: {href: "/tag/zmap.html"}},
+        {text: "algorithm analysis", weight: 0.05, link: {href: "/tag/algorithm-analysis.html"}},
+        {text: "unicode", weight: 0.0125, link: {href: "/tag/unicode.html"}},
+        {text: "mysql", weight: 0.05, link: {href: "/tag/mysql.html"}},
+        {text: "adt", weight: 0.0125, link: {href: "/tag/adt.html"}},
+        {text: "ext4", weight: 0.0125, link: {href: "/tag/ext4.html"}},
+        {text: "point", weight: 0.0125, link: {href: "/tag/point.html"}},
+        {text: "umask", weight: 0.0125, link: {href: "/tag/umask.html"}},
+        {text: "c/c++", weight: 0.0125, link: {href: "/tag/cc.html"}},
+        {text: "ls", weight: 0.0125, link: {href: "/tag/ls.html"}},
+        {text: "triangle", weight: 0.0125, link: {href: "/tag/triangle.html"}},
+        {text: "object model", weight: 0.0125, link: {href: "/tag/object-model.html"}},
+        {text: "combination", weight: 0.0125, link: {href: "/tag/combination.html"}},
+        {text: "python", weight: 0.1375, link: {href: "/tag/python.html"}},
+        {text: "risc", weight: 0.0125, link: {href: "/tag/risc.html"}},
+        {text: "chmod", weight: 0.025, link: {href: "/tag/chmod.html"}},
+        {text: "underscore", weight: 0.0125, link: {href: "/tag/underscore.html"}},
+        {text: "bit", weight: 0.0125, link: {href: "/tag/bit.html"}},
+        {text: "daemon", weight: 0.0125, link: {href: "/tag/daemon.html"}},
+        {text: "signal", weight: 0.0125, link: {href: "/tag/signal.html"}},
+        {text: "median", weight: 0.0125, link: {href: "/tag/median.html"}},
+        {text: "real mode", weight: 0.025, link: {href: "/tag/real-mode.html"}},
+        {text: "binary search", weight: 0.0125, link: {href: "/tag/binary-search.html"}},
+        {text: "3sum", weight: 0.0125, link: {href: "/tag/3sum.html"}},
+        {text: "ldt", weight: 0.0125, link: {href: "/tag/ldt.html"}},
+        {text: "orphan", weight: 0.0125, link: {href: "/tag/orphan.html"}},
+        {text: "prime number", weight: 0.025, link: {href: "/tag/prime-number.html"}},
+        {text: "xtrabackup", weight: 0.025, link: {href: "/tag/xtrabackup.html"}},
+        {text: "function call", weight: 0.0125, link: {href: "/tag/function-call.html"}},
+        {text: "assembly", weight: 0.025, link: {href: "/tag/assembly.html"}},
+        {text: "ring", weight: 0.0125, link: {href: "/tag/ring.html"}},
+        {text: "matrix", weight: 0.0125, link: {href: "/tag/matrix.html"}},
+        {text: "2sum", weight: 0.0125, link: {href: "/tag/2sum.html"}},
+        {text: "cpu ring", weight: 0.0125, link: {href: "/tag/cpu-ring.html"}},
+        {text: "metaclass", weight: 0.0125, link: {href: "/tag/metaclass.html"}},
+        {text: "method", weight: 0.0125, link: {href: "/tag/method.html"}},
+        {text: "hash", weight: 0.0125, link: {href: "/tag/hash.html"}},
+        {text: "stack frame", weight: 0.0125, link: {href: "/tag/stack-frame.html"}},
+        {text: "zombie", weight: 0.0125, link: {href: "/tag/zombie.html"}},
+        {text: "protect mode", weight: 0.0125, link: {href: "/tag/protect-mode.html"}},
+        {text: "zbr", weight: 0.0125, link: {href: "/tag/zbr.html"}},
+        {text: "system call", weight: 0.0125, link: {href: "/tag/system-call.html"}},
+        {text: "tcp/ip", weight: 0.0125, link: {href: "/tag/tcpip.html"}},
+        {text: "tls", weight: 0.0125, link: {href: "/tag/tls.html"}},
+        {text: "c", weight: 0.2125, link: {href: "/tag/c.html"}},
+        {text: "kernel thread", weight: 0.0125, link: {href: "/tag/kernel-thread.html"}},
+        {text: "thread", weight: 0.025, link: {href: "/tag/thread.html"}},
+        {text: "queue", weight: 0.0375, link: {href: "/tag/queue.html"}},
+        {text: "data structure", weight: 0.225, link: {href: "/tag/data-structure.html"}},
+        {text: "setuid", weight: 0.025, link: {href: "/tag/setuid.html"}},
+        {text: "shuffle", weight: 0.0125, link: {href: "/tag/shuffle.html"}},
+        {text: "encoding", weight: 0.0125, link: {href: "/tag/encoding.html"}},
+        {text: "nmap", weight: 0.0125, link: {href: "/tag/nmap.html"}},
+        {text: "float", weight: 0.0125, link: {href: "/tag/float.html"}},
+        {text: "apt", weight: 0.0125, link: {href: "/tag/apt.html"}},
+        {text: "vim", weight: 0.0125, link: {href: "/tag/vim.html"}},
+        {text: "sourcelist", weight: 0.0125, link: {href: "/tag/sourcelist.html"}},
+        {text: "linux", weight: 0.1875, link: {href: "/tag/linux.html"}},
+        {text: "array", weight: 0.125, link: {href: "/tag/array.html"}},
+        {text: "callstack", weight: 0.0125, link: {href: "/tag/callstack.html"}},
+        {text: "stack", weight: 0.05, link: {href: "/tag/stack.html"}},
+        {text: "type", weight: 0.0125, link: {href: "/tag/type.html"}},
+        {text: "sort", weight: 0.05, link: {href: "/tag/sort.html"}},
+        {text: "masscan", weight: 0.0125, link: {href: "/tag/masscan.html"}},
+        {text: "btrfs", weight: 0.0125, link: {href: "/tag/btrfs.html"}},
+        {text: "gas", weight: 0.0125, link: {href: "/tag/gas.html"}},
+        {text: "user thread", weight: 0.0125, link: {href: "/tag/user-thread.html"}},
+        {text: "heap", weight: 0.025, link: {href: "/tag/heap.html"}},
+        {text: "c3", weight: 0.0125, link: {href: "/tag/c3.html"}},
+        {text: "stty", weight: 0.0125, link: {href: "/tag/stty.html"}},
+        {text: "compile", weight: 0.0125, link: {href: "/tag/compile.html"}},
+        {text: "descriptor", weight: 0.0125, link: {href: "/tag/descriptor.html"}},
+        {text: "hdd", weight: 0.0125, link: {href: "/tag/hdd.html"}},
+        {text: "setresuid", weight: 0.0125, link: {href: "/tag/setresuid.html"}},
+        {text: "str", weight: 0.05, link: {href: "/tag/str.html"}},
+        {text: "cisc", weight: 0.0125, link: {href: "/tag/cisc.html"}},
+        {text: "a20", weight: 0.0125, link: {href: "/tag/a20.html"}},
+        {text: "shebang", weight: 0.0125, link: {href: "/tag/shebang.html"}},
+        {text: "process", weight: 0.0125, link: {href: "/tag/process.html"}},
+        {text: "ip", weight: 0.0125, link: {href: "/tag/ip.html"}},
+        {text: "poiner", weight: 0.0125, link: {href: "/tag/poiner.html"}},
+        {text: "sticky", weight: 0.0125, link: {href: "/tag/sticky.html"}},
+        {text: "__init__", weight: 0.0125, link: {href: "/tag/__init__.html"}},
+        {text: "latency", weight: 0.0125, link: {href: "/tag/latency.html"}},
+        {text: "gcd", weight: 0.0125, link: {href: "/tag/gcd.html"}},
+        {text: "manacher", weight: 0.0125, link: {href: "/tag/manacher.html"}},
+        {text: "sqrt", weight: 0.0125, link: {href: "/tag/sqrt.html"}},
+        {text: "arm", weight: 0.0125, link: {href: "/tag/arm.html"}},
+        {text: "utf-8", weight: 0.0125, link: {href: "/tag/utf-8.html"}},
+        {text: "fs", weight: 0.0125, link: {href: "/tag/fs.html"}},
+        {text: "x86", weight: 0.025, link: {href: "/tag/x86.html"}},
+        {text: "bst", weight: 0.0125, link: {href: "/tag/bst.html"}},
+        {text: "quote", weight: 0.0125, link: {href: "/tag/quote.html"}},
+        {text: "class", weight: 0.0125, link: {href: "/tag/class.html"}},
+        {text: "mangling", weight: 0.0125, link: {href: "/tag/mangling.html"}},
+        {text: "debian", weight: 0.0125, link: {href: "/tag/debian.html"}},
+        {text: "getuid", weight: 0.0125, link: {href: "/tag/getuid.html"}},
+        {text: "eof", weight: 0.0125, link: {href: "/tag/eof.html"}},
+        {text: "algorithm", weight: 0.7, link: {href: "/tag/algorithm.html"}},
+        {text: "line join", weight: 0.0125, link: {href: "/tag/line-join.html"}},
+        {text: "register", weight: 0.0125, link: {href: "/tag/register.html"}},
+        {text: "mro", weight: 0.0125, link: {href: "/tag/mro.html"}},
+        {text: "pown", weight: 0.0125, link: {href: "/tag/pown.html"}},
+        ];
+        $(function() {
+            $("#tag-cloud").jQCloud(word_list);
+        });
+    </script>
+
+</head>
+
+<body>
+
+<!-- Nav Bar -->
+<nav>
+<div class="top-bar">
+<div class="row">
+    <div class="large-9 large-centered columns">
+	    <h1><a href="../..">记录一些工作中的笔记</a></h1>
+    </div>
+</div>
+</div>
+
+<!-- Show menu items and pages -->
+<div class="row">
+<div class="large-9 columns">
+    <ul class="button-group navigation">
+
+    </ul>
+</div>
+</div>
+</nav>
+<!-- End Nav -->
+
+
+<!-- Main Page Content and Sidebar -->
+<div class="row">
+
+    <!-- Main Blog Content -->
+    <div class="large-9 columns">
+<article>
+    <header>
+        <h3 class="article-title"><a href="../../posts/algorithm/median.html" rel="bookmark"
+        title="Permalink to 中位数">中位数</a></h3>
+    </header>
+
+<h6 class="subheader" title="2014-06-12T18:00:00">Thu 12 June 2014
+</h6>
+
+
+    <p>对于有限的数集，可以通过把所有观察值高低排序后找出正中间的一个作为中位数。如果观察值有偶数个，则中位数不唯一，通常取最中间的两个数值的平均数作为中位数。</p>
+<p>求数组中位数的方法:</p>
+<ul>
+<li>排序</li>
+<li>find k-th</li>
+<li>双堆</li>
+</ul>
+<p>前两种方法不太适合于数据动态变更中位数.</p>
+<h3>双堆方法</h3>
+<p>算法如下:</p>
+<ul>
+<li>
+<p>初始化的时候设置两个变量分别记录两个堆【左堆和右堆】的元素的个数。</p>
+</li>
+<li>
+<p>取第一个元素【d[0]】作为初始中位数m。</p>
+</li>
+<li>
+<p>循环后面的每一个元素，如果比m大，则插入到右堆(小堆)，如果比m小，则插入到左堆(大堆)。</p>
+</li>
+<li>
+<p>如果此时最小堆和最大堆的元素个数的差值&gt;=2 ，则将m加入到元素个数少的堆中，然后从元素个数多的堆将根节点赋值到m，最后重建两个最大堆和最小堆，返回到第三步。</p>
+</li>
+</ul>
+<p>此时，如果想要知道当前的中位数，输出m即可。</p>
+<h3>median of two sorted array</h3>
+<blockquote>
+<p>There are two sorted arrays A and B of size m and n respectively. Find the median of the two sorted arrays. The overall run time complexity should be O(log (m+n)).</p>
+</blockquote>
+<p>利用类似merge(合并两个有序数组)的操作找到中位数，利用两个分别指向A和B数组头的指针去遍历数组，然后统计元素个数，直到找到中位数，此时算法复杂度为O(m + n). 或者参照<a href="/posts/adt/find-kth.html">k-th Smallest Element in the Union of Two Sorted Arrays</a>. </p>
+<div class="highlight"><pre><span class="c1">// 只适合m == n 的情况 </span>
+<span class="n">double</span> <span class="n">getMedian</span><span class="p">(</span><span class="k">int</span> <span class="n">arr1</span><span class="p">[],</span><span class="k">int</span> <span class="n">arr2</span><span class="p">[],</span> <span class="k">int</span> <span class="n">n</span><span class="p">){</span>
+    <span class="k">int</span> <span class="n">i</span><span class="o">=</span><span class="mh">0</span><span class="p">,</span><span class="n">j</span><span class="o">=</span><span class="mh">0</span><span class="p">;</span> <span class="c1">//分别是 arr1， arr2的当前下标</span>
+    <span class="k">int</span> <span class="n">m1</span><span class="o">=-</span><span class="mh">1</span><span class="p">,</span><span class="n">m2</span><span class="o">=-</span><span class="mh">1</span><span class="p">;</span> <span class="c1">//保存两个中位数. 由于是2n个，肯定有两个中位数</span>
+    <span class="k">for</span><span class="p">(</span><span class="k">int</span> <span class="n">cnt</span><span class="o">=</span><span class="mh">0</span><span class="p">;</span> <span class="n">cnt</span><span class="o">&lt;=</span><span class="n">n</span><span class="p">;</span> <span class="n">cnt</span><span class="o">++</span><span class="p">){</span>
+        <span class="k">if</span><span class="p">(</span> <span class="p">(</span><span class="n">i</span><span class="o">&lt;</span><span class="n">n</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="n">arr1</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">arr2</span><span class="p">[</span><span class="n">j</span><span class="p">])</span> <span class="o">||</span> <span class="n">j</span> <span class="o">&gt;=</span> <span class="n">n</span> <span class="p">){</span>
+            <span class="n">m1</span> <span class="o">=</span> <span class="n">m2</span><span class="p">;</span>
+            <span class="n">m2</span> <span class="o">=</span> <span class="n">arr1</span><span class="p">[</span><span class="n">i</span><span class="o">++</span><span class="p">];</span>
+        <span class="p">}</span><span class="k">else</span><span class="p">{</span>
+            <span class="n">m1</span> <span class="o">=</span> <span class="n">m2</span><span class="p">;</span>
+            <span class="n">m2</span> <span class="o">=</span> <span class="n">arr2</span><span class="p">[</span><span class="n">j</span><span class="o">++</span><span class="p">];</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">m1</span><span class="o">+</span><span class="n">m2</span><span class="p">)</span><span class="o">/</span><span class="mf">2.0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<p>分治法: By comparing the medians of two arrays (也是假设m == n)
+算法如下:</p>
+<div class="highlight"><pre><span class="mi">1</span><span class="p">)</span> <span class="n">Calculate</span> <span class="n">the</span> <span class="n">medians</span> <span class="n">m1</span> <span class="n">and</span> <span class="n">m2</span> <span class="n">of</span> <span class="n">the</span> <span class="n">input</span> <span class="n">arrays</span> <span class="n">ar1</span><span class="p">[]</span> 
+   <span class="n">and</span> <span class="n">ar2</span><span class="p">[]</span> <span class="n">respectively</span><span class="p">.</span>
+<span class="mi">2</span><span class="p">)</span> <span class="n">If</span> <span class="n">m1</span> <span class="n">and</span> <span class="n">m2</span> <span class="n">both</span> <span class="n">are</span> <span class="n">equal</span> <span class="n">then</span> <span class="n">we</span> <span class="n">are</span> <span class="n">done</span><span class="p">.</span>
+     <span class="k">return</span> <span class="n">m1</span> <span class="p">(</span><span class="n">or</span> <span class="n">m2</span><span class="p">)</span>
+<span class="mi">3</span><span class="p">)</span> <span class="n">If</span> <span class="n">m1</span> <span class="n">is</span> <span class="n">greater</span> <span class="n">than</span> <span class="n">m2</span><span class="p">,</span> <span class="n">then</span> <span class="n">median</span> <span class="n">is</span> <span class="n">present</span> <span class="n">in</span> <span class="n">one</span> 
+   <span class="n">of</span> <span class="n">the</span> <span class="n">below</span> <span class="n">two</span> <span class="n">subarrays</span><span class="p">.</span>
+    <span class="n">a</span><span class="p">)</span>  <span class="n">From</span> <span class="n">first</span> <span class="n">element</span> <span class="n">of</span> <span class="n">ar1</span> <span class="n">to</span> <span class="n">m1</span> <span class="p">(</span><span class="n">ar1</span><span class="p">[</span><span class="mf">0.</span><span class="p">..</span><span class="o">|</span><span class="n">_n</span><span class="o">/</span><span class="mi">2</span><span class="n">_</span><span class="o">|</span><span class="p">])</span>
+    <span class="n">b</span><span class="p">)</span>  <span class="n">From</span> <span class="n">m2</span> <span class="n">to</span> <span class="n">last</span> <span class="n">element</span> <span class="n">of</span> <span class="n">ar2</span>  <span class="p">(</span><span class="n">ar2</span><span class="p">[</span><span class="o">|</span><span class="n">_n</span><span class="o">/</span><span class="mi">2</span><span class="n">_</span><span class="o">|</span><span class="p">...</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+<span class="mi">4</span><span class="p">)</span> <span class="n">If</span> <span class="n">m2</span> <span class="n">is</span> <span class="n">greater</span> <span class="n">than</span> <span class="n">m1</span><span class="p">,</span> <span class="n">then</span> <span class="n">median</span> <span class="n">is</span> <span class="n">present</span> <span class="n">in</span> <span class="n">one</span>    
+   <span class="n">of</span> <span class="n">the</span> <span class="n">below</span> <span class="n">two</span> <span class="n">subarrays</span><span class="p">.</span>
+   <span class="n">a</span><span class="p">)</span>  <span class="n">From</span> <span class="n">m1</span> <span class="n">to</span> <span class="n">last</span> <span class="n">element</span> <span class="n">of</span> <span class="n">ar1</span>  <span class="p">(</span><span class="n">ar1</span><span class="p">[</span><span class="o">|</span><span class="n">_n</span><span class="o">/</span><span class="mi">2</span><span class="n">_</span><span class="o">|</span><span class="p">...</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+   <span class="n">b</span><span class="p">)</span>  <span class="n">From</span> <span class="n">first</span> <span class="n">element</span> <span class="n">of</span> <span class="n">ar2</span> <span class="n">to</span> <span class="n">m2</span> <span class="p">(</span><span class="n">ar2</span><span class="p">[</span><span class="mf">0.</span><span class="p">..</span><span class="o">|</span><span class="n">_n</span><span class="o">/</span><span class="mi">2</span><span class="n">_</span><span class="o">|</span><span class="p">])</span>
+<span class="mi">5</span><span class="p">)</span> <span class="n">Repeat</span> <span class="n">the</span> <span class="n">above</span> <span class="n">process</span> <span class="n">until</span> <span class="n">size</span> <span class="n">of</span> <span class="n">both</span> <span class="n">the</span> <span class="n">subarrays</span> 
+   <span class="n">becomes</span> <span class="mf">2.</span>
+<span class="mi">6</span><span class="p">)</span> <span class="n">If</span> <span class="n">size</span> <span class="n">of</span> <span class="n">the</span> <span class="n">two</span> <span class="n">arrays</span> <span class="n">is</span> <span class="mi">2</span> <span class="n">then</span> <span class="n">use</span> <span class="n">below</span> <span class="n">formula</span> <span class="n">to</span> <span class="n">get</span> 
+  <span class="n">the</span> <span class="n">median</span><span class="p">.</span>
+    <span class="n">Median</span> <span class="o">=</span> <span class="p">(</span><span class="n">max</span><span class="p">(</span><span class="n">ar1</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">ar2</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">+</span> <span class="n">min</span><span class="p">(</span><span class="n">ar1</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">ar2</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span><span class="o">/</span><span class="mi">2</span>
+</pre></div>
+
+
+<p>代码:</p>
+<div class="highlight"><pre><span class="kt">int</span> <span class="nf">getMedian</span><span class="p">(</span><span class="kt">int</span> <span class="n">ar1</span><span class="p">[],</span> <span class="kt">int</span> <span class="n">ar2</span><span class="p">[],</span> <span class="kt">int</span> <span class="n">n</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kt">int</span> <span class="n">m1</span><span class="p">;</span> <span class="cm">/* For median of ar1 */</span>
+    <span class="kt">int</span> <span class="n">m2</span><span class="p">;</span> <span class="cm">/* For median of ar2 */</span>
+
+    <span class="cm">/* return -1  for invalid input */</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">n</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="n">n</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="k">return</span> <span class="p">(</span><span class="n">ar1</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">ar2</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">/</span><span class="mi">2</span><span class="p">;</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="n">n</span> <span class="o">==</span> <span class="mi">2</span><span class="p">)</span>
+        <span class="k">return</span> <span class="p">(</span><span class="n">max</span><span class="p">(</span><span class="n">ar1</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">ar2</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">+</span> <span class="n">min</span><span class="p">(</span><span class="n">ar1</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">ar2</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span> <span class="o">/</span> <span class="mi">2</span><span class="p">;</span>
+
+    <span class="n">m1</span> <span class="o">=</span> <span class="n">median</span><span class="p">(</span><span class="n">ar1</span><span class="p">,</span> <span class="n">n</span><span class="p">);</span> <span class="cm">/* get the median of the first array */</span>
+    <span class="n">m2</span> <span class="o">=</span> <span class="n">median</span><span class="p">(</span><span class="n">ar2</span><span class="p">,</span> <span class="n">n</span><span class="p">);</span> <span class="cm">/* get the median of the second array */</span>
+
+    <span class="cm">/* If medians are equal then return either m1 or m2 */</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">m1</span> <span class="o">==</span> <span class="n">m2</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">m1</span><span class="p">;</span>
+
+     <span class="cm">/* if m1 &lt; m2 then median must exist in ar1[m1....] and ar2[....m2] */</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">m1</span> <span class="o">&lt;</span> <span class="n">m2</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">n</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">getMedian</span><span class="p">(</span><span class="n">ar1</span> <span class="o">+</span> <span class="n">n</span><span class="o">/</span><span class="mi">2</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">ar2</span><span class="p">,</span> <span class="n">n</span> <span class="o">-</span> <span class="n">n</span><span class="o">/</span><span class="mi">2</span> <span class="o">+</span><span class="mi">1</span><span class="p">);</span>
+        <span class="k">else</span>
+            <span class="k">return</span> <span class="n">getMedian</span><span class="p">(</span><span class="n">ar1</span> <span class="o">+</span> <span class="n">n</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="n">ar2</span><span class="p">,</span> <span class="n">n</span> <span class="o">-</span> <span class="n">n</span><span class="o">/</span><span class="mi">2</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="cm">/* if m1 &gt; m2 then median must exist in ar1[....m1] and ar2[m2...] */</span>
+    <span class="k">else</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">n</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">getMedian</span><span class="p">(</span><span class="n">ar2</span> <span class="o">+</span> <span class="n">n</span><span class="o">/</span><span class="mi">2</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">ar1</span><span class="p">,</span> <span class="n">n</span> <span class="o">-</span> <span class="n">n</span><span class="o">/</span><span class="mi">2</span> <span class="o">+</span> <span class="mi">1</span><span class="p">);</span>
+        <span class="k">else</span>
+            <span class="k">return</span> <span class="n">getMedian</span><span class="p">(</span><span class="n">ar2</span> <span class="o">+</span> <span class="n">n</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="n">ar1</span><span class="p">,</span> <span class="n">n</span> <span class="o">-</span> <span class="n">n</span><span class="o">/</span><span class="mi">2</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<p>当 m != n 时</p>
+<p>About this problem, I think maybe we could still use the MIT solution with a small modification. When n+m is odd, then it’s fine; otherwise, it actually returns the greater one of the two middle numbers and the smaller one will be max(B[j], A[i-1]). My code is here. Looking forward for your comments.</p>
+<div class="highlight"><pre><span class="kt">double</span> <span class="nf">findMedian</span><span class="p">(</span><span class="kt">int</span> <span class="n">A</span><span class="p">[],</span> <span class="kt">int</span> <span class="n">B</span><span class="p">[],</span> <span class="kt">int</span> <span class="n">l</span><span class="p">,</span> <span class="kt">int</span> <span class="n">r</span><span class="p">,</span> <span class="kt">int</span> <span class="n">nA</span><span class="p">,</span> <span class="kt">int</span> <span class="n">nB</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">l</span> <span class="o">&gt;</span> <span class="n">r</span><span class="p">)</span> <span class="k">return</span> <span class="n">findMedian</span><span class="p">(</span><span class="n">B</span><span class="p">,</span> <span class="n">A</span><span class="p">,</span> <span class="n">max</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="p">(</span><span class="n">nA</span><span class="o">+</span><span class="n">nB</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="o">-</span><span class="n">nA</span><span class="p">),</span> <span class="n">min</span><span class="p">(</span><span class="n">nB</span><span class="p">,</span> <span class="p">(</span><span class="n">nA</span><span class="o">+</span><span class="n">nB</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">),</span> <span class="n">nB</span><span class="p">,</span> <span class="n">nA</span><span class="p">);</span>
+    <span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="p">(</span><span class="n">l</span><span class="o">+</span><span class="n">r</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="p">(</span><span class="n">nA</span><span class="o">+</span><span class="n">nB</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span> <span class="err">–</span> <span class="n">i</span> <span class="err">–</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">j</span> <span class="err">≥</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">B</span><span class="p">[</span><span class="n">j</span><span class="p">])</span> 
+        <span class="k">return</span> <span class="n">findMedian</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">B</span><span class="p">,</span> <span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">r</span><span class="p">,</span> <span class="n">nA</span><span class="p">,</span> <span class="n">nB</span><span class="p">);</span>
+    <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">j</span> <span class="o">&lt;</span> <span class="n">nB</span><span class="o">-</span><span class="mi">1</span> <span class="o">&amp;&amp;</span> <span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">B</span><span class="p">[</span><span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">])</span> 
+        <span class="k">return</span> <span class="n">findMedian</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">B</span><span class="p">,</span> <span class="n">l</span><span class="p">,</span> <span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">nA</span><span class="p">,</span> <span class="n">nB</span><span class="p">);</span>
+    <span class="k">else</span> <span class="p">{</span> <span class="c1">// B[j] &lt;= A[i] &lt;= B[j+1]</span>
+        <span class="k">if</span> <span class="p">(</span> <span class="p">(</span><span class="n">nA</span><span class="o">+</span><span class="n">nB</span><span class="p">)</span><span class="o">%</span><span class="mi">2</span> <span class="o">==</span> <span class="mi">1</span> <span class="p">)</span> 
+            <span class="k">return</span> <span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+        <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">i</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> 
+            <span class="k">return</span> <span class="p">(</span><span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">+</span><span class="n">max</span><span class="p">(</span><span class="n">B</span><span class="p">[</span><span class="n">j</span><span class="p">],</span> <span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]))</span><span class="o">/</span><span class="mf">2.0</span><span class="p">;</span>
+        <span class="k">else</span> 
+            <span class="k">return</span> <span class="p">(</span><span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">+</span><span class="n">B</span><span class="p">[</span><span class="n">j</span><span class="p">])</span><span class="o">/</span><span class="mf">2.0</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<p>也可以用<a href="/posts/adt/top-k.html">find-Kth</a>来解决如果总数是奇数个调一次find-Kth($\frac{m + n}{2}$), 偶数的话$\frac{find-Kth(\frac{m + n}{2}) + find-Kth(\frac{m + n}{2} + 1}{2}$ , 参见refer[4]</p>
+<p>refer:</p>
+<ul>
+<li>[0]<a href="http://www.cnphp6.com/archives/41479">http://www.cnphp6.com/archives/41479</a></li>
+<li>[1]<a href="http://www.acmerblog.com/median-of-two-sorted-arrays-5967.html">http://www.acmerblog.com/median-of-two-sorted-arrays-5967.html</a></li>
+<li>[2]<a href="http://www2.myoops.org/course_material/mit/NR/rdonlyres/Electrical-Engineering-and-Computer-Science/6-046JFall-2005/30C68118-E436-4FE3-8C79-6BAFBB07D935/0/ps9sol.pdf">http://www2.myoops.org/course_material/mit/NR/rdonlyres/Electrical-Engineering-and-Computer-Science/6-046JFall-2005/30C68118-E436-4FE3-8C79-6BAFBB07D935/0/ps9sol.pdf</a></li>
+<li>[3]<a href="http://leetcode.com/2011/03/median-of-two-sorted-arrays.html">http://leetcode.com/2011/03/median-of-two-sorted-arrays.html</a></li>
+<li>[4]<a href="http://blog.csdn.net/yutianzuijin/article/details/11499917">http://blog.csdn.net/yutianzuijin/article/details/11499917</a></li>
+</ul>
+<p class="subheader">Category: <a href="../../category/algorithm.html">algorithm</a>
+
+    Tagged: 
+    <a href="../../tag/algorithm.html">algorithm </a>
+    <a href="../../tag/median.html">median </a>
+    <a href="../../tag/heap.html">heap </a>
+</p>
+
+
+
+
+</article>
+    </div>
+    <!-- End Main Content -->
+
+    <!-- Sidebar -->
+    <aside class="large-3 columns">
+    <!-- <h5 class="sidebar-title">Site</h5>
+        <ul class="side-nav">
+            <li><a href="../../archives.html">Archives</a>
+            <li><a href="../../tags.html">Tags</a>
+    </ul> -->
+
+        <h5 class="sidebar-title">Tags</h5>
+	<div id="tag-cloud" style="with: 25%; height: 245px;"></div>
+
+		
+        <h5 class="sidebar-title">Categories</h5>
+        <ul class="side-nav">
+            <li><a href="../../category/adt.html">adt</a></li>
+            <li><a href="../../category/algorithm.html">algorithm</a></li>
+            <li><a href="../../category/c.html">c</a></li>
+            <li><a href="../../category/complexity.html">complexity</a></li>
+            <li><a href="../../category/coroutine.html">coroutine</a></li>
+            <li><a href="../../category/interview.html">interview</a></li>
+            <li><a href="../../category/learn-plan.html">learn-plan</a></li>
+            <li><a href="../../category/misc.html">misc</a></li>
+            <li><a href="../../category/mysql.html">mysql</a></li>
+            <li><a href="../../category/python.html">python</a></li>
+            <li><a href="../../category/security.html">security</a></li>
+            <li><a href="../../category/sort.html">sort</a></li>
+            <li><a href="../../category/str.html">str</a></li>
+            <li><a href="../../category/tcp-ip.html">tcp-ip</a></li>
+            <li><a href="../../category/tree.html">tree</a></li>
+            <li><a href="../../category/vim.html">vim</a></li>
+   
+        </ul>
+
+        <h5 class="sidebar-title">Links</h5>
+        <ul class="side-nav">
+            <li><a href="https://github.com/actberw">github</a></li>
+        </ul>
+		
+        <h5 class="sidebar-title">Social</h5>
+        <ul class="side-nav">
+            <li><a href="http://weibo.com/u/1950796544">weibo</a></li>
+        </ul>
+
+    </aside> <!-- End Sidebar -->
+
+</div> <!-- End Main Content and Sidebar -->
+
+
+<!-- Footer -->
+<footer class="row">
+    <div class="large-12 columns">
+        <hr />
+        <div class="row">
+            <div class="large-6 columns">
+              <!--                  <p>记录一些工作中的笔记 by actberw</p> -->
+            </div>
+            </div>
+    </div>
+</footer>

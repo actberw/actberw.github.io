@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8" />
+    <!-- Set the viewport width to device width for mobile -->
+    <meta name="viewport" content="width=device-width" />
+
+    <title>记录一些工作中的笔记 - algorithm</title>
+
+    <link rel="stylesheet" href="../theme/css/normalize.css" />
+    <link rel="stylesheet" href="../theme/css/foundation.min.css" />
+    <link rel="stylesheet" href="../theme/css/style.css" />
+    <link rel="stylesheet" href="../theme/css/pygments.css" />	
+    <link rel="stylesheet" type="text/css" href="../theme/css/jqcloud.css" />
+    <script src="../theme/js/vendor/custom.modernizr.js"></script>
+    <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+          "HTML-CSS": {
+        styles: {
+          ".MathJax .mo, .MathJax .mi": {color: "black ! important"}}
+            },
+              tex2jax: {inlineMath: [['$','$'], ['\\\\(','\\\\)']],processEscapes: true}
+        });
+    </script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../theme/js/jquery.min.js"></script>
+    <script type="text/javascript" src="../theme/js/jqcloud-1.0.4.min.js"></script>
+    
+    <script type="text/javascript">
+	var word_list = [
+        {text: "gdt", weight: 0.0125, link: {href: "/tag/gdt.html"}},
+        {text: "pelican", weight: 0.0125, link: {href: "/tag/pelican.html"}},
+        {text: "random", weight: 0.05, link: {href: "/tag/random.html"}},
+        {text: "zmap", weight: 0.0125, link: {href: "/tag/zmap.html"}},
+        {text: "algorithm analysis", weight: 0.05, link: {href: "/tag/algorithm-analysis.html"}},
+        {text: "unicode", weight: 0.0125, link: {href: "/tag/unicode.html"}},
+        {text: "mysql", weight: 0.05, link: {href: "/tag/mysql.html"}},
+        {text: "adt", weight: 0.0125, link: {href: "/tag/adt.html"}},
+        {text: "ext4", weight: 0.0125, link: {href: "/tag/ext4.html"}},
+        {text: "point", weight: 0.0125, link: {href: "/tag/point.html"}},
+        {text: "umask", weight: 0.0125, link: {href: "/tag/umask.html"}},
+        {text: "c/c++", weight: 0.0125, link: {href: "/tag/cc.html"}},
+        {text: "ls", weight: 0.0125, link: {href: "/tag/ls.html"}},
+        {text: "triangle", weight: 0.0125, link: {href: "/tag/triangle.html"}},
+        {text: "object model", weight: 0.0125, link: {href: "/tag/object-model.html"}},
+        {text: "combination", weight: 0.0125, link: {href: "/tag/combination.html"}},
+        {text: "python", weight: 0.1375, link: {href: "/tag/python.html"}},
+        {text: "risc", weight: 0.0125, link: {href: "/tag/risc.html"}},
+        {text: "chmod", weight: 0.025, link: {href: "/tag/chmod.html"}},
+        {text: "underscore", weight: 0.0125, link: {href: "/tag/underscore.html"}},
+        {text: "bit", weight: 0.0125, link: {href: "/tag/bit.html"}},
+        {text: "daemon", weight: 0.0125, link: {href: "/tag/daemon.html"}},
+        {text: "signal", weight: 0.0125, link: {href: "/tag/signal.html"}},
+        {text: "median", weight: 0.0125, link: {href: "/tag/median.html"}},
+        {text: "real mode", weight: 0.025, link: {href: "/tag/real-mode.html"}},
+        {text: "binary search", weight: 0.0125, link: {href: "/tag/binary-search.html"}},
+        {text: "3sum", weight: 0.0125, link: {href: "/tag/3sum.html"}},
+        {text: "ldt", weight: 0.0125, link: {href: "/tag/ldt.html"}},
+        {text: "orphan", weight: 0.0125, link: {href: "/tag/orphan.html"}},
+        {text: "prime number", weight: 0.025, link: {href: "/tag/prime-number.html"}},
+        {text: "xtrabackup", weight: 0.025, link: {href: "/tag/xtrabackup.html"}},
+        {text: "function call", weight: 0.0125, link: {href: "/tag/function-call.html"}},
+        {text: "assembly", weight: 0.025, link: {href: "/tag/assembly.html"}},
+        {text: "ring", weight: 0.0125, link: {href: "/tag/ring.html"}},
+        {text: "matrix", weight: 0.0125, link: {href: "/tag/matrix.html"}},
+        {text: "2sum", weight: 0.0125, link: {href: "/tag/2sum.html"}},
+        {text: "cpu ring", weight: 0.0125, link: {href: "/tag/cpu-ring.html"}},
+        {text: "metaclass", weight: 0.0125, link: {href: "/tag/metaclass.html"}},
+        {text: "method", weight: 0.0125, link: {href: "/tag/method.html"}},
+        {text: "hash", weight: 0.0125, link: {href: "/tag/hash.html"}},
+        {text: "stack frame", weight: 0.0125, link: {href: "/tag/stack-frame.html"}},
+        {text: "zombie", weight: 0.0125, link: {href: "/tag/zombie.html"}},
+        {text: "protect mode", weight: 0.0125, link: {href: "/tag/protect-mode.html"}},
+        {text: "zbr", weight: 0.0125, link: {href: "/tag/zbr.html"}},
+        {text: "system call", weight: 0.0125, link: {href: "/tag/system-call.html"}},
+        {text: "tcp/ip", weight: 0.0125, link: {href: "/tag/tcpip.html"}},
+        {text: "tls", weight: 0.0125, link: {href: "/tag/tls.html"}},
+        {text: "c", weight: 0.2125, link: {href: "/tag/c.html"}},
+        {text: "kernel thread", weight: 0.0125, link: {href: "/tag/kernel-thread.html"}},
+        {text: "thread", weight: 0.025, link: {href: "/tag/thread.html"}},
+        {text: "queue", weight: 0.0375, link: {href: "/tag/queue.html"}},
+        {text: "data structure", weight: 0.225, link: {href: "/tag/data-structure.html"}},
+        {text: "setuid", weight: 0.025, link: {href: "/tag/setuid.html"}},
+        {text: "shuffle", weight: 0.0125, link: {href: "/tag/shuffle.html"}},
+        {text: "encoding", weight: 0.0125, link: {href: "/tag/encoding.html"}},
+        {text: "nmap", weight: 0.0125, link: {href: "/tag/nmap.html"}},
+        {text: "float", weight: 0.0125, link: {href: "/tag/float.html"}},
+        {text: "apt", weight: 0.0125, link: {href: "/tag/apt.html"}},
+        {text: "vim", weight: 0.0125, link: {href: "/tag/vim.html"}},
+        {text: "sourcelist", weight: 0.0125, link: {href: "/tag/sourcelist.html"}},
+        {text: "linux", weight: 0.1875, link: {href: "/tag/linux.html"}},
+        {text: "array", weight: 0.125, link: {href: "/tag/array.html"}},
+        {text: "callstack", weight: 0.0125, link: {href: "/tag/callstack.html"}},
+        {text: "stack", weight: 0.05, link: {href: "/tag/stack.html"}},
+        {text: "type", weight: 0.0125, link: {href: "/tag/type.html"}},
+        {text: "sort", weight: 0.05, link: {href: "/tag/sort.html"}},
+        {text: "masscan", weight: 0.0125, link: {href: "/tag/masscan.html"}},
+        {text: "btrfs", weight: 0.0125, link: {href: "/tag/btrfs.html"}},
+        {text: "gas", weight: 0.0125, link: {href: "/tag/gas.html"}},
+        {text: "user thread", weight: 0.0125, link: {href: "/tag/user-thread.html"}},
+        {text: "heap", weight: 0.025, link: {href: "/tag/heap.html"}},
+        {text: "c3", weight: 0.0125, link: {href: "/tag/c3.html"}},
+        {text: "stty", weight: 0.0125, link: {href: "/tag/stty.html"}},
+        {text: "compile", weight: 0.0125, link: {href: "/tag/compile.html"}},
+        {text: "descriptor", weight: 0.0125, link: {href: "/tag/descriptor.html"}},
+        {text: "hdd", weight: 0.0125, link: {href: "/tag/hdd.html"}},
+        {text: "setresuid", weight: 0.0125, link: {href: "/tag/setresuid.html"}},
+        {text: "str", weight: 0.05, link: {href: "/tag/str.html"}},
+        {text: "cisc", weight: 0.0125, link: {href: "/tag/cisc.html"}},
+        {text: "a20", weight: 0.0125, link: {href: "/tag/a20.html"}},
+        {text: "shebang", weight: 0.0125, link: {href: "/tag/shebang.html"}},
+        {text: "process", weight: 0.0125, link: {href: "/tag/process.html"}},
+        {text: "ip", weight: 0.0125, link: {href: "/tag/ip.html"}},
+        {text: "poiner", weight: 0.0125, link: {href: "/tag/poiner.html"}},
+        {text: "sticky", weight: 0.0125, link: {href: "/tag/sticky.html"}},
+        {text: "__init__", weight: 0.0125, link: {href: "/tag/__init__.html"}},
+        {text: "latency", weight: 0.0125, link: {href: "/tag/latency.html"}},
+        {text: "gcd", weight: 0.0125, link: {href: "/tag/gcd.html"}},
+        {text: "manacher", weight: 0.0125, link: {href: "/tag/manacher.html"}},
+        {text: "sqrt", weight: 0.0125, link: {href: "/tag/sqrt.html"}},
+        {text: "arm", weight: 0.0125, link: {href: "/tag/arm.html"}},
+        {text: "utf-8", weight: 0.0125, link: {href: "/tag/utf-8.html"}},
+        {text: "fs", weight: 0.0125, link: {href: "/tag/fs.html"}},
+        {text: "x86", weight: 0.025, link: {href: "/tag/x86.html"}},
+        {text: "bst", weight: 0.0125, link: {href: "/tag/bst.html"}},
+        {text: "quote", weight: 0.0125, link: {href: "/tag/quote.html"}},
+        {text: "class", weight: 0.0125, link: {href: "/tag/class.html"}},
+        {text: "mangling", weight: 0.0125, link: {href: "/tag/mangling.html"}},
+        {text: "debian", weight: 0.0125, link: {href: "/tag/debian.html"}},
+        {text: "getuid", weight: 0.0125, link: {href: "/tag/getuid.html"}},
+        {text: "eof", weight: 0.0125, link: {href: "/tag/eof.html"}},
+        {text: "algorithm", weight: 0.7, link: {href: "/tag/algorithm.html"}},
+        {text: "line join", weight: 0.0125, link: {href: "/tag/line-join.html"}},
+        {text: "register", weight: 0.0125, link: {href: "/tag/register.html"}},
+        {text: "mro", weight: 0.0125, link: {href: "/tag/mro.html"}},
+        {text: "pown", weight: 0.0125, link: {href: "/tag/pown.html"}},
+        ];
+        $(function() {
+            $("#tag-cloud").jQCloud(word_list);
+        });
+    </script>
+
+</head>
+
+<body>
+
+<!-- Nav Bar -->
+<nav>
+<div class="top-bar">
+<div class="row">
+    <div class="large-9 large-centered columns">
+	    <h1><a href="..">记录一些工作中的笔记</a></h1>
+    </div>
+</div>
+</div>
+
+<!-- Show menu items and pages -->
+<div class="row">
+<div class="large-9 columns">
+    <ul class="button-group navigation">
+
+    </ul>
+</div>
+</div>
+</nav>
+<!-- End Nav -->
+
+
+<!-- Main Page Content and Sidebar -->
+<div class="row">
+
+    <!-- Main Blog Content -->
+    <div class="large-9 columns">
+        
+        
+
+
+            <article>
+                <a href="../posts/adt/array-subarray.html"><h3 class="article-title">子数组</h3></a>
+<h6 class="subheader" title="2014-06-11T19:00:00">Wed 11 June 2014
+</h6>
+
+
+<h3>子数组之和最大值</h3>
+<p>设最大的一段数组为(A[i], ..., A[j]), 跟A[0]的关系是:</p>
+<ul>
+<li>i=j=0 元素A[0]本身是最大和</li>
+<li>0=i&lt;j 从A[0]开始的最大和</li>
+<li>0&lt;i  跟A[0] 没有关系</li>
+</ul>
+<p>通过动态规划来解决.</p>
+<div class="highlight"><pre><span class="kt">int</span> <span class="nf">max</span><span class="p">(</span><span class="kt">int</span> <span class="n">x</span><span class="p">,</span> <span class="kt">int</span> <span class="n">y</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="n">x</span> <span class="o">&gt;</span> <span class="n">y</span> <span class="o">?</span> <span class="n">x</span> <span class="o">:</span> <span class="n">y</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="nf">find_max_sum</span><span class="p">(</span><span class="kt">int</span> <span class="o">*</span><span class="n">array</span><span class="p">,</span> <span class="kt">int</span> <span class="n">n</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kt">int</span> <span class="n">max_curr</span><span class="p">,</span> <span class="n">max_sum</span><span class="p">,</span> <span class="n">i</span><span class="p">;</span> <span class="c1">//max_curr 就是上面的 ...</span></pre></div><p class="subheader">Category: <a href="../category/adt.html">adt</a>
+
+    Tagged: 
+    <a href="../tag/algorithm.html">algorithm </a>
+    <a href="../tag/data-structure.html">data structure </a>
+    <a href="../tag/array.html">array </a>
+</p>
+
+
+
+                <a class="button radius secondary small right" href="../posts/adt/array-subarray.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="../posts/algorithm/fibonacci.html"><h3 class="article-title">斐波纳契数列</h3></a>
+<h6 class="subheader" title="2014-06-11T19:00:00">Wed 11 June 2014
+</h6>
+
+
+<blockquote>
+<p>问题描述：Fibonacci数（Fibonacci Number）的定义是：$F_n = F_{n - 1} + F_{n - 2}$，并且$F_0$ = 0，$F_1$ = 1。对于任意指定的整数n（n ≥ 0），计算$F_n$的精确值，并分析算法的时间、空间复杂度。</p>
+</blockquote>
+<p>有下面几种解法.</p>
+<h3>递归法</h3>
+<p>根据Fibonacci的递推公式，对于输入的n，直接递归地调用相同的函数分别求出$F_{n - 1}$和$F_{n - 2}$，二者相加就是结果。递归的终止点就是递推方程的初值，即n取0或1的时候。</p>
+<div class="highlight"><pre><span class="kt">int</span> <span class="nf">fibonacii</span><span class="p">(</span><span class="kt">int</span> <span class="n">n</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">n</span> <span class="o">&lt;=</span> <span class="mi">1</span><span class="p">)</span> <span class="k">return</span> <span class="n">n</span><span class="p">;</span>
+    <span class="k">return ...</span></pre></div><p class="subheader">Category: <a href="../category/algorithm.html">algorithm</a>
+
+    Tagged: 
+    <a href="../tag/algorithm.html">algorithm </a>
+</p>
+
+
+
+                <a class="button radius secondary small right" href="../posts/algorithm/fibonacci.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="../posts/adt/array-min-max.html"><h3 class="article-title">数组最大值和最小值</h3></a>
+<h6 class="subheader" title="2014-06-11T18:00:00">Wed 11 June 2014
+</h6>
+
+
+<h3>数组最大值和最小值</h3>
+<p>分治法, 在N个数中求min和max, 需要分别求出前后N/2的min和max, 然后比较取较小的min, 较大的max, 时间复杂度依然是O(1.5N).</p>
+<p>refer:</p>
+<ul>
+<li><a href="http://blog.csdn.net/zxzxy1988/article/details/8587244">http://blog.csdn.net/zxzxy1988/article/details/8587244</a></li>
+<li><a href="http://blog.csdn.net/cklsoft/article/details/40841637">http://blog.csdn.net/cklsoft/article/details/40841637</a></li>
+</ul><p class="subheader">Category: <a href="../category/adt.html">adt</a>
+
+    Tagged: 
+    <a href="../tag/algorithm.html">algorithm </a>
+    <a href="../tag/data-structure.html">data structure </a>
+    <a href="../tag/array.html">array </a>
+</p>
+
+
+
+                <a class="button radius secondary small right" href="../posts/adt/array-min-max.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="../posts/adt/top-k.html"><h3 class="article-title">求第K大数(或者前K大)</h3></a>
+<h6 class="subheader" title="2014-06-11T18:00:00">Wed 11 June 2014
+</h6>
+
+
+<p>常用方法:</p>
+<ul>
+<li>
+<p>排序, K次冒泡就可以找到第K大的数, 时间复杂度为O(kn), 最快的排序是快排和mergesort, 然后返回已排序数组的第k个数, 算法时间复杂度为O（nlogn）, 空间复杂度为O(1)。</p>
+</li>
+<li>
+<p>一个更好的方法是利用大/小根堆的性质：建立一个包含K个元素的最大堆, 将后续的N-K每个数与堆顶元素比较, 如果小于堆顶元素, 则将其替换堆顶元素并调整堆得结构维护最大堆的性质, 最后堆中包含有最小的K个元素, 从而堆顶元素就是第K小的数。建堆的时间为O(K), 每次调整最大堆结构时间为O(lgK), 从而总的时间复杂度为O(K + (N-K)lgK)。 注意：求第k小建大根堆, 求第k大建小根堆。</p>
+</li>
+<li>
+<p>类快速排序方法(双层桶划分), 时间复杂度为O(N).</p>
+<ul>
+<li>随机选择一个支点</li>
+<li>将比支点大的数, 放到数组左边；将比支点小的数放到数组右边；将支点放到中间(属于左部分)</li>
+<li>
+<p>设左部分的长度为L</p>
+<p>当K &lt; L时, 递归地在左部分找第K大的数
+当K &gt; L时, 递归地在有部分中找第(K - L)大的数 ...</p></li></ul></li></ul><p class="subheader">Category: <a href="../category/adt.html">adt</a>
+
+    Tagged: 
+    <a href="../tag/algorithm.html">algorithm </a>
+    <a href="../tag/data-structure.html">data structure </a>
+    <a href="../tag/array.html">array </a>
+</p>
+
+
+
+                <a class="button radius secondary small right" href="../posts/adt/top-k.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="../posts/adt/array-suffix.html"><h3 class="article-title">后缀数组</h3></a>
+<h6 class="subheader" title="2014-06-11T17:00:00">Wed 11 June 2014
+</h6>
+
+
+<h3>后缀数组(Suffix Array)</h3><p class="subheader">Category: <a href="../category/adt.html">adt</a>
+
+    Tagged: 
+    <a href="../tag/algorithm.html">algorithm </a>
+    <a href="../tag/data-structure.html">data structure </a>
+    <a href="../tag/array.html">array </a>
+</p>
+
+
+
+                <a class="button radius secondary small right" href="../posts/adt/array-suffix.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="../posts/adt/array-rotated.html"><h3 class="article-title">旋转数组</h3></a>
+<h6 class="subheader" title="2014-06-11T16:00:00">Wed 11 June 2014
+</h6>
+
+
+<h3>旋转排序数组(Rotated Sorted arrayrray )</h3>
+<blockquote>
+<p>Suppose a sorted array is rotated at some pivot unknown to you beforehand (i.e., 0 1 2 4 5 6 7 might become 4 5 6 7 0 1 2).You are given a target value to search. If found in the array return its ...</p></blockquote><p class="subheader">Category: <a href="../category/adt.html">adt</a>
+
+    Tagged: 
+    <a href="../tag/algorithm.html">algorithm </a>
+    <a href="../tag/data-structure.html">data structure </a>
+    <a href="../tag/array.html">array </a>
+</p>
+
+
+
+                <a class="button radius secondary small right" href="../posts/adt/array-rotated.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="../posts/adt/array.html"><h3 class="article-title">数组 part-1</h3></a>
+<h6 class="subheader" title="2014-06-11T15:00:00">Wed 11 June 2014
+</h6>
+
+
+<p>数组把相同类型得数据按照固定有序得方式组织起来, 使得存储空空间相邻, 可以通过 <em>索引访问<code>a[i]</code></em>, 便于访问(O(1)), 但是不便于操作(O(n)). </p>
+<h3>数组(array)定义和初始化</h3>
+<div class="highlight"><pre><span class="c1">// 定义</span>
+<span class="k">int</span> <span class="n">array</span><span class="p">[</span><span class="n">length</span><span class="p">];</span>
+
+<span class="c1">// 定义和初始化 </span>
+<span class="k">int</span> <span class="n">array</span><span class="p">[</span><span class="mh">5</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="mh">1</span><span class="p">,</span> <span class="mh">2</span><span class="p">,</span> <span class="mh">3</span><span class="p">,</span> <span class="mh">4</span><span class="p">,</span> <span class="mh">5</span><span class="p">};</span>
+
+<span class="c1">// length也可以不指定</span>
+<span class="k">int</span> <span class="n">array</span><span class="p">[]</span> <span class="o">=</span> <span class="p">{</span><span class="mh">1</span><span class="p">,</span> <span class="mh">2</span><span class="p">,</span> <span class="mh">3</span><span class="p">,</span> <span class="mh">4</span><span class="p">,</span> <span class="mh">5</span><span class="p">};</span>
+</pre></div>
+
+
+<h3>数组(array)访问</h3>
+<p>数组元素可以通过索引访问, 索引必须保证是非负且小于数组大小. 数组名会产生一个指向数组首元素指针, 所以还可以通过指针访问.</p>
+<div class="highlight"><pre><span class="c1">// 索引访问</span>
+<span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+
+<span class="c1">// 指针访问</span>
+<span class="o">*</span><span class="p">(</span><span class="n">a</span> <span class="o">+</span> <span class="n">i</span><span class="p">)</span>
+</pre></div>
+
+
+<p>另外数组名指向组首元素地址 ...</p><p class="subheader">Category: <a href="../category/adt.html">adt</a>
+
+    Tagged: 
+    <a href="../tag/algorithm.html">algorithm </a>
+    <a href="../tag/data-structure.html">data structure </a>
+    <a href="../tag/array.html">array </a>
+</p>
+
+
+
+                <a class="button radius secondary small right" href="../posts/adt/array.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="../posts/algorithm/basic-data-structure.html"><h3 class="article-title">数据结构与算法汇总</h3></a>
+<h6 class="subheader" title="2014-06-10T20:00:00">Tue 10 June 2014
+</h6>
+
+
+<h3>常见数据结构</h3>
+<ul>
+<li>线性: 数组(array), 链表(link list), 块状链表(数组+链表), 栈(stack), 队列(queue), hash表, 位图(bitmap)  </li>
+<li>树(tree): 堆(大顶堆、小顶堆), 二叉排序/查找树, trie树, 后缀树, 后缀树组, B+/B-, AVL树, Treap, 红黑树, splay树, 线段树, 树状数组  </li>
+<li>图: 图(graph)  </li>
+<li>其它: 并查集  </li>
+</ul>
+<h3>常见算法</h3>
+<ul>
+<li>基本思想: 分治, 贪心,动态规划, 回溯</li>
+<li>排序算法: 冒泡, 插入, 选择 ...</li></ul><p class="subheader">Category: <a href="../category/algorithm.html">algorithm</a>
+
+    Tagged: 
+    <a href="../tag/algorithm.html">algorithm </a>
+</p>
+
+
+
+                <a class="button radius secondary small right" href="../posts/algorithm/basic-data-structure.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="../posts/algorithm/design.html"><h3 class="article-title">算法设计范式(paradigm)</h3></a>
+<h6 class="subheader" title="2014-06-10T19:00:00">Tue 10 June 2014
+</h6>
+
+
+<h3>分治法(divide and conquer)</h3>
+<p>字面上的解释是“分而治之”, 就是把一个复杂的问题分成K个的相同或相似的子问题, 直到最后子问题可以简单的直接求解, 原问题的解即子问题的解的合并. 特征:</p>
+<ul>
+<li>该问题的规模缩小到一定的程度就可以容易地解决.</li>
+<li>该问题可以分解为若干个规模较小的相同问题, 即该问题具有最优子结构性质.</li>
+<li>利用该问题分解出的子问题的解可以合并为该问题的解</li>
+<li>该问题所分解出的各个子问题是相互独立的, 即子问题之间不包含公共的子子问题.</li>
+</ul>
+<p>第一条特征是绝大多数问题都可以满足的, 因为问题的计算复杂性一般是随着问题规模的增加而增加, 第二条特征是应用分治法的前提它也是大多数问题可以满足的, 此特征反映了递归思想的应用,
+    第三条特征是关键, 能否利用分治法完全取决于问题是否具有第三条特征, 如果具备了第一条和第二条特征, 而不具备第三条特征, 则可以考虑用贪心法或动态规划法, 第四条特征涉及到分治法的效率, 如果各子问题是不独立的则分治法要做许多不必要的工作, 重复地解公共的子问题, 此时虽然可用分治法, 但一般用动态规划法较好.</p>
+<h3>动态规划(dynamic programming)</h3>
+<p>动态规划常常适用于有重叠子问题[2]和最优子结构性质的问题, 动态规划法试图仅仅解决每个子问题一次, 从而减少计算量： 一旦某个给定子问题的解已经算出, 则将其记忆化存储, 以便下次需要同一个子问题解之时直接查表. </p>
+<h3>贪心算法(greedy algorithms)</h3>
+<h3>回溯法(backtrack)</h3>
+<p>回溯算法实际上一个类似枚举的搜索尝试过程, 主要是在搜索尝试过程中寻找问题的解, 当发现已不满足求解条件时, 就 ...</p><p class="subheader">Category: <a href="../category/algorithm.html">algorithm</a>
+
+    Tagged: 
+    <a href="../tag/algorithm.html">algorithm </a>
+</p>
+
+
+
+                <a class="button radius secondary small right" href="../posts/algorithm/design.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="../posts/interview/complexity-interview.html"><h3 class="article-title">算法的复杂度面试题目</h3></a>
+<h6 class="subheader" title="2014-06-07T19:00:00">Sat 07 June 2014
+</h6>
+
+
+<ol>
+<li>
+<blockquote>
+<p>简述：实现一个函数，对一个正整数n，算得到1需要的最少操作次数：
+如果n为偶数，将其处以2；如果n为奇数，可以加1或减1；一直处理下去。
+要求：实现函数（实现尽可能高效）int func(unsigned int n)；n为输入，返回最小的运算次数。</p>
+</blockquote>
+</li>
+</ol>
+<p>refer:</p>
+<ul>
+<li><a href="http://zhiqiang.org/blog/science/computer-science/complexity-of-recursive-algorithm.html">http://zhiqiang.org/blog/science/computer-science/complexity-of-recursive-algorithm.html</a></li>
+<li><a href="http://geeksquiz.com/algorithms/analysis-of-algorithms/">http://geeksquiz.com/algorithms/analysis-of-algorithms/</a></li>
+</ul><p class="subheader">Category: <a href="../category/interview.html">interview</a>
+
+    Tagged: 
+    <a href="../tag/algorithm.html">algorithm </a>
+    <a href="../tag/algorithm-analysis.html">algorithm analysis </a>
+</p>
+
+
+
+                <a class="button radius secondary small right" href="../posts/interview/complexity-interview.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+        
+
+
+            <article>
+                <a href="../posts/complexity/complexity-analysis.html"><h3 class="article-title">算法复杂度分析</h3></a>
+<h6 class="subheader" title="2014-06-07T15:00:00">Sat 07 June 2014
+</h6>
+
+
+<p>算法的复杂度是用来衡量算法运行所需要的计算机资源（时间、空间）的量, 分为时间复杂度和空间复杂度. 时间复杂度是指衡量算法执行时间的长短；空间复杂度是指衡量算法所需存储空间的大小。</p>
+<h3>Landau符号</h3>
+<p>Landau符号其实是由德国数论学家保罗·巴赫曼（Paul Bachmann）在其1892年的著作《解析数论》首先引入，由另一位德国数论学家艾德蒙·朗道（Edmund Landau）推广。Landau符号的作用在于用简单的函数来描述复杂函数行为，给出一个上或下（确）界。在计算算法复杂度时一般只用到大O符号，Landau符号体系中的小o符号、Θ符号等等比较不常用。这里的O，最初是用大写希腊字母，但现在都用大写英语字母O；小o符号也是用小写英语字母o，Θ符号则维持大写希腊字母Θ.</p>
+<table>
+<thead>
+<tr>
+<th>Asymptotic comparison</th>
+<th>operatorNumeric comparison operator</th>
+<th>------</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>f(n) = o(g(n))</td>
+<td>∀ε&gt;0,∃$n_0$∈ℕ,∀n≥$n_0$,f(n ...</td></tr></tbody></table><p class="subheader">Category: <a href="../category/complexity.html">complexity</a>
+
+    Tagged: 
+    <a href="../tag/algorithm.html">algorithm </a>
+    <a href="../tag/algorithm-analysis.html">algorithm analysis </a>
+</p>
+
+
+
+                <a class="button radius secondary small right" href="../posts/complexity/complexity-analysis.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+            <!-- /#posts-list -->
+<div class="pagination-centered">
+<h6 class="subheader">Page 4 of 4</h6>
+
+<p>
+            <a href="../tag/algorithm3.html">&laquo; Prev</a>
+
+</p>
+</div>
+
+    </div>
+    <!-- End Main Content -->
+
+    <!-- Sidebar -->
+    <aside class="large-3 columns">
+    <!-- <h5 class="sidebar-title">Site</h5>
+        <ul class="side-nav">
+            <li><a href="../archives.html">Archives</a>
+            <li><a href="../tags.html">Tags</a>
+    </ul> -->
+
+        <h5 class="sidebar-title">Tags</h5>
+	<div id="tag-cloud" style="with: 25%; height: 245px;"></div>
+
+		
+        <h5 class="sidebar-title">Categories</h5>
+        <ul class="side-nav">
+            <li><a href="../category/adt.html">adt</a></li>
+            <li><a href="../category/algorithm.html">algorithm</a></li>
+            <li><a href="../category/c.html">c</a></li>
+            <li><a href="../category/complexity.html">complexity</a></li>
+            <li><a href="../category/coroutine.html">coroutine</a></li>
+            <li><a href="../category/interview.html">interview</a></li>
+            <li><a href="../category/learn-plan.html">learn-plan</a></li>
+            <li><a href="../category/misc.html">misc</a></li>
+            <li><a href="../category/mysql.html">mysql</a></li>
+            <li><a href="../category/python.html">python</a></li>
+            <li><a href="../category/security.html">security</a></li>
+            <li><a href="../category/sort.html">sort</a></li>
+            <li><a href="../category/str.html">str</a></li>
+            <li><a href="../category/tcp-ip.html">tcp-ip</a></li>
+            <li><a href="../category/tree.html">tree</a></li>
+            <li><a href="../category/vim.html">vim</a></li>
+   
+        </ul>
+
+        <h5 class="sidebar-title">Links</h5>
+        <ul class="side-nav">
+            <li><a href="https://github.com/actberw">github</a></li>
+        </ul>
+		
+        <h5 class="sidebar-title">Social</h5>
+        <ul class="side-nav">
+            <li><a href="http://weibo.com/u/1950796544">weibo</a></li>
+        </ul>
+
+    </aside> <!-- End Sidebar -->
+
+</div> <!-- End Main Content and Sidebar -->
+
+
+<!-- Footer -->
+<footer class="row">
+    <div class="large-12 columns">
+        <hr />
+        <div class="row">
+            <div class="large-6 columns">
+              <!--                  <p>记录一些工作中的笔记 by actberw</p> -->
+            </div>
+            </div>
+    </div>
+</footer>

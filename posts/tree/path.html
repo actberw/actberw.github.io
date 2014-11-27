@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8" />
+    <!-- Set the viewport width to device width for mobile -->
+    <meta name="viewport" content="width=device-width" />
+
+    <title>有关路径的题目</title>
+
+    <link rel="stylesheet" href="../../theme/css/normalize.css" />
+    <link rel="stylesheet" href="../../theme/css/foundation.min.css" />
+    <link rel="stylesheet" href="../../theme/css/style.css" />
+    <link rel="stylesheet" href="../../theme/css/pygments.css" />	
+    <link rel="stylesheet" type="text/css" href="../../theme/css/jqcloud.css" />
+    <script src="../../theme/js/vendor/custom.modernizr.js"></script>
+    <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+          "HTML-CSS": {
+        styles: {
+          ".MathJax .mo, .MathJax .mi": {color: "black ! important"}}
+            },
+              tex2jax: {inlineMath: [['$','$'], ['\\\\(','\\\\)']],processEscapes: true}
+        });
+    </script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../../theme/js/jquery.min.js"></script>
+    <script type="text/javascript" src="../../theme/js/jqcloud-1.0.4.min.js"></script>
+    
+    <script type="text/javascript">
+	var word_list = [
+        {text: "gdt", weight: 0.0125, link: {href: "/tag/gdt.html"}},
+        {text: "pelican", weight: 0.0125, link: {href: "/tag/pelican.html"}},
+        {text: "random", weight: 0.05, link: {href: "/tag/random.html"}},
+        {text: "zmap", weight: 0.0125, link: {href: "/tag/zmap.html"}},
+        {text: "algorithm analysis", weight: 0.05, link: {href: "/tag/algorithm-analysis.html"}},
+        {text: "unicode", weight: 0.0125, link: {href: "/tag/unicode.html"}},
+        {text: "mysql", weight: 0.05, link: {href: "/tag/mysql.html"}},
+        {text: "adt", weight: 0.0125, link: {href: "/tag/adt.html"}},
+        {text: "ext4", weight: 0.0125, link: {href: "/tag/ext4.html"}},
+        {text: "point", weight: 0.0125, link: {href: "/tag/point.html"}},
+        {text: "umask", weight: 0.0125, link: {href: "/tag/umask.html"}},
+        {text: "c/c++", weight: 0.0125, link: {href: "/tag/cc.html"}},
+        {text: "ls", weight: 0.0125, link: {href: "/tag/ls.html"}},
+        {text: "triangle", weight: 0.0125, link: {href: "/tag/triangle.html"}},
+        {text: "object model", weight: 0.0125, link: {href: "/tag/object-model.html"}},
+        {text: "combination", weight: 0.0125, link: {href: "/tag/combination.html"}},
+        {text: "python", weight: 0.1375, link: {href: "/tag/python.html"}},
+        {text: "risc", weight: 0.0125, link: {href: "/tag/risc.html"}},
+        {text: "chmod", weight: 0.025, link: {href: "/tag/chmod.html"}},
+        {text: "underscore", weight: 0.0125, link: {href: "/tag/underscore.html"}},
+        {text: "bit", weight: 0.0125, link: {href: "/tag/bit.html"}},
+        {text: "daemon", weight: 0.0125, link: {href: "/tag/daemon.html"}},
+        {text: "signal", weight: 0.0125, link: {href: "/tag/signal.html"}},
+        {text: "median", weight: 0.0125, link: {href: "/tag/median.html"}},
+        {text: "real mode", weight: 0.025, link: {href: "/tag/real-mode.html"}},
+        {text: "binary search", weight: 0.0125, link: {href: "/tag/binary-search.html"}},
+        {text: "3sum", weight: 0.0125, link: {href: "/tag/3sum.html"}},
+        {text: "ldt", weight: 0.0125, link: {href: "/tag/ldt.html"}},
+        {text: "orphan", weight: 0.0125, link: {href: "/tag/orphan.html"}},
+        {text: "prime number", weight: 0.025, link: {href: "/tag/prime-number.html"}},
+        {text: "xtrabackup", weight: 0.025, link: {href: "/tag/xtrabackup.html"}},
+        {text: "function call", weight: 0.0125, link: {href: "/tag/function-call.html"}},
+        {text: "assembly", weight: 0.025, link: {href: "/tag/assembly.html"}},
+        {text: "ring", weight: 0.0125, link: {href: "/tag/ring.html"}},
+        {text: "matrix", weight: 0.0125, link: {href: "/tag/matrix.html"}},
+        {text: "2sum", weight: 0.0125, link: {href: "/tag/2sum.html"}},
+        {text: "cpu ring", weight: 0.0125, link: {href: "/tag/cpu-ring.html"}},
+        {text: "metaclass", weight: 0.0125, link: {href: "/tag/metaclass.html"}},
+        {text: "method", weight: 0.0125, link: {href: "/tag/method.html"}},
+        {text: "hash", weight: 0.0125, link: {href: "/tag/hash.html"}},
+        {text: "stack frame", weight: 0.0125, link: {href: "/tag/stack-frame.html"}},
+        {text: "zombie", weight: 0.0125, link: {href: "/tag/zombie.html"}},
+        {text: "protect mode", weight: 0.0125, link: {href: "/tag/protect-mode.html"}},
+        {text: "zbr", weight: 0.0125, link: {href: "/tag/zbr.html"}},
+        {text: "system call", weight: 0.0125, link: {href: "/tag/system-call.html"}},
+        {text: "tcp/ip", weight: 0.0125, link: {href: "/tag/tcpip.html"}},
+        {text: "tls", weight: 0.0125, link: {href: "/tag/tls.html"}},
+        {text: "c", weight: 0.2125, link: {href: "/tag/c.html"}},
+        {text: "kernel thread", weight: 0.0125, link: {href: "/tag/kernel-thread.html"}},
+        {text: "thread", weight: 0.025, link: {href: "/tag/thread.html"}},
+        {text: "queue", weight: 0.0375, link: {href: "/tag/queue.html"}},
+        {text: "data structure", weight: 0.225, link: {href: "/tag/data-structure.html"}},
+        {text: "setuid", weight: 0.025, link: {href: "/tag/setuid.html"}},
+        {text: "shuffle", weight: 0.0125, link: {href: "/tag/shuffle.html"}},
+        {text: "encoding", weight: 0.0125, link: {href: "/tag/encoding.html"}},
+        {text: "nmap", weight: 0.0125, link: {href: "/tag/nmap.html"}},
+        {text: "float", weight: 0.0125, link: {href: "/tag/float.html"}},
+        {text: "apt", weight: 0.0125, link: {href: "/tag/apt.html"}},
+        {text: "vim", weight: 0.0125, link: {href: "/tag/vim.html"}},
+        {text: "sourcelist", weight: 0.0125, link: {href: "/tag/sourcelist.html"}},
+        {text: "linux", weight: 0.1875, link: {href: "/tag/linux.html"}},
+        {text: "array", weight: 0.125, link: {href: "/tag/array.html"}},
+        {text: "callstack", weight: 0.0125, link: {href: "/tag/callstack.html"}},
+        {text: "stack", weight: 0.05, link: {href: "/tag/stack.html"}},
+        {text: "type", weight: 0.0125, link: {href: "/tag/type.html"}},
+        {text: "sort", weight: 0.05, link: {href: "/tag/sort.html"}},
+        {text: "masscan", weight: 0.0125, link: {href: "/tag/masscan.html"}},
+        {text: "btrfs", weight: 0.0125, link: {href: "/tag/btrfs.html"}},
+        {text: "gas", weight: 0.0125, link: {href: "/tag/gas.html"}},
+        {text: "user thread", weight: 0.0125, link: {href: "/tag/user-thread.html"}},
+        {text: "heap", weight: 0.025, link: {href: "/tag/heap.html"}},
+        {text: "c3", weight: 0.0125, link: {href: "/tag/c3.html"}},
+        {text: "stty", weight: 0.0125, link: {href: "/tag/stty.html"}},
+        {text: "compile", weight: 0.0125, link: {href: "/tag/compile.html"}},
+        {text: "descriptor", weight: 0.0125, link: {href: "/tag/descriptor.html"}},
+        {text: "hdd", weight: 0.0125, link: {href: "/tag/hdd.html"}},
+        {text: "setresuid", weight: 0.0125, link: {href: "/tag/setresuid.html"}},
+        {text: "str", weight: 0.05, link: {href: "/tag/str.html"}},
+        {text: "cisc", weight: 0.0125, link: {href: "/tag/cisc.html"}},
+        {text: "a20", weight: 0.0125, link: {href: "/tag/a20.html"}},
+        {text: "shebang", weight: 0.0125, link: {href: "/tag/shebang.html"}},
+        {text: "process", weight: 0.0125, link: {href: "/tag/process.html"}},
+        {text: "ip", weight: 0.0125, link: {href: "/tag/ip.html"}},
+        {text: "poiner", weight: 0.0125, link: {href: "/tag/poiner.html"}},
+        {text: "sticky", weight: 0.0125, link: {href: "/tag/sticky.html"}},
+        {text: "__init__", weight: 0.0125, link: {href: "/tag/__init__.html"}},
+        {text: "latency", weight: 0.0125, link: {href: "/tag/latency.html"}},
+        {text: "gcd", weight: 0.0125, link: {href: "/tag/gcd.html"}},
+        {text: "manacher", weight: 0.0125, link: {href: "/tag/manacher.html"}},
+        {text: "sqrt", weight: 0.0125, link: {href: "/tag/sqrt.html"}},
+        {text: "arm", weight: 0.0125, link: {href: "/tag/arm.html"}},
+        {text: "utf-8", weight: 0.0125, link: {href: "/tag/utf-8.html"}},
+        {text: "fs", weight: 0.0125, link: {href: "/tag/fs.html"}},
+        {text: "x86", weight: 0.025, link: {href: "/tag/x86.html"}},
+        {text: "bst", weight: 0.0125, link: {href: "/tag/bst.html"}},
+        {text: "quote", weight: 0.0125, link: {href: "/tag/quote.html"}},
+        {text: "class", weight: 0.0125, link: {href: "/tag/class.html"}},
+        {text: "mangling", weight: 0.0125, link: {href: "/tag/mangling.html"}},
+        {text: "debian", weight: 0.0125, link: {href: "/tag/debian.html"}},
+        {text: "getuid", weight: 0.0125, link: {href: "/tag/getuid.html"}},
+        {text: "eof", weight: 0.0125, link: {href: "/tag/eof.html"}},
+        {text: "algorithm", weight: 0.7, link: {href: "/tag/algorithm.html"}},
+        {text: "line join", weight: 0.0125, link: {href: "/tag/line-join.html"}},
+        {text: "register", weight: 0.0125, link: {href: "/tag/register.html"}},
+        {text: "mro", weight: 0.0125, link: {href: "/tag/mro.html"}},
+        {text: "pown", weight: 0.0125, link: {href: "/tag/pown.html"}},
+        ];
+        $(function() {
+            $("#tag-cloud").jQCloud(word_list);
+        });
+    </script>
+
+</head>
+
+<body>
+
+<!-- Nav Bar -->
+<nav>
+<div class="top-bar">
+<div class="row">
+    <div class="large-9 large-centered columns">
+	    <h1><a href="../..">记录一些工作中的笔记</a></h1>
+    </div>
+</div>
+</div>
+
+<!-- Show menu items and pages -->
+<div class="row">
+<div class="large-9 columns">
+    <ul class="button-group navigation">
+
+    </ul>
+</div>
+</div>
+</nav>
+<!-- End Nav -->
+
+
+<!-- Main Page Content and Sidebar -->
+<div class="row">
+
+    <!-- Main Blog Content -->
+    <div class="large-9 columns">
+<article>
+    <header>
+        <h3 class="article-title"><a href="../../posts/tree/path.html" rel="bookmark"
+        title="Permalink to 有关路径的题目">有关路径的题目</a></h3>
+    </header>
+
+<h6 class="subheader" title="2014-11-25T23:07:04">Tue 25 November 2014
+</h6>
+
+
+    <h3>二元树中和为某一值的所有路径</h3>
+<blockquote>
+<p>输入一个整数和一棵二元树。从树的根结点开始往下访问一直到叶结点所经过的所有结点形成一条路径。打印出和与输入整数相等的所有路径。
+例如输入整数22和如下二元树</p>
+<div class="highlight"><pre>                                        <span class="mi">10</span>  
+                                       <span class="o">/</span>   <span class="err">\</span>  
+                                      <span class="mi">5</span>     <span class="mi">12</span>  
+                                    <span class="o">/</span>   <span class="err">\</span>   
+                                 <span class="err">　</span><span class="mi">4</span>     <span class="mi">7</span>
+</pre></div>
+
+
+<p>则打印出两条路径：10, 12和10, 5, 7。</p>
+</blockquote>
+<div class="highlight"><pre><span class="c1">//二元树结点的数据结构定义为：</span>
+
+<span class="k">struct</span> <span class="n">BinaryTreeNode</span> <span class="c1">// a node in the binary tree</span>
+<span class="p">{</span>
+      <span class="k">int</span>              <span class="n">m_nValue</span><span class="p">;</span> <span class="c1">// value of node</span>
+      <span class="n">BinaryTreeNode</span>  <span class="o">*</span><span class="n">m_pLeft</span><span class="p">;</span>  <span class="c1">// left child of node</span>
+      <span class="n">BinaryTreeNode</span>  <span class="o">*</span><span class="n">m_pRight</span><span class="p">;</span> <span class="c1">// right child of node</span>
+<span class="p">};</span>
+
+<span class="k">void</span> <span class="n">FindPath</span> <span class="p">(</span>
+      <span class="n">BinaryTreeNode</span><span class="o">*</span>   <span class="n">pTreeNode</span><span class="p">,</span>    <span class="c1">// a node of binary tree</span>
+      <span class="k">int</span>               <span class="n">expectedSum</span><span class="p">,</span>  <span class="c1">// the expected sum</span>
+      <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="k">int</span><span class="o">&gt;&amp;</span> <span class="n">path</span><span class="p">,</span>         <span class="c1">// a path from root to current node</span>
+      <span class="k">int</span><span class="o">&amp;</span>              <span class="n">currentSum</span>    <span class="c1">// the sum of path</span>
+<span class="p">)</span>
+<span class="p">{</span>
+      <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">pTreeNode</span><span class="p">)</span>
+            <span class="k">return</span><span class="p">;</span>
+
+      <span class="n">currentSum</span> <span class="o">+=</span> <span class="n">pTreeNode</span><span class="o">-&gt;</span><span class="n">m_nValue</span><span class="p">;</span>
+      <span class="n">path</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">pTreeNode</span><span class="o">-&gt;</span><span class="n">m_nValue</span><span class="p">);</span>
+
+      <span class="c1">// if the node is a leaf, and the sum is same as pre-defined, </span>
+      <span class="c1">// the path is what we want. print the path</span>
+      <span class="n">bool</span> <span class="n">isLeaf</span> <span class="o">=</span> <span class="p">(</span><span class="o">!</span><span class="n">pTreeNode</span><span class="o">-&gt;</span><span class="n">m_pLeft</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="n">pTreeNode</span><span class="o">-&gt;</span><span class="n">m_pRight</span><span class="p">);</span>
+      <span class="k">if</span><span class="p">(</span><span class="n">currentSum</span> <span class="o">==</span> <span class="n">expectedSum</span> <span class="o">&amp;&amp;</span> <span class="n">isLeaf</span><span class="p">)</span>
+      <span class="p">{</span>    
+           <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="k">int</span><span class="o">&gt;::</span><span class="n">iterator</span> <span class="n">iter</span> <span class="o">=</span> <span class="n">path</span><span class="p">.</span><span class="k">begin</span><span class="p">();</span>
+           <span class="k">for</span><span class="p">(;</span> <span class="n">iter</span> <span class="o">!=</span> <span class="n">path</span><span class="p">.</span><span class="k">end</span><span class="p">();</span> <span class="o">++</span> <span class="n">iter</span><span class="p">)</span>
+                 <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="o">*</span><span class="n">iter</span> <span class="o">&lt;&lt;</span> <span class="sc">&#39;\t&#39;</span><span class="p">;</span>
+           <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+      <span class="p">}</span>
+
+      <span class="c1">// if the node is not a leaf, goto its children</span>
+      <span class="k">if</span><span class="p">(</span><span class="n">pTreeNode</span><span class="o">-&gt;</span><span class="n">m_pLeft</span><span class="p">)</span>
+            <span class="n">FindPath</span><span class="p">(</span><span class="n">pTreeNode</span><span class="o">-&gt;</span><span class="n">m_pLeft</span><span class="p">,</span> <span class="n">expectedSum</span><span class="p">,</span> <span class="n">path</span><span class="p">,</span> <span class="n">currentSum</span><span class="p">);</span>
+      <span class="k">if</span><span class="p">(</span><span class="n">pTreeNode</span><span class="o">-&gt;</span><span class="n">m_pRight</span><span class="p">)</span>
+            <span class="n">FindPath</span><span class="p">(</span><span class="n">pTreeNode</span><span class="o">-&gt;</span><span class="n">m_pRight</span><span class="p">,</span> <span class="n">expectedSum</span><span class="p">,</span> <span class="n">path</span><span class="p">,</span> <span class="n">currentSum</span><span class="p">);</span>
+
+      <span class="c1">// when we finish visiting a node and return to its parent node,</span>
+      <span class="c1">// we should delete this node from the path and </span>
+      <span class="c1">// minus the node&#39;s value from the current sum</span>
+      <span class="n">currentSum</span> <span class="o">-=</span> <span class="n">pTreeNode</span><span class="o">-&gt;</span><span class="n">m_nValue</span><span class="p">;</span>
+      <span class="n">path</span><span class="p">.</span><span class="n">pop_back</span><span class="p">();</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<h3>maximum sum leaf to root path in a Binary Tree</h3>
+<blockquote>
+<p>Given a Binary Tree, find the maximum sum path from a leaf to root. For example, in the following tree, there are three leaf to root paths 8-&gt;-2-&gt;10, -4-&gt;-2-&gt;10 and 7-&gt;10. The sums of these three paths are 16, 4 and 17 respectively. The maximum of them is 17 and the path for maximum is 7-&gt;10.</p>
+</blockquote>
+<p>Solution
+1) First find the leaf node that is on the maximum sum path. In the following code getTargetLeaf() does this by assigning the result to *target_leaf_ref.
+2) Once we have the target leaf node, we can print the maximum sum path by traversing the tree. In the following code, printPath() does this.</p>
+<div class="highlight"><pre><span class="err">#</span><span class="nx">include</span><span class="o">&lt;</span><span class="nx">stdio</span><span class="p">.</span><span class="nx">h</span><span class="o">&gt;</span>
+<span class="err">#</span><span class="nx">include</span><span class="o">&lt;</span><span class="nx">limits</span><span class="p">.</span><span class="nx">h</span><span class="o">&gt;</span>
+
+<span class="cm">/* A tree node structure */</span>
+<span class="nx">struct</span> <span class="nx">node</span>
+<span class="p">{</span>
+    <span class="kr">int</span> <span class="nx">data</span><span class="p">;</span>
+    <span class="nx">struct</span> <span class="nx">node</span> <span class="o">*</span><span class="nx">left</span><span class="p">;</span>
+    <span class="nx">struct</span> <span class="nx">node</span> <span class="o">*</span><span class="nx">right</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="c1">// A utility function that prints all nodes on the path from root to target_leaf</span>
+<span class="nx">bool</span> <span class="nx">printPath</span> <span class="p">(</span><span class="nx">struct</span> <span class="nx">node</span> <span class="o">*</span><span class="nx">root</span><span class="p">,</span> <span class="nx">struct</span> <span class="nx">node</span> <span class="o">*</span><span class="nx">target_leaf</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// base case</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">root</span> <span class="o">==</span> <span class="nx">NULL</span><span class="p">)</span>
+        <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
+
+    <span class="c1">// return true if this node is the target_leaf or target leaf is present in</span>
+    <span class="c1">// one of its descendants</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">root</span> <span class="o">==</span> <span class="nx">target_leaf</span> <span class="o">||</span> <span class="nx">printPath</span><span class="p">(</span><span class="nx">root</span><span class="o">-&gt;</span><span class="nx">left</span><span class="p">,</span> <span class="nx">target_leaf</span><span class="p">)</span> <span class="o">||</span>
+            <span class="nx">printPath</span><span class="p">(</span><span class="nx">root</span><span class="o">-&gt;</span><span class="nx">right</span><span class="p">,</span> <span class="nx">target_leaf</span><span class="p">)</span> <span class="p">)</span>
+    <span class="p">{</span>
+        <span class="nx">printf</span><span class="p">(</span><span class="s2">&quot;%d &quot;</span><span class="p">,</span> <span class="nx">root</span><span class="o">-&gt;</span><span class="nx">data</span><span class="p">);</span>
+        <span class="k">return</span> <span class="kc">true</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c1">// This function Sets the target_leaf_ref to refer the leaf node of the maximum </span>
+<span class="c1">// path sum.  Also, returns the max_sum using max_sum_ref</span>
+<span class="k">void</span> <span class="nx">getTargetLeaf</span> <span class="p">(</span><span class="nx">struct</span> <span class="nx">node</span> <span class="o">*</span><span class="nx">node</span><span class="p">,</span> <span class="kr">int</span> <span class="o">*</span><span class="nx">max_sum_ref</span><span class="p">,</span> <span class="kr">int</span> <span class="nx">curr_sum</span><span class="p">,</span> <span class="nx">struct</span> <span class="nx">node</span> <span class="o">**</span><span class="nx">target_leaf_ref</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">node</span> <span class="o">==</span> <span class="nx">NULL</span><span class="p">)</span>
+        <span class="k">return</span><span class="p">;</span>
+
+    <span class="c1">// Update current sum to hold sum of nodes on path from root to this node</span>
+    <span class="nx">curr_sum</span> <span class="o">=</span> <span class="nx">curr_sum</span> <span class="o">+</span> <span class="nx">node</span><span class="o">-&gt;</span><span class="nx">data</span><span class="p">;</span>
+
+    <span class="c1">// If this is a leaf node and path to this node has maximum sum so far,</span>
+    <span class="c1">// then make this node target_leaf</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">node</span><span class="o">-&gt;</span><span class="nx">left</span> <span class="o">==</span> <span class="nx">NULL</span> <span class="o">&amp;&amp;</span> <span class="nx">node</span><span class="o">-&gt;</span><span class="nx">right</span> <span class="o">==</span> <span class="nx">NULL</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">curr_sum</span> <span class="o">&gt;</span> <span class="o">*</span><span class="nx">max_sum_ref</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="o">*</span><span class="nx">max_sum_ref</span> <span class="o">=</span> <span class="nx">curr_sum</span><span class="p">;</span>
+            <span class="o">*</span><span class="nx">target_leaf_ref</span> <span class="o">=</span> <span class="nx">node</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="c1">// If this is not a leaf node, then recur down to find the target_leaf</span>
+    <span class="nx">getTargetLeaf</span> <span class="p">(</span><span class="nx">node</span><span class="o">-&gt;</span><span class="nx">left</span><span class="p">,</span> <span class="nx">max_sum_ref</span><span class="p">,</span> <span class="nx">curr_sum</span><span class="p">,</span> <span class="nx">target_leaf_ref</span><span class="p">);</span>
+    <span class="nx">getTargetLeaf</span> <span class="p">(</span><span class="nx">node</span><span class="o">-&gt;</span><span class="nx">right</span><span class="p">,</span> <span class="nx">max_sum_ref</span><span class="p">,</span> <span class="nx">curr_sum</span><span class="p">,</span> <span class="nx">target_leaf_ref</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="c1">// Returns the maximum sum and prints the nodes on max sum path</span>
+<span class="kr">int</span> <span class="nx">maxSumPath</span> <span class="p">(</span><span class="nx">struct</span> <span class="nx">node</span> <span class="o">*</span><span class="nx">node</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// base case</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">node</span> <span class="o">==</span> <span class="nx">NULL</span><span class="p">)</span>
+        <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+
+    <span class="nx">struct</span> <span class="nx">node</span> <span class="o">*</span><span class="nx">target_leaf</span><span class="p">;</span>
+    <span class="kr">int</span> <span class="nx">max_sum</span> <span class="o">=</span> <span class="nx">INT_MIN</span><span class="p">;</span>
+
+    <span class="c1">// find the target leaf and maximum sum</span>
+    <span class="nx">getTargetLeaf</span> <span class="p">(</span><span class="nx">node</span><span class="p">,</span> <span class="o">&amp;</span><span class="nx">max_sum</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">&amp;</span><span class="nx">target_leaf</span><span class="p">);</span>
+
+    <span class="c1">// print the path from root to the target leaf</span>
+    <span class="nx">printPath</span> <span class="p">(</span><span class="nx">node</span><span class="p">,</span> <span class="nx">target_leaf</span><span class="p">);</span>
+
+    <span class="k">return</span> <span class="nx">max_sum</span><span class="p">;</span>  <span class="c1">// return maximum sum</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<h3>Binary Tree Maximum Path Sum</h3>
+<div class="highlight"><pre><span class="cm">/**</span>
+<span class="cm"> * Definition for binary tree</span>
+<span class="cm"> * public class TreeNode {</span>
+<span class="cm"> *     int val;</span>
+<span class="cm"> *     TreeNode left;</span>
+<span class="cm"> *     TreeNode right;</span>
+<span class="cm"> *     TreeNode(int x) { val = x; }</span>
+<span class="cm"> * }</span>
+<span class="cm"> */</span>
+<span class="n">public</span> <span class="k">class</span> <span class="n">Solution</span> <span class="p">{</span>
+    <span class="k">int</span> <span class="n">result</span> <span class="o">=</span> <span class="n">Integer</span><span class="p">.</span><span class="no">MIN_VALUE</span><span class="p">;</span>
+    <span class="n">public</span> <span class="k">int</span> <span class="n">maxPathSum</span><span class="p">(</span><span class="n">TreeNode</span> <span class="n">root</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">maxPath</span><span class="p">(</span><span class="n">root</span><span class="p">);</span>
+        <span class="k">return</span> <span class="n">result</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="n">private</span> <span class="k">int</span> <span class="n">maxPath</span><span class="p">(</span><span class="n">TreeNode</span> <span class="n">root</span><span class="p">){</span>    <span class="c1">//无法只将int格式作为参数传入，即使maxPath方法改变了int 参数，在主方法内，返回的result仍然                                                     是Integer.min, 若想这样传参，必须以array方式进行  result[0]</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">root</span> <span class="o">==</span> <span class="k">null</span><span class="p">)</span>
+            <span class="k">return</span> <span class="mh">0</span><span class="p">;</span>
+        <span class="k">int</span> <span class="n">left</span> <span class="o">=</span> <span class="n">maxPath</span><span class="p">(</span><span class="n">root</span><span class="p">.</span><span class="n">left</span><span class="p">);</span>
+        <span class="k">int</span> <span class="n">right</span> <span class="o">=</span> <span class="n">maxPath</span><span class="p">(</span><span class="n">root</span><span class="p">.</span><span class="n">right</span><span class="p">);</span>
+        <span class="k">int</span> <span class="n">arch</span> <span class="o">=</span> <span class="n">left</span> <span class="o">+</span> <span class="n">right</span> <span class="o">+</span> <span class="n">root</span><span class="p">.</span><span class="n">val</span><span class="p">;</span>
+        <span class="k">int</span> <span class="n">pass_up</span> <span class="o">=</span> <span class="n">Math</span><span class="p">.</span><span class="n">max</span><span class="p">(</span><span class="n">Math</span><span class="p">.</span><span class="n">max</span><span class="p">(</span><span class="n">left</span><span class="p">,</span><span class="n">right</span><span class="p">)</span><span class="o">+</span><span class="n">root</span><span class="p">.</span><span class="n">val</span><span class="p">,</span><span class="n">root</span><span class="p">.</span><span class="n">val</span><span class="p">);</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="n">Math</span><span class="p">.</span><span class="n">max</span><span class="p">(</span><span class="n">result</span><span class="p">,</span><span class="n">Math</span><span class="p">.</span><span class="n">max</span><span class="p">(</span><span class="n">arch</span><span class="p">,</span><span class="n">pass_up</span><span class="p">));</span>
+        <span class="k">return</span> <span class="n">pass_up</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<p>refer:</p>
+<ul>
+<li><a href="http://zhedahht.blog.163.com/blog/static/254111742007228357325/">http://zhedahht.blog.163.com/blog/static/254111742007228357325/</a></li>
+<li><a href="http://www.geeksforgeeks.org/root-to-leaf-path-sum-equal-to-a-given-number/">http://www.geeksforgeeks.org/root-to-leaf-path-sum-equal-to-a-given-number/</a></li>
+<li><a href="http://www.geeksforgeeks.org/find-the-maximum-sum-path-in-a-binary-tree/">http://www.geeksforgeeks.org/find-the-maximum-sum-path-in-a-binary-tree/</a></li>
+<li><a href="http://www.elvisyu.com/binary-tree-maximum-path-sum/">http://www.elvisyu.com/binary-tree-maximum-path-sum/</a></li>
+<li><a href="http://www.geeksforgeeks.org/find-maximum-path-sum-two-leaves-binary-tree/">http://www.geeksforgeeks.org/find-maximum-path-sum-two-leaves-binary-tree/</a></li>
+</ul>
+<p class="subheader">Category: <a href="../../category/tree.html">tree</a>
+
+</p>
+
+
+
+
+</article>
+    </div>
+    <!-- End Main Content -->
+
+    <!-- Sidebar -->
+    <aside class="large-3 columns">
+    <!-- <h5 class="sidebar-title">Site</h5>
+        <ul class="side-nav">
+            <li><a href="../../archives.html">Archives</a>
+            <li><a href="../../tags.html">Tags</a>
+    </ul> -->
+
+        <h5 class="sidebar-title">Tags</h5>
+	<div id="tag-cloud" style="with: 25%; height: 245px;"></div>
+
+		
+        <h5 class="sidebar-title">Categories</h5>
+        <ul class="side-nav">
+            <li><a href="../../category/adt.html">adt</a></li>
+            <li><a href="../../category/algorithm.html">algorithm</a></li>
+            <li><a href="../../category/c.html">c</a></li>
+            <li><a href="../../category/complexity.html">complexity</a></li>
+            <li><a href="../../category/coroutine.html">coroutine</a></li>
+            <li><a href="../../category/interview.html">interview</a></li>
+            <li><a href="../../category/learn-plan.html">learn-plan</a></li>
+            <li><a href="../../category/misc.html">misc</a></li>
+            <li><a href="../../category/mysql.html">mysql</a></li>
+            <li><a href="../../category/python.html">python</a></li>
+            <li><a href="../../category/security.html">security</a></li>
+            <li><a href="../../category/sort.html">sort</a></li>
+            <li><a href="../../category/str.html">str</a></li>
+            <li><a href="../../category/tcp-ip.html">tcp-ip</a></li>
+            <li><a href="../../category/tree.html">tree</a></li>
+            <li><a href="../../category/vim.html">vim</a></li>
+   
+        </ul>
+
+        <h5 class="sidebar-title">Links</h5>
+        <ul class="side-nav">
+            <li><a href="https://github.com/actberw">github</a></li>
+        </ul>
+		
+        <h5 class="sidebar-title">Social</h5>
+        <ul class="side-nav">
+            <li><a href="http://weibo.com/u/1950796544">weibo</a></li>
+        </ul>
+
+    </aside> <!-- End Sidebar -->
+
+</div> <!-- End Main Content and Sidebar -->
+
+
+<!-- Footer -->
+<footer class="row">
+    <div class="large-12 columns">
+        <hr />
+        <div class="row">
+            <div class="large-6 columns">
+              <!--                  <p>记录一些工作中的笔记 by actberw</p> -->
+            </div>
+            </div>
+    </div>
+</footer>

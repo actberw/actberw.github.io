@@ -82,8 +82,6 @@ Solution
         if (root == NULL)
             return false;
      
-        // return true if this node is the target_leaf or target leaf is present in
-        // one of its descendants
         if (root == target_leaf || printPath(root->left, target_leaf) ||
                 printPath(root->right, target_leaf) )
         {
@@ -94,8 +92,6 @@ Solution
         return false;
     }
      
-    // This function Sets the target_leaf_ref to refer the leaf node of the maximum 
-    // path sum.  Also, returns the max_sum using max_sum_ref
     void getTargetLeaf (struct node *node, int *max_sum_ref, int curr_sum, struct node **target_leaf_ref) {
         if (node == NULL)
             return;
@@ -138,7 +134,10 @@ Solution
     }
 
 ### Binary Tree Maximum Path Sum
- 
+>Given a binary tree, find the maximum path sum.
+
+>The path may start and end at any node in the tree.
+
     /**
      * Definition for binary tree
      * public class TreeNode {
@@ -155,7 +154,7 @@ Solution
             return result;
         }
         
-        private int maxPath(TreeNode root){    //无法只将int格式作为参数传入，即使maxPath方法改变了int 参数，在主方法内，返回的result仍然                                                     是Integer.min, 若想这样传参，必须以array方式进行  result[0]
+        private int maxPath(TreeNode root){
             if(root == null)
                 return 0;
             int left = maxPath(root.left);

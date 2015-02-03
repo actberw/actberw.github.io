@@ -38,7 +38,7 @@ Date: 2014-06-11 18:00:00
         int pivot = partion(array, l, r);
         llen = (pivot - l) + 1; // !!
         if (k > llen)
-            return findk(array, pivot + 1, r, k - llen);
+            return findk(array, pivot + 1, r, k - llen); // 直接是k也行 
         else if (k < llen)
             return findk(array, l, pivot, k);
         else
@@ -107,7 +107,7 @@ If one of the above conditions are satisfied, we are done. If not, we will use i
         return findKthSmallest(A, i, B+j+1, n-j-1, k-j-1);
     }
 
-Then compare the k/2-th smallest element in A(i.e. A[k/2-1]) and the k/2-th smallest element in B, 参照[中位数](/posts/algorithm/median.html)
+compare the k/2-th smallest element in A(i.e. A[k/2-1]) and the k/2-th smallest element in B, 参照[中位数](/posts/algorithm/median.html)
 
     double findKth(int a[], int m, int b[], int n, int k) {
         //always assume that m is equal or smaller than n
@@ -127,6 +127,102 @@ Then compare the k/2-th smallest element in A(i.e. A[k/2-1]) and the k/2-th smal
             return a[pa - 1];
     }
 
+### Kth smallest element in a row-wise and column-wise sorted 2D array
+
+> Given an n x n matrix, where every row and column is sorted in non-decreasing order. Find the kth smallest element in the given 2D array.
+
+>For example, consider the following 2D array.
+
+        10, 20, 30, 40  
+        15, 25, 35, 45  
+        24, 29, 37, 48  
+        32, 33, 39, 50  
+>The 3rd smallest element is 20 and 7th smallest element is 30
+
+方法跟[合并K个链表](/posts/adt/link-list-merge.html)一样, 用最小堆.  detailed step:
+
+- Build a min heap of elements from first row. A heap entry also stores row number and column number.
+- Do following k - 1 times.
+    - Get minimum element (or root) from min heap.
+    - Find row number and column number of the minimum element.
+    - Replace root with the next element from same column and min-heapify the root.
+- Return the top of min heap.
+
+代码实现:
+
+    struct HeapNode {
+        int val;  // value to be stored
+        int r;    // Row number of value in 2D array
+        int c;    // Column number of value in 2D array
+    };
+     
+    void swap(HeapNode *x, HeapNode *y) {
+        HeapNode z = *x;
+        *x = *y;
+        *y = z;
+    }
+     
+    void minHeapify(HeapNode harr[], int i, int heap_size) {
+        int l = i*2 + 1;
+        int r = i*2 + 2;
+        int smallest = i;
+        if (l < heap_size && harr[l].val < harr[i].val)
+            smallest = l;
+        if (r < heap_size && harr[r].val < harr[smallest].val)
+            smallest = r;
+        if (smallest != i)
+        {
+            swap(&harr[i], &harr[smallest]);
+            minHeapify(harr, smallest, heap_size);
+        }
+    }
+     
+    void buildHeap(HeapNode harr[], int n) {
+        int i = (n - 1)/2;
+        while (i >= 0)
+        {
+            minHeapify(harr, i, n);
+            i--;
+        }
+    }
+     
+    // This function returns kth smallest element in a 2D array mat[][]
+    int kthSmallest(int mat[4][4], int n, int k) {
+        // k must be greater than 0 and smaller than n*n
+        if (k <= 0 || k > n*n)
+           return INT_MAX;
+     
+        HeapNode harr[n];
+        for (int i = 0; i < n; i++)
+            harr[i] =  {mat[0][i], 0, i};
+        buildHeap(harr, n);
+     
+        HeapNode hr;
+        for (int i = 0; i < (k - 1); i++) {
+           // Get current heap root
+           hr = harr[0];
+     
+           int nextval = (hr.r < (n-1))? mat[hr.r + 1][hr.c]: INT_MAX;
+     
+           // Update heap root with next value
+           harr[0] =  {nextval, (hr.r) + 1, hr.c};
+           minHeapify(harr, 0, n);
+        }
+     
+        return harr[0].val;
+    }
+     
+    int main() {
+      int mat[4][4] = { {10, 20, 30, 40},
+                        {15, 25, 35, 45},
+                        {25, 29, 37, 48},
+                        {32, 33, 39, 50},
+                      };
+      cout << "7th smallest element is " << kthSmallest(mat, 4, 7);
+      return 0;
+    }
+
+
 refer:
 
 - [http://www.elvisyu.com/%E5%9C%A8%E6%95%B0%E7%BB%84%E4%B8%AD%E6%89%BE%E5%88%B0%E7%AC%ACk%E5%B0%8F%E5%A4%A7%E7%9A%84%E5%85%83%E7%B4%A0/](http://www.elvisyu.com/%E5%9C%A8%E6%95%B0%E7%BB%84%E4%B8%AD%E6%89%BE%E5%88%B0%E7%AC%ACk%E5%B0%8F%E5%A4%A7%E7%9A%84%E5%85%83%E7%B4%A0/)
@@ -137,3 +233,4 @@ refer:
 - [http://leetcode.com/2011/01/find-k-th-smallest-element-in-union-of.html](http://leetcode.com/2011/01/find-k-th-smallest-element-in-union-of.html)
 - [http://stackoverflow.com/questions/4607945/how-to-find-the-kth-smallest-element-in-the-union-of-two-sorted-arrays](http://stackoverflow.com/questions/4607945/how-to-find-the-kth-smallest-element-in-the-union-of-two-sorted-arrays)
 - [http://www.cnblogs.com/CathyGao/archive/2013/05/03/3055302.html](http://www.cnblogs.com/CathyGao/archive/2013/05/03/3055302.html)
+- [http://www.geeksforgeeks.org/kth-smallest-element-in-a-row-wise-and-column-wise-sorted-2d-array-set-1/](http://www.geeksforgeeks.org/kth-smallest-element-in-a-row-wise-and-column-wise-sorted-2d-array-set-1/)

@@ -56,11 +56,11 @@ We get the sum as $(n^2)/(1 - \frac{5}{16})$ which is $O(n^2)$
 
 ### 迭代法(Iteration Method)  
 
-  迭代法的基本步骤是迭代地展开递归方程的右端，使之成为一个非递归的和式，然后通过对和式的估计来达到对方程左端即方程的解的估计。适用于: Tn = T(n-1 +N , Tn = Tn/2 + 1,   T(n) = 3T(n/4) + O(n), 对于Tn = 2Tn/2 +1, Tn = 2Tn/2 + n, 直接令n = $2^k$ 迭代
+  迭代法的基本步骤是迭代地展开递归方程的右端，使之成为一个非递归的和式，然后通过对和式的估计来达到对方程左端即方程的解的估计。适用于: Tn = Tn-1 +N , Tn = Tn/2 + 1,   T(n) = 3T(n/4) + O(n), 对于Tn = 2Tn/2 +1, Tn = 2Tn/2 + n, 直接令n = $2^k$ 迭代
 
 ### 母函数法  
 
-参见参考[2],[4]和[母函数介绍](/mu-han-shu-generating-function.html)
+参见参考[2],[4]和[母函数介绍](/posts/complexity/mu-han-shu-generating-function.html)
 
 ### 差分方程法(Difference Formula Method)  
   参见参考[4]

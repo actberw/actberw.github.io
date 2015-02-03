@@ -7,13 +7,12 @@ Date: 2014-06-12 20:00:00
 
 对于#1 龟兔算法(快慢指针). fast, slow两个指针, fast先前进到第K个位置, 然后两个指针同步向后移, 知道fast到达末尾(fast->next == NULL).
 
-
 对于#2 同样是龟兔算法(快慢指针), fast, slow两个指针, fast移动速度是slow 的两倍.
 
 ### 有环
 >1. 判断单链表是否有环(Floyd 环查找算法)
 2. 如何知道环的长度
-3. 如何找到换入口
+3. 如何找到环入口
 4. 求带环链表的长度
 5. 如何将有环的链表变成单链表
 
@@ -33,9 +32,11 @@ Date: 2014-06-12 20:00:00
         return 0;
     }
 
-对于#2 有两种解法: 第一次相遇后，让fast停着不走了，slow继续走，记录到下次相遇时循环了几次; 或者第一次相遇时slow走过的距离：a+b，fast走过的距离：a+b+c+b。 因为fast的速度是slow的两倍，所以fast走的距离是slow的两倍，有 2(a+b) = a+b+c+b，可以得到a=c（这个结论很重要！）。 我们发现L=b+c=a+b，也就是说，从一开始到二者第一次相遇，循环的次数就等于环的长度。
+第一次相遇时slow走过的距离：a + b + p(b + c)，fast走过的距离：a + b + q(b + c)。 因为fast的速度是slow的两倍，所以fast走的距离是slow的两倍，有 2(a + b + p(b + c)) = a+ b + q(c+b)，可以得到a + b = (q - 2p)(b + c)。
 
-对于#3 我们已经得到了结论a=c，那么让两个指针分别从X和Z开始走，每次走一步，那么正好会在Y相遇！也就是环的第一个节点。
+对于#2 : 第一次相遇后，让fast停着不走了，slow继续走，记录到下次相遇时循环了几次; 
+
+对于#3 根据上面的结论结论，那么让两个指针分别从X和Z开始走，每次走一步，那么正好会在Y相遇！也就是环的第一个节点。
 
 对于#4 知道了环长度和环入口, 两段长度加起来就是.
 
@@ -60,11 +61,11 @@ Date: 2014-06-12 20:00:00
 
 ![链表复制](/img/link-list-copy.jpg)
 
-第一次遍历将要复制的链表A’ B’ C’ D’插入员链表中，然后再一次遍历复制random指针：A->next->random=A->random->next;
+第一次遍历将要复制的链表A’ B’ C’ D’插入员链表中，然后再一次遍历复制random指针：A'->next->random = A->random->next;
 恢复很简单：A->next=A->next->next;A’-next=A’->next->next;
 
 ### 删除
->删除排序数组中重复的元素
+>删除排序链表中重复的元素
 
     public class Solution {
         public ListNode deleteDuplicates(ListNode head) {
@@ -131,3 +132,4 @@ refer:
 - [1][http://m.blog.csdn.net/blog/sangni007/8218552](http://m.blog.csdn.net/blog/sangni007/8218552)
 - [2][http://www.cppblog.com/yuech/archive/2011/04/02/143318.html](http://www.cppblog.com/yuech/archive/2011/04/02/143318.html)
 - [3][http://www.geeksforgeeks.org/a-linked-list-with-next-and-arbit-pointer/](http://www.geeksforgeeks.org/a-linked-list-with-next-and-arbit-pointer/)
+- [4][http://stackoverflow.com/questions/2936213/explain-how-finding-cycle-start-node-in-cycle-linked-list-work](http://stackoverflow.com/questions/2936213/explain-how-finding-cycle-start-node-in-cycle-linked-list-work)

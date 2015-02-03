@@ -11,7 +11,7 @@ pyhton 支持多重继承, 方法(or attribute)查找顺序称为mro, 目前有�
 其中只有c3算法是2.3+广泛使用的.
 
 ### classic mro  
-classic mro 采用的是简单的广度有限算法(DFS), 中序遍历. 查找过程中第一个匹配的返回. 这种算法简单情况下没问题，但是diamond 继承时就出现问题了, 例如:
+classic mro 采用的是简单的深度优先算法(DFS), 中序遍历. 查找过程中第一个匹配的返回. 这种算法简单情况下没问题，但是diamond 继承时就出现问题了, 例如:
 
     class A:
       def save(self): pass

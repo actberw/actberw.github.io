@@ -11,3 +11,8 @@ Date: 2014-08-09
  - vi'、vi"、vi(、vi[、vi{、vi< - 分别选中这些配对标点符号中的文本内容
 
 另外如果把上面的i改成a可以连配对标点一起操作。
+
+
+refer:
+
+- [http://www.catswhocode.com/blog/100-vim-commands-every-programmer-should-know](http://www.catswhocode.com/blog/100-vim-commands-every-programmer-should-know)

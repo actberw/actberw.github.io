@@ -43,7 +43,7 @@ A sorting algorithm is said to be stable if two objects with equal keys appear i
 
 特性:
 
-- Stable
+- Not stable(例如:5 8 5 2 9)
 - O(1) 空间复杂度
 - 选择排序需要花费 (N – 1) + (N – 2) + … + 1 + 0 = $\frac{N(N- 1)}{2}$ ~ $\frac{N^2}{2}$次比较 和 N-1次交换操作。
 
@@ -96,11 +96,26 @@ A sorting algorithm is said to be stable if two objects with equal keys appear i
 - O(1) 空间复杂度
 - O($n^2$) 比较和交换
 
-冒泡排序和插入排序有差不多的性能, 但是对已经排序(nearly sorted)的冒泡排序 O($n^2$) 比较，而插入排序在这个例子只需要O(n).
+冒泡排序和插入排序有差不多的性能, 但是对已经排序(nearly sorted)的冒泡排序 O($n^2$) 比较，而插入排序在这个例子只需要O(n). 改进的冒泡, 可以很好利用已经排序的减少比较.
+
+    void bubble_sort(int *array, int n) {
+        int flag = n-1, j, k;
+        while (flag > 0) {
+            k = flag;
+            flag = 0;
+            for (j = 1; j < k; j++) {
+                if (array[j] < array[j - 1]) {
+                    exch(array[j], array[j - 1]);
+                    flag = j;
+                }
+            }
+        }
+    }
 
 refer:
 
 
 - [http://blog.jobbole.com/79288/](http://blog.jobbole.com/79288/)
 - [http://www.acmerblog.com/article-sort-3969.html](http://www.acmerblog.com/article-sort-3969.html)
-
+- [http://blog.csdn.net/morewindows/article/details/6657829](http://blog.csdn.net/morewindows/article/details/6657829)
+- [http://www.cricode.com/3212.html](http://www.cricode.com/3212.html)

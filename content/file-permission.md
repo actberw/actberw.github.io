@@ -11,8 +11,10 @@ Date: 2014-10-04 19:00:00
 - d 表示目录  
 - \- 表示文件  
 - l 表示连结档(link file)；   
-- b 表示装置文件里面的可供储存的接口设备；   
-- c 表示装置文件里面的串行端口设备，例如键盘、鼠标。   
+- b 表示块设备(randomly accessible), 磁盘, CD等  
+- c 表示字符设备(only a serial stream of input or output)，例如键盘、鼠标。   
+- s 表示socket
+- p 表示命名管道
 
 ### 文件权限  
 
@@ -39,3 +41,4 @@ refer:
 - [0][http://www.g-loaded.eu/2005/11/08/the-use-of-the-uppercase-x-in-chmod/](http://www.g-loaded.eu/2005/11/08/the-use-of-the-uppercase-x-in-chmod/)
 - [1][http://en.wikipedia.org/wiki/Sticky_bit#cite_note-4](http://en.wikipedia.org/wiki/Sticky_bit#cite_note-4)
 - [2][http://www.linuxmanpages.com/man1/chmod.1.php](http://www.linuxmanpages.com/man1/chmod.1.php)
+- [http://en.wikipedia.org/wiki/Unix_file_types](http://en.wikipedia.org/wiki/Unix_file_types)

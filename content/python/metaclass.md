@@ -1,6 +1,7 @@
 Title: python 元类
 Tags: python, metaclass
 Date: 2014-11-02 20:00:00
+
 元类就是用来创建类的“东西”, 类是其元类的实例(a class is an instance of its metaclass), type就是Python在背后用来创建所有类的元类(参见[python type system](/posts/python/type.html)), 下面代码展示了type的基本用法.
 
     >>> MyClass = MetaClass()

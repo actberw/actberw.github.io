@@ -45,6 +45,9 @@ Finding all possible answer means we usually have to do a search, either DFS or 
     } 
 
 
+### IP地址字符串转无符号整型uint
+
 refer:
 
 - [http://blog.csdn.net/u011095253/article/details/9158449](http://blog.csdn.net/u011095253/article/details/9158449)
+- [http://www.ahathinking.com/archives/209.html](http://www.ahathinking.com/archives/209.html)

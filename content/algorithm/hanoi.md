@@ -14,7 +14,7 @@ To move n discs from peg A to peg C:
 - move n−1 discs from B to C so they sit on disc n
 
 
-The minimum number of moves required to solve a Tower of Hanoi puzzle is 2n - 1, where n is the number of disks.
+The minimum number of moves required to solve a Tower of Hanoi puzzle is $2^n - 1$, where n is the number of disks.
 
     void towers(int, char, char, char);
      

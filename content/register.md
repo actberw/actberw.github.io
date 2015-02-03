@@ -33,3 +33,4 @@ refer:
 - [1][http://nannan408.iteye.com/blog/982942](http://nannan408.iteye.com/blog/982942)
 - [2][http://blog.csdn.net/hgd_dingjun/article/details/2809958](http://blog.csdn.net/hgd_dingjun/article/details/2809958)
 - [3][https://software.intel.com/en-us/articles/introduction-to-x64-assembly](https://software.intel.com/en-us/articles/introduction-to-x64-assembly)
+- [http://www.findfunaax.com/notes/file/262](http://www.findfunaax.com/notes/file/262)

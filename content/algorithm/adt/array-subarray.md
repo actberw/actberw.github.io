@@ -118,7 +118,70 @@ Date: 2014-06-11 19:00:00
         return max_size;
     }
 
-### 最长公共子序列(Longest-Common-Subsequence)
+方法2: 依然是把0当成-1 来处理.
+
+- Create a temporary array sumleft[] of size n. Store the sum of all elements from arr[0] to arr[i] in sumleft[i]. This can be done in O(n) time.
+- There are two cases, the output subarray may start from 0th index or may start from some other index. We will return the max of the values obtained by two cases. 
+- To find the maximum length subarray starting from 0th index, scan the sumleft[] and find the maximum i where sumleft[i] = 0.
+- we need to find the subarray where subarray sum is 0 and start index is not 0. This problem is equivalent to finding two indexes i & j in sumleft[] such that sumleft[i] = sumleft[j] and j-i is maximum. To solve this, we can create a hash table with size = max-min+1 where min is the minimum value in the sumleft[] and max is the maximum value in the sumleft[]. The idea is to hash the leftmost occurrences of all different values in sumleft[]. The size of hash is chosen as max-min+1 because there can be these many different possible values in sumleft[]. Initialize all values in hash as -1
+- To fill and use hash[], traverse sumleft[] from 0 to n-1. If a value is not present in hash[], then store its index in hash. If the value is present, then calculate the difference of current index of sumleft[] and previously stored value in hash[]. If this difference is more than maxsize, then update the maxsize.
+- To handle corner cases (all 1s and all 0s), we initialize maxsize as -1. If the maxsize remains -1, then print there is no such subarray.
+
+代码
+
+int findSubArray(int arr[], int n) {
+    int maxsize = -1, startindex;  // variables to store result values
+  
+    int sumleft[n];
+    int min, max;
+    int i;
+  
+    // Consider 0 values in arr[] as -1
+    sumleft[0] = ((arr[0] == 0)? -1: 1);
+    min = arr[0]; max = arr[0];
+    for (i=1; i<n; i++)
+    {      
+        sumleft[i] = sumleft[i-1] + ((arr[i] == 0)? -1: 1);
+        if (sumleft[i] < min)
+            min = sumleft[i];
+        if (sumleft[i] > max)
+            max = sumleft[i];
+    }
+  
+    int hash[max-min+1];
+  
+    // Initialize hash table
+    for (i=0; i<max-min+1; i++)
+        hash[i] = -1;
+  
+    for (i=0; i<n; i++)
+    {
+        // Case 1: when the subarray starts from index 0
+        if (sumleft[i] == 0)
+        {
+           maxsize = i+1;
+           startindex = 0;
+        }
+  
+        // Case 2: fill hash table value. If already filled, then use it
+        if (hash[sumleft[i]-min] == -1)
+            hash[sumleft[i]-min] = i;
+        else
+        {
+            if ( (i - hash[sumleft[i]-min]) > maxsize )
+            {
+                maxsize = i - hash[sumleft[i]-min];
+                startindex = hash[sumleft[i]-min] + 1;
+            }
+        }
+    }
+    if ( maxsize == -1 )
+        printf("No such subarray");
+    else
+        printf("%d to %d", startindex, startindex+maxsize-1);
+  
+    return maxsize;
+}
 
 refer:
 
@@ -128,3 +191,4 @@ refer:
 - [http://shepherdyuan.wordpress.com/2014/07/23/linkedin-maximum-sumproduct-subarray/](http://shepherdyuan.wordpress.com/2014/07/23/linkedin-maximum-sumproduct-subarray/)
 - [http://www.ahathinking.com/archives/117.html](http://www.ahathinking.com/archives/117.html)
 - [http://blog.csdn.net/zhanxinhang/article/details/6710285](http://blog.csdn.net/zhanxinhang/article/details/6710285)
+- [http://www.geeksforgeeks.org/largest-subarray-with-equal-number-of-0s-and-1s/](http://www.geeksforgeeks.org/largest-subarray-with-equal-number-of-0s-and-1s/)

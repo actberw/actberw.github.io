@@ -34,7 +34,10 @@ innobackupex 是个perl脚本,封装xtrabackup,会根据mysql服务器得版本�
     # six step
     innobackupex --copy-back BASE-DIR # copy data to mysql datadir
 
+### 恢复单个表
+
 refer:
 
  - [http://www.percona.com/doc/percona-xtrabackup/2.2/xtrabackup_bin/incremental_backups.html](http://www.percona.com/doc/percona-xtrabackup/2.2/xtrabackup_bin/incremental_backups.html)
  - [http://www.percona.com/doc/percona-xtrabackup/2.2/innobackupex/incremental_backups_innobackupex.html](http://www.percona.com/doc/percona-xtrabackup/2.2/innobackupex/incremental_backups_innobackupex.html)
+ - [http://www.percona.com/doc/percona-xtrabackup/2.1/innobackupex/restoring_individual_tables_ibk.html](http://www.percona.com/doc/percona-xtrabackup/2.1/innobackupex/restoring_individual_tables_ibk.html)

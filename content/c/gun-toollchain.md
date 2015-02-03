@@ -10,6 +10,7 @@
     - Automake
     - Libtool
  - glibc
+
 2. makefile编写参见pdf(跟我一起写Makefile)
 3. gcc
  - 功能: 高级语言(.c, .cpp, .F) -> (.s)
@@ -58,5 +59,6 @@
   .a     | 静态库
   .s     | 动态库
 
-####refer:
+refer:
+
 - http://blog.csdn.net/scucj/article/details/6079052

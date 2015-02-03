@@ -74,7 +74,7 @@ Hacker's Delight上的代码, 程序思想是二分查找.
 
     int nlz(unsigned x) {
        int n;
-       if (x == 0) return(32);
+       if (x == 0) return 32;
        n = 1;
        if ((x >> 16) == 0) {n = n +16; x = x <<16;}
        if ((x >> 24) == 0) {n = n + 8; x = x << 8;}
@@ -94,7 +94,7 @@ Hacker's Delight上的代码, 程序思想是二分查找.
             mask <<= 1;
             a >>= 1;
         }
-        while (a) {     //能否用a判断?
+        while (x) {
             if ((x & mask) ^ (x & 0x1) != 0x0) return 0;
             x &=(~mask); //去高位
             x >>= 1;     //去低位

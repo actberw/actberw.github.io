@@ -29,14 +29,8 @@ Date: 2014-06-13 20:00:00
                     }
                     tmp = tmp->next;
                 }
-
-                if (p1 != NULL) {
-                    tmp->next = p1;
-                }
-
-                if (p2 != NULL) {
-                    tmp->next = p2;
-                }
+                
+                tmp->next = (p1 != NULL)? p1: p2;
 
                 return c;
             }

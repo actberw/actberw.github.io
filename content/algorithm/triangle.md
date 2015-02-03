@@ -29,5 +29,5 @@ $S = \frac{1}{2}|\overrightarrow{AB}||\overrightarrow{AC}| * sign\angle{A} = \fr
 
 refer
 
-- [http://sxyd.sdut.edu.cn/gaoshu1/lesson/7.4%20%20shuliangji.htm](http://sxyd.sdut.edu.cn/gaoshu1/lesson/7.4%20%20shuliangji.htm)
+- [http://sxyd.sdut.edu.cn/gaoshu1/index.htm](http://sxyd.sdut.edu.cn/gaoshu1/index.htm)
 - [http://blog.csdn.net/fox64194167/article/details/8147460](http://blog.csdn.net/fox64194167/article/details/8147460)

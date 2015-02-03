@@ -3,7 +3,7 @@ Tags: a20, real mode
 Date: 2014-09-21
 
 ### real mode 模式寻址  
-8086/8088 的地址线有 20 条: A0 ~ A19, 最大可以访问1M内存. 它的寻址方法是：segment:offset，这是一种被称为 logic address（逻辑地址）表示法. 物理地址 = 段地址 * 0x10 + 偏移地址。F000:FFFF = F0000 + FFFF = FFFFF，这是 8086/8088 所能访问的最高地址。8086/8088 的寻址范围是可以表示为：从 0000:0000 - 0000:FFFF,0000:0000 - 1000:FFFF, ... ,F000:0000 - F000:FFFF 段
+8086/8088 的地址线有 20 条: A0 ~ A19, 最大可以访问1M内存. 它的寻址方法是：segment:offset，这是一种被称为 logic address（逻辑地址）表示法. 物理地址 = 段地址 * 0x10 + 偏移地址。F000:FFFF = F0000 + FFFF = FFFFF，这是 8086/8088 所能访问的最高地址。8086/8088 的寻址范围是可以表示为：从 0000:0000 - 0000:FFFF,1000:0000 - 1000:FFFF, ... ,F000:0000 - F000:FFFF 段
 
 ### 访问 extended memory  
 80286 intel实现了24 位的Address bus，那么在real mode下80286能够访问到的最高地址: FFFF:FFFF = FFFF0 + FFFF = 10FFEFh(h表示16进制). 这已经是logic address所能表达的极限范围了，100000h 以上的内存被称为extend memory，从100000h ~ 10FFEFh这片内存区域在 DOS 下被称为 High Memory（高端内存）。高端内存是 80286 在 real mode 所能访问到的区域，而 8086/8088 所不能访问到的。

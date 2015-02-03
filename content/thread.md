@@ -38,6 +38,23 @@ Date: 2014-10-28
 
 pthread_create 函数在linxu上就是包装的clone. 另外POSIX标准规定在一个多线程的应用程序中，所有线程都必须具有相同的PID。从线程在内核中的实现可得知，每个线程其实都有自己的pid, 为此Linux引入了线程组的概念。在一个多线程的程序中，所有线程形成一个线程组。每一个线程通常是由主线程创建的，主线程即为调用pthread_create()的线程, 对于线程组中的线程来说，其task_struct结构中的tgid字段保存该线程组中主线程的pid，而pid字段则保存每个轻量级进程的本身的pid。对于普通的进程而言，tgid和pid是相同的。事实上，getpid()系统调用中返回的是进程的tgid而不是pid。
 
+
+main函数和信号处理函数是同一个进程地址空间中的多个控制流程，多线程也是如此，但是比信号处理函数更加灵活，信号处理函数的控制流程只是在信号递达时产生，在处理完信号之后就结束，而多线程的控制流程可以长期并存，操作系统会在各线程之间调度和切换，就像在多个进程之间调度和切换一样。由于同一进程的多个线程共享同一地址空间，因此Text Segment、Data Segment都是共享的，如果定义一个函数，在各线程中都可以调用，如果定义一个全局变量，在各线程中都可以访问到，除此之外，各线程还共享以下进程资源和环境：
+
+- 文件描述符表
+- 每种信号的处理方式
+- 当前工作目录 
+- 用户id和组id
+
+但有些资源是每个线程各有一份的：
+
+- 线程id
+- 上下文，包括各种寄存器的值、程序计数器和栈指针
+- 栈空间
+- errno变量
+- 信号屏蔽字
+- 调度优先级
+
 refer:
  - [0][http://blog.jobbole.com/38696/](http://blog.jobbole.com/38696/)
  - [1][http://www.tutorialspoint.com/operating_system/os_multi_threading.htm](http://www.tutorialspoint.com/operating_system/os_multi_threading.htm)

@@ -5,7 +5,7 @@ Date: 2014-06-12 19:00:00
 ### 反整个链表
 
         link reverse(link head) {//递归实现
-            if (head->next == NULL || head == NULL) {
+            if (head == NULL || head->next == NULL) {
                 return head;
             }
             link rp = reverse(head->next);
@@ -14,12 +14,15 @@ Date: 2014-06-12 19:00:00
             return rp;
         } 
 
+        // 三个指针实现翻转
+
         link reverse(link head) {//非递归实现
             link prev=NULL, p, pn;
             for (p=head;p !=NULL; p=pn) {
                 pn = p->next;
                 p->next = prev;
                 prev = p;
+                p = pn;
             }
             return prev;
         }
@@ -36,7 +39,33 @@ Given 1->2->3->4->5->NULL, m = 2 and n = 4,
       Given m, n satisfy the following condition:
       1 ≤ m ≤ n ≤ length of list.
 
-借助三个个指针实现翻转, pre指向第m个节点前面那个，cur指向第m个节点，p1指向m的下一个节点，因为p1有可能是NULL，所以当p1不是NULL的时候，p2指向p1的下一个节点。
+
+pre指向第m个节点前面节点, 3个指针实现翻转, p指向第m个节点，q指向m的下一个节点，因为q有可能是NULL，所以当q不是NULL的时候，r指向q的下一个节点。
+
+    typedef struct link_node {
+        int value;
+        struct link_node *next;
+    } *link;
+
+    void revert_mn(link head, int m, int n) {
+        int i;
+        link prev, p = head, q, r;
+        for (i = 1; i < m; i ++) {
+            prev = p;
+            p = p->next;
+        }
+        q = p->next;
+
+        for (i = 0; i < (n - m) && q != NULL; i++) {
+            r = q->next;
+            q->next = p;
+            p = q;
+            q = r;
+        }
+
+        prev->next->next = q;
+        prev->next = p;
+    }
 
 ### 交换链表中的两个节点(Swap Nodes in Pairs)
 >Given a linked list, swap every two adjacent nodes and return its head.
@@ -46,21 +75,17 @@ For example,
 
 添加一个亚元节点, 简化处理 
 
-    ListNode *swapPairs(ListNode *h)  {  
-        ListNode dummy(0);  
-        dummy.next = h;  
-        ListNode *pre = &dummy;  
-        while (h && h->next)  
-        {  
-            ListNode *t = h->next->next;  
-            pre->next = h->next;  
-            h->next->next = h;  
-            h->next = t;  
-            pre = h;  
-            h = t;  
-        }  
-        return dummy.next;  
-    }  
+    link revert_two(link head) {
+        link nhead = &(struct link_node) {-1, NULL}, p = head, prev=nhead, r;
+        while (p != NULL && p->next != NULL) {
+            r = p->next->next;
+            prev->next = p->next;
+            p->next->next = p;
+            p->next = r;
+            prev = p, p = r;
+        }
+        return nhead->next;
+    }
 
 ### Reverse Nodes in k-Group 
 >Given a linked list, reverse the nodes of a linked list k at a time and return its modified list.
@@ -74,36 +99,35 @@ For example,
 
 上面的是两个, 这道题是每k个翻转, 最后不足k保留原顺序
 
-    // 翻转pre ~ next之间的, 然后返回最有一个节点
-    private static ListNode reverse(ListNode pre, ListNode next){
-        ListNode last = pre.next;//where first will be doomed "last"
-        ListNode cur = last.next;
-        while(cur != next){
-            last.next = cur.next;
-            cur.next = pre.next;
-            pre.next = cur;
-            cur = last.next;
+    // 翻转l ~ r之间的
+    void revert_l_r(link l, link r) {
+        link p, q, n;
+        p = l, q = p->next;
+        while (p != r) {
+            n = q->next;
+            q->next = p;
+            p = q;
+            q = n;
         }
-        return last;
+        l->next = q; // 跟后续节点连起来
     }
 
-    public static ListNode reverseKGroup2(ListNode head, int k) {
-         if(head == null || k == 1) return head;
-         ListNode dummy = new ListNode(0);
-         dummy.next = head;
-         ListNode pre = dummy;
-         int i = 0;
-         while(head != null){
-             i++;
-             if(i % k ==0){
-                 pre = reverse(pre, head.next);
-                 head = pre.next;
-             }else {
-                 head = head.next;
-             }
-         }
-         return dummy.next;
-     }
+    link revert_k_group(link head, int k) {
+        link nhead = &(struct link_node){-1, NULL}, prev = nhead;
+        int i; link r = head, l;
+        prev->next = head;
+        for (i = 1; r != NULL; i++) {
+            if (i % k == 0) {
+            ¦   l = prev->next;
+            ¦   revert_l_r(l, r);
+            ¦   prev->next = r;
+            ¦   prev = l;
+            ¦   r = prev->next;
+            } else
+            r = r->next;
+        }
+        return nhead->next;
+    }
 
 refer:
 

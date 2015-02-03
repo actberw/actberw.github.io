@@ -1,0 +1,3 @@
+
+figlet
+http://www.binarytides.com/linux-fun-commands/

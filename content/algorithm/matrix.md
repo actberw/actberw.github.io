@@ -153,6 +153,34 @@ Let the given binary matrix be M[R][C]. The idea of the algorithm is to construc
 >Given an n x n matrix, where every row and column is sorted in non-decreasing order. Print all elements of matrix in sorted order.
 
 
+### 行列式
+
+    int determinant(int n, double mat[n][n]) {
+        int i,j,i_count,j_count, count=0;
+        double array[n-1][n-1], det=0;
+        if(n==1) return mat[0][0];
+        if(n==2) return (mat[0][0]*mat[1][1] - mat[0][1]*mat[1][0]);
+
+        for(count=0; count<n; count++)
+        {
+            i_count=0;
+            for(i=1; i<n; i++)
+            {
+                j_count=0;
+                for(j=0; j<n; j++)
+                {
+                    if(j == count) continue;
+                    array[i_count][j_count] = mat[i][j];
+                    j_count++;
+                }
+                i_count++;
+            }
+            det += pow(-1, count) * mat[0][count] * determinant(n-1,array);
+        }
+        return det;
+    }
+
+
 refer:
 
 - [http://www.geeksforgeeks.org/search-in-row-wise-and-column-wise-sorted-matrix/](http://www.geeksforgeeks.org/search-in-row-wise-and-column-wise-sorted-matrix/)

@@ -39,7 +39,7 @@ stack是一组数据的存放方式，支持两种基本操作push 和 pop, 特�
                     stack_push(0)
 
                 while (a[i] >= '0' && a[i] <= '9')
-                    stack_push(10 * stack_pop + array[i++] - '0');
+                    stack_push(10 * stack_pop() + array[i++] - '0');
             }
             return stack_pop();
         }

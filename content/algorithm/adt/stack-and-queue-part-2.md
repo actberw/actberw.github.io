@@ -8,7 +8,7 @@ Date: 2014-06-13 20:00:00
   push(S)
   pop(S)
 
-The idea of the solution is to hold all values in Function Call Stack until the stack becomes empty. When the stack becomes empty, insert all held items one by one at the bottom of the stack.
+把栈{1, 2, 3, 4, 5}看成由两部分组成：栈顶元素1和剩下的部分{2, 3, 4, 5}。如果我们能把{2, 3, 4, 5}颠倒过来，变成{5, 4, 3, 2}，然后在把原来的栈顶元素1放到底部，那么就整个栈就颠倒过来了，变成{5, 4, 3, 2, 1}。
 
     void reverse(struct sNode** top_ref) {
       int temp;   
@@ -38,6 +38,21 @@ The idea of the solution is to hold all values in Function Call Stack until the 
 
 >输入两个整数序列。其中一个序列表示栈的push顺序，判断另一个序列有没有可能是对应的pop顺序。为了简单起见，我们假设push序列的任意两个整数都是不相等的。
 
+    bool is_possible_pop_order(int *push_order, int *pop_order, int len) {
+        stack s;
+        int i, j;
+        i = j = 0;
+        while (j < len) {
+            if (is_empty(&s) || top(&s) != pop_order[j]) {
+                if (i >= len) break;
+                push(&s, push_order[i++]);
+            } else {
+                pop(&s);
+                j++;
+            }
+        }
+        return (is_empty(&s) && j == len) ? true: false;
+    }
 
 ### Implement Queue using Stacks
 

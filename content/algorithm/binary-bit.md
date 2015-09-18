@@ -11,7 +11,7 @@ Date: 2014-09-04
             if (v % 2 == 1) {
                 num++;
             }
-            v /=2;
+            v /= 2;
         }
         return num;
     }
@@ -37,6 +37,17 @@ Date: 2014-09-04
     }
 
 
+    # 平行法
+    // n写成二进制形式，然后相邻位相加，重复这个过程，直到只剩下一位。
+    int count(unsigned int n) { 
+        n = (n &0x55555555) + ((n >>1) &0x55555555) ; 
+        n = (n &0x33333333) + ((n >>2) &0x33333333) ; 
+        n = (n &0x0f0f0f0f) + ((n >>4) &0x0f0f0f0f) ; 
+        n = (n &0x00ff00ff) + ((n >>8) &0x00ff00ff) ; 
+        n = (n &0x0000ffff) + ((n >>16) &0x0000ffff) ; 
+
+        return n ; 
+    }
 
 ### 反转整数二进制表示
 
@@ -107,3 +118,4 @@ refer:
 
 - [http://en.wikipedia.org/wiki/Hamming_weight](http://en.wikipedia.org/wiki/Hamming_weight)
 - [http://leetcode.com/2011/08/reverse-bits.html](http://leetcode.com/2011/08/reverse-bits.html)
+- [https://en.wikipedia.org/wiki/Hamming_weight](https://en.wikipedia.org/wiki/Hamming_weight)

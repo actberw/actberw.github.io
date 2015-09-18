@@ -25,8 +25,8 @@ Date: 2014-11-08
 
     void revert_world(char * str) {
         int left, right, length = strlen(str);
-        left = right = 0;
         revert(str, 0, length - 1); // revert string
+        left = right = 0;
         for (;right <= length; right++) {
             if (str[right] == ' ' || str[right] == '\0') {
                 revert(str, left, right - 1);

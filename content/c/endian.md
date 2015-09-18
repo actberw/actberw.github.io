@@ -8,7 +8,7 @@ Big-endian systems store the most significant byte in the smallest address and t
 
 Little-endian systems, in contrast, store the least significant byte in the smallest address. 最低有效字节存储在低地址.
 
-大端和小端就是表示多字节的那一端存储在该值的起始位置. 例如c中整数占四字节 `int x = 0x01234567`, 大端的在内存的存储是`01 23 45 67`, 小端 `67 45 23 01`.
+大端和小端就是表示多字节的哪一端存储在该值的起始位置. 例如c中整数占四字节 `int x = 0x01234567`, 大端的在内存的存储是`01 23 45 67`, 小端 `67 45 23 01`.
 
 Standard byte order for networks is big endian, also known as network byte order.
 

@@ -1,3 +1,4 @@
+Title: mysql undo 和 redo 日志
 
 The InnoDB transaction log handles REDO logging, this is the mechanism that provides the A (Atomic) C (Consistent)  and D (Durability) in ACID. 
 

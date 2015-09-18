@@ -1,5 +1,5 @@
 Title: bash 终端颜色 
-
+Tags: linux, shell, bash color
 
 In Bash, the <Esc> character can be obtained with "\e", "\033" or "^[".
 

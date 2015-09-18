@@ -1,5 +1,5 @@
 Title: linux 信号
-Tags: linux ,signal, c
+Tags: linux,signal, c
 Date: 2014-11-01 20:00:00
 
 可以 `man 7 signal` 查看详细文档.  

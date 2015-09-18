@@ -25,9 +25,9 @@ Date: 2014-07-02 18:00:00
             axu[k] = arr[k];
         }
 
-        for (k = l; i <= r; k++) {
+        for (k = l; k <= r; k++) {
             if (i > mid) arr[k] = aux[j++];
-            else if (j > hi) arr[k] = aux[i++];
+            else if (j > r) arr[k] = aux[i++];
             else
                 arr[k] = (arry[i] < arry[j]) ? arr[i++]: arry[j++]; 
         }
@@ -39,7 +39,7 @@ Date: 2014-07-02 18:00:00
 
     // 自顶向下
     void merge_sort(int *arr, int l, int r) {
-        int mid = l + (r - l) >> 2;
+        int mid = l + (r - l) / 2;
         if (r <= l) return;
         merge_sort(arr, l, mid);
         merge_sort(arr, mid + 1, r);

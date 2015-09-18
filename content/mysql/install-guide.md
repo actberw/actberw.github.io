@@ -46,7 +46,6 @@
         lc-messages-dir = /usr/share/mysql
         skip-external-locking
         explicit_defaults_for_timestamp # 5.6新增选项，控制timestamp字段得值
-        tx_isolation             = "REPEATABLE-READ"
 
         # * Query Cache Configuration
         #

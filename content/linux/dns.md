@@ -7,7 +7,7 @@ DNS(domian name server) 是把域名转为ip的服务, 其zone file的条目被�
 - AAAA 记录(quad A) 把主机名映射成128位ipv6地址
 - PTR 记录(pointer record, 指针记录) 把ip地址映射成主机名, 对于ipv4地址存储得是反转顺序后添加in-addr.arpa, 例如 "220.181.57.216" 实际对应得记录是 "216.57.181.220.in-addr.arpa"
 - MX 记录即邮件交换记录, 可以使ip或者域名, 有相应得优先级, 优先级的数值越低，优先级别就越高.
-- CNAME 记录别名记录也被称为规范名字。这种记录允许您将多个名字映射到同一台计算机。
+- CNAME 记录(Canonical Name)别名记录也被称为规范名字。这种记录允许您将多个名字映射到同一台计算机。
 - NS 记录指定解析该域名的dns服务器.
 - SOA Start of Authority 记录, 表明 DNS 服务器是为该domian信息的primary来源.
 

@@ -10,7 +10,6 @@ D: once a commit operation succeeds, the changes made by that transaction are sa
 
 隔离级别规定了一个事务中所做的修改，哪些在事务内和事务间是可见的，哪些是不可见的。
 
-
 - 可序列化（Serializable）
 实现可序列化要求在选定对象上的读锁和写锁保持直到事务结束后才能释放。在 SELECT 的查询中使用一个 WHERE 子句来描述一个范围时应该获得一个“范围锁(range-locks)”。这种机制可以避免“幻影读(phantom reads)”现象。
 
@@ -18,22 +17,18 @@ D: once a commit operation succeeds, the changes made by that transaction are sa
 对选定对象的读锁(read locks)和写锁(write locks)一直保持到事务结束，但不要求“范围锁(range-locks)”，因此可能会发生“幻影读(phantom reads)”。
 
 - 提交读（Read committed）
-DBMS需要对选定对象的写锁(write locks)一直保持到事务结束，但是读锁(read locks)在SELECT操作完成后马上释放（因此“不可重复读”现象可能会发生，见下面描述）。和前一种隔离级别一样，也不要求“范围锁(range-locks)”。
+DBMS需要对选定对象的写锁(write locks)一直保持到事务结束，但是读锁(read locks)在SELECT操作完成后马上释放（因此“不可重复读”现象可能会发生，见下面描述）。和前一种隔离级别一样，也不要求“范围锁(range-locks)”。 不可重复读是因为，事务只维持了选定对象的写锁，如果一些选定对象只涉及读锁，那么在读锁释放之后，其它事务可以对这些对象进行修改，该事务再次读取时就不一致了。
 
-不可重复读是因为，事务只维持了选定对象的写锁，如果一些选定对象只涉及读锁，那么在读锁释放之后，其它事务可以对这些对象进行修改，该事务再次读取时就不一致了。
 - 未提交读（Read uncommitted）
-
 
 In lock-based concurrency control, isolation level determines the duration that locks are held.
 
 ### 并发一致性问题(why concurrency control needed?)
 并发一致性问题包括:
 
-- The lost update problem, 丢失修改
-- Non-repeatable reads, 不可重复读 
 - The dirty read problem, 读"脏"数据, A dirty read (aka uncommitted dependency) occurs when a transaction is allowed to read data from a row that has been modified by another running transaction and not yet committed.
-
-Phantom reads
+- Non-repeatable reads, 不可重复读 
+- Phantom reads
 所谓幻影读是指：事务1按一定条件从数据库中读取某些数据记录后，事务2插入了一些符合事务1检索条件的新记录，当事务1再次按相同条件读取数据时，发现多了一些记录。
 
 不可重复读和幻读的区别: 很多人容易搞混不可重复读和幻读，确实这两者有些相似。但不可重复读重点在于update和delete，而幻读的重点在于insert。

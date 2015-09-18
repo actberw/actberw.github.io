@@ -1,4 +1,5 @@
 Title: 标准文件头
+Date: 2014-09-02
 
 ### stddef.h
 
@@ -31,9 +32,14 @@ Defines macro constants specifying the implementation-specific properties of the
 INT_MAX
 INT_MIN
 
+### stdio.h
+
+stdin
+stdout
+stderr
+
 ### unistd.h
 
 STDIN_FILENO
 STDOUT_FILENO
 STDERR_FILENO
-

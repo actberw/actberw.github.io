@@ -1,8 +1,6 @@
 Title: kafka 
 
-
-Since Kafka is a distributed system, topics are partitioned and replicated across multiple nodes.
-Kafka treats each topic partition as a log (an ordered set of messages). Each message in a partition is assigned a unique offset.
+Since Kafka is a distributed system, topics are partitioned and replicated across multiple nodes.  Kafka treats each topic partition as a log (an ordered set of messages). Each message in a partition is assigned a unique offset.
 
 Apache Kafka是分布式发布-订阅消息系统。它最初由LinkedIn公司开发，之后成为Apache项目的一部分。Kafka是一种快速、可扩展的、设计内在就是分布式的，分区的和可复制的提交日志服务
 

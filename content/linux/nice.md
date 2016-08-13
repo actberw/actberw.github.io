@@ -15,6 +15,9 @@ nice 命令可以按照指定的优先级启动进程
 
 查看进程的优先级可以通过 `ps -afl`, NI 列就是进程的优先级.
 
+top 中的 PR 如果是real time 进程则显示 "rt", 普通进程显示的是减去MAX_RT_PRIO (100) 的值.
+ps 中显示的RTPRIO 是real time prio(normal prio?), PRI 跟top 的PR一样.
+
 refer:
 
 - [http://man.chinaunix.net/linux/mandrake/101/zh_cn/Command-Line.html/process-priority.html](http://man.chinaunix.net/linux/mandrake/101/zh_cn/Command-Line.html/process-priority.html)

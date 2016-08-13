@@ -15,7 +15,7 @@ Date: 2014-08-03
 
 两种解法:
 
-- 排序, 然后用二分查找差值, 或者首位两个指针left, right, 如果array[left] + array[right] > target 则 right--, array[left] + array[right] < target 则left++, 等于则返回
+- (不适合返回索引的)排序, 然后用二分查找差值, 或者首位两个指针left, right, 如果array[left] + array[right] > target 则 right--, array[left] + array[right] < target 则left++, 等于则返回
 
 - 用hashMap
 
@@ -59,18 +59,18 @@ To avoid duplicate, we can take advantage of sorted arrays, i.e., move pointers 
 
 这里不是要求返回索引而是元素值, 所以可以进行排序处理.
 
-    ArrayList<ArrayList<Integer>> threeSum(int[] arr) {
+    ArrayList<ArrayList<Integer>> threeSum(int[] num) {
         ArrayList<ArrayList<Integer>> result = new ArrayList<ArrayList<Integer>>();
-        Arrays.sort(arr);
-        for (int i = 0; i < arr.length - 2; i++) {
+        Arrays.sort(num);
+        for (int i = 0; i < num.length - 2; i++) {
 
-                if(i > 0 && arr[i] == num[i-1]) continue; // avoid duplicate solutions
-                int two_sum = 0 - arr[i];
+                if(i > 0 && num[i] == num[i-1]) continue; // avoid duplicate solutions
+                int two_sum = 0 - num[i];
                 int l = i + 1;
                 int r = num.length - 1;
      
                 while (l < r) {
-                    if (arr[l] + arr[r] == two_sum) {
+                    if (num[l] + num[r] == two_sum) {
                         ArrayList<Integer> temp = new ArrayList<Integer>();
                         temp.add(num[i]);
                         temp.add(num[l]);
@@ -91,6 +91,7 @@ To avoid duplicate, we can take advantage of sorted arrays, i.e., move pointers 
         }
         
     }
+
 ### three Sum Closest 
 >Given an array S of n integers, find three integers in S such that the sum is closest to a given number, target. Return the sum of the three integers. You may assume that each input would have exactly one solution. For example, given array S = {-1 2 1 -4}, and target = 1. The sum that is closest to the target is 2. (-1 + 2 + 1 = 2).
 
@@ -212,7 +213,7 @@ K Sum problem in recursive way is just to reduce K sum problem to K – 1 sum Pr
             }
             // K > 2
             for (int i = p; i < arr.size(); ++l) {
-                if (l > p && arr[i] == arr[i - 1]) continue;
+                if (i > p && arr[i] == arr[i - 1]) continue;
                 vector< vector<int> > K1Sum = KSum(arr, K - 1, target - arr[l], i + 1);
                 for (auto it = K1Sum.begin(); it != K1Sum.end(); ++it) {
                     vector<int> tuple;

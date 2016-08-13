@@ -5,7 +5,7 @@ Date: 2014-06-12 23:00:00
 ### 合并两个有序数组
 类似归并排序, 参见[合并链表](/posts/adt/link-list.html)
 
-### 合并两个有序的子序列
+### 原位合并两个有序的子序列
 >数组al[0,mid-1]和al[mid,num-1]是各自有序的，对数组al[0,num-1]的两个子有序段进行merge，得到al[0,num-1]整体有序。要求空间复杂度为O(1)。注：al[i]元素是支持'<'运算符的。
 
 就是原位归并, 参见[归并排序](/posts/sort/merge-sort.html)
@@ -22,7 +22,7 @@ Date: 2014-06-12 23:00:00
         for(; begin < end; begin++ , end--)
             swap(a[begin] , a[end]);
     }
-    void RotateRight(int *a , int begin , int end , int k) {
+    void RotateRight(int *a , int begin , int end , int k) { // 交换内存
         int len = end - begin + 1;  //数组的长度
         k %= len;
         Reverse(a , begin , end - k);
@@ -34,7 +34,7 @@ Date: 2014-06-12 23:00:00
     void Merge(int *a , int begin , int end ) {
         int i , j , k;
         i = begin;
-        j = 1 + ((begin + end)>>1);    //位运算的优先级比较低，外面需要加一个括号，刚开始忘记添加括号，导致错了很多次
+        j = 1 + ((begin + end)>>1);
         while(i <j  && j <= end)
         {
             while(i <= end && a[i] < a[j])

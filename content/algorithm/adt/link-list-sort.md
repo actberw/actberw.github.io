@@ -1,89 +1,85 @@
 Title: 单链表排序
 
-quick_sort on Singly linked list
+## 快排序
 
-    struct node *partition(struct node *head, struct node *end,
-                           struct node **newHead, struct node **newEnd) {
-        struct node *pivot = end;
-        struct node *prev = NULL, *cur = head, *tail = pivot;
-     
-        // During partition, both the head and end of the list might change
-        // which is updated in the newHead and newEnd variables
-        while (cur != pivot)
-        {
-            if (cur->data < pivot->data)
-            {
-                // First node that has a value less than the pivot - becomes
-                // the new head
-                if ((*newHead) == NULL)
-                    (*newHead) = cur;
-     
-                prev = cur;  
-                cur = cur->next;
+    struct link_node {
+            int data;
+            struct link_node *next;
+    };
+
+
+    typedef struct link_node node_t;
+    typedef struct link_node * link_list;
+
+    node_t *partition(node_t *l, node_t *r) {
+            int key;
+            node_t *p, *q, *prev;
+            q = l;;
+            prev = l;
+            p = prev->next;
+            key = p->data;
+            while (p != r) {
+                    if (p->data < key) {
+                            prev->next = p->next;
+                            p->next = q->next;
+                            q->next = p;
+                            q = q->next;
+                            p = prev->next;
+                    } else {
+                            prev = p;
+                            p = p->next;
+                    }
             }
-            else // If cur node is greater than pivot
-            {
-                // Move cur node to next of tail, and change tail
-                if (prev)
-                    prev->next = cur->next;
-                struct node *tmp = cur->next;
-                cur->next = NULL;
-                tail->next = cur;
-                tail = cur;
-                cur = tmp;
-            }
-        }
-     
-        // If the pivot data is the smallest element in the current list,
-        // pivot becomes the head
-        if ((*newHead) == NULL)
-            (*newHead) = pivot;
-     
-        // Update newEnd to the current last node
-        (*newEnd) = tail;
-     
-        // Return the pivot node
-        return pivot;
+            return q->next;
     }
 
-    struct node *quickSortRecur(struct node *head, struct node *end) {
-        // base condition
-        if (!head || head == end)
-            return head;
-     
-        node *newHead = NULL, *newEnd = NULL;
-     
-        // Partition the list, newHead and newEnd will be updated
-        // by the partition function
-        struct node *pivot = partition(head, end, &newHead, &newEnd);
-     
-        // If pivot is the smallest element - no need to recur for
-        // the left part.
-        if (newHead != pivot)
-        {
-            // Set the node before the pivot node as NULL
-            struct node *tmp = newHead;
-            while (tmp->next != pivot)
-                tmp = tmp->next;
-            tmp->next = NULL;
-     
-            // Recur for the list before pivot
-            newHead = quickSortRecur(newHead, tmp);
-     
-            // Change next of last node of the left half to pivot
-            tmp = getTail(newHead);
-            tmp->next =  pivot;
-        }
-     
-        // Recur for the list after the pivot element
-        pivot->next = quickSortRecur(pivot->next, newEnd);
-     
-        return newHead;
+    void quick_sort(link_list head, node_t *tail) {
+            node_t *pivot;
+            if (head->next == NULL || head->next == tail || head->next->next == tail) return; // dummy head;
+            pivot = partition(head, tail);
+            quick_sort(head, pivot);
+            quick_sort(pivot, tail);
     }
 
-merge_sort
+## 归并排序
 
-[归并排序](/posts/sort/merge-sort.html)
+    // 自顶向下
+    link merge_sort(link c) {
+        link b, slow, fast;
+        slow = fast = c;
+        while (fast != NULL && fast->next != NULL) {
+            slow = slow->next;
+            fast = fast->next->next;
+        }
+
+        b = slow->next;
+        slow->next = NULL;
+        return merge(merge_sort(c), merge_sort(b))
+    } 
+
+    // 自底向上
+    link merge_sort(link t) {
+        link p, q, tmp;
+        if (t == NULL || t->next == NULL) return t;
+        p = t;
+
+        queue_init();
+        while (p != NULL) {
+            q = p->next;
+            p->next = NULL;
+            queue_put(p);
+            p = q;
+        }
+        while (!queue_empty()) {
+            tmp = merge(queue_get(), queue_get());
+            queue_put(tmp);
+        }
+
+        return t;
+    }
+
+非递归见refer[1]
 refer:
 
-- [http://www.geeksforgeeks.org/quicksort-on-singly-linked-list/](http://www.geeksforgeeks.org/quicksort-on-singly-linked-list/)
+- [0][http://www.geeksforgeeks.org/quicksort-on-singly-linked-list/](http://www.geeksforgeeks.org/quicksort-on-singly-linked-list/)
+- [1][http://noalgo.info/834.html](http://noalgo.info/834.html)

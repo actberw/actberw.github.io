@@ -56,42 +56,6 @@ Date: 2014-07-02 18:00:00
         }
     }
 
-### 链表的归并排序
-
-    // 自顶向下
-    link merge_sort(link c) {
-        link b, slow, fast;
-        slow = fast = c;
-        while (fast != NULL && fast->next != NULL) {
-            slow = slow->next;
-            fast = fast->next->next;
-        }
-
-        b = slow->next;
-        slow->next = NULL;
-        merge(merge_sort(c), merge_sort(b))
-    } 
-
-    // 自底向上
-    link merge_sort(link t) {
-        link p, q, tmp;
-        if (t == NULL || t->next == NULL) return t;
-        p = t;
-
-        queue_init();
-        while (p != NULL) {
-            q = p->next;
-            p->next = NULL;
-            queue_put(p);
-            p = q;
-        }
-        while (!queue_empty()) {
-            tmp = merge(queue_get(), queue_get());
-            queue_put(tmp);
-        }
-
-        return t;
-    }
 
 特性:
 
@@ -149,5 +113,4 @@ refer:
 
 - [0][http://blog.jobbole.com/79293/](http://blog.jobbole.com/79293/)
 - [1][http://www.ahathinking.com/archives/103.html](http://www.ahathinking.com/archives/103.html)
-- [http://jpkc.seiee.sjtu.edu.cn/ds/ds2/jiaoxueziyuan/kejian/92.pdf](http://jpkc.seiee.sjtu.edu.cn/ds/ds2/jiaoxueziyuan/kejian/92.pdf)
 - [http://ds.ytu.edu.cn/document/gangyao/11.htm](http://ds.ytu.edu.cn/document/gangyao/11.htm)

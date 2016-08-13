@@ -42,13 +42,12 @@ Heaps are usually implemented in an array, and do not require pointers between e
     void sift_down(heap &heap, int start, int n) {
         item_t tmp = heap->data[start], i = start, j;
         for (j = 2 * i + 1; j < n ; j = 2 * i + 1) {
-            if (j < n && heap->data[j] > heap->data[j + 1]) j++; //j指向子节点最小的一个
+            if (j < (n - 1) && heap->data[j] > heap->data[j + 1]) j++; //j指向子节点最小的一个
 
             if (tmp < heap->data[j]) break;
-            else {
-                heap->data[i] = heap->data[j];
-                i = j;
-            }
+
+            heap->data[i] = heap->data[j];
+            i = j;
         }
 
         heap->data[i] = tmp;

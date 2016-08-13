@@ -1,33 +1,47 @@
-Title: mysql中的引号
-Tags: mysql, quote
+Title: mysql 数据类型
+Tags: mysql
 Date: 2014-07-10 20:44:00
+
+## String Types
+
 mysql字符串指用单引号(‘'’)或双引号(‘"’)引起来的字符序列。例如：
 
 'a string'
 
 "another string"
 
-如果SQL服务器模式启用了ANSI_QUOTES，可以只用单引号引用字符串。用双引号引用的字符串被解释为一个识别符。
+如果 [sql_mode](/posts/mysql/sql-mode.html) 启用了ANSI_QUOTES，则只能用单引号引用字符串, 用双引号引用的字符串被解释为一个识别符。
 
-### 隐式类型转换
+The string types are CHAR, VARCHAR, BINARY, VARBINARY, BLOB, TEXT, ENUM, and SET. Variable-length string types are stored using a length prefix plus data. 
 
-https://vividcortex.com/blog/2014/07/21/type-conversion-rules/
-http://blog.eood.cn/mysql_params
-https://dev.mysql.com/doc/refman/5.6/en/type-conversion.html
-http://www.zhdba.com/mysqlops/2011/08/26/sql-convert-type/
-http://blog.xupeng.me/2012/02/08/type-conversion-and-index-selection-of-mysql/
+## 数字类型
 
-### 存储空间
+- Integer Types (Exact Value) - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT
+- Fixed-Point Types (Exact Value) - DECIMAL, NUMERIC
+- Floating-Point Types (Approximate Value) - FLOAT, DOUBLE
+- Bit-Value Type - BIT
 
-https://dev.mysql.com/doc/refman/5.6/en/storage-requirements.html
+The DECIMAL and NUMERIC types store exact numeric data values, Storage for the integer and fractional parts of each value are determined separately.. These types are used when it is important to preserve exact precision, for example with monetary data
 
+The declaration syntax for a DECIMAL column is DECIMAL(M,D). The ranges of values for the arguments in MySQL 5.6 are as follows:
 
-### 各版本区别
-http://www.zhdba.com/mysqlops/2012/03/09/mysql%E5%90%84%E7%89%88%E6%9C%AC%E7%9A%84%E6%96%B0%E7%89%B9%E6%80%A7%E6%95%B4%E7%90%86/
+- M is the maximum number of digits (the precision). It has a range of 1 to 65.
+- D is the number of digits to the right of the decimal point (the scale). It has a range of 0 to 30 and must be no larger than M.
 
+Values for DECIMAL columns in MySQL 5.6 are stored using a binary format that packs nine decimal digits into 4 bytes. The storage requirements for the integer and fractional parts of each value are determined separately. 
+
+MySQL supports an extension for optionally specifying the display width of integer data types in parentheses following the base keyword for the type.
+The display width does not constrain the range of values that can be stored in the column. Nor does it prevent values wider than the column display width from being displayed correctly. All integer types can have an optional (nonstandard) attribute UNSIGNED. Unsigned type can be used to permit only nonnegative numbers in a column or when you need a larger upper numeric range for the column. Data type descriptions use these conventions:
+
+- M indicates the maximum display width for integer types. For floating-point and fixed-point types, M is the total number of digits that can be stored (the precision). For string types, M is the maximum length. The maximum permissible value of M depends on the data type.
+- D applies to floating-point and fixed-point types and indicates the number of digits following the decimal point (the scale). The maximum possible value is 30, but should be no greater than M−2.
+
+## 时间类型
+
+DATE, DATETIME, TIMESTAMP
 
 refer:
 
 - [http://dev.mysql.com/doc/refman/5.6/en/string-literals.html](http://dev.mysql.com/doc/refman/5.6/en/string-literals.html)
-- [http://dev.mysql.com/doc/refman/5.6/en/sql-mode.html#sqlmode_ansi_quotes](http://dev.mysql.com/doc/refman/5.6/en/sql-mode.html#sqlmode_ansi_quotes)
-- [http://segmentfault.com/q/1010000000236690](http://segmentfault.com/q/1010000000236690)
+- [https://dev.mysql.com/doc/refman/5.6/en/storage-requirements.html](https://dev.mysql.com/doc/refman/5.6/en/storage-requirements.html)
+- [https://dev.mysql.com/doc/refman/5.6/en/precision-math-decimal-characteristics.html](https://dev.mysql.com/doc/refman/5.6/en/precision-math-decimal-characteristics.html)

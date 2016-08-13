@@ -18,7 +18,7 @@ Date: 2014-09-02 13:00:00
       return isBSTHelper(root, INT_MIN, INT_MAX);  
     }
 
-也可以中序遍历, 查看前一个值比后面的一个小.
+也可以中序遍历, 查看前一个值小于后面的一个.
 
     bool isBSTInOrderHelper(BinaryTree *p, int *prev) {
       if (!p) return true;

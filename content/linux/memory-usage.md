@@ -1,4 +1,5 @@
-VIRT(vsz), RES(RSS), SHR, SWAP
+Title: VIRT(vsz), RES(RSS), SHR, SWAP
+
 free
 ps, top, pmap
 cat /proc/{pid}/status

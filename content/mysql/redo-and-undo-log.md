@@ -1,6 +1,7 @@
 Title: mysql undo 和 redo 日志
 
 The InnoDB transaction log handles REDO logging, this is the mechanism that provides the A (Atomic) C (Consistent)  and D (Durability) in ACID. 
+Innodb的事务日志是指Redo log，简称Log,保存在日志文件ib_logfile*里面。Innodb还有另外一个日志Undo log，但Undo log是存放在共享表空间里面的（ibdata*文件）。
 
 Rules for writing log records:
 

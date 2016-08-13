@@ -9,15 +9,20 @@ Date: 2014-07-02 15:00:00
 
 实现:
 
-    void heap_sort(int *arr, int l, int r) { // heap 从0开始
-        int k, N = (r - l) + 1;
-        for (k = (N - 2) / 2; k > 0; k--) 
-            sift_down(arr, k, N);
+    #define SWAP(x, y) do {x = x^y; y = x^y; x=x^y;} while (0)
 
-        while (N) {
-            swap(arr, 0, --N);
-            sift_down(arr, 0, N);
-        }
+    void heap_sort(int *array, int size) {
+            int i;
+            //build heap
+            for (i = (size/2 - 1); i >= 0; i--) {
+                    siftdown(array, i, size);
+            }
+
+            //sort
+            for (i = size - 1; i > 0; i--) {
+                    SWAP(array[0], array[i]);
+                    siftdown(array, 0, i);
+            }
     }
 
 特点:

@@ -11,6 +11,12 @@ The SIG_SETMASK tells that the signals in set are to be blocked, and signals tha
 
 ### Reliable signals and Real-time signals  
 Linux  supports the standard signals(Reliable signals) and so called real-time signals specified by The POSIX specification. 
+不可靠信号
+它的主要问题是：
+进程每次处理信号后，就将对信号的响应设置为默认动作。在某些情况下，将导致对信号的错误处理；因此，用户如果不希望这样的操作，那么就要在信号处理函数结尾再一次调用signal()，重新安装该信号。
+信号可能丢失，后面将对此详细阐述。 
+因此，早期unix下的不可靠信号主要指的是进程可能对信号做出错误的反应以及信号可能丢失。
+Linux支持不可靠信号，但是对不可靠信号机制做了改进：在调用完信号处理函数后，不必重新调用该信号的安装函数（信号安装函数是在可靠机制上的实现）。因此，Linux下的不可靠信号问题主要指的是信号可能丢失。
 
 real-time signals are to be used by the programmer and have no predefined meaning. Two macros are available: SIGRTMIN and SIGRTMAX that tells the range of these signals. You can use one using SIGRTMIN+n where n is some number. Never hard code their numbers, real time signals are used by threading library (both LinuxThreads and NTPL), so they adjust SIGRTMIN at run time.
 
@@ -21,6 +27,12 @@ Whats the difference between RT signals and standard signals? There are couple:
 
 ### Signal Dispositions  
 sigaction or signal
+
+### Send signal
+kill, sigqueue, pthread_sigqueue, pthread_kill
+
+### Signal Mask and Pending Signals
+sigprocmask, pthread_sigmask
 
 ### Synchronously Accepting a Signal  
 sigwaitinfo, sigtimedwait, and sigwait

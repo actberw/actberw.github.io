@@ -29,7 +29,8 @@ Date: 2014-07-02 14:00:00
             if (i >= j) break;
             swap(arr, i, j);
         }
-        swap(arr, i, r);
+
+        if (i != r) swap(arr, i, r);
 
         return i;
     }

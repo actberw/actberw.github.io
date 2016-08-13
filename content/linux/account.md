@@ -7,6 +7,7 @@ debian "passwd" 包提供了如下命令管理用户和用户组:
 - useradd, userdel, usermod, passwd, chage
 - groupadd, groupdel, groupmod
 - gpasswd 管理用户与组的关系.
+- id/whoami, groups, newgrp
 
 The /etc/passwd file consists of user records, one to a line. Each record contains multiple fields, separated by colons (:). The fields are:
 
@@ -61,15 +62,16 @@ See also `man 5 shadow`. The password expiry related fields are modified by the 
 
 adduser/addgroup
 
-### 锁定和禁用账户
+### 锁定和禁止账户登录
 锁定账户, 就是在密码前加一个"!": 
 
     passwd -l username or usermod 
-锁定的账户仍然可以通过其他的认证手段登陆, 例如 ssh key.
-
-禁用账户: 
+锁定的账户仍然可以通过其他的认证手段登陆, 例如 ssh key. 彻底锁定账户(设置账户过期, su切换和ssh都不能使用):
 
     usermod -L -e 1 tom or usermod -L -e 1970-01-01 tom
+
+禁止账户登录(su切换和ssh都不能使用):
+
     usermod -s /sbin/nologin tom or usermod -s /bin/false tom
 
 Following program will not affected by this shell (/sbin/nologin):

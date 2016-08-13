@@ -1,9 +1,7 @@
-Title: linux shell
-bash
+Title: bash
 
 http://www.juyimeng.com/freebsd-linux-change-default-shell.html
 http://book.51cto.com/art/201205/337149.htm
-http://www.cyberciti.biz/faq/linux-binfalse-vs-sbinnologin-deny-login/
 http://linuxpoison.blogspot.jp/2010/07/how-to-lock-unlock-enable-disable-linux.html
 http://unix.stackexchange.com/questions/17906/can-i-allow-a-non-root-user-to-log-in-when-etc-nologin-exists
 

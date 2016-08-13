@@ -47,6 +47,42 @@ Finding all possible answer means we usually have to do a search, either DFS or 
 
 ### IP地址字符串转无符号整型uint
 
+利用状态机的思想: 
+输入有两种情况: 数字或者点, 设初始状态S0 为 reading_dot, 则如果在都到dot state 转error， 数字转reading_num, 状态为reading_num 时都到dot转reading_dot， 都到数字状态不变.
+
+    int pton(char *str, unsigned int *result) {
+            char ch, *iter;
+            int state, digital, dot_num;
+            state = 0 ; // 0 means read dot, 1 means read num.
+            digital = dot_num = 0;
+            for (iter = str; ; iter++) {
+                    ch = *iter;
+                    if (state == 0) {
+                            if (ch >= '0' && ch <= '9') {
+                                    digital = ch - '0';
+                                    state = 1;
+                            } else {
+                                    return -1;
+                            }
+                    } else {
+                            if (ch >= '0' && ch <= '9') {
+                                    digital = digital * 10 + (ch - '0');
+                                    if (digital > 255) return -1;
+                            } else if (ch == '.'){
+                                    dot_num++;
+                                    if (dot_num > 3) return -1;
+                                    state = 0;
+                                    *result = (*result << 8) + digital;
+                            } else if (ch == '\0'){
+                                    *result = (*result << 8) + digital;
+                                    return 0;
+                            } else {
+                                    return -1;
+                            }
+                    }
+            }
+    }
+
 refer:
 
 - [http://blog.csdn.net/u011095253/article/details/9158449](http://blog.csdn.net/u011095253/article/details/9158449)

@@ -61,7 +61,7 @@ Date: 2014-06-12 20:00:00
 
 ![链表复制](/img/link-list-copy.jpg)
 
-第一次遍历将要复制的链表A’ B’ C’ D’插入员链表中，然后再一次遍历复制random指针：A'->next->random = A->random->next;
+第一次遍历将要复制的链表A’ B’ C’ D’插入员链表中，然后再一次遍历复制random指针：A ->next->random = A->random->next;
 恢复很简单：A->next=A->next->next;A’-next=A’->next->next;
 
 ### 删除

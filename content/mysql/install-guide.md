@@ -42,6 +42,7 @@
         basedir         = /usr/local/mysql #mysql 安装目录
         datadir         = /var/mysql
         tmpdir          = /tmp
+        thread_cache_size = 12
         bind-address    = 192.168.1.112 # 如果设置skip-networking,只会监听localhost
         lc-messages-dir = /usr/share/mysql
         skip-external-locking

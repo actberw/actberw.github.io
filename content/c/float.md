@@ -5,6 +5,7 @@ Date: 2014-08-20 12:00:00
 http://blog.codingnow.com/2006/02/epsilon_is_not_000001.html
 
 ### 浮点数的表示
+http://www.ruanyifeng.com/blog/2010/06/ieee_floating-point_representation.html
 http://www.cprogramming.com/tutorial/floating_point/understanding_floating_point_representation.html
 http://www.geeksforgeeks.org/floating-point-representation-basics/
 

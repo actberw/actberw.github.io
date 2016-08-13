@@ -74,7 +74,7 @@ A sorting algorithm is said to be stable if two objects with equal keys appear i
 
 - Stable
 - O(1) 空间复杂度
-- 插入排序平均需要$\frac{N^2}{4}$次比较和$\frac{N^2}{4}$ 次交换。在最坏的情况下需要$\frac{N^2}{2}$ 次比较和交换；在最好的情况下只需要N-1次比较和0次交换。
+- 插入排序平均需要$\frac{N^2}{4}$次比较和$\frac{N^2}{4}$ 次交换。在最坏的情况下(逆序)需要$\frac{N^2}{2}$ 次比较和交换；在最好(排序好)的情况下只需要N-1次比较和0次交换。
 
 ### 冒泡排序
 
@@ -99,14 +99,14 @@ A sorting algorithm is said to be stable if two objects with equal keys appear i
 冒泡排序和插入排序有差不多的性能, 但是对已经排序(nearly sorted)的冒泡排序 O($n^2$) 比较，而插入排序在这个例子只需要O(n). 改进的冒泡, 可以很好利用已经排序的减少比较.
 
     void bubble_sort(int *array, int n) {
-        int flag = n-1, j, k;
-        while (flag > 0) {
-            k = flag;
-            flag = 0;
-            for (j = 1; j < k; j++) {
+        int pos = n-1, j, k;
+        while (pos > 0) {
+            k = pos ;
+            pos = 0;
+            for (j = 1; j < pos; j++) {
                 if (array[j] < array[j - 1]) {
                     exch(array[j], array[j - 1]);
-                    flag = j;
+                    pos = j;
                 }
             }
         }

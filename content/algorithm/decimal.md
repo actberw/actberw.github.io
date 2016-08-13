@@ -131,7 +131,7 @@ q(n,k) = q(n,n)
 ### 反转整数
 
     int reverse(int x) {
-        // c除法是向0方向取最接近精确值的整数, 不需要管正负, 这里没有考虑溢出情况.
+        // c除法是向0方向取最接近精确值的整数, 不需要管正负, 这里没有考虑溢出情况. 可以用int64_t表示.
         int ret=0;
         while(x) {
             ret = ret * 10 + x % 10;
@@ -140,17 +140,6 @@ q(n,k) = q(n,n)
 
         return ret;
     }
-
-### valid number
->Validate if a given string is numeric.
-
->Some examples:
-"0" => true
-" 0.1 " => true
-"abc" => false
-"1 a" => false
-"2e10" => true
-Note: It is intended for the problem statement to be ambiguous. You should gather all requirements up front before implementing one.
 
 refer:
 

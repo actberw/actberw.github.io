@@ -5,6 +5,7 @@ Date: 2015-02-21 12:00:00
 lsof -p
 lsof -u
 lsof -i 
+lsof -c  selects the listing of files for processes executing the command that begins with the characters of c.
 
 refer:
 

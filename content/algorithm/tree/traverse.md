@@ -48,7 +48,7 @@ Date: 2014-09-02 14:00:00
 
     }
 
-    // 后序遍历, two stack
+    // 后序遍历, two stack 参见最后一个链接.
     void postOrderTraversalIterativeTwoStacks(BinaryTree *root) {
       if (!root) return;
       stack<BinaryTree*> s;
@@ -211,3 +211,4 @@ refer:
 - [http://mingxinglai.com/cn/2014/07/traverse-binary-by-level/](http://mingxinglai.com/cn/2014/07/traverse-binary-by-level/)
 - [http://leetcode.com/2010/04/binary-search-tree-in-order-traversal.html](http://leetcode.com/2010/04/binary-search-tree-in-order-traversal.html)
 - [http://leetcode.com/2010/10/binary-tree-post-order-traversal.html](http://leetcode.com/2010/10/binary-tree-post-order-traversal.html)
+- [http://noalgo.info/832.html](http://noalgo.info/832.html)

@@ -1,7 +1,9 @@
 Title:  当前登陆主机的用户信息 
 
-w, who, last, lastlog, users, finger
-
+w, who: /var/run/utmp
+last:/var/log/wtmp
+lastlog: /var/log/lastlog
+users, finger
 
 refers:
 

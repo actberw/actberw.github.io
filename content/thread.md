@@ -1,5 +1,5 @@
 Title:线程(thread)
-Tags: linux, thread, user thread, kernel thread
+Tags: linux, thread, user thread, kernel thread, lwp
 Date: 2014-10-28
 
 线程是操作系统调度的基本单位(thread is a basic unit of CPU utilization), 它被包含在进程之中, 线程提供了一种并行的方式, 可以利用多核cpu(kernel thread). 一个进程中可以并发多个线程. 同一进程中的多条线程将共享该进程中的资源，如text区, data区, 虚拟地址空间，文件描述符和信号处理, 但线程有自己的调用栈, 寄存器环境(包括pc register), 本地存储, signal mask等. 进程是操作系统分配资源的最小单元, 相对于进程线程有以下优势:
@@ -24,6 +24,9 @@ Date: 2014-10-28
 用户级线程由运行时库管理创建, 调度等, 既可以运行在用户态也可以运行在内核态(参见[系统调用](/posts/misc/systemcall.html)), 对于操作系统是不可见的，因此无法操作系统被调度. 
 
 相对于内核线程切换速度更快在用户态就可以完成，不需要内核参与. user threads differ from fibers in that each user thread has its own thread context instead of sharing the thread context of a single thread. 
+
+轻量级线程(LWP)是一种由内核支持的用户线程, 它是基于内核线程的高级抽象。
+
 ### thread model  
 常见有三种线程模型:
 

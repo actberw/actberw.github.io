@@ -124,6 +124,8 @@ bool is_complete_binary_tree(tree root) {
         convert_bst_to_dlist(root->rchild, head, prev);
     }
 
+https://www.zhihu.com/question/27378693
+
 ### 重建二叉树
 
 >Given preorder and inorder traversal of a tree, construct the binary tree.

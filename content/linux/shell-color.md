@@ -3,7 +3,7 @@ Tags: linux, shell, bash color
 
 In Bash, the <Esc> character can be obtained with "\e", "\033" or "^[".
 
-format: "\e[attribute code;text color code;background color codem".
+format: "\e[attribute code;text color code;background color code m".
 
 Attribute codes:
 0=none 1=bold 4=underscore 5=blink 7=reverse 8=concealed
@@ -16,8 +16,11 @@ Background color codes:
 
 Terminals allow attribute combinations. The attributes must be separated by a semicolon (”;”).
 
+You must put \[ and \] around any non-printing escape sequences in your prompt, Without the \[ \], bash will think the bytes which constitute the escape sequences for the color codes will actually take up space on the screen, so bash won't be able to know where the cursor actually is.
+
 refer:
 
+- [http://mywiki.wooledge.org/BashFAQ/053](http://mywiki.wooledge.org/BashFAQ/053)
 - [http://www.csc.uvic.ca/~sae/seng265/fall04/tips/s265s047-tips/bash-using-colors.html](http://www.csc.uvic.ca/~sae/seng265/fall04/tips/s265s047-tips/bash-using-colors.html)
 - [http://misc.flogisoft.com/bash/tip_colors_and_formatting](http://misc.flogisoft.com/bash/tip_colors_and_formatting)
 - [http://www.wuzesheng.com/?p=2177](http://www.wuzesheng.com/?p=2177)

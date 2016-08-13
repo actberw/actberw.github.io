@@ -23,8 +23,6 @@ Therefore,
 
 This yields a straight forward DP solution, which we first initialize the one and two letters palindromes, and work our way up finding all three letters palindromes, and so on… 
 
-### 转化为求lcs
-
 ### Manacher算法
 
     int mx = 0;
@@ -103,8 +101,6 @@ Dynamic Programming Solution
 
 refer:
 
-- [http://vicdory.com/longest_palindromic_substring.html](http://vicdory.com/longest_palindromic_substring.html)
-- [http://m.blog.csdn.net/blog/sangni007/8155041](http://m.blog.csdn.net/blog/sangni007/8155041)
 - [http://leetcode.com/2011/11/longest-palindromic-substring-part-i.html](http://leetcode.com/2011/11/longest-palindromic-substring-part-i.html)
 - [http://www.felix021.com/blog/read.php?2040](http://www.felix021.com/blog/read.php?2040)
 - [http://www.geeksforgeeks.org/dynamic-programming-set-12-longest-palindromic-subsequence/](http://www.geeksforgeeks.org/dynamic-programming-set-12-longest-palindromic-subsequence/)

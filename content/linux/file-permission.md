@@ -36,9 +36,12 @@ S或T| 同s或t, 如果有x权限则表示为小写(s, t), 否则用大写表示
 
 目录设置了设置用户组ID位时("chmod g+s"), 该目录下新生成的文件和目录将会继承其用户组ID而不是创建者的用户组ID(the owner ID is never affected, only the group ID), 而且新生成的子目录会继承设置用户组ID位.
 
+See more `man 7 path_resolution`.
+
 refer:
 
 - [0][http://www.g-loaded.eu/2005/11/08/the-use-of-the-uppercase-x-in-chmod/](http://www.g-loaded.eu/2005/11/08/the-use-of-the-uppercase-x-in-chmod/)
 - [1][http://en.wikipedia.org/wiki/Sticky_bit#cite_note-4](http://en.wikipedia.org/wiki/Sticky_bit#cite_note-4)
 - [2][http://www.linuxmanpages.com/man1/chmod.1.php](http://www.linuxmanpages.com/man1/chmod.1.php)
 - [http://en.wikipedia.org/wiki/Unix_file_types](http://en.wikipedia.org/wiki/Unix_file_types)
+- [https://wiki.archlinux.org/index.php/File_permissions_and_attributes](https://wiki.archlinux.org/index.php/File_permissions_and_attributes)

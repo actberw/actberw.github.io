@@ -38,20 +38,27 @@ Date: 2014-06-13 20:00:00
 
 >输入两个整数序列。其中一个序列表示栈的push顺序，判断另一个序列有没有可能是对应的pop顺序。为了简单起见，我们假设push序列的任意两个整数都是不相等的。
 
-    bool is_possible_pop_order(int *push_order, int *pop_order, int len) {
-        stack s;
+    bool is_pop_order(const int *pop_order, const int *push_order, int size) {
+        std::stack<int> s;
         int i, j;
         i = j = 0;
-        while (j < len) {
-            if (is_empty(&s) || top(&s) != pop_order[j]) {
-                if (i >= len) break;
-                push(&s, push_order[i++]);
-            } else {
-                pop(&s);
-                j++;
+        while (i < size) {
+            while (s.empty() || (j < size && s.top() != pop_order[i])) {
+            ¦   s.push(push_order[j]);
+            ¦   j++;
+            }
+
+            if (s.top() != pop_order[i]) break;
+
+            if (s.size() > 0 && s.top() == pop_order[i]) {
+            ¦   s.pop();
+            ¦   i++;
             }
         }
-        return (is_empty(&s) && j == len) ? true: false;
+
+        if (i < size || s.size() > 0) return false;
+
+        return true;
     }
 
 ### Implement Queue using Stacks

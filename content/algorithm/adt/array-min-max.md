@@ -48,7 +48,7 @@ Date: 2014-06-11 18:00:00
         rightMin[n - 1] = arr[n - 1];  
         for(i = n - 2 ; i >= 0 ; --i)  
         {  
-            if(arr[i] < arr[i+1])  
+            if(arr[i] < rightMin[i+1])  
                 rightMin[i] = arr[i];  
             else  
                 rightMin[i] = rightMin[i + 1];  

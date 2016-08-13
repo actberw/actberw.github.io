@@ -119,3 +119,4 @@ refer:
 - [http://en.wikipedia.org/wiki/Hamming_weight](http://en.wikipedia.org/wiki/Hamming_weight)
 - [http://leetcode.com/2011/08/reverse-bits.html](http://leetcode.com/2011/08/reverse-bits.html)
 - [https://en.wikipedia.org/wiki/Hamming_weight](https://en.wikipedia.org/wiki/Hamming_weight)
+- [http://graphics.stanford.edu/~seander/bithacks.html#CountBitsSetNaive](http://graphics.stanford.edu/~seander/bithacks.html#CountBitsSetNaive)

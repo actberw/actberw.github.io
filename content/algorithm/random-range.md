@@ -4,6 +4,8 @@ Date: 2014-09-05
 
 ### 缩小范围
 
+rand() / (RAND_MAX / N + 1)  或者.
+
     unsigned int fac = (RAND_MAX + 1u) / N;
     unsigned int limit = fac * N;
     unsigned int r;
@@ -11,7 +13,6 @@ Date: 2014-09-05
         r = rand();
     } while(r >= limit);
     return r / fac;
-
 
 ### 扩大范围
 > rand7()产生1~7之间的随机数，如何用rand7()函数产生1~10之间的随机数
@@ -62,6 +63,5 @@ refer:
 
 - [http://c-faq.com/lib/randrange.html](http://c-faq.com/lib/randrange.html)
 - [http://www.dewen.io/q/15492?sort=newest](http://www.dewen.io/q/15492?sort=newest)
-- [http://www.byywee.com/page/M0/S906/906096.html](http://www.byywee.com/page/M0/S906/906096.html)
 - [http://www.verydemo.com/demo_c180_i34806.html](http://www.verydemo.com/demo_c180_i34806.html)
 - [http://sumnous.github.io/blog/2014/05/13/random-pick-function/](http://sumnous.github.io/blog/2014/05/13/random-pick-function/)

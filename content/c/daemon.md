@@ -12,7 +12,7 @@ Date: 2014-09-11
 
  - fork创建子进程, 父进程退出
  - 调用setsid() 创建新会话
- - 再次fork，父进程退出
+ - 再次fork，父进程退出(This guarantees that the daemon is not a session leader, which prevents it from acquiring a controlling terminal under the System V rules.)
  - 将当前工作目录改为根目录
  - 设定uamsk值为0
  - 关闭不必要的文件描述符

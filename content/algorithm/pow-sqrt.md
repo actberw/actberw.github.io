@@ -24,6 +24,20 @@ Date: 2014-09-03
     }
 
 
+    int pow(double x, int n) { // TODO: check exp negative or positive
+         double base = x;
+         unsigned int exp = n > 0 ? n: -n; // unsigned
+         double result = 1;
+         while (exp) {
+             if (exp & 0x01)
+                result *= base;
+             base *= base;
+             exp >>= 2;
+         }
+         return n > 0? result : 1 / result;
+    }
+
+
 ### sqrt(x) 
 
 这里给出两种实现方法：一是二分搜索，二是牛顿迭代法。
